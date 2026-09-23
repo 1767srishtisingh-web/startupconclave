@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Startup Conclave '26 | AKGEC IDEA Lab</title>
+  <meta name="description" content="Startup Conclave '26 by AKGEC IDEA Lab. Pitch your idea, meet investors and compete for up to ₹3 lakh in seed funding. 15–16 October 2026, AKGEC Campus, Ghaziabad.">
+  <meta name="theme-color" content="#0C1B33">
+  <meta property="og:title" content="Startup Conclave '26">
+  <meta property="og:description" content="Pitch your idea. Meet investors. Build the future. 15–16 October 2026, AKGEC Campus, Ghaziabad.">
+  <meta property="og:image" content="images/conclave-poster.jpg">
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="apple-touch-icon" href="images/favicon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Apply saved theme before first paint to avoid a flash -->
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('sc26-theme');
+        if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ============ HEADER ============ -->
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a class="brand" href="#home" aria-label="Startup Conclave '26, back to top">
+        <img class="brand-mark" src="images/conclave-logo.jpg" alt="" width="44" height="44">
+        <span class="brand-text">
+          <span class="brand-name">Startup Conclave ’26</span>
+          <span class="brand-sub">AKGEC IDEA Lab</span>
+        </span>
+      </a>
+
+      <nav class="main-nav" id="main-nav" aria-label="Main">
+        <ul class="nav-list">
+          <li><a class="nav-link" href="#about">About</a></li>
+          <li><a class="nav-link" href="#schedule">Schedule</a></li>
+          <li><a class="nav-link" href="#speakers">Speakers</a></li>
+          <li><a class="nav-link" href="#venue">Venue</a></li>
+          <li><a class="nav-link" href="#faq">FAQ</a></li>
+          <li><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+        <a class="btn btn-primary nav-cta-mobile" href="#register">Register now</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="icon-btn theme-toggle" type="button" aria-label="Switch to dark theme" data-theme-toggle>
+          <svg class="icon-moon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
+        <a class="btn btn-primary header-cta" href="#register">Register</a>
+        <button class="icon-btn nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav" data-nav-toggle>
+          <span class="nav-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="hero-presenter">AKGEC IDEA Lab presents</p>
+          <h1 class="hero-title" id="hero-title">
+            <span>Startup</span>
+            <span>Conclave ’26</span>
+          </h1>
+          <p class="hero-tagline">Ideas today. Impact tomorrow.</p>
+          <p class="hero-lede">Two days to pitch your idea to investors, learn from founders who have done it before, and compete for up to <strong>₹3 lakh in seed funding</strong>.</p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href="#register">Register by 10 October</a>
+            <a class="btn btn-ghost btn-lg" href="#schedule">See the schedule</a>
+          </div>
+
+          <dl class="hero-facts">
+            <div class="fact">
+              <dt>Dates</dt>
+              <dd>15–16 October 2026</dd>
+            </div>
+            <div class="fact">
+              <dt>Venue</dt>
+              <dd>AKGEC Campus, Ghaziabad</dd>
+            </div>
+            <div class="fact">
+              <dt>Registration closes in</dt>
+              <dd data-countdown-inline>—</dd>
+            </div>
+          </dl>
+        </div>
+
+        <figure class="hero-poster">
+          <button class="poster-trigger" type="button" data-poster-open aria-label="View the full event poster">
+            <img src="images/conclave-poster.jpg" alt="Official Startup Conclave '26 poster: five founders seated in front of a city skyline under the words Ideate, Innovate, Ignite, Inspire and Impact, with the registration QR code, dates and seed funding details." width="1024" height="1536" fetchpriority="high">
+            <span class="poster-hint">
+              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              View full poster
+            </span>
+          </button>
+          <figcaption>Scan the QR code on the poster to open the official registration.</figcaption>
+        </figure>
+      </div>
+      <div class="brand-stripe" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+    </section>
+
+    <!-- ============ ABOUT / FIVE PILLARS ============ -->
+    <section class="section about" id="about" aria-labelledby="about-title">
+      <div class="container about-grid">
+        <div class="about-intro">
+          <h2 class="section-title" id="about-title">From a rough idea to a funded startup</h2>
+          <p>Startup Conclave is AKGEC’s annual gathering for people building something new. Organised by the AKGEC IDEA Lab, the college’s technical business incubator, it puts students, early-stage founders and investors in the same room for two days.</p>
+          <p>Great ideas don’t wait for the right time. Neither should you.</p>
+          <div class="about-logo">
+            <img src="images/conclave-logo.jpg" alt="Startup Conclave 2026 logo: the event name inside a white diamond framed by bold coloured bars." width="900" height="900" loading="lazy">
+          </div>
+        </div>
+
+        <ol class="pillars">
+          <li class="pillar" style="--pillar: var(--amber)">
+            <span class="pillar-step">1</span>
+            <div>
+              <h3>Ideate</h3>
+              <p>Bring an idea, however early. Sharpen the problem it solves in sessions with mentors.</p>
+            </div>
+          </li>
+          <li class="pillar" style="--pillar: var(--green)">
+            <span class="pillar-step">2</span>
+            <div>
+              <h3>Innovate</h3>
+              <p>Make it testable in hands-on workshops on product, prototyping and market fit.</p>
+            </div>
+          </li>
+          <li class="pillar" style="--pillar: var(--red)">
+            <span class="pillar-step">3</span>
+            <div>
+              <h3>Ignite</h3>
+              <p>Pitch live to a jury of investors and founders, and get direct feedback on the spot.</p>
+            </div>
+          </li>
+          <li class="pillar" style="--pillar: var(--blue)">
+            <span class="pillar-step">4</span>
+            <div>
+              <h3>Inspire</h3>
+              <p>Hear from founders and operators about what worked, what didn’t, and why.</p>
+            </div>
+          </li>
+          <li class="pillar" style="--pillar: var(--ink)">
+            <span class="pillar-step">5</span>
+            <div>
+              <h3>Impact</h3>
+              <p>The most promising startups share up to ₹3 lakh in seed funding to take the next step.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ FUNDING BAND ============ -->
+    <section class="funding" aria-labelledby="funding-title">
+      <div class="container funding-grid">
+        <div class="funding-headline">
+          <p class="funding-kicker">Seed funding opportunity</p>
+          <h2 id="funding-title" class="funding-amount"><span class="funding-upto">Up to</span> ₹3&nbsp;lakh</h2>
+          <p class="funding-note">for the most promising startups, decided by the investor jury after the pitch finals on 16 October.</p>
+          <a class="btn btn-light btn-lg" href="#register" data-preselect-pitch>Register to pitch</a>
+        </div>
+        <ul class="store-list" aria-label="What's in store">
+          <li>
+            <h3>Pitch competition</h3>
+            <p>Two rounds. Shortlisted teams from Day 1 pitch again in the finals.</p>
+          </li>
+          <li>
+            <h3>Expert talks</h3>
+            <p>Keynotes, panels and a fireside chat with founders and investors.</p>
+          </li>
+          <li>
+            <h3>Networking</h3>
+            <p>Roundtables, mentor office hours and open time to meet investors.</p>
+          </li>
+          <li>
+            <h3>Prizes and more</h3>
+            <p>Seed funding, recognition on stage and a path into IDEA Lab.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ SCHEDULE ============ -->
+    <section class="section schedule" id="schedule" aria-labelledby="schedule-title">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title" id="schedule-title">Schedule</h2>
+          <p class="section-sub">15–16 October 2026 at AKGEC Campus, Ghaziabad. Timings are indicative and may shift slightly on the day.</p>
+        </div>
+
+        <div class="schedule-controls">
+          <div class="day-tabs" role="tablist" aria-label="Event days">
+            <button class="day-tab" role="tab" id="tab-day1" aria-controls="panel-day1" aria-selected="true" data-day-tab>
+              <span class="day-tab-label">Day 1</span>
+              <span class="day-tab-date">Thu, 15 Oct</span>
+            </button>
+            <button class="day-tab" role="tab" id="tab-day2" aria-controls="panel-day2" aria-selected="false" tabindex="-1" data-day-tab>
+              <span class="day-tab-label">Day 2</span>
+              <span class="day-tab-date">Fri, 16 Oct</span>
+            </button>
+          </div>
+
+          <div class="chip-group" role="group" aria-label="Filter sessions by type">
+            <button class="chip is-active" type="button" data-session-filter="all" aria-pressed="true">All</button>
+            <button class="chip" type="button" data-session-filter="talk" aria-pressed="false"><span class="dot dot-talk"></span>Talks</button>
+            <button class="chip" type="button" data-session-filter="pitch" aria-pressed="false"><span class="dot dot-pitch"></span>Pitches</button>
+            <button class="chip" type="button" data-session-filter="workshop" aria-pressed="false"><span class="dot dot-workshop"></span>Workshops</button>
+            <button class="chip" type="button" data-session-filter="network" aria-pressed="false"><span class="dot dot-network"></span>Networking</button>
+          </div>
+        </div>
+
+        <!-- Day 1 -->
+        <div class="day-panel" id="panel-day1" role="tabpanel" aria-labelledby="tab-day1">
+          <div class="day-summary">
+            <div>
+              <h3>Ideate and ignite</h3>
+              <p>Opening keynotes, a problem-framing workshop and the first round of pitches.</p>
+            </div>
+            <button class="btn btn-ghost btn-sm" type="button" data-ics="day1">
+              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3.5 10h17M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              Add Day 1 to calendar
+            </button>
+          </div>
+          <ol class="timeline">
+            <li class="session" data-type="network"><time>09:00</time><div><h4>Registration and breakfast</h4><p>Collect your pass at the main entrance. Carry a photo ID.</p></div><span class="tag tag-network">Networking</span></li>
+            <li class="session" data-type="talk"><time>10:00</time><div><h4>Opening ceremony and welcome</h4><p>Welcome address by AKGEC leadership and the IDEA Lab team.</p></div><span class="tag tag-talk">Talk</span></li>
+            <li class="session" data-type="talk"><time>10:45</time><div><h4>Keynote: Building a startup from campus</h4><p>Aman Kumar on turning a college project into a company.</p></div><span class="tag tag-talk">Talk</span></li>
+            <li class="session" data-type="workshop"><time>12:00</time><div><h4>Workshop: Frame the problem before the product</h4><p>Small-group session with mentors. Bring your idea in one sentence.</p></div><span class="tag tag-workshop">Workshop</span></li>
+            <li class="session" data-type="network"><time>13:00</time><div><h4>Lunch and open networking</h4><p>Included with your pass.</p></div><span class="tag tag-network">Networking</span></li>
+            <li class="session" data-type="pitch"><time>14:00</time><div><h4>Pitch competition, round 1</h4><p>Five-minute pitches followed by three minutes of jury questions.</p></div><span class="tag tag-pitch">Pitch</span></li>
+            <li class="session" data-type="talk"><time>16:30</time><div><h4>Panel: What investors look for in 2026</h4><p>Early-stage investors on traction, teams and timing.</p></div><span class="tag tag-talk">Talk</span></li>
+            <li class="session" data-type="network"><time>17:30</time><div><h4>Founder roundtables</h4><p>Themed tables on fundraising, hiring and first customers.</p></div><span class="tag tag-network">Networking</span></li>
+          </ol>
+          <p class="empty-state" hidden>No sessions of this type on Day 1. Try Day 2 or show all sessions.</p>
+        </div>
+
+        <!-- Day 2 -->
+        <div class="day-panel" id="panel-day2" role="tabpanel" aria-labelledby="tab-day2" hidden>
+          <div class="day-summary">
+            <div>
+              <h3>Inspire and impact</h3>
+              <p>Masterclasses, the pitch finals and the seed funding announcement.</p>
+            </div>
+            <button class="btn btn-ghost btn-sm" type="button" data-ics="day2">
+              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3.5 10h17M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              Add Day 2 to calendar
+            </button>
+          </div>
+          <ol class="timeline">
+            <li class="session" data-type="workshop"><time>09:30</time><div><h4>Workshop: Prototyping on a student budget</h4><p>Abhishek walks through building a testable first version in a week.</p></div><span class="tag tag-workshop">Workshop</span></li>
+            <li class="session" data-type="talk"><time>11:00</time><div><h4>Fireside chat: From first customer to first hire</h4><p>Dr. Ravi Menon on the decisions that shape an early team.</p></div><span class="tag tag-talk">Talk</span></li>
+            <li class="session" data-type="pitch"><time>12:00</time><div><h4>Pitch competition, finals</h4><p>Shortlisted teams pitch to the full investor jury.</p></div><span class="tag tag-pitch">Pitch</span></li>
+            <li class="session" data-type="network"><time>13:30</time><div><h4>Lunch and mentor office hours</h4><p>Book a 15-minute slot at the help desk.</p></div><span class="tag tag-network">Networking</span></li>
+            <li class="session" data-type="workshop"><time>14:30</time><div><h4>Masterclass: Unit economics for early founders</h4><p>Pricing, margins and the numbers investors ask about first.</p></div><span class="tag tag-workshop">Workshop</span></li>
+            <li class="session" data-type="network"><time>16:00</time><div><h4>Investor meetups</h4><p>Open time with the jury while scores are finalised.</p></div><span class="tag tag-network">Networking</span></li>
+            <li class="session" data-type="talk"><time>17:00</time><div><h4>Awards, seed funding announcement and closing</h4><p>Winners announced on stage.</p></div><span class="tag tag-talk">Talk</span></li>
+          </ol>
+          <p class="empty-state" hidden>No sessions of this type on Day 2. Try Day 1 or show all sessions.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SPEAKERS ============ -->
+    <section class="section speakers" id="speakers" aria-labelledby="speakers-title">
+      <div class="container">
+        <div class="section-head section-head-row">
+          <div>
+            <h2 class="section-title" id="speakers-title">Speakers and jury</h2>
+            <p class="section-sub">Founders, investors and technologists who will speak, mentor and judge. More names will be announced before 10 October.</p>
+          </div>
+          <div class="chip-group" role="group" aria-label="Filter people by role">
+            <button class="chip is-active" type="button" data-role-filter="all" aria-pressed="true">Everyone</button>
+            <button class="chip" type="button" data-role-filter="keynote" aria-pressed="false">Keynote</button>
+            <button class="chip" type="button" data-role-filter="jury" aria-pressed="false">Jury</button>
+            <button class="chip" type="button" data-role-filter="mentor" aria-pressed="false">Mentors</button>
+          </div>
+        </div>
+
+        <ul class="speaker-grid" aria-live="polite">
+          <li class="speaker" data-role="keynote">
+            <button class="speaker-card" type="button" data-speaker="aman">
+              <span class="avatar" style="--avatar: var(--blue)">AK</span>
+              <span class="speaker-name">Aman Kumar</span>
+              <span class="speaker-role">AI Research Director, TechVision</span>
+              <span class="speaker-tag">Keynote</span>
+            </button>
+          </li>
+          <li class="speaker" data-role="keynote">
+            <button class="speaker-card" type="button" data-speaker="ravi">
+              <span class="avatar" style="--avatar: var(--green)">RM</span>
+              <span class="speaker-name">Dr. Ravi Menon</span>
+              <span class="speaker-role">CTO, Quantum Startups</span>
+              <span class="speaker-tag">Keynote</span>
+            </button>
+          </li>
+          <li class="speaker" data-role="jury">
+            <button class="speaker-card" type="button" data-speaker="sangam">
+              <span class="avatar" style="--avatar: var(--red)">SG</span>
+              <span class="speaker-name">Sangam</span>
+              <span class="speaker-role">Partner, Horizon Ventures</span>
+              <span class="speaker-tag">Jury</span>
+            </button>
+          </li>
+          <li class="speaker" data-role="mentor">
+            <button class="speaker-card" type="button" data-speaker="abhishek">
+              <span class="avatar" style="--avatar: var(--amber)">AB</span>
+              <span class="speaker-name">Abhishek</span>
+              <span class="speaker-role">Co-founder, Nexus Labs</span>
+              <span class="speaker-tag">Mentor</span>
+            </button>
+          </li>
+          <li class="speaker speaker-tba" data-role="jury">
+            <div class="speaker-card">
+              <span class="avatar avatar-tba" aria-hidden="true">?</span>
+              <span class="speaker-name">Investor jury</span>
+              <span class="speaker-role">Two more names to be announced</span>
+              <span class="speaker-tag">Jury</span>
+            </div>
+          </li>
+          <li class="speaker speaker-tba" data-role="mentor">
+            <div class="speaker-card">
+              <span class="avatar avatar-tba" aria-hidden="true">?</span>
+              <span class="speaker-name">Startup mentors</span>
+              <span class="speaker-role">IDEA Lab alumni founders, to be announced</span>
+              <span class="speaker-tag">Mentor</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ WHO IT'S FOR ============ -->
+    <section class="section audience" id="who" aria-labelledby="who-title">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title" id="who-title">Who it’s for</h2>
+          <p class="section-sub">Open to students, startups, innovators and entrepreneurs. Pick the one that fits you to see what the two days hold.</p>
+        </div>
+
+        <div class="audience-box">
+          <div class="segmented" role="tablist" aria-label="Participant type">
+            <button class="segment" role="tab" id="seg-student" aria-controls="audience-panel" aria-selected="true" data-audience="student">Students</button>
+            <button class="segment" role="tab" id="seg-startup" aria-controls="audience-panel" aria-selected="false" tabindex="-1" data-audience="startup">Startups</button>
+            <button class="segment" role="tab" id="seg-innovator" aria-controls="audience-panel" aria-selected="false" tabindex="-1" data-audience="innovator">Innovators</button>
+            <button class="segment" role="tab" id="seg-entrepreneur" aria-controls="audience-panel" aria-selected="false" tabindex="-1" data-audience="entrepreneur">Entrepreneurs</button>
+          </div>
+
+          <div class="audience-panel" id="audience-panel" role="tabpanel" aria-labelledby="seg-student" tabindex="0">
+            <div class="audience-text">
+              <h3 data-audience-title>You have an idea and want to know if it’s worth pursuing</h3>
+              <p data-audience-desc>Test your idea with mentors, learn how founders validate early, and pitch in round 1 even if you only have a concept.</p>
+            </div>
+            <div class="audience-lists">
+              <div>
+                <h4>You’ll get</h4>
+                <ul class="check-list" data-audience-gets></ul>
+              </div>
+              <div>
+                <h4>Bring</h4>
+                <p data-audience-bring></p>
+                <p class="audience-pass">Suggested pass: <strong data-audience-pass></strong></p>
+              </div>
+            </div>
+            <a class="btn btn-primary" href="#register" data-audience-cta>Register as a student</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ VENUE ============ -->
+    <section class="section venue" id="venue" aria-labelledby="venue-title">
+      <div class="container venue-grid">
+        <div>
+          <h2 class="section-title" id="venue-title">Venue and details</h2>
+          <dl class="detail-list">
+            <div><dt>Dates</dt><dd>15–16 October 2026</dd></div>
+            <div><dt>Time</dt><dd>9:00 am – 6:00 pm, both days</dd></div>
+            <div><dt>Venue</dt><dd>AKGEC Campus</dd></div>
+            <div><dt>Address</dt><dd>27th KM Milestone, Delhi–Meerut Expressway, Ghaziabad, Uttar Pradesh 201015</dd></div>
+            <div><dt>Language</dt><dd>English and Hindi</dd></div>
+            <div><dt>Food</dt><dd>Lunch included on the days of your pass</dd></div>
+            <div><dt>Last date to register</dt><dd>10 October 2026</dd></div>
+          </dl>
+          <a class="btn btn-ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=Ajay+Kumar+Garg+Engineering+College+Ghaziabad" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="9.5" r="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+            Get directions
+          </a>
+        </div>
+        <div class="map-frame" data-map-label="Map of AKGEC Campus, Ghaziabad">
+          <iframe title="Map showing Ajay Kumar Garg Engineering College, Ghaziabad" src="https://maps.google.com/maps?q=Ajay%20Kumar%20Garg%20Engineering%20College%20Ghaziabad&amp;z=15&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ REGISTER ============ -->
+    <section class="section register" id="register" aria-labelledby="register-title">
+      <div class="container register-grid">
+        <aside class="register-aside">
+          <h2 class="section-title" id="register-title">Register</h2>
+          <p class="section-sub">Registration closes on 10 October 2026 at 11:59 pm.</p>
+
+          <div class="countdown" data-countdown aria-live="off">
+            <div class="cd-unit"><span class="cd-num" data-cd="days">00</span><span class="cd-label">days</span></div>
+            <div class="cd-unit"><span class="cd-num" data-cd="hours">00</span><span class="cd-label">hours</span></div>
+            <div class="cd-unit"><span class="cd-num" data-cd="minutes">00</span><span class="cd-label">min</span></div>
+            <div class="cd-unit"><span class="cd-num" data-cd="seconds">00</span><span class="cd-label">sec</span></div>
+          </div>
+
+          <div class="fee-box">
+            <p class="fee"><span class="fee-amount">₹500</span> per person</p>
+            <p>Covers entry, all sessions and lunch on the days of your pass. Payment details are sent to your email after you register.</p>
+          </div>
+
+          <div class="qr-note">
+            <img src="images/conclave-poster.jpg" alt="" width="1024" height="1536" loading="lazy">
+            <div>
+              <p><strong>Prefer to scan?</strong> The QR code on the official poster opens the same registration.</p>
+              <button class="link-btn" type="button" data-poster-open>Open the poster</button>
+            </div>
+          </div>
+        </aside>
+
+        <div class="register-card">
+          <!-- Registration form -->
+          <form class="reg-form" id="reg-form" novalidate data-reg-form>
+            <h3 class="form-title">Your details</h3>
+
+            <div class="field">
+              <label for="reg-name">Full name</label>
+              <input id="reg-name" name="name" type="text" autocomplete="name" required>
+              <p class="field-error" id="reg-name-err"></p>
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="reg-type">Joining as</label>
+                <select id="reg-type" name="type" required>
+                  <option value="student">Student</option>
+                  <option value="startup">Startup</option>
+                  <option value="innovator">Innovator</option>
+                  <option value="entrepreneur">Entrepreneur</option>
+                </select>
+              </div>
+              <div class="field" data-student-only>
+                <label for="reg-year">Year of study</label>
+                <select id="reg-year" name="year" required>
+                  <option value="">Select year</option>
+                  <option>1st year</option>
+                  <option>2nd year</option>
+                  <option>3rd year</option>
+                  <option>4th year</option>
+                  <option>Postgraduate</option>
+                  <option>PhD / research</option>
+                </select>
+                <p class="field-error" id="reg-year-err"></p>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="reg-email">Email</label>
+              <input id="reg-email" name="email" type="email" autocomplete="email" inputmode="email" required aria-describedby="reg-email-hint">
+              <p class="field-hint" id="reg-email-hint" data-email-hint>Students register with their college email (ending in .ac.in or .edu).</p>
+              <p class="field-error" id="reg-email-err"></p>
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="reg-phone">Mobile number</label>
+                <input id="reg-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="10-digit number" required>
+                <p class="field-error" id="reg-phone-err"></p>
+              </div>
+              <div class="field">
+                <label for="reg-org" data-org-label>College</label>
+                <input id="reg-org" name="org" type="text" autocomplete="organization" required>
+                <p class="field-error" id="reg-org-err"></p>
+              </div>
+            </div>
+
+            <fieldset class="field pass-field">
+              <legend>Pass</legend>
+              <div class="pass-options">
+                <label class="pass-option">
+                  <input type="radio" name="pass" value="Full event pass" checked>
+                  <span class="pass-body"><span class="pass-name">Full event</span><span class="pass-date">15–16 Oct</span></span>
+                </label>
+                <label class="pass-option">
+                  <input type="radio" name="pass" value="Day 1 pass">
+                  <span class="pass-body"><span class="pass-name">Day 1</span><span class="pass-date">Thu, 15 Oct</span></span>
+                </label>
+                <label class="pass-option">
+                  <input type="radio" name="pass" value="Day 2 pass">
+                  <span class="pass-body"><span class="pass-name">Day 2</span><span class="pass-date">Fri, 16 Oct</span></span>
+                </label>
+              </div>
+              <p class="field-hint" data-pass-hint hidden>Pitching teams need the full event pass, since round 1 is on Day 1 and the finals on Day 2.</p>
+            </fieldset>
+
+            <label class="check">
+              <input type="checkbox" name="pitch" data-pitch-toggle>
+              <span>I want to pitch in the competition</span>
+            </label>
+
+            <div class="pitch-fields" data-pitch-fields hidden>
+              <div class="field-row">
+                <div class="field">
+                  <label for="reg-venture">Startup or idea name</label>
+                  <input id="reg-venture" name="venture" type="text">
+                  <p class="field-error" id="reg-venture-err"></p>
+                </div>
+                <div class="field">
+                  <label for="reg-team">Team size</label>
+                  <select id="reg-team" name="team">
+                    <option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option>
+                  </select>
+                </div>
+              </div>
+              <div class="field">
+                <label for="reg-oneliner">Your idea in one sentence</label>
+                <textarea id="reg-oneliner" name="oneliner" rows="2" maxlength="160" aria-describedby="oneliner-count"></textarea>
+                <p class="field-hint"><span id="oneliner-count" data-char-count>0</span>/160 characters</p>
+              </div>
+            </div>
+
+            <label class="check">
+              <input type="checkbox" name="agree" required>
+              <span>I agree to carry a valid photo ID and follow the event code of conduct.</span>
+            </label>
+            <p class="field-error" id="reg-agree-err"></p>
+
+            <button class="btn btn-primary btn-lg btn-block" type="submit" data-submit>Register</button>
+            <p class="form-error" data-form-error role="alert"></p>
+            <p class="form-foot" data-demo-note>Preview mode: registrations are saved in this browser only until a form service is connected.</p>
+          </form>
+
+          <!-- Success state -->
+          <div class="reg-success" data-reg-success hidden tabindex="-1">
+            <div class="success-head">
+              <span class="success-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="22" height="22"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <div>
+                <h3>You’re registered</h3>
+                <p data-success-msg>Your pass is saved. Payment details will be sent to <strong data-pass-email></strong>.</p>
+              </div>
+            </div>
+
+            <div class="pass-card" id="pass-card">
+              <div class="pass-card-top">
+                <img src="images/conclave-logo.jpg" alt="" width="56" height="56">
+                <div>
+                  <p class="pass-card-event">Startup Conclave ’26</p>
+                  <p class="pass-card-where">AKGEC Campus, Ghaziabad</p>
+                </div>
+              </div>
+              <dl class="pass-card-body">
+                <div><dt>Name</dt><dd data-pass-name></dd></div>
+                <div><dt>Pass</dt><dd data-pass-type></dd></div>
+                <div><dt>Joining as</dt><dd data-pass-role></dd></div>
+                <div><dt>Pass ID</dt><dd class="pass-id" data-pass-id></dd></div>
+              </dl>
+              <div class="brand-stripe brand-stripe-thin" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+            </div>
+
+            <div class="success-actions">
+              <button class="btn btn-primary" type="button" data-print-pass>Print pass</button>
+              <button class="btn btn-ghost" type="button" data-register-another>Register someone else</button>
+            </div>
+          </div>
+
+          <!-- Closed state -->
+          <div class="reg-closed" data-reg-closed hidden>
+            <h3>Registration has closed</h3>
+            <p>The last date to register was 10 October 2026. For late entries, contact a coordinator below.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FAQ ============ -->
+    <section class="section faq" id="faq" aria-labelledby="faq-title">
+      <div class="container faq-grid">
+        <div>
+          <h2 class="section-title" id="faq-title">Questions</h2>
+          <p class="section-sub">Can’t find what you need? Write to <a href="mailto:idealab@akgec.ac.in">idealab@akgec.ac.in</a>.</p>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item" open>
+            <summary>Who can register?</summary>
+            <p>Students from any college, early-stage startups, independent innovators and entrepreneurs. Students register with their college email; everyone else can use any email.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Do I need a startup to attend?</summary>
+            <p>No. Most attendees come to learn and meet people. You only need an idea, and not even that, if you just want to listen and network.</p>
+          </details>
+          <details class="faq-item">
+            <summary>How does the pitch competition work?</summary>
+            <p>Round 1 is on Day 1: five minutes to pitch and three minutes of questions. The jury shortlists teams for the finals on Day 2, and the most promising startups share up to ₹3 lakh in seed funding.</p>
+          </details>
+          <details class="faq-item">
+            <summary>We are a team. How do we register?</summary>
+            <p>Each member registers separately with the same startup or idea name, so we can group you. Only one member needs to tick “I want to pitch”.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What should I bring?</summary>
+            <p>A valid photo ID. If you are pitching, bring a laptop and your deck on a USB drive plus a cloud link as backup.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What is the last date to register?</summary>
+            <p>10 October 2026. Seats are limited, so registering early is a good idea.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="section contact" id="contact" aria-labelledby="contact-title">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title" id="contact-title">Talk to the team</h2>
+          <p class="section-sub">Our student coordinators can help with registration, pitching and travel to campus.</p>
+        </div>
+        <ul class="contact-grid">
+          <li class="contact-card">
+            <span class="avatar avatar-sm" style="--avatar: var(--blue)">KG</span>
+            <div>
+              <p class="contact-name">Krishna Goel</p>
+              <p class="contact-role">Coordinator</p>
+              <a class="contact-link" href="tel:+919548708361">+91 95487 08361</a>
+            </div>
+          </li>
+          <li class="contact-card">
+            <span class="avatar avatar-sm" style="--avatar: var(--green)">PS</span>
+            <div>
+              <p class="contact-name">Preet Sain</p>
+              <p class="contact-role">Coordinator</p>
+              <a class="contact-link" href="tel:+917982756664">+91 79827 56664</a>
+            </div>
+          </li>
+          <li class="contact-card">
+            <span class="avatar avatar-sm" style="--avatar: var(--red)">DS</span>
+            <div>
+              <p class="contact-name">Divi Shrivastava</p>
+              <p class="contact-role">Coordinator</p>
+              <a class="contact-link" href="mailto:idealab@akgec.ac.in">idealab@akgec.ac.in</a>
+            </div>
+          </li>
+          <li class="contact-card contact-card-links">
+            <a class="contact-row" href="https://www.instagram.com/akgec_idealab/" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"/></svg>
+              @akgec_idealab
+            </a>
+            <a class="contact-row" href="mailto:idealab@akgec.ac.in">
+              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3.5 6l8.5 7 8.5-7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+              idealab@akgec.ac.in
+            </a>
+            <a class="contact-row" href="https://www.akgec.ac.in" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3.5 12h17M12 3.5c2.5 2.5 3.5 5.5 3.5 8.5s-1 6-3.5 8.5c-2.5-2.5-3.5-5.5-3.5-8.5s1-6 3.5-8.5Z" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+              www.akgec.ac.in
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="brand-stripe" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="#home">
+          <img class="brand-mark" src="images/conclave-logo.jpg" alt="" width="44" height="44">
+          <span class="brand-text">
+            <span class="brand-name">Startup Conclave ’26</span>
+            <span class="brand-sub">Ideas today. Impact tomorrow.</span>
+          </span>
+        </a>
+        <p>Organised by AKGEC IDEA Lab, the Technical Business Incubator of Ajay Kumar Garg Engineering College, Ghaziabad.</p>
+      </div>
+
+      <nav class="footer-nav" aria-label="Footer">
+        <h2 class="footer-heading">Event</h2>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#schedule">Schedule</a></li>
+          <li><a href="#speakers">Speakers</a></li>
+          <li><a href="#venue">Venue</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#register">Register</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer-news">
+        <h2 class="footer-heading">Get event updates</h2>
+        <p>Speaker announcements and schedule changes, straight to your inbox.</p>
+        <form class="news-form" novalidate data-news-form>
+          <label class="visually-hidden" for="news-email">Email address</label>
+          <input id="news-email" type="email" placeholder="you@example.com" autocomplete="email" required>
+          <button class="btn btn-light" type="submit">Subscribe</button>
+        </form>
+        <p class="news-error" data-news-error role="alert"></p>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>© 2026 AKGEC IDEA Lab. All rights reserved.</p>
+      <a href="#top" class="back-top">Back to top</a>
+    </div>
+  </footer>
+
+  <!-- ============ DIALOGS ============ -->
+  <dialog class="modal poster-modal" data-poster-modal aria-label="Startup Conclave '26 poster">
+    <button class="modal-close" type="button" data-modal-close aria-label="Close poster">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <img src="images/conclave-poster.jpg" alt="Full Startup Conclave '26 poster with the registration QR code, coordinators, dates, venue and seed funding details." width="1024" height="1536">
+    <div class="poster-modal-actions">
+      <a class="btn btn-light btn-sm" href="images/conclave-poster.jpg" download="startup-conclave-26-poster.jpg">Download poster</a>
+    </div>
+  </dialog>
+
+  <dialog class="modal speaker-modal" data-speaker-modal aria-labelledby="sm-name">
+    <button class="modal-close" type="button" data-modal-close aria-label="Close">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <div class="speaker-modal-head">
+      <span class="avatar avatar-lg" data-sm-avatar></span>
+      <div>
+        <h3 id="sm-name" data-sm-name></h3>
+        <p data-sm-role></p>
+      </div>
+    </div>
+    <p class="speaker-modal-bio" data-sm-bio></p>
+    <div class="speaker-modal-session">
+      <p class="sm-label">At the conclave</p>
+      <p data-sm-session></p>
+    </div>
+  </dialog>
+
+  <div class="toast" data-toast role="status" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
