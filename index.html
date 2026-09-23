@@ -45,13 +45,16 @@
 
       <nav class="main-nav" id="main-nav" aria-label="Main">
         <ul class="nav-list">
-          <li><a class="nav-link" href="#about">Opportunities</a></li>
-          <li><a class="nav-link" href="#how-it-works">How It Works</a></li>
+          <li><a class="nav-link" href="#about">About</a></li>
+          <li><a class="nav-link" href="#highlights">Highlights</a></li>
+          <li><a class="nav-link" href="#how-it-works">Journey</a></li>
           <li><a class="nav-link" href="#schedule">Schedule</a></li>
           <li><a class="nav-link" href="#ways-to-join">Participate</a></li>
           <li><a class="nav-link" href="#venue">Venue</a></li>
+          <li><a class="nav-link" href="#terms">Terms</a></li>
           <li><a class="nav-link" href="#faq">FAQ</a></li>
           <li><a class="nav-link" href="#contact">Contact</a></li>
+          <li><a class="nav-link nav-register-link" href="#register">Register</a></li>
         </ul>
         <a class="btn btn-primary nav-cta-mobile" href="#register">Register now</a>
       </nav>
@@ -61,7 +64,7 @@
           <svg class="icon-moon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
           <svg class="icon-sun" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
         </button>
-        <a class="btn btn-primary header-cta" href="#register">Register</a>
+        <a class="btn btn-ghost header-see-more" href="#about">See More ↓</a>
         <button class="icon-btn nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav" data-nav-toggle>
           <span class="nav-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
         </button>
@@ -84,7 +87,7 @@
           <p class="hero-lede">Startup Conclave 2026 brings together ideas, innovators, mentors, investors and opportunities — all under one roof. <strong>Where big ideas meet the right investors to build tomorrow's top companies.</strong></p>
 
           <div class="hero-actions">
-            <a class="btn btn-primary btn-lg" href="#register">Register for Conclave</a>
+            <a class="btn btn-primary btn-lg" href="#about">Explore the Event ↓</a>
             <a class="btn btn-ghost btn-lg" href="#schedule">See Itinerary</a>
           </div>
 
@@ -110,39 +113,131 @@
 
         <figure class="hero-poster">
           <button class="poster-trigger" type="button" data-poster-open aria-label="View the full event poster">
-            <img src="images/conclave-poster.jpg" alt="Official Startup Conclave '26 poster: five founders seated under the words Ideate, Innovate, Ignite, Inspire and Impact, with the registration QR code, dates and prize pool details." width="1024" height="1536" fetchpriority="high">
+            <img src="images/conclave-poster.png" alt="Official Startup Conclave '26 poster: Ideas Today. Impact Tomorrow. Pitch Competition, Expert Talks, Networking and more. 15-16 October 2026, AKGEC Campus Ghaziabad." width="1024" height="1536" fetchpriority="high">
             <span class="poster-hint">
               <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
               View full poster
             </span>
           </button>
-          <figcaption>Scan the QR code on the poster to open official registration.</figcaption>
+          <figcaption>📌 QR code will be updated soon with the official registration link.</figcaption>
         </figure>
       </div>
       <div class="brand-stripe" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
     </section>
 
-    <!-- ============ WEBSITE FLOW STRIP ============ -->
-    <section class="flow-strip" aria-label="Event journey flow">
-      <div class="container">
-        <div class="flow-strip-inner">
-          <span class="flow-kicker">Event Journey</span>
-          <div class="flow-steps-ticker">
-            <span class="flow-item"><span>REGISTER</span></span>
-            <span class="flow-arrow">→</span>
-            <span class="flow-item"><span>LEARN</span></span>
-            <span class="flow-arrow">→</span>
-            <span class="flow-item"><span>CONNECT</span></span>
-            <span class="flow-arrow">→</span>
-            <span class="flow-item"><span>EXHIBIT</span></span>
-            <span class="flow-arrow">→</span>
-            <span class="flow-item"><span>PITCH</span></span>
-            <span class="flow-arrow">→</span>
-            <span class="flow-item"><span>GET FEEDBACK</span></span>
-            <span class="flow-arrow">→</span>
-            <span class="flow-item highlight"><span>SCALE</span></span>
-          </div>
+
+    <!-- ============ QUOTE / PHILOSOPHY STRIP (moved right after hero) ============ -->
+    <section class="quote-strip">
+      <div class="container text-center">
+        <p class="quote-kicker">From a Thought → to a Possibility → to a Venture</p>
+        <div class="quote-keywords">
+          <span>IDEATE.</span>
+          <span>CONNECT.</span>
+          <span>SHOWCASE.</span>
+          <span>PITCH.</span>
+          <span>GROW.</span>
         </div>
+        <blockquote class="quote-text">
+          "Big ventures often begin with one small idea — and the courage to put it out there."
+        </blockquote>
+        <p class="quote-closing">Your idea is the starting point. <strong>Startup Conclave is where the journey begins.</strong></p>
+      </div>
+    </section>
+
+    <!-- ============ EVENT JOURNEY — EXPANDABLE WATERFALL ============ -->
+    <section class="section event-journey" id="event-journey" aria-labelledby="journey-title">
+      <div class="container">
+        <div class="section-head text-center">
+          <p class="section-kicker">Event Journey</p>
+          <h2 class="section-title" id="journey-title">Your Path at Startup Conclave '26</h2>
+          <p class="section-sub">Click on any step to learn more about what happens at each stage.</p>
+        </div>
+        <ol class="journey-waterfall">
+          <li>
+            <details class="journey-step" open>
+              <summary class="journey-step-header">
+                <span class="journey-num">01</span>
+                <span class="journey-label">Register</span>
+                <span class="journey-chevron" aria-hidden="true">▼</span>
+              </summary>
+              <div class="journey-step-body">
+                <p>Fill out the quick registration form online or scan the QR code on the poster. Select your participation track — Attendee, Exhibitor, or Pitcher. Receive instant confirmation with your event pass ID.</p>
+              </div>
+            </details>
+          </li>
+          <li>
+            <details class="journey-step">
+              <summary class="journey-step-header">
+                <span class="journey-num">02</span>
+                <span class="journey-label">Learn</span>
+                <span class="journey-chevron" aria-hidden="true">▼</span>
+              </summary>
+              <div class="journey-step-body">
+                <p>Attend inspiring keynotes by top founders and industry leaders. Join expert talks on startup ecosystems, funding landscapes, and real-world business insights — all from those who've been there.</p>
+              </div>
+            </details>
+          </li>
+          <li>
+            <details class="journey-step">
+              <summary class="journey-step-header">
+                <span class="journey-num">03</span>
+                <span class="journey-label">Connect</span>
+                <span class="journey-chevron" aria-hidden="true">▼</span>
+              </summary>
+              <div class="journey-step-body">
+                <p>Network 1-on-1 with founders, VCs, mentors, and fellow innovators. Build meaningful relationships over tea breaks and networking lunches. One conversation here can change the direction of your idea.</p>
+              </div>
+            </details>
+          </li>
+          <li>
+            <details class="journey-step">
+              <summary class="journey-step-header">
+                <span class="journey-num">04</span>
+                <span class="journey-label">Exhibit</span>
+                <span class="journey-chevron" aria-hidden="true">▼</span>
+              </summary>
+              <div class="journey-step-body">
+                <p>Showcase your startup prototype or product live at a dedicated stall to thousands of attendees, mentors, and investors. Get real-time feedback, visibility, and early traction for your idea.</p>
+              </div>
+            </details>
+          </li>
+          <li>
+            <details class="journey-step">
+              <summary class="journey-step-header">
+                <span class="journey-num">05</span>
+                <span class="journey-label">Pitch</span>
+                <span class="journey-chevron" aria-hidden="true">▼</span>
+              </summary>
+              <div class="journey-step-body">
+                <p>Present your startup idea live on stage to a panel of investors and jury on Day 2. This is your moment — a compelling pitch can unlock funding, incubation offers, and industry recognition.</p>
+              </div>
+            </details>
+          </li>
+          <li>
+            <details class="journey-step">
+              <summary class="journey-step-header">
+                <span class="journey-num">06</span>
+                <span class="journey-label">Get Feedback</span>
+                <span class="journey-chevron" aria-hidden="true">▼</span>
+              </summary>
+              <div class="journey-step-body">
+                <p>Receive direct, actionable mentorship from industry experts after your pitch or exhibition. The jury deliberates and delivers structured feedback to help you refine and strengthen your idea.</p>
+              </div>
+            </details>
+          </li>
+          <li>
+            <details class="journey-step">
+              <summary class="journey-step-header">
+                <span class="journey-num">07</span>
+                <span class="journey-label">Scale 🚀</span>
+                <span class="journey-chevron" aria-hidden="true">▼</span>
+              </summary>
+              <div class="journey-step-body">
+                <p>Top performers unlock access to the ~₹50,000 prize pool, pre-incubation pathways at AKGEC IDEA Lab, seed-funding opportunities, IPR assistance, and patent guidance. Your startup journey truly begins here.</p>
+              </div>
+            </details>
+          </li>
+        </ol>
       </div>
     </section>
 
@@ -206,21 +301,44 @@
       </div>
     </section>
 
-    <!-- ============ QUOTE / PHILOSOPHY STRIP ============ -->
-    <section class="quote-strip">
-      <div class="container text-center">
-        <p class="quote-kicker">From a Thought → to a Possibility → to a Venture</p>
-        <div class="quote-keywords">
-          <span>IDEATE.</span>
-          <span>CONNECT.</span>
-          <span>SHOWCASE.</span>
-          <span>PITCH.</span>
-          <span>GROW.</span>
+    <!-- ============ CORE FOCUS PILLARS ============ -->
+    <section class="section highlights" id="highlights" aria-labelledby="highlights-title">
+      <div class="container">
+        <div class="section-head text-center">
+          <p class="section-kicker">Core Event Pillars</p>
+          <h2 class="section-title" id="highlights-title">Turn Your Vision Into Reality</h2>
+          <p class="section-sub">Where big ideas meet the right investors to build tomorrow's top companies.</p>
         </div>
-        <blockquote class="quote-text">
-          “Big ventures often begin with one small idea — and the courage to put it out there.”
-        </blockquote>
-        <p class="quote-closing">Your idea is the starting point. <strong>Startup Conclave is where the journey begins.</strong></p>
+
+        <div class="highlights-grid">
+          <div class="highlight-card">
+            <div class="highlight-icon">🎙️</div>
+            <h3>Speakers &amp; Keynotes</h3>
+            <p class="highlight-main">Learn directly from top founders, investors, and experts sharing real industry secrets.</p>
+            <p class="highlight-sub">Get inspired by top leaders who have successfully built and scaled great businesses.</p>
+          </div>
+
+          <div class="highlight-card">
+            <div class="highlight-icon">💡</div>
+            <h3>Pitch Ideas</h3>
+            <p class="highlight-main">Present your ideas live to real investors and grab funding opportunities.</p>
+            <p class="highlight-sub">Pitch your startup live, get valuable expert feedback, and win real funding.</p>
+          </div>
+
+          <div class="highlight-card">
+            <div class="highlight-icon">🤝</div>
+            <h3>Networking</h3>
+            <p class="highlight-main">Connect 1-on-1 with founders, mentors, and investors to build meaningful relationships.</p>
+            <p class="highlight-sub">Meet like-minded innovators and grow your network with high-value connections.</p>
+          </div>
+
+          <div class="highlight-card">
+            <div class="highlight-icon">🎪</div>
+            <h3>Startup Exhibition</h3>
+            <p class="highlight-main">Showcase your startup prototype and product live to thousands of attendees.</p>
+            <p class="highlight-sub">30+ stalls with direct mentor walkthroughs and customer feedback.</p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -573,7 +691,7 @@
             <div class="participate-icon">🎪</div>
             <h3>1. Startup Exhibition</h3>
             <p>Show your startup, prototype, product or idea to visitors, mentors and industry experts. Secure feedback, visibility, and early traction.</p>
-            <a class="btn btn-ghost btn-sm" href="#register">Register for Exhibition</a>
+            <a class="btn btn-ghost btn-sm" href="#register" data-preselect-exhibit>Register for Exhibition</a>
           </div>
 
           <div class="participate-card highlight-card">
@@ -639,15 +757,16 @@
             <div class="cd-unit"><span class="cd-num" data-cd="seconds">00</span><span class="cd-label">sec</span></div>
           </div>
 
-          <div class="fee-box">
-            <p class="fee"><span class="fee-amount">₹500</span> per person</p>
-            <p>Covers entry, all keynote &amp; workshop sessions, delegate kit, and lunch. Payment details are sent to your email after you submit.</p>
+          <div class="fee-box fee-free">
+            <p class="fee"><span class="fee-amount free-entry">🎉 Free Entry</span></p>
+            <p>Open to all students, innovators, startups &amp; entrepreneurs. No registration fee — just bring your ideas!</p>
           </div>
 
           <div class="qr-note">
-            <img src="images/conclave-poster.jpg" alt="" width="1024" height="1536" loading="lazy">
+            <img src="images/conclave-poster.png" alt="" width="1024" height="1536" loading="lazy">
             <div>
               <p><strong>Prefer to scan?</strong> The QR code on the official poster opens the same registration.</p>
+              <p style="font-size:0.8em;opacity:0.7;">📌 QR code will be updated shortly.</p>
               <button class="link-btn" type="button" data-poster-open>Open full poster</button>
             </div>
           </div>
@@ -725,18 +844,52 @@
                   <span class="pass-body"><span class="pass-name">Day 2</span><span class="pass-date">Fri, 16 Oct</span></span>
                 </label>
               </div>
-              <p class="field-hint" data-pass-hint hidden>Pitching teams need the full event pass, since round 1 is on Day 1 and the finals on Day 2.</p>
+              <p class="field-hint" data-pass-hint hidden>Pitching and exhibition participants require the full event pass for two-day access.</p>
             </fieldset>
 
-            <label class="check">
-              <input type="checkbox" name="pitch" data-pitch-toggle>
-              <span>I want to participate in the Startup Pitching Competition</span>
-            </label>
+            <fieldset class="field track-fieldset">
+              <legend>Participation Track (Select Exhibition, Pitching or both)</legend>
+              <div class="track-choices">
+                <label class="check track-checkbox">
+                  <input type="checkbox" name="track_exhibit" data-exhibit-toggle>
+                  <span>
+                    <strong>1. Startup Exhibition</strong>
+                    <small>Showcase your startup prototype and product live at a dedicated stall to 30+ mentors &amp; investors</small>
+                  </span>
+                </label>
+                <label class="check track-checkbox">
+                  <input type="checkbox" name="track_pitch" data-pitch-toggle>
+                  <span>
+                    <strong>2. Startup Pitching Competition</strong>
+                    <small>Present your startup idea live to investor jury for ~₹50,000 prize pool, pre-incubation &amp; seed funding</small>
+                  </span>
+                </label>
+              </div>
+            </fieldset>
+
+            <div class="exhibit-fields" data-exhibit-fields hidden>
+              <div class="field-row">
+                <div class="field">
+                  <label for="reg-exhibit-name">Product / Prototype name</label>
+                  <input id="reg-exhibit-name" name="exhibit_name" type="text" placeholder="e.g. AgriTech Drone Vision">
+                  <p class="field-error" id="reg-exhibit-name-err"></p>
+                </div>
+                <div class="field">
+                  <label for="reg-prototype-stage">Prototype stage</label>
+                  <select id="reg-prototype-stage" name="prototype_stage">
+                    <option value="Working Prototype">Working Prototype</option>
+                    <option value="Functional MVP">Functional MVP</option>
+                    <option value="Market Ready Product">Market Ready Product</option>
+                    <option value="Lab Proof of Concept">Lab Proof of Concept</option>
+                  </select>
+                </div>
+              </div>
+            </div>
 
             <div class="pitch-fields" data-pitch-fields hidden>
               <div class="field-row">
                 <div class="field">
-                  <label for="reg-venture">Startup / Idea name</label>
+                  <label for="reg-venture">Startup / Pitch idea name</label>
                   <input id="reg-venture" name="venture" type="text" placeholder="e.g. EcoTech">
                   <p class="field-error" id="reg-venture-err"></p>
                 </div>
@@ -925,6 +1078,19 @@
     </section>
   </main>
 
+  <!-- ============ BOTTOM REGISTER CTA ============ -->
+  <section class="bottom-register-cta" aria-labelledby="bottom-cta-title">
+    <div class="container text-center">
+      <p class="section-kicker">Free Entry · 15–16 October 2026 · AKGEC, Ghaziabad</p>
+      <h2 class="section-title" id="bottom-cta-title">Ready to Turn Your Idea Into Reality?</h2>
+      <p class="section-sub">Join 500+ innovators, founders, VCs and mentors at Startup Conclave '26. Pitch your idea, win from the ~₹50,000 prize pool, and unlock real funding opportunities.</p>
+      <div class="bottom-cta-actions">
+        <a class="btn btn-primary btn-lg" href="#register">Register Now — It's Free</a>
+        <a class="btn btn-ghost btn-lg" href="#schedule">View Full Schedule</a>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ FOOTER ============ -->
   <footer class="site-footer">
     <div class="brand-stripe" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
@@ -933,7 +1099,7 @@
         <a class="brand" href="#home">
           <img class="brand-mark" src="images/conclave-logo.jpg" alt="" width="44" height="44">
           <span class="brand-text">
-            <span class="brand-name">Startup Conclave ’26</span>
+            <span class="brand-name">Startup Conclave '26</span>
             <span class="brand-sub">Build it. Pitch it. Grow it.</span>
           </span>
         </a>
@@ -943,12 +1109,14 @@
       <nav class="footer-nav" aria-label="Footer">
         <h2 class="footer-heading">Navigation</h2>
         <ul>
-          <li><a href="#about">Opportunities</a></li>
-          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#highlights">Highlights</a></li>
+          <li><a href="#how-it-works">Journey</a></li>
           <li><a href="#schedule">Schedule</a></li>
           <li><a href="#ways-to-join">Participate</a></li>
           <li><a href="#venue">Venue</a></li>
           <li><a href="#terms">Terms</a></li>
+          <li><a href="#faq">FAQ</a></li>
           <li><a href="#register">Register</a></li>
         </ul>
       </nav>
@@ -975,9 +1143,9 @@
     <button class="modal-close" type="button" data-modal-close aria-label="Close poster">
       <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
     </button>
-    <img src="images/conclave-poster.jpg" alt="Full Startup Conclave '26 poster with the registration QR code, coordinators, dates, venue and seed funding details." width="1024" height="1536">
+    <img src="images/conclave-poster.png" alt="Full Startup Conclave '26 poster: Ideas Today. Impact Tomorrow. 15-16 October 2026 at AKGEC Campus Ghaziabad. Pitch Competition, Expert Talks, Networking and more." width="1024" height="1536">
     <div class="poster-modal-actions">
-      <a class="btn btn-light btn-sm" href="images/conclave-poster.jpg" download="startup-conclave-26-poster.jpg">Download poster</a>
+      <a class="btn btn-light btn-sm" href="images/conclave-poster.png" download="startup-conclave-26-poster.png">Download poster</a>
     </div>
   </dialog>
 

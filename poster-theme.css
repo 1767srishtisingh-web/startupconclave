@@ -1,4 +1,4 @@
-﻿/* =========================================================
+/* =========================================================
    Startup Conclave 26 — Poster Theme (mohit-agarwal branch)
    Cinematic dark theme inspired by the official event poster.
    ========================================================= */
@@ -687,3 +687,40 @@ button.speaker-card:hover { border-color: var(--poster-blue); box-shadow: 0 0 24
   color: #fff;
   font-size: 1.05rem;
 }
+
+/* Highlights Grid */
+.highlights-grid {
+  gap: 1.5rem;
+}
+.highlight-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  backdrop-filter: blur(8px);
+}
+.highlight-card:hover {
+  background: rgba(26, 111, 255, 0.08);
+  border-color: rgba(56, 189, 248, 0.5);
+  box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.6), 0 0 24px rgba(26, 111, 255, 0.2);
+}
+.highlight-card h3 { color: #fff; }
+.highlight-main { color: #F1F5F9; }
+.highlight-sub { color: rgba(216, 228, 248, 0.65); }
+
+/* Track Checkboxes */
+.track-checkbox {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+.track-checkbox:hover {
+  border-color: var(--poster-blue);
+  background: rgba(26, 111, 255, 0.06);
+}
+.track-checkbox small {
+  color: rgba(216, 228, 248, 0.65);
+}
+.exhibit-fields {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+

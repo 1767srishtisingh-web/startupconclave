@@ -492,10 +492,33 @@ button { cursor: pointer; }
   line-height: 1.1;
   color: var(--pillar);
 }
-.pillar h3 { font-size: var(--fs-h3); font-weight: 800; font-stretch: 115%; }
-.pillar p { margin-top: 0.35rem; color: var(--ink-2); }
+/* ---------- 5d. Core Highlights ---------- */
+.highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin-top: 2.25rem;
+}
+.highlight-card {
+  padding: 1.75rem 1.4rem;
+  border-radius: var(--r-lg);
+  border: 1.5px solid var(--line);
+  background: var(--surface);
+  transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+  display: flex;
+  flex-direction: column;
+}
+.highlight-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--blue);
+  box-shadow: 0 12px 30px -10px rgba(0,0,0,0.18);
+}
+.highlight-icon { font-size: 2rem; margin-bottom: 0.85rem; line-height: 1; }
+.highlight-card h3 { font-size: 1.15rem; font-weight: 750; margin-bottom: 0.5rem; color: var(--ink); }
+.highlight-main { font-weight: 600; color: var(--ink); font-size: 0.95rem; line-height: 1.45; }
+.highlight-sub { margin-top: 0.45rem; color: var(--ink-3); font-size: 0.85rem; line-height: 1.4; }
 
-/* ---------- 5d. Funding band ---------- */
+/* ---------- 5e. Funding band ---------- */
 .funding { background: var(--band); color: var(--band-ink); padding-block: clamp(3.5rem, 7vw, 5.5rem); }
 .funding-grid {
   display: grid;
@@ -897,6 +920,19 @@ button.speaker-card:hover { border-color: var(--ink); }
 }
 .check input { width: 20px; height: 20px; margin: 0.15rem 0 0; accent-color: var(--blue); cursor: pointer; }
 
+.track-fieldset { margin: 0.25rem 0; border: 0; padding: 0; }
+.track-choices { display: grid; gap: 0.75rem; }
+.track-checkbox {
+  padding: 0.85rem 1rem;
+  border: 1.5px solid var(--line-strong);
+  border-radius: var(--r-md);
+  background: var(--surface-2);
+  transition: border-color .15s ease, background-color .15s ease;
+}
+.track-checkbox:hover { border-color: var(--blue); }
+.track-checkbox small { display: block; color: var(--ink-3); font-size: 0.825rem; margin-top: 0.2rem; }
+
+.exhibit-fields,
 .pitch-fields {
   display: grid;
   gap: 1.1rem;
@@ -1204,6 +1240,7 @@ body.modal-open { overflow: hidden; }
   .venue-grid,
   .register-grid,
   .faq-grid { grid-template-columns: minmax(0, 1fr); }
+  .highlights-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .register-aside { position: static; }
   .speaker-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .audience-panel { grid-template-columns: minmax(0, 1fr); }
@@ -1214,6 +1251,7 @@ body.modal-open { overflow: hidden; }
 @media (max-width: 640px) {
   :root { --fs-body: 1rem; --fs-lead: 1.075rem; }
 
+  .highlights-grid { grid-template-columns: minmax(0, 1fr); }
   .brand-sub { display: none; }
   .brand-mark { width: 40px; height: 40px; }
   .header-actions { gap: 0.5rem; }
@@ -1299,3 +1337,110 @@ body.modal-open { overflow: hidden; }
   #pass-card dt, #pass-card .pass-card-where { color: #444; }
   .brand-stripe span { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 }
+/* ============ EVENT JOURNEY WATERFALL ============ */
+.event-journey { background: var(--surface); }
+.journey-waterfall {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-width: 760px;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.journey-step {
+  border-left: 3px solid var(--accent);
+  margin-left: 1.5rem;
+  position: relative;
+  background: var(--card);
+  border-radius: 0 12px 12px 0;
+  margin-bottom: 0.5rem;
+  overflow: hidden;
+}
+.journey-step::before {
+  content: '';
+  position: absolute;
+  left: -1.85rem;
+  top: 1.1rem;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--bg);
+}
+.journey-step-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+  font-weight: 600;
+}
+.journey-step-header::-webkit-details-marker { display: none; }
+.journey-step-header:hover { background: var(--surface-raised); }
+.journey-num {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  opacity: 0.5;
+  min-width: 2rem;
+}
+.journey-label {
+  flex: 1;
+  font-size: 1rem;
+  font-weight: 700;
+}
+.journey-chevron {
+  font-size: 0.7rem;
+  opacity: 0.5;
+  transition: transform 0.2s;
+}
+details[open] .journey-chevron { transform: rotate(180deg); }
+.journey-step-body {
+  padding: 0 1.25rem 1.1rem 1.25rem;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  border-top: 1px solid var(--border);
+  padding-top: 0.85rem;
+}
+
+/* ============ BOTTOM REGISTER CTA ============ */
+.bottom-register-cta {
+  padding: 5rem 1rem;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2, #1e40af) 100%);
+  color: #fff;
+  text-align: center;
+}
+.bottom-register-cta .section-kicker { color: rgba(255,255,255,0.8); }
+.bottom-register-cta .section-title { color: #fff; font-size: clamp(1.6rem, 4vw, 2.5rem); }
+.bottom-register-cta .section-sub { color: rgba(255,255,255,0.85); max-width: 600px; margin-inline: auto; margin-bottom: 2rem; }
+.bottom-cta-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.bottom-register-cta .btn-ghost {
+  border-color: rgba(255,255,255,0.5);
+  color: #fff;
+}
+.bottom-register-cta .btn-ghost:hover {
+  background: rgba(255,255,255,0.15);
+}
+
+/* ============ HEADER SEE MORE BUTTON ============ */
+.header-see-more { font-size: 0.85rem; }
+
+/* ============ NAV REGISTER LINK HIGHLIGHT ============ */
+.nav-register-link {
+  font-weight: 700;
+  color: var(--accent) !important;
+}
+
+/* ============ FREE ENTRY BADGE ============ */
+.fee-free { background: rgba(34,197,94,0.1); border-color: rgba(34,197,94,0.3); }
+.free-entry { color: #16a34a; font-size: 1.4rem; }

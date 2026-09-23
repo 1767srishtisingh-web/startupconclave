@@ -341,7 +341,7 @@
     startup: {
       label: 'startup',
       title: 'You’re building and need feedback, funding or both',
-      desc: 'Pitch to an investor jury, compete for up to ₹3 lakh in seed funding, and get specific feedback on traction and your raise.',
+      desc: 'Pitch to an investor jury, compete for the ~₹50,000 prize pool, pre-incubation pathways and seed-funding access.',
       gets: ['Two pitch rounds in front of investors', 'Eligibility for seed funding', 'Mentor office hours on unit economics'],
       bring: 'A five-minute deck, a laptop, and any traction numbers you have.',
       pass: 'Full event'
@@ -421,6 +421,8 @@
   var closed = $('[data-reg-closed]');
   var pitchToggle = form ? $('[data-pitch-toggle]', form) : null;
   var pitchFields = form ? $('[data-pitch-fields]', form) : null;
+  var exhibitToggle = form ? $('[data-exhibit-toggle]', form) : null;
+  var exhibitFields = form ? $('[data-exhibit-fields]', form) : null;
   var passHint = form ? $('[data-pass-hint]', form) : null;
   var registrationOpen = true;
 
@@ -451,17 +453,25 @@
     clearError('reg-year');
   }
 
-  function updatePitchFields() {
-    if (!form || !pitchToggle) return;
-    var on = pitchToggle.checked;
-    pitchFields.hidden = !on;
-    $('#reg-venture').required = on;
-    // Pitching needs both days
+  function updateTrackFields() {
+    if (!form) return;
+    var pitchOn = !!(pitchToggle && pitchToggle.checked);
+    var exhibitOn = !!(exhibitToggle && exhibitToggle.checked);
+
+    if (pitchFields) pitchFields.hidden = !pitchOn;
+    var ventureInput = $('#reg-venture');
+    if (ventureInput) ventureInput.required = pitchOn;
+
+    if (exhibitFields) exhibitFields.hidden = !exhibitOn;
+    var exhibitInput = $('#reg-exhibit-name');
+    if (exhibitInput) exhibitInput.required = exhibitOn;
+
+    var eitherOn = pitchOn || exhibitOn;
     $$('input[name="pass"]', form).forEach(function (r) {
-      if (r.value !== 'Full event pass') r.disabled = on;
-      if (on && r.value === 'Full event pass') r.checked = true;
+      if (r.value !== 'Full event pass') r.disabled = eitherOn;
+      if (eitherOn && r.value === 'Full event pass') r.checked = true;
     });
-    if (passHint) passHint.hidden = !on;
+    if (passHint) passHint.hidden = !eitherOn;
   }
 
   function setError(id, msg) {
