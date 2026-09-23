@@ -348,3 +348,342 @@ button.speaker-card:hover { border-color: var(--poster-blue); box-shadow: 0 0 24
   .nav-link { color: rgba(216,228,248,0.8); border-bottom-color: rgba(255,255,255,0.07); }
   .nav-link.is-current { color: var(--poster-blue-lt); }
 }
+
+
+/* ── 25. Website Flow Strip ───────────────────────────── */
+.flow-strip {
+  background: rgba(11, 18, 37, 0.9);
+  border-top: 1px solid rgba(26, 111, 255, 0.25);
+  border-bottom: 1px solid rgba(26, 111, 255, 0.25);
+  padding: 1rem 0;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), inset 0 0 30px rgba(26, 111, 255, 0.05);
+}
+.flow-strip-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.flow-kicker {
+  font-family: var(--font-display, sans-serif);
+  font-size: 1.1rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--poster-blue-lt);
+  padding: 0.25rem 0.75rem;
+  background: rgba(26, 111, 255, 0.15);
+  border: 1px solid rgba(26, 111, 255, 0.3);
+  border-radius: 4px;
+}
+.flow-steps-ticker {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.75rem;
+  font-family: var(--font-display, sans-serif);
+  font-size: 1.15rem;
+  letter-spacing: 0.1em;
+}
+.flow-item span {
+  display: inline-block;
+  padding: 0.35rem 0.85rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  color: var(--poster-off-white);
+  transition: all 0.25s ease;
+}
+.flow-item span:hover {
+  background: rgba(26, 111, 255, 0.2);
+  border-color: var(--poster-blue);
+  color: #fff;
+  box-shadow: 0 0 12px rgba(26, 111, 255, 0.3);
+}
+.flow-item.highlight span {
+  background: linear-gradient(135deg, #1A6FFF 0%, #00D084 100%);
+  color: #fff;
+  border-color: transparent;
+  font-weight: 700;
+  box-shadow: 0 0 18px rgba(0, 208, 132, 0.35);
+}
+.flow-arrow {
+  color: var(--poster-blue-lt);
+  font-weight: 700;
+  opacity: 0.8;
+}
+
+/* ── 26. Quote / Philosophy Banner ─────────────────────── */
+.quote-strip {
+  background: linear-gradient(180deg, rgba(8, 14, 28, 0.95) 0%, rgba(15, 25, 48, 0.98) 50%, rgba(8, 14, 28, 0.95) 100%);
+  border-top: 1px solid rgba(26, 111, 255, 0.2);
+  border-bottom: 1px solid rgba(26, 111, 255, 0.2);
+  padding: clamp(3rem, 6vw, 5rem) 1rem;
+  position: relative;
+  text-align: center;
+}
+.quote-strip::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 50% at 50% 50%, rgba(26, 111, 255, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.quote-kicker {
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--poster-blue-lt);
+  margin-bottom: 1.5rem;
+}
+.quote-keywords {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+  font-family: var(--font-display, sans-serif);
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  letter-spacing: 0.1em;
+  color: #fff;
+  margin-bottom: 1.75rem;
+}
+.quote-keywords span {
+  position: relative;
+  background: linear-gradient(180deg, #FFFFFF 0%, #A4C8FF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.quote-text {
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+  font-weight: 500;
+  font-style: italic;
+  color: var(--poster-off-white);
+  max-width: 800px;
+  margin: 0 auto 1.5rem auto;
+  line-height: 1.5;
+}
+.quote-closing {
+  font-size: 1.05rem;
+  color: var(--poster-muted);
+}
+.quote-closing strong {
+  color: var(--poster-green);
+}
+
+/* ── 27. How It Works (8 Steps) ───────────────────────── */
+.how-it-works {
+  background: var(--poster-bg2);
+}
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+.step-card {
+  background: rgba(15, 25, 48, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 1.75rem;
+  position: relative;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  backdrop-filter: blur(10px);
+}
+.step-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(26, 111, 255, 0.45);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(26, 111, 255, 0.15);
+}
+.step-num {
+  display: inline-block;
+  font-family: var(--font-display, sans-serif);
+  font-size: 2.5rem;
+  line-height: 1;
+  color: var(--poster-blue-lt);
+  margin-bottom: 0.75rem;
+  text-shadow: 0 0 20px rgba(26, 111, 255, 0.4);
+}
+.step-body h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+.step-body p {
+  font-size: 0.95rem;
+  color: rgba(216, 228, 248, 0.7);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Student Experience Strip */
+.experience-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.25rem 2rem;
+  margin-top: 3.5rem;
+  padding: 2rem;
+  background: rgba(26, 111, 255, 0.05);
+  border: 1px solid rgba(26, 111, 255, 0.18);
+  border-radius: 8px;
+}
+.exp-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.98rem;
+  color: rgba(216, 228, 248, 0.8);
+  line-height: 1.5;
+}
+.exp-bullet {
+  color: var(--poster-green);
+  font-size: 1.2rem;
+  line-height: 1.2;
+}
+.exp-item strong {
+  color: #fff;
+}
+
+/* ── 28. Ways to Participate ───────────────────────────── */
+.ways {
+  background: var(--poster-bg);
+}
+.participate-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+.participate-card {
+  background: rgba(15, 25, 48, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 2.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  backdrop-filter: blur(12px);
+  transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+}
+.participate-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(26, 111, 255, 0.4);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
+}
+.participate-card.highlight-card {
+  border-color: rgba(0, 208, 132, 0.35);
+  background: linear-gradient(145deg, rgba(15, 25, 48, 0.8) 0%, rgba(20, 36, 68, 0.85) 100%);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3), 0 0 25px rgba(0, 208, 132, 0.12);
+}
+.participate-icon {
+  font-size: 2.5rem;
+  line-height: 1;
+}
+.participate-card h3 {
+  font-size: 1.4rem;
+  color: #fff;
+  margin: 0;
+}
+.participate-card p {
+  color: rgba(216, 228, 248, 0.75);
+  line-height: 1.6;
+  margin: 0;
+  flex-grow: 1;
+}
+
+/* How to Register instructions box */
+.reg-instructions-box {
+  margin-top: 3.5rem;
+  background: rgba(15, 25, 48, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 2rem clamp(1.5rem, 4vw, 2.5rem);
+}
+.instructions-title {
+  font-size: 1.3rem;
+  color: #fff;
+  margin-bottom: 1.5rem;
+}
+.reg-steps-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem 2rem;
+}
+.reg-steps-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  font-size: 0.95rem;
+  color: rgba(216, 228, 248, 0.8);
+  line-height: 1.5;
+}
+.reg-steps-list li span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--poster-blue);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ── 29. Rules & Terms ────────────────────────────────── */
+.terms {
+  background: var(--poster-bg2);
+}
+.terms-card {
+  background: rgba(15, 25, 48, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  backdrop-filter: blur(12px);
+  margin-top: 2rem;
+}
+.terms-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.25rem 2rem;
+}
+.terms-list li {
+  font-size: 0.92rem;
+  color: rgba(216, 228, 248, 0.75);
+  line-height: 1.6;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 0.75rem;
+}
+.terms-list li strong {
+  color: #fff;
+}
+
+/* Section kicker badge */
+.section-kicker {
+  font-family: var(--font-display, sans-serif);
+  font-size: 1rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--poster-blue-lt);
+  margin-bottom: 0.5rem;
+}
+.about-highlight {
+  border-left: 3px solid var(--poster-blue);
+  padding-left: 1rem;
+  margin-top: 1rem;
+  color: #fff;
+  font-size: 1.05rem;
+}
