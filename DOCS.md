@@ -83,7 +83,7 @@ This site has **19 sections (slides)** in `index.html`. They appear in the follo
 | # | Slide / Section | ID / Selector | Purpose |
 |---|-----------------|---------------|---------|
 | 1 | HEAD (meta) | `<head>` | SEO, meta tags, fonts, theme init |
-| 2 | HEADER | `.site-header` | Sticky nav bar (5 links, See More, no theme toggle) |
+| 2 | HEADER | `.site-header` | Sticky nav bar (7 links: Opportunities, How It Works, Schedule, Participate, Venue, FAQ, Contact) |
 | 3 | HERO | `#home` | Landing screen — poster, title, live countdown, CTAs |
 | 4 | QUOTE STRIP & RIBBON | `.quote-strip` + `.conclave-ribbon` | Philosophy tagline band + 50,000 Prize Pool & Free Entry ribbon |
 | 5 | COMPETITION & REWARDS | `.funding` | Prize pool band, Pitch & Exhibition CTAs |
@@ -124,12 +124,14 @@ Contains:
 
 Contains:
 - **Brand logo + name** linking to `#home`.
-- **Nav links (strictly 5 items):**
-  1. `About` (`#about`)
-  2. `Schedule` (`#schedule`)
-  3. `Participate` (`#ways-to-join`)
-  4. `Venue` (`#venue`)
-  5. `Register` (`#register` — highlighted in accent color via `.nav-register-link`)
+- **Nav links (7 items):**
+  1. `Opportunities` (`#about`)
+  2. `How It Works` (`#how-it-works`)
+  3. `Schedule` (`#schedule`)
+  4. `Participate` (`#ways-to-join`)
+  5. `Venue` (`#venue`)
+  6. `FAQ` (`#faq`)
+  7. `Contact` (`#contact`)
 - **"See More ↓"** ghost button (`.header-see-more`) linking to `#about`.
 - **Mobile hamburger button** (`data-nav-toggle`) opening the drawer menu on small screens.
 - **Theme toggle:** Completely removed/disabled for a cleaner and persistent dark aesthetic.
