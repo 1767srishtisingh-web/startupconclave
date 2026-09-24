@@ -12,7 +12,7 @@
   ║  2.  HEADER            Sticky nav bar with logo + links         ║
   ║  3.  HERO              Landing screen – poster, title, CTAs     ║
   ║  4.  FUNDING / REWARDS       Philosophy tagline band                  ║
-  ║  5.  EVENT JOURNEY     Expandable 7-step waterfall              ║
+  ║  5.  EVENT JOURNEY     Interactive 7-step accordion (hover/tap) ║
   ║  6.  QUOTE STRIP             Why Attend + 6 opportunity pillars       ║
   ║  7.  ABOUT        4 core event feature cards               ║
   ║  8.  HIGHLIGHTS
@@ -267,121 +267,273 @@
       </div>
     </section>
 
-    <!-- ============ EVENT JOURNEY — EXPANDABLE WATERFALL ============ -->
+    <!-- ============ EVENT JOURNEY — INTERACTIVE ACCORDION ============ -->
     
     <!--
   +====================================================================+
-  | SLIDE 5 - EVENT JOURNEY : Expandable Waterfall Steps              |
+  | SLIDE 5 - EVENT JOURNEY : Interactive 7-Step Accordion            |
   | ID      : #event-journey                                           |
-  | CLASS   : .event-journey .journey-waterfall .journey-step         |
+  | CLASS   : .event-journey .journey .journey-list .jr-item          |
+  | JS      : script.js "Event journey" block (hover / tap / keys)    |
   |                                                                    |
-  | CONTAINS: 7 expandable steps using details/summary elements       |
-  |   (Pure HTML accordion - NO JavaScript needed)                    |
-  |   Step 01 - Register   (open by default - has the open attr)      |
-  |   Step 02 - Learn                                                  |
-  |   Step 03 - Connect                                                |
-  |   Step 04 - Exhibit                                                |
-  |   Step 05 - Pitch                                                  |
-  |   Step 06 - Get Feedback                                           |
-  |   Step 07 - Scale                                                  |
+  | BEHAVIOUR:                                                         |
+  |   * Desktop : hovering a step opens it (one open at a time)       |
+  |   * Touch   : tap a step to open, tap again to close              |
+  |   * Keyboard: Enter/Space on a step header opens it               |
+  |   * The arrow button (top-right of the open card) links to the    |
+  |     relevant section; Exhibit/Pitch arrows pre-tick the form      |
+  |                                                                    |
+  | CONTAINS: 7 steps (Step 01 is open by default: has .is-open)      |
+  |   01 Register   02 Learn   03 Connect   04 Exhibit                |
+  |   05 Pitch      06 Get Feedback          07 Scale                  |
+  |                                                                    |
+  | EACH STEP (li.jr-item) HAS:                                       |
+  |   * .jr-num (01) + .jr-icon (SVG) + .jr-title + .jr-chevron       |
+  |   * .jr-copy p       : description text                           |
+  |   * .jr-chips li     : 3 chips (jr-chip--blue / --violet / --mint)|
+  |   * .jr-art          : layered illustration (.jr-card-pill text)  |
+  |   * a.jr-go          : arrow link (edit href / data-* attribute)  |
   |                                                                    |
   | HOW TO UPDATE:                                                     |
-  |   * Add step    : copy a li>details block                         |
-  |   * Open default: add open attribute to the details tag           |
-  |   * Edit desc   : edit p inside .journey-step-body               |
+  |   * Step text    : edit the <p> inside .jr-copy                   |
+  |   * Chips        : edit the <li class="jr-chip ..."> text         |
+  |   * Icon colour  : change style="--jr: #HEX" on the li            |
+  |   * Open default : move class "is-open" to another li and set its |
+  |                    button aria-expanded="true" (others "false")   |
   +====================================================================+
   -->
-    <section class="section event-journey" id="event-journey" aria-labelledby="journey-title">
+    <section class="section event-journey journey" id="event-journey" aria-labelledby="journey-title">
       <div class="container">
-        <div class="section-head text-center">
-          <p class="section-kicker">Event Journey</p>
-          <h2 class="section-title" id="journey-title">Your Path at Startup Conclave '26</h2>
-          <p class="section-sub">Click on any step to learn more about what happens at each stage.</p>
+        <div class="journey-head">
+          <p class="journey-eyebrow">Event Journey</p>
+          <h2 class="journey-title" id="journey-title">Your Path at <span>Startup Conclave '26</span></h2>
+          <p class="journey-sub"><span class="jr-hint-hover">Hover over</span><span class="jr-hint-tap">Tap</span> a stage to explore what happens at each step.</p>
         </div>
-        <ol class="journey-waterfall">
-          <li>
-            <details class="journey-step" open>
-              <summary class="journey-step-header">
-                <span class="journey-num">01</span>
-                <span class="journey-label">Register</span>
-                <span class="journey-chevron" aria-hidden="true">▼</span>
-              </summary>
-              <div class="journey-step-body">
-                <p>Fill out the quick registration form online or scan the QR code on the poster. Select your participation track — Attendee, Exhibitor, or Pitcher. Receive instant confirmation with your event pass ID.</p>
+
+        <ol class="journey-list" data-journey>
+          <!-- 01 Register -->
+          <li class="jr-item is-open" style="--jr: #6D8CFF">
+            <h3 class="jr-head">
+              <button class="jr-toggle" type="button" id="jr-btn-1" aria-expanded="true" aria-controls="jr-panel-1">
+                <span class="jr-num">01</span>
+                <span class="jr-icon"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></span>
+                <span class="jr-title">Register</span>
+                <span class="jr-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+              </button>
+            </h3>
+            <div class="jr-panel" id="jr-panel-1" role="region" aria-labelledby="jr-btn-1">
+              <div class="jr-panel-inner">
+                <div class="jr-copy">
+                  <p>Fill out the quick registration form online or scan the QR code on the poster. Select your participation track — Attendee, Exhibitor, or Pitcher. Receive instant confirmation with your event pass ID.</p>
+                  <ul class="jr-chips">
+                    <li class="jr-chip jr-chip--blue"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>Attendee</li>
+                    <li class="jr-chip jr-chip--violet"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11v9h16v-9"/><path d="M3.5 5h17l1 5c0 1.4-1.2 2.4-2.8 2.4S16 11.4 16 10c0 1.4-1.3 2.4-2.9 2.4h-2.2C9.3 12.4 8 11.4 8 10c0 1.4-1.2 2.4-2.7 2.4S2.5 11.4 2.5 10l1-5Z"/><path d="M9.5 20v-4.5h5V20"/></svg>Exhibitor</li>
+                    <li class="jr-chip jr-chip--mint"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 20v-4M10 20v-8M15 20v-6M20 20V6"/></svg>Pitcher</li>
+                  </ul>
+                </div>
+                <div class="jr-art" aria-hidden="true">
+                  <span class="jr-orbit"></span>
+                  <span class="jr-spark jr-spark--a"></span><span class="jr-spark jr-spark--b"></span><span class="jr-spark jr-spark--c"></span>
+                  <span class="jr-tile jr-tile--left"><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="6.5" height="6.5" rx="1"/><rect x="14" y="3.5" width="6.5" height="6.5" rx="1"/><rect x="3.5" y="14" width="6.5" height="6.5" rx="1"/><path d="M14 14h2.5v2.5H14zM18 18h2.5v2.5H18zM14 18.5h1.5M18.5 14h2"/></svg></span>
+                  <span class="jr-card"><span class="jr-card-avatar"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></span><span class="jr-card-line"></span><span class="jr-card-line jr-card-line--short"></span><span class="jr-card-pill">Register</span></span>
+                  <span class="jr-tile jr-tile--right"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>
+                  <span class="jr-tile jr-tile--badge"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>
+                </div>
               </div>
-            </details>
+              <a class="jr-go" href="#register" aria-label="Go to registration"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8.5 7H17v8.5"/></svg></a>
+            </div>
           </li>
-          <li>
-            <details class="journey-step">
-              <summary class="journey-step-header">
-                <span class="journey-num">02</span>
-                <span class="journey-label">Learn</span>
-                <span class="journey-chevron" aria-hidden="true">▼</span>
-              </summary>
-              <div class="journey-step-body">
-                <p>Attend inspiring keynotes by top founders and industry leaders. Join expert talks on startup ecosystems, funding landscapes, and real-world business insights — all from those who've been there.</p>
+          <!-- 02 Learn -->
+          <li class="jr-item" style="--jr: #5AA9FF">
+            <h3 class="jr-head">
+              <button class="jr-toggle" type="button" id="jr-btn-2" aria-expanded="false" aria-controls="jr-panel-2">
+                <span class="jr-num">02</span>
+                <span class="jr-icon"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9.5 12 5l10 4.5-10 4.5-10-4.5Z"/><path d="M6 11.5V16c0 1.4 2.7 3 6 3s6-1.6 6-3v-4.5M22 9.5V15"/></svg></span>
+                <span class="jr-title">Learn</span>
+                <span class="jr-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+              </button>
+            </h3>
+            <div class="jr-panel" id="jr-panel-2" role="region" aria-labelledby="jr-btn-2">
+              <div class="jr-panel-inner">
+                <div class="jr-copy">
+                  <p>Attend inspiring keynotes by top founders and industry leaders. Join expert talks on startup ecosystems, funding landscapes, and real-world business insights — all from those who've been there.</p>
+                  <ul class="jr-chips">
+                    <li class="jr-chip jr-chip--blue"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg>Keynotes</li>
+                    <li class="jr-chip jr-chip--violet"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"/><circle cx="17" cy="9" r="2.8"/><path d="M16.8 14.6c2.5.3 4.2 2.1 4.7 5.4"/></svg>Expert talks</li>
+                    <li class="jr-chip jr-chip--mint"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 5.5a4 4 0 0 0 4.8 4.8L12 17.6a2.3 2.3 0 0 1-3.3-3.3l7.3-7.3Z"/><path d="m4 20 4.3-4.3"/></svg>Workshops</li>
+                  </ul>
+                </div>
+                <div class="jr-art" aria-hidden="true">
+                  <span class="jr-orbit"></span>
+                  <span class="jr-spark jr-spark--a"></span><span class="jr-spark jr-spark--b"></span><span class="jr-spark jr-spark--c"></span>
+                  <span class="jr-tile jr-tile--left"><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9.5 12 5l10 4.5-10 4.5-10-4.5Z"/><path d="M6 11.5V16c0 1.4 2.7 3 6 3s6-1.6 6-3v-4.5M22 9.5V15"/></svg></span>
+                  <span class="jr-card"><span class="jr-card-avatar"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></span><span class="jr-card-line"></span><span class="jr-card-line jr-card-line--short"></span><span class="jr-card-pill">Join session</span></span>
+                  <span class="jr-tile jr-tile--right"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>
+                  <span class="jr-tile jr-tile--badge"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>
+                </div>
               </div>
-            </details>
+              <a class="jr-go" href="#schedule" data-goto-day="day1" aria-label="See the Day 1 schedule"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8.5 7H17v8.5"/></svg></a>
+            </div>
           </li>
-          <li>
-            <details class="journey-step">
-              <summary class="journey-step-header">
-                <span class="journey-num">03</span>
-                <span class="journey-label">Connect</span>
-                <span class="journey-chevron" aria-hidden="true">▼</span>
-              </summary>
-              <div class="journey-step-body">
-                <p>Network 1-on-1 with founders, VCs, mentors, and fellow innovators. Build meaningful relationships over tea breaks and networking lunches. One conversation here can change the direction of your idea.</p>
+          <!-- 03 Connect -->
+          <li class="jr-item" style="--jr: #6D8CFF">
+            <h3 class="jr-head">
+              <button class="jr-toggle" type="button" id="jr-btn-3" aria-expanded="false" aria-controls="jr-panel-3">
+                <span class="jr-num">03</span>
+                <span class="jr-icon"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"/><circle cx="17" cy="9" r="2.8"/><path d="M16.8 14.6c2.5.3 4.2 2.1 4.7 5.4"/></svg></span>
+                <span class="jr-title">Connect</span>
+                <span class="jr-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+              </button>
+            </h3>
+            <div class="jr-panel" id="jr-panel-3" role="region" aria-labelledby="jr-btn-3">
+              <div class="jr-panel-inner">
+                <div class="jr-copy">
+                  <p>Network 1-on-1 with founders, VCs, mentors, and fellow innovators. Build meaningful relationships over tea breaks and networking lunches. One conversation here can change the direction of your idea.</p>
+                  <ul class="jr-chips">
+                    <li class="jr-chip jr-chip--blue"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"/><circle cx="17" cy="9" r="2.8"/><path d="M16.8 14.6c2.5.3 4.2 2.1 4.7 5.4"/></svg>Founders</li>
+                    <li class="jr-chip jr-chip--violet"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M9 8.5h6M9 11.5h6M13 8.5c1.7 0 2.5 1 2.5 1.5S14.7 11.5 13 11.5L9.5 15.5"/></svg>VCs &amp; mentors</li>
+                    <li class="jr-chip jr-chip--mint"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3.5h9l3.5 3.5v13.5H6z"/><path d="M9 11h6M9 14.5h6M9 18h3.5"/></svg>Networking lunch</li>
+                  </ul>
+                </div>
+                <div class="jr-art" aria-hidden="true">
+                  <span class="jr-orbit"></span>
+                  <span class="jr-spark jr-spark--a"></span><span class="jr-spark jr-spark--b"></span><span class="jr-spark jr-spark--c"></span>
+                  <span class="jr-tile jr-tile--left"><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"/><circle cx="17" cy="9" r="2.8"/><path d="M16.8 14.6c2.5.3 4.2 2.1 4.7 5.4"/></svg></span>
+                  <span class="jr-card"><span class="jr-card-avatar"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></span><span class="jr-card-line"></span><span class="jr-card-line jr-card-line--short"></span><span class="jr-card-pill">Say hello</span></span>
+                  <span class="jr-tile jr-tile--right"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>
+                  <span class="jr-tile jr-tile--badge"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>
+                </div>
               </div>
-            </details>
+              <a class="jr-go" href="#schedule" data-goto-day="day1" aria-label="See the networking sessions"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8.5 7H17v8.5"/></svg></a>
+            </div>
           </li>
-          <li>
-            <details class="journey-step">
-              <summary class="journey-step-header">
-                <span class="journey-num">04</span>
-                <span class="journey-label">Exhibit</span>
-                <span class="journey-chevron" aria-hidden="true">▼</span>
-              </summary>
-              <div class="journey-step-body">
-                <p>Showcase your startup prototype or product live at a dedicated stall to thousands of attendees, mentors, and investors. Get real-time feedback, visibility, and early traction for your idea.</p>
+          <!-- 04 Exhibit -->
+          <li class="jr-item" style="--jr: #4FC3FF">
+            <h3 class="jr-head">
+              <button class="jr-toggle" type="button" id="jr-btn-4" aria-expanded="false" aria-controls="jr-panel-4">
+                <span class="jr-num">04</span>
+                <span class="jr-icon"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11v9h16v-9"/><path d="M3.5 5h17l1 5c0 1.4-1.2 2.4-2.8 2.4S16 11.4 16 10c0 1.4-1.3 2.4-2.9 2.4h-2.2C9.3 12.4 8 11.4 8 10c0 1.4-1.2 2.4-2.7 2.4S2.5 11.4 2.5 10l1-5Z"/><path d="M9.5 20v-4.5h5V20"/></svg></span>
+                <span class="jr-title">Exhibit</span>
+                <span class="jr-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+              </button>
+            </h3>
+            <div class="jr-panel" id="jr-panel-4" role="region" aria-labelledby="jr-btn-4">
+              <div class="jr-panel-inner">
+                <div class="jr-copy">
+                  <p>Showcase your startup prototype or product live at a dedicated stall to thousands of attendees, mentors, and investors. Get real-time feedback, visibility, and early traction for your idea.</p>
+                  <ul class="jr-chips">
+                    <li class="jr-chip jr-chip--blue"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="9" width="18" height="4" rx="1"/><path d="M6 13v7M18 13v7"/></svg>30+ stalls</li>
+                    <li class="jr-chip jr-chip--violet"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 3 5 13.5h6L10 21l8-10.5h-6L13 3Z"/></svg>Live demos</li>
+                    <li class="jr-chip jr-chip--mint"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z"/><circle cx="12" cy="12" r="2.8"/></svg>Mentor walkthrough</li>
+                  </ul>
+                </div>
+                <div class="jr-art" aria-hidden="true">
+                  <span class="jr-orbit"></span>
+                  <span class="jr-spark jr-spark--a"></span><span class="jr-spark jr-spark--b"></span><span class="jr-spark jr-spark--c"></span>
+                  <span class="jr-tile jr-tile--left"><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11v9h16v-9"/><path d="M3.5 5h17l1 5c0 1.4-1.2 2.4-2.8 2.4S16 11.4 16 10c0 1.4-1.3 2.4-2.9 2.4h-2.2C9.3 12.4 8 11.4 8 10c0 1.4-1.2 2.4-2.7 2.4S2.5 11.4 2.5 10l1-5Z"/><path d="M9.5 20v-4.5h5V20"/></svg></span>
+                  <span class="jr-card"><span class="jr-card-avatar"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></span><span class="jr-card-line"></span><span class="jr-card-line jr-card-line--short"></span><span class="jr-card-pill">Book a stall</span></span>
+                  <span class="jr-tile jr-tile--right"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>
+                  <span class="jr-tile jr-tile--badge"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>
+                </div>
               </div>
-            </details>
+              <a class="jr-go" href="#register" data-preselect-exhibit aria-label="Register for the exhibition"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8.5 7H17v8.5"/></svg></a>
+            </div>
           </li>
-          <li>
-            <details class="journey-step">
-              <summary class="journey-step-header">
-                <span class="journey-num">05</span>
-                <span class="journey-label">Pitch</span>
-                <span class="journey-chevron" aria-hidden="true">▼</span>
-              </summary>
-              <div class="journey-step-body">
-                <p>Present your startup idea live on stage to a panel of investors and jury on Day 2. This is your moment — a compelling pitch can unlock funding, incubation offers, and industry recognition.</p>
+          <!-- 05 Pitch -->
+          <li class="jr-item" style="--jr: #9A8CFF">
+            <h3 class="jr-head">
+              <button class="jr-toggle" type="button" id="jr-btn-5" aria-expanded="false" aria-controls="jr-panel-5">
+                <span class="jr-num">05</span>
+                <span class="jr-icon"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4h19M4 4v11h16V4"/><path d="m7.5 12 3-3 2.5 2 3.5-3.5M12 15v3.5M8.5 20.5l3.5-2 3.5 2"/></svg></span>
+                <span class="jr-title">Pitch</span>
+                <span class="jr-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+              </button>
+            </h3>
+            <div class="jr-panel" id="jr-panel-5" role="region" aria-labelledby="jr-btn-5">
+              <div class="jr-panel-inner">
+                <div class="jr-copy">
+                  <p>Present your startup idea live on stage to a panel of investors and jury on Day 2. This is your moment — a compelling pitch can unlock funding, incubation offers, and industry recognition.</p>
+                  <ul class="jr-chips">
+                    <li class="jr-chip jr-chip--blue"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 21V4M5 4h11l-2 4 2 4H5"/></svg>Grand Pitch</li>
+                    <li class="jr-chip jr-chip--violet"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg>Investor jury</li>
+                    <li class="jr-chip jr-chip--mint"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3.5 2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9L12 3.5Z"/></svg>Day 2</li>
+                  </ul>
+                </div>
+                <div class="jr-art" aria-hidden="true">
+                  <span class="jr-orbit"></span>
+                  <span class="jr-spark jr-spark--a"></span><span class="jr-spark jr-spark--b"></span><span class="jr-spark jr-spark--c"></span>
+                  <span class="jr-tile jr-tile--left"><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4h19M4 4v11h16V4"/><path d="m7.5 12 3-3 2.5 2 3.5-3.5M12 15v3.5M8.5 20.5l3.5-2 3.5 2"/></svg></span>
+                  <span class="jr-card"><span class="jr-card-avatar"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></span><span class="jr-card-line"></span><span class="jr-card-line jr-card-line--short"></span><span class="jr-card-pill">Pitch now</span></span>
+                  <span class="jr-tile jr-tile--right"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>
+                  <span class="jr-tile jr-tile--badge"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>
+                </div>
               </div>
-            </details>
+              <a class="jr-go" href="#register" data-preselect-pitch aria-label="Register for pitching"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8.5 7H17v8.5"/></svg></a>
+            </div>
           </li>
-          <li>
-            <details class="journey-step">
-              <summary class="journey-step-header">
-                <span class="journey-num">06</span>
-                <span class="journey-label">Get Feedback</span>
-                <span class="journey-chevron" aria-hidden="true">▼</span>
-              </summary>
-              <div class="journey-step-body">
-                <p>Receive direct, actionable mentorship from industry experts after your pitch or exhibition. The jury deliberates and delivers structured feedback to help you refine and strengthen your idea.</p>
+          <!-- 06 Get Feedback -->
+          <li class="jr-item" style="--jr: #6D8CFF">
+            <h3 class="jr-head">
+              <button class="jr-toggle" type="button" id="jr-btn-6" aria-expanded="false" aria-controls="jr-panel-6">
+                <span class="jr-num">06</span>
+                <span class="jr-icon"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v9a1.5 1.5 0 0 1-1.5 1.5H10l-5 4v-4h.5A1.5 1.5 0 0 1 4 14.5v-9Z"/><path d="M8.5 10h.01M12 10h.01M15.5 10h.01" stroke-width="2.6"/></svg></span>
+                <span class="jr-title">Get Feedback</span>
+                <span class="jr-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+              </button>
+            </h3>
+            <div class="jr-panel" id="jr-panel-6" role="region" aria-labelledby="jr-btn-6">
+              <div class="jr-panel-inner">
+                <div class="jr-copy">
+                  <p>Receive direct, actionable mentorship from industry experts after your pitch or exhibition. The jury deliberates and delivers structured feedback to help you refine and strengthen your idea.</p>
+                  <ul class="jr-chips">
+                    <li class="jr-chip jr-chip--blue"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3.5h9l3.5 3.5v13.5H6z"/><path d="M9 11h6M9 14.5h6M9 18h3.5"/></svg>Jury feedback</li>
+                    <li class="jr-chip jr-chip--violet"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"/><circle cx="17" cy="9" r="2.8"/><path d="M16.8 14.6c2.5.3 4.2 2.1 4.7 5.4"/></svg>Mentorship</li>
+                    <li class="jr-chip jr-chip--mint"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V4M4 20h16"/><path d="m7.5 15 3.5-4 3 2.5 5-6"/></svg>Evaluation</li>
+                  </ul>
+                </div>
+                <div class="jr-art" aria-hidden="true">
+                  <span class="jr-orbit"></span>
+                  <span class="jr-spark jr-spark--a"></span><span class="jr-spark jr-spark--b"></span><span class="jr-spark jr-spark--c"></span>
+                  <span class="jr-tile jr-tile--left"><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v9a1.5 1.5 0 0 1-1.5 1.5H10l-5 4v-4h.5A1.5 1.5 0 0 1 4 14.5v-9Z"/><path d="M8.5 10h.01M12 10h.01M15.5 10h.01" stroke-width="2.6"/></svg></span>
+                  <span class="jr-card"><span class="jr-card-avatar"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></span><span class="jr-card-line"></span><span class="jr-card-line jr-card-line--short"></span><span class="jr-card-pill">Read notes</span></span>
+                  <span class="jr-tile jr-tile--right"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>
+                  <span class="jr-tile jr-tile--badge"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>
+                </div>
               </div>
-            </details>
+              <a class="jr-go" href="#schedule" data-goto-day="day2" aria-label="See the Day 2 schedule"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8.5 7H17v8.5"/></svg></a>
+            </div>
           </li>
-          <li>
-            <details class="journey-step">
-              <summary class="journey-step-header">
-                <span class="journey-num">07</span>
-                <span class="journey-label">Scale 🚀</span>
-                <span class="journey-chevron" aria-hidden="true">▼</span>
-              </summary>
-              <div class="journey-step-body">
-                <p>Top performers unlock access to the ~₹50,000 prize pool, pre-incubation pathways at AKGEC IDEA Lab, seed-funding opportunities, IPR assistance, and patent guidance. Your startup journey truly begins here.</p>
+          <!-- 07 Scale -->
+          <li class="jr-item" style="--jr: #7F9BFF">
+            <h3 class="jr-head">
+              <button class="jr-toggle" type="button" id="jr-btn-7" aria-expanded="false" aria-controls="jr-panel-7">
+                <span class="jr-num">07</span>
+                <span class="jr-icon"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.5 4.5c3-1.3 5.2-1.3 6.3-.3 1 1.1 1 3.3-.3 6.3l-6 6-6-6 6-6Z"/><circle cx="15" cy="9" r="1.6"/><path d="m7.5 10.5-4 .8 2.2-3.1 4-.6M13.5 16.5l-.8 4 3.1-2.2.6-4M6.5 15c-1.3 1-2.2 2.8-2.3 4.8 2-.1 3.8-1 4.8-2.3"/></svg></span>
+                <span class="jr-title">Scale</span>
+                <span class="jr-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+              </button>
+            </h3>
+            <div class="jr-panel" id="jr-panel-7" role="region" aria-labelledby="jr-btn-7">
+              <div class="jr-panel-inner">
+                <div class="jr-copy">
+                  <p>Top performers unlock access to the ~₹50,000 prize pool, pre-incubation pathways at AKGEC IDEA Lab, seed-funding opportunities, IPR assistance, and patent guidance. Your startup journey truly begins here.</p>
+                  <ul class="jr-chips">
+                    <li class="jr-chip jr-chip--blue"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M9 8.5h6M9 11.5h6M13 8.5c1.7 0 2.5 1 2.5 1.5S14.7 11.5 13 11.5L9.5 15.5"/></svg>~₹50,000 prize pool</li>
+                    <li class="jr-chip jr-chip--violet"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.5 4.5c3-1.3 5.2-1.3 6.3-.3 1 1.1 1 3.3-.3 6.3l-6 6-6-6 6-6Z"/><circle cx="15" cy="9" r="1.6"/><path d="m7.5 10.5-4 .8 2.2-3.1 4-.6M13.5 16.5l-.8 4 3.1-2.2.6-4M6.5 15c-1.3 1-2.2 2.8-2.3 4.8 2-.1 3.8-1 4.8-2.3"/></svg>Pre-incubation</li>
+                    <li class="jr-chip jr-chip--mint"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3.5h9l3.5 3.5v13.5H6z"/><path d="M9 11h6M9 14.5h6M9 18h3.5"/></svg>IPR guidance</li>
+                  </ul>
+                </div>
+                <div class="jr-art" aria-hidden="true">
+                  <span class="jr-orbit"></span>
+                  <span class="jr-spark jr-spark--a"></span><span class="jr-spark jr-spark--b"></span><span class="jr-spark jr-spark--c"></span>
+                  <span class="jr-tile jr-tile--left"><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.5 4.5c3-1.3 5.2-1.3 6.3-.3 1 1.1 1 3.3-.3 6.3l-6 6-6-6 6-6Z"/><circle cx="15" cy="9" r="1.6"/><path d="m7.5 10.5-4 .8 2.2-3.1 4-.6M13.5 16.5l-.8 4 3.1-2.2.6-4M6.5 15c-1.3 1-2.2 2.8-2.3 4.8 2-.1 3.8-1 4.8-2.3"/></svg></span>
+                  <span class="jr-card"><span class="jr-card-avatar"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></span><span class="jr-card-line"></span><span class="jr-card-line jr-card-line--short"></span><span class="jr-card-pill">Apply</span></span>
+                  <span class="jr-tile jr-tile--right"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>
+                  <span class="jr-tile jr-tile--badge"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>
+                </div>
               </div>
-            </details>
+              <a class="jr-go" href="#about" aria-label="See what you can win"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8.5 7H17v8.5"/></svg></a>
+            </div>
           </li>
         </ol>
       </div>
