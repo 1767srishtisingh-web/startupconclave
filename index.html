@@ -1,4 +1,42 @@
 <!DOCTYPE html>
+<!--
+  ╔══════════════════════════════════════════════════════════════════╗
+  ║          STARTUP CONCLAVE '26 — Single-Page Website             ║
+  ║          Organised by: AKGEC IDEA Lab, Ghaziabad                ║
+  ║          GitHub: 1767srishtisingh-web/startupconclave           ║
+  ║          Stack: HTML + CSS + Vanilla JS | No build step         ║
+  ╠══════════════════════════════════════════════════════════════════╣
+  ║  SLIDE / SECTION ORDER                                           ║
+  ║  ─────────────────────────────────────────────────────────────  ║
+  ║  1.  <head>            Meta, fonts, theme init script           ║
+  ║  2.  HEADER            Sticky nav bar with logo + links         ║
+  ║  3.  HERO              Landing screen – poster, title, CTAs     ║
+  ║  4.  QUOTE STRIP       Philosophy tagline band                  ║
+  ║  5.  EVENT JOURNEY     Expandable 7-step waterfall              ║
+  ║  6.  ABOUT             Why Attend + 6 opportunity pillars       ║
+  ║  7.  HIGHLIGHTS        4 core event feature cards               ║
+  ║  8.  FUNDING BAND      Prize pool display                       ║
+  ║  9.  HOW IT WORKS      8-step process guide                     ║
+  ║  10. SCHEDULE          Full 2-day itinerary with tabs+filters   ║
+  ║  11. PARTICIPATE       Exhibition vs Pitching + how to join     ║
+  ║  12. VENUE             Location, timings, Google Maps           ║
+  ║  13. REGISTER          Registration form + countdown + pass     ║
+  ║  14. TERMS             12 rules & guidelines                    ║
+  ║  15. FAQ               6 expandable questions                   ║
+  ║  16. CONTACT           Coordinator cards + social links         ║
+  ║  17. BOTTOM CTA        Final register push before footer        ║
+  ║  18. FOOTER            Nav mirror + newsletter + copyright      ║
+  ║  19. POSTER MODAL      Lightbox dialog for the event poster     ║
+  ╚══════════════════════════════════════════════════════════════════╝
+
+  HOW TO EDIT:
+  • Each section begins with a DOC BLOCK comment explaining what it
+    contains and exactly what lines to change.
+  • Search for "SLIDE [number]" to jump straight to any section.
+  • All timings are in 12-hour AM/PM format.
+  • Registration deadline: 10 October 2026 (change in script.js L8)
+  • To connect form to email: set FORM_ENDPOINT in script.js L15
+-->
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
@@ -32,6 +70,33 @@
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
+  
+  <!--
+  +--------------------------------------------------------------------+
+  | SLIDE 2 - HEADER : Sticky Navigation Bar                        |
+  +--------------------------------------------------------------------+
+  | ELEMENT : <header class=site-header id=top>                     |
+  | CSS     : .site-header .header-inner .brand .main-nav .nav-list |
+  |                                                                  |
+  | CONTAINS:                                                        |
+  | * Brand logo + Startup Conclave 26 + AKGEC IDEA Lab             |
+  | * Nav links (10): About, Highlights, Journey, Schedule,          |
+  |   Participate, Venue, Terms, FAQ, Contact, Register             |
+  | * See More ghost button (scrolls to #about)                     |
+  | * Dark/Light theme toggle (moon/sun icon)                       |
+  | * Hamburger button - opens mobile nav drawer                    |
+  | * Register now mobile-only CTA inside the drawer               |
+  |                                                                  |
+  | JS BEHAVIOUR: script.js adds .is-scrolled after 8px scroll;    |
+  |   active nav link highlighted via IntersectionObserver;         |
+  |   mobile nav closes on Escape or outside click.                 |
+  |                                                                  |
+  | HOW TO UPDATE:                                                   |
+  | * Add nav link: <li><a class=nav-link href=#id>Text</a></li>   |
+  | * Remove link: delete the <li> element                          |
+  | * Change logo: replace images/conclave-logo.jpg                 |
+  +--------------------------------------------------------------------+
+  -->
   <!-- ============ HEADER ============ -->
   <header class="site-header" id="top">
     <div class="container header-inner">
@@ -74,6 +139,32 @@
 
   <main id="main">
 
+  
+  <!--
+  +====================================================================+
+  | SLIDE 3 - HERO : Landing Section                                  
+  | ID      : #home   CLASS: .hero .hero-grid .hero-copy .hero-poster 
+  |                                                                    
+  | LEFT COLUMN (copy):                                                
+  |   * Presenter line: AKGEC IDEA Lab presents                       
+  |   * H1 title: Startup Conclave 26                                 
+  |   * Tagline + lede paragraph                                       
+  |   * Button 1 (primary)  : Explore the Event  --> #about          
+  |   * Button 2 (ghost)    : See Itinerary       --> #schedule       
+  |   * Fact bar: Prize Pool | Dates | Venue | Registration Countdown 
+  |                                                                    
+  | RIGHT COLUMN (poster):                                             
+  |   * images/conclave-poster.png (click to open lightbox modal)     
+  |   * Figcaption: QR code update note                               
+  |                                                                    
+  | HOW TO UPDATE:                                                     
+  |   * Poster image  : replace images/conclave-poster.png           
+  |   * QR note       : edit <figcaption> text below                 
+  |   * Prize amount  : change ~Rs.50,000 in the hero-facts <dd>     
+  |   * Event dates   : change the Dates <dd>                        
+  |   * Countdown end : change DEADLINE in script.js line 8          
+  +====================================================================+
+  -->
     <!-- ============ HERO ============ -->
     <section class="hero" id="home" aria-labelledby="hero-title">
       <div class="container hero-grid">
@@ -126,7 +217,26 @@
     </section>
 
 
-    <!-- ============ QUOTE / PHILOSOPHY STRIP (moved right after hero) ============ -->
+  
+  <!--
+  +====================================================================+
+  | SLIDE 4 - QUOTE STRIP : Philosophy Tagline Band                   
+  | CLASS   : .quote-strip .quote-kicker .quote-keywords .quote-text  
+  | POSITION: Immediately after HERO - first thing seen on scroll     
+  | NO JS DEPENDENCY - edit text directly in HTML.                    
+  |                                                                    
+  | CONTAINS:                                                          
+  |   * Kicker   : From a Thought to a Possibility to a Venture      
+  |   * Keywords : IDEATE. CONNECT. SHOWCASE. PITCH. GROW.           
+  |   * Blockquote: Big ventures often begin with one small idea...  
+  |   * Closing  : Your idea is the starting point.                  
+  |                                                                    
+  | HOW TO UPDATE:                                                     
+  |   * Edit any text directly inside the HTML tags below            
+  |   * To change keywords: edit each <span> in .quote-keywords      
+  +====================================================================+
+  -->
+    <!-- ============ QUOTE / PHILOSOPHY STRIP ============ -->
     <section class="quote-strip">
       <div class="container text-center">
         <p class="quote-kicker">From a Thought → to a Possibility → to a Venture</p>
@@ -145,6 +255,29 @@
     </section>
 
     <!-- ============ EVENT JOURNEY — EXPANDABLE WATERFALL ============ -->
+    
+    <!--
+  +====================================================================+
+  | SLIDE 5 - EVENT JOURNEY : Expandable Waterfall Steps              |
+  | ID      : #event-journey                                           |
+  | CLASS   : .event-journey .journey-waterfall .journey-step         |
+  |                                                                    |
+  | CONTAINS: 7 expandable steps using details/summary elements       |
+  |   (Pure HTML accordion - NO JavaScript needed)                    |
+  |   Step 01 - Register   (open by default - has the open attr)      |
+  |   Step 02 - Learn                                                  |
+  |   Step 03 - Connect                                                |
+  |   Step 04 - Exhibit                                                |
+  |   Step 05 - Pitch                                                  |
+  |   Step 06 - Get Feedback                                           |
+  |   Step 07 - Scale                                                  |
+  |                                                                    |
+  | HOW TO UPDATE:                                                     |
+  |   * Add step    : copy a li>details block                         |
+  |   * Open default: add open attribute to the details tag           |
+  |   * Edit desc   : edit p inside .journey-step-body               |
+  +====================================================================+
+  -->
     <section class="section event-journey" id="event-journey" aria-labelledby="journey-title">
       <div class="container">
         <div class="section-head text-center">
@@ -241,6 +374,28 @@
       </div>
     </section>
 
+  
+  <!--
+  +====================================================================+
+  | SLIDE 6 - ABOUT : Why Attend / Opportunity Pillars                
+  | ID      : #about   CLASS: .about .about-grid .pillars .pillar     
+  |                                                                    
+  | CONTAINS:                                                          
+  |   Left : Heading, intro text, event logo image                   
+  |   Right: 6 opportunity pillars (ordered list):                   
+  |     Pillar 1: ~Rs.50,000 Prize Pool   (colour token: --amber)    
+  |     Pillar 2: Pre-Incubation          (colour token: --green)    
+  |     Pillar 3: IPR Guidance            (colour token: --blue)     
+  |     Pillar 4: Seed-Funding            (colour token: --red)      
+  |     Pillar 5: Take The Stage          (colour token: --poster-blue-lt)
+  |     Pillar 6: Meet The Ecosystem      (colour token: --poster-green)
+  |                                                                    
+  | HOW TO UPDATE:                                                     
+  |   * Edit pillar title/description in <h3> and <p>               
+  |   * Change colour: style='--pillar: var(--TOKEN)'               
+  |     Available tokens: --amber --green --blue --red --poster-blue-lt
+  +====================================================================+
+  -->
     <!-- ============ PILLARS / OPPORTUNITIES ============ -->
     <section class="section about" id="about" aria-labelledby="about-title">
       <div class="container about-grid">
@@ -301,6 +456,29 @@
       </div>
     </section>
 
+  
+  <!--
+  +====================================================================+
+  | SLIDE 7 - HIGHLIGHTS : Core Event Feature Cards                   
+  | ID      : #highlights   CLASS: .highlights .highlights-grid       
+  |                                                                    
+  | CONTAINS: 4 feature cards in a responsive grid                    
+  |   Card 1: Speakers and Keynotes                                   
+  |   Card 2: Pitch Ideas                                             
+  |   Card 3: Networking                                              
+  |   Card 4: Startup Exhibition                                      
+  |                                                                    
+  | Each card: .highlight-icon (emoji) + <h3> + two <p> tags         
+  |   .highlight-main = primary description line                     
+  |   .highlight-sub  = secondary detail line                        
+  |                                                                    
+  | HOW TO UPDATE:                                                     
+  |   * Card title   : edit <h3>                                     
+  |   * Main text    : edit <p class=highlight-main>                 
+  |   * Sub text     : edit <p class=highlight-sub>                  
+  |   * Card icon    : change the emoji in .highlight-icon           
+  +====================================================================+
+  -->
     <!-- ============ CORE FOCUS PILLARS ============ -->
     <section class="section highlights" id="highlights" aria-labelledby="highlights-title">
       <div class="container">
@@ -342,7 +520,29 @@
       </div>
     </section>
 
-    <!-- ============ FUNDING & OPPORTUNITY BAND ============ -->
+  
+  <!--
+  +====================================================================+
+  | SLIDE 8 - FUNDING BAND : Prize Pool Display                       
+  | CLASS   : .funding .funding-grid .funding-headline .store-list    
+  |                                                                    
+  | CONTAINS:                                                          
+  |   * Kicker  : Competition and Rewards                             
+  |   * Large display: Up to ~Rs.50,000 (element id: funding-title)  
+  |   * Supporting text about the prize pool                         
+  |   * Register CTA button (data-preselect-pitch pre-ticks pitcher) 
+  |   * 4 list items (ul.store-list):                                
+  |       1. Pitch Competition                                        
+  |       2. Startup Exhibition                                       
+  |       3. IPR and Legal Guidance                                   
+  |       4. VC Roundtable and Incubation                             
+  |                                                                    
+  | HOW TO UPDATE:                                                     
+  |   * Prize amount  : edit <h2 id=funding-title> text              
+  |   * Store items   : edit or add <li> inside ul.store-list        
+  +====================================================================+
+  -->
+    <!-- ============ FUNDING AND OPPORTUNITY BAND ============ -->
     <section class="funding" aria-labelledby="funding-title">
       <div class="container funding-grid">
         <div class="funding-headline">
@@ -372,6 +572,29 @@
       </div>
     </section>
 
+  
+  <!--
+  +====================================================================+
+  | SLIDE 9 - HOW IT WORKS : 8-Step Event Process Guide              
+  | ID      : #how-it-works   CLASS: .steps-grid .step-card          
+  |                                                                    
+  | CONTAINS: 8 step cards in a responsive grid + experience strip    
+  |   Step 01 - Register Online                                       
+  |   Step 02 - Choose Your Track                                     
+  |   Step 03 - Get Confirmation                                      
+  |   Step 04 - Attend and Connect                                    
+  |   Step 05 - Exhibit Your Idea                                     
+  |   Step 06 - Pitch to Investors                                    
+  |   Step 07 - Receive Mentorship                                    
+  |   Step 08 - Unlock Funding and Incubation                        
+  |   + Experience strip (6 bullets below the grid)                  
+  |                                                                    
+  | HOW TO UPDATE:                                                     
+  |   * Step title : edit <h3> inside .step-card                     
+  |   * Step text  : edit <p> inside .step-body                      
+  |   * Numbers (01-08) are static text inside .step-num             
+  +====================================================================+
+  -->
     <!-- ============ HOW IT WORKS (8 STEPS) ============ -->
     <section class="section how-it-works" id="how-it-works" aria-labelledby="hiw-title">
       <div class="container">
@@ -469,6 +692,45 @@
       </div>
     </section>
 
+  
+  <!--
+  +====================================================================+
+  | SLIDE 10 - SCHEDULE : Full 2-Day Itinerary                        
+  | ID      : #schedule                                                
+  | CLASS   : .schedule .day-tabs .day-tab .chip-group .chip          
+  |           .day-panel .day-summary .timeline .session .tag         
+  |                                                                    
+  | CONTAINS:                                                          
+  |   * Day tab switcher (keyboard accessible, ARIA tablist)         
+  |       Tab 1: Day 1 - Thu, 15 Oct (9:00 AM - 6:00 PM)            
+  |       Tab 2: Day 2 - Fri, 16 Oct (10:00 AM - 5:30 PM)           
+  |   * Session filter chips: All / Talks / Exhibition+Pitch /        
+  |       Workshops / Networking                                       
+  |   * Add to Calendar (.ics download) button per day               
+  |   * Timeline session list for each day                           
+  |                                                                    
+  | SESSION TYPES (data-type attribute on each <li class=session>):  
+  |   talk     = Keynotes, Expert Talks, Ceremonies                  
+  |   pitch    = Exhibition and Pitching sessions                     
+  |   workshop = Workshops and skill sessions                         
+  |   network  = Tea breaks, Lunch, Registration, Networking         
+  |                                                                    
+  | ALL TIMINGS ARE IN 12-HOUR AM/PM FORMAT                           
+  |                                                                    
+  | HOW TO ADD A SESSION:                                             
+  |   <li class='session' data-type='talk'>                          
+  |     <time>9:00 AM - 10:00 AM</time>                              
+  |     <div><h4>Session Title</h4><p>Description</p></div>          
+  |     <span class='tag tag-talk'>Label</span>                      
+  |   </li>                                                            
+  |                                                                    
+  | HOW TO UPDATE:                                                     
+  |   * Day tab label : edit the <button data-day-tab> text          
+  |   * Session time  : edit <time> text (keep 12-hour format)       
+  |   * Session title : edit <h4> inside .session                    
+  |   * Session type  : change data-type + tag class (tag-talk etc)  
+  +====================================================================+
+  -->
     <!-- ============ SCHEDULE ============ -->
     <section class="section schedule" id="schedule" aria-labelledby="schedule-title">
       <div class="container">
@@ -678,7 +940,32 @@
       </div>
     </section>
 
-    <!-- ============ WAYS TO PARTICIPATE & HOW TO REGISTER ============ -->
+  
+  <!--
+  +====================================================================+
+  | SLIDE 11 - PARTICIPATE : Ways to Join the Event                   
+  | ID      : #ways-to-join                                            
+  | CLASS   : .ways .participate-grid .participate-card               
+  |           .reg-instructions-box .reg-steps-list                   
+  |                                                                    
+  | CONTAINS:                                                          
+  |   * 2 participation track cards:                                  
+  |       Card 1: Startup Exhibition (normal card)                   
+  |       Card 2: Startup Pitching Competition (highlighted card)    
+  |   * 6-step How to Register guide in a styled box:               
+  |       1. Click link or scan poster QR code                       
+  |       2. Select participation type                               
+  |       3. Enter personal and team info                            
+  |       4. Select Exhibition, Pitching, or both                    
+  |       5. Submit the form                                          
+  |       6. Keep your confirmation / pass                            
+  |                                                                    
+  | HOW TO UPDATE:                                                     
+  |   * Card text  : edit <h3> and <p> inside .participate-card      
+  |   * Steps list : edit <li> items in .reg-steps-list              
+  +====================================================================+
+  -->
+    <!-- ============ WAYS TO PARTICIPATE ============ -->
     <section class="section ways" id="ways-to-join" aria-labelledby="ways-title">
       <div class="container">
         <div class="section-head text-center">
@@ -717,7 +1004,33 @@
       </div>
     </section>
 
-    <!-- ============ VENUE & DETAILS ============ -->
+  
+  <!--
+  +====================================================================+
+  | SLIDE 12 - VENUE : Location, Timings and Google Maps              
+  | ID      : #venue   CLASS: .venue .venue-grid .detail-list         
+  |                                                                    
+  | CONTAINS:                                                          
+  |   * Details list (dl.detail-list):                               
+  |       Dates    : 15-16 October 2026                               
+  |       Timings  : Day 1: 9:00 AM - 6:00 PM                        
+  |                  Day 2: 10:00 AM - 5:30 PM                        
+  |       Venue    : Ajay Kumar Garg Engineering College (AKGEC)      
+  |       Location : 27th KM Milestone, Delhi-Meerut Expressway,      
+  |                  Ghaziabad, UP 201015                              
+  |       Prizes   : ~Rs.50,000 Prize Pool + Pre-Incubation Support  
+  |       Food/Kit : Delegate welcome kit, lunch and high-tea         
+  |       Deadline : 10 October 2026                                  
+  |   * Get Directions button (opens Google Maps in new tab)         
+  |   * Embedded Google Maps iframe                                   
+  |                                                                    
+  | HOW TO UPDATE:                                                     
+  |   * Venue address : edit <dd> under <dt>Location</dt>            
+  |   * Map iframe    : update src URL in the <iframe> tag           
+  |   * Directions    : update href in the Google Maps <a> link      
+  +====================================================================+
+  -->
+    <!-- ============ VENUE AND DETAILS ============ -->
     <section class="section venue" id="venue" aria-labelledby="venue-title">
       <div class="container venue-grid">
         <div>
@@ -743,6 +1056,43 @@
       </div>
     </section>
 
+  
+  <!--
+  +====================================================================+
+  | SLIDE 13 - REGISTER : Registration Form                           
+  | ID      : #register                                                
+  | CLASS   : .register .register-grid .register-aside .register-card 
+  |           .reg-form .reg-success .reg-closed .pass-card           
+  | JS      : Fully managed by script.js                              
+  |                                                                    
+  | LEFT ASIDE:                                                        
+  |   * Section heading                                               
+  |   * Countdown timer (days, hours, min, sec) to 10 Oct 2026       
+  |   * Free Entry badge (fee-box fee-free) - NO FEE                 
+  |   * Poster thumbnail + Open full poster button + QR update note  
+  |                                                                    
+  | REGISTRATION FORM FIELDS:                                         
+  |   * Full name (required)                                          
+  |   * Joining as: Student / Startup / Innovator / Entrepreneur      
+  |   * Year of study (students only - shown/hidden by JS)           
+  |   * Email address (college email required for students)          
+  |   * Mobile number (10-digit)                                      
+  |   * College / Organization                                        
+  |   * Pass type: Full event / Day 1 only / Day 2 only              
+  |   * Exhibition track checkbox (shows product name + stage fields) 
+  |   * Pitching track checkbox  (shows venture + team + oneliner)   
+  |   * Terms agreement checkbox (required)                           
+  |                                                                    
+  | THREE STATES (auto-managed by script.js):                        
+  |   1. Default  : Form visible and fillable                         
+  |   2. Success  : Pass card shown after submit                     
+  |   3. Closed   : Shown automatically after 10 October 2026        
+  |                                                                    
+  | KEY CONFIG IN script.js:                                          
+  |   Line 8  : DEADLINE = new Date('2026-10-10T23:59:59+05:30')    
+  |   Line 15 : FORM_ENDPOINT = '' --> set Formspree URL to go live  
+  +====================================================================+
+  -->
     <!-- ============ REGISTER ============ -->
     <section class="section register" id="register" aria-labelledby="register-title">
       <div class="container register-grid">
@@ -962,7 +1312,27 @@
       </div>
     </section>
 
-    <!-- ============ RULES & TERMS ============ -->
+  
+  <!--
+  +====================================================================+
+  | SLIDE 14 - TERMS : Rules and Guidelines                           
+  | ID      : #terms   CLASS: .terms .terms-grid .terms-card          
+  |                                                                    
+  | CONTAINS: 12 numbered rules in an ordered list (.terms-list):    
+  |    1. Eligibility          7. IP Ownership                        
+  |    2. Accurate Details     8. Schedule Flexibility                
+  |    3. Team Size            9. Jury Decisions                      
+  |    4. Slot Allocation     10. Support Criteria                    
+  |    5. Punctuality         11. Code of Conduct                     
+  |    6. Adherence           12. Agreement                           
+  |                                                                    
+  | HOW TO UPDATE:                                                     
+  |   * Edit rule   : find the <li> and change the <strong> + text  
+  |   * Add a rule  : add a new <li><strong>N. Title:</strong>...</li>
+  |   * Remove rule : delete the <li> element                        
+  +====================================================================+
+  -->
+    <!-- ============ RULES AND TERMS ============ -->
     <section class="section terms" id="terms" aria-labelledby="terms-title">
       <div class="container">
         <div class="section-head text-center">
@@ -991,6 +1361,31 @@
       </div>
     </section>
 
+  
+  <!--
+  +====================================================================+
+  | SLIDE 15 - FAQ : Frequently Asked Questions                       
+  | ID      : #faq   CLASS: .faq .faq-grid .faq-list .faq-item       
+  |                                                                    
+  | CONTAINS: 6 expandable FAQ items using <details>/<summary>        
+  |   (Pure HTML - no JavaScript needed)                              
+  |                                                                    
+  |   Q1: Who can register?                                            
+  |   Q2: What are the key benefits and prize pool?                   
+  |   Q3: Do I need an established company?                           
+  |   Q4: How does the Pitching Competition work?                     
+  |   Q5: How does the Startup Exhibition work?                       
+  |   Q6: What is the last date to register?                          
+  |                                                                    
+  | HOW TO UPDATE:                                                     
+  |   * Add FAQ: <details class='faq-item'>                          
+  |                <summary>Your question?</summary>                 
+  |                <p>Your answer.</p>                               
+  |              </details>                                            
+  |   * Open by default: add 'open' to <details>                     
+  |   * Edit contact email in section-sub paragraph                  
+  +====================================================================+
+  -->
     <!-- ============ FAQ ============ -->
     <section class="section faq" id="faq" aria-labelledby="faq-title">
       <div class="container faq-grid">
@@ -1027,6 +1422,33 @@
       </div>
     </section>
 
+  
+  <!--
+  +====================================================================+
+  | SLIDE 16 - CONTACT : Team Coordinators and Social Links           
+  | ID      : #contact   CLASS: .contact .contact-grid .contact-card  
+  |                                                                    
+  | CONTAINS: 4 contact cards                                         
+  |   Card 1: Krishna Goel       | Coordinator | +91 95487 08361     
+  |   Card 2: Preet Sain         | Coordinator | +91 79827 56664     
+  |   Card 3: Divi Shrivastava   | Coordinator | idealab@akgec.ac.in 
+  |   Card 4: Social links card                                       
+  |             Instagram : @akgec_idealab                            
+  |             Email     : idealab@akgec.ac.in                       
+  |             Website   : www.akgec.ac.in                           
+  |                                                                    
+  | AVATAR COLOURS (CSS var):                                          
+  |   KG = --blue   PS = --green   DS = --red                         
+  |                                                                    
+  | HOW TO UPDATE A COORDINATOR:                                       
+  |   * Name    : edit <p class=contact-name>                        
+  |   * Role    : edit <p class=contact-role>                        
+  |   * Phone   : edit href='tel:+91...' and display text            
+  |   * Email   : edit href='mailto:...' and display text            
+  |   * Initials: edit text inside <span class=avatar>               
+  |   * Colour  : change style='--avatar: var(--TOKEN)'              
+  +====================================================================+
+  -->
     <!-- ============ CONTACT ============ -->
     <section class="section contact" id="contact" aria-labelledby="contact-title">
       <div class="container">
@@ -1078,6 +1500,26 @@
     </section>
   </main>
 
+  
+  <!--
+  +====================================================================+
+  | SLIDE 17 - BOTTOM REGISTER CTA : Final Registration Push          
+  | CLASS   : .bottom-register-cta .bottom-cta-actions                
+  | POSITION: Just before the footer - catches users who scrolled all 
+  |           the way through the page                                 
+  |                                                                    
+  | CONTAINS:                                                          
+  |   * Kicker  : Free Entry . 15-16 October 2026 . AKGEC, Ghaziabad
+  |   * Heading : Ready to Turn Your Idea Into Reality?               
+  |   * Description paragraph                                         
+  |   * Button 1 (primary) : Register Now - Its Free  --> #register  
+  |   * Button 2 (ghost)   : View Full Schedule       --> #schedule   
+  |                                                                    
+  | HOW TO UPDATE:                                                     
+  |   * Edit all text directly in HTML                                
+  |   * Background gradient controlled in style.css .bottom-register-cta
+  +====================================================================+
+  -->
   <!-- ============ BOTTOM REGISTER CTA ============ -->
   <section class="bottom-register-cta" aria-labelledby="bottom-cta-title">
     <div class="container text-center">
@@ -1091,6 +1533,31 @@
     </div>
   </section>
 
+  
+  <!--
+  +====================================================================+
+  | SLIDE 18 - FOOTER : Site Footer                                   
+  | CLASS   : .site-footer .footer-grid .footer-brand                 
+  |           .footer-nav .footer-news .footer-bottom                 
+  |                                                                    
+  | CONTAINS 3 columns:                                               
+  |   Col 1 - Brand    : Logo, event name, organizer description     
+  |   Col 2 - Nav      : Mirror of main nav links (About to Register)
+  |   Col 3 - Newsletter: Email signup form + Subscribe button        
+  |                                                                    
+  | Bottom bar: Copyright line + Back to top link                    
+  |                                                                    
+  | NEWSLETTER FORM (preview mode):                                    
+  |   * Validates email format and shows a toast notification        
+  |   * Saves email to localStorage only - no actual emails sent     
+  |   * To receive real signups: integrate with Mailchimp or similar 
+  |                                                                    
+  | HOW TO UPDATE:                                                     
+  |   * Copyright year/text : edit the <p> in .footer-bottom         
+  |   * Footer nav links    : match any changes made to main nav     
+  |   * Organizer desc      : edit <p> inside .footer-brand          
+  +====================================================================+
+  -->
   <!-- ============ FOOTER ============ -->
   <footer class="site-footer">
     <div class="brand-stripe" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
@@ -1138,7 +1605,31 @@
     </div>
   </footer>
 
-  <!-- ============ DIALOGS ============ -->
+  
+  <!--
+  +====================================================================+
+  | SLIDE 19 - POSTER MODAL : Lightbox Dialog                         
+  | ELEMENT : <dialog class='modal poster-modal' data-poster-modal>   
+  | CLASS   : .modal .poster-modal .modal-close .poster-modal-actions 
+  |                                                                    
+  | CONTAINS:                                                          
+  |   * Close button (X) in top-right corner                         
+  |   * Full-size poster image: images/conclave-poster.png            
+  |   * Download poster button (browser downloads the PNG file)       
+  |                                                                    
+  | TRIGGERED BY: any element with data-poster-open attribute:       
+  |   * Hero section poster button                                    
+  |   * Register aside Open full poster button                        
+  |                                                                    
+  | NOTE: QR code in poster will be updated - the figcaption in      
+  |   the hero section and the note in the register aside explain this
+  |                                                                    
+  | HOW TO UPDATE:                                                     
+  |   * New poster  : replace images/conclave-poster.png (same name) 
+  |   * OR update   : change src and href in this <dialog> block     
+  +====================================================================+
+  -->
+  <!-- ============ POSTER MODAL DIALOG ============ -->
   <dialog class="modal poster-modal" data-poster-modal aria-label="Startup Conclave '26 poster">
     <button class="modal-close" type="button" data-modal-close aria-label="Close poster">
       <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
