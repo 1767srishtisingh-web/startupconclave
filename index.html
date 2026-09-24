@@ -72,9 +72,9 @@
 
   
   <!--
-  +--------------------------------------------------------------------+
+  +====================================================================+
   | SLIDE 2 - HEADER : Sticky Navigation Bar                        |
-  +--------------------------------------------------------------------+
+  +====================================================================+
   | ELEMENT : <header class=site-header id=top>                     |
   | CSS     : .site-header .header-inner .brand .main-nav .nav-list |
   |                                                                  |
@@ -95,7 +95,7 @@
   | * Add nav link: <li><a class=nav-link href=#id>Text</a></li>   |
   | * Remove link: delete the <li> element                          |
   | * Change logo: replace images/conclave-logo.jpg                 |
-  +--------------------------------------------------------------------+
+  +====================================================================+
   -->
   <!-- ============ HEADER ============ -->
   <header class="site-header" id="top">
@@ -433,17 +433,17 @@
   | CONTAINS:                                                          
   |   Left : Heading, intro text, event logo image                   
   |   Right: 6 opportunity pillars (ordered list):                   
-  |     Pillar 1: ~Rs.50,000 Prize Pool   (colour token: --amber)    
-  |     Pillar 2: Pre-Incubation          (colour token: --green)    
-  |     Pillar 3: IPR Guidance            (colour token: --blue)     
-  |     Pillar 4: Seed-Funding            (colour token: --red)      
-  |     Pillar 5: Take The Stage          (colour token: --poster-blue-lt)
-  |     Pillar 6: Meet The Ecosystem      (colour token: --poster-green)
+  |     Pillar 1: ~Rs.50,000 Prize Pool   (colour token: var(-amber))    
+  |     Pillar 2: Pre-Incubation          (colour token: var(-green))    
+  |     Pillar 3: IPR Guidance            (colour token: var(-blue))     
+  |     Pillar 4: Seed-Funding            (colour token: var(-red))      
+  |     Pillar 5: Take The Stage          (colour token: var(-poster-blue-lt))
+  |     Pillar 6: Meet The Ecosystem      (colour token: var(-poster-green))
   |                                                                    
   | HOW TO UPDATE:                                                     
   |   * Edit pillar title/description in <h3> and <p>               
-  |   * Change colour: style='--pillar: var(--TOKEN)'               
-  |     Available tokens: --amber --green --blue --red --poster-blue-lt
+  |   * Change colour: style='pillar: var(TOKEN)'               
+  |     Available tokens: amber, green, blue, red, poster-blue-lt
   +====================================================================+
   -->
     <!-- ============ PILLARS / OPPORTUNITIES ============ -->
@@ -1089,7 +1089,7 @@
   |                                                                    
   | KEY CONFIG IN script.js:                                          
   |   Line 8  : DEADLINE = new Date('2026-10-10T23:59:59+05:30')    
-  |   Line 15 : FORM_ENDPOINT = '' --> set Formspree URL to go live  
+  |   Line 15 : FORM_ENDPOINT = '' => set Formspree URL to go live  
   +====================================================================+
   -->
     <!-- ============ REGISTER ============ -->
@@ -1437,7 +1437,7 @@
   |             Website   : www.akgec.ac.in                           
   |                                                                    
   | AVATAR COLOURS (CSS var):                                          
-  |   KG = --blue   PS = --green   DS = --red                         
+  |   KG = blue, PS = green, DS = red                         
   |                                                                    
   | HOW TO UPDATE A COORDINATOR:                                       
   |   * Name    : edit <p class=contact-name>                        
@@ -1445,7 +1445,7 @@
   |   * Phone   : edit href='tel:+91...' and display text            
   |   * Email   : edit href='mailto:...' and display text            
   |   * Initials: edit text inside <span class=avatar>               
-  |   * Colour  : change style='--avatar: var(--TOKEN)'              
+  |   * Colour  : change style='avatar: var(TOKEN)'              
   +====================================================================+
   -->
     <!-- ============ CONTACT ============ -->
@@ -1511,8 +1511,8 @@
   |   * Kicker  : Free Entry . 15-16 October 2026 . AKGEC, Ghaziabad
   |   * Heading : Ready to Turn Your Idea Into Reality?               
   |   * Description paragraph                                         
-  |   * Button 1 (primary) : Register Now - Its Free  --> #register  
-  |   * Button 2 (ghost)   : View Full Schedule       --> #schedule   
+  |   * Button 1 (primary) : Register Now - Its Free  => #register  
+  |   * Button 2 (ghost)   : View Full Schedule       => #schedule   
   |                                                                    
   | HOW TO UPDATE:                                                     
   |   * Edit all text directly in HTML                                
