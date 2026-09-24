@@ -329,17 +329,20 @@ button { cursor: pointer; }
 .brand-name { font-weight: 800; font-stretch: 112%; font-size: 1.02rem; }
 .brand-sub { font-size: 0.8rem; color: var(--ink-3); }
 
-.main-nav { margin-left: 0; }
-.nav-list { display: flex; gap: 0.25rem; list-style: none; }
+.main-nav { margin-left: 0; flex-shrink: 1; }
+.nav-list { display: flex; gap: 0.25rem; list-style: none; flex-wrap: nowrap; }
+.nav-list li { white-space: nowrap !important; flex-shrink: 0; }
 .nav-link {
   position: relative;
   display: block;
-  padding: 0.5rem 0.75rem;
+  padding: 0.5rem 0.65rem;
   color: var(--ink-2);
   font-weight: 550;
-  font-size: 0.975rem;
+  font-size: 0.95rem;
   text-decoration: none;
   border-radius: var(--r-sm);
+  white-space: nowrap !important;
+  flex-shrink: 0;
 }
 .nav-link:hover { color: var(--ink); }
 .nav-link.is-current { color: var(--ink); }
