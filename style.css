@@ -2253,3 +2253,55 @@ html[data-theme="light"] .jr-toggle {
     print-color-adjust: exact !important;
   }
 }
+
+/* --- Dynamic Countdown Timer in Hero --- */
+.hero-countdown {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.2rem;
+  font-family: var(--font-wide), var(--font-sans);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+.hero-cd-unit {
+  display: inline-flex;
+  align-items: baseline;
+}
+
+.hero-cd-unit strong {
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: var(--text-main);
+  letter-spacing: -0.01em;
+}
+
+.hero-cd-unit small {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-left: 0.1rem;
+  text-transform: lowercase;
+}
+
+.hero-cd-sep {
+  color: var(--text-muted);
+  font-weight: 700;
+  opacity: 0.65;
+  margin: 0 0.1rem;
+  animation: timerBlink 1s infinite;
+}
+
+@keyframes timerBlink {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 0.2; }
+}
+
+.hero-cd-seconds strong {
+  color: var(--poster-blue-lt, #38bdf8);
+}
+
+[data-theme="dark"] .hero-cd-seconds strong {
+  color: #38bdf8;
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+}

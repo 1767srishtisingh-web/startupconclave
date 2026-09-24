@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const countdownEls = document.querySelectorAll('[data-countdown]');
   const inlineCountdown = document.querySelector('[data-countdown-inline]');
   // Target date: 10 October 2026, 23:59:59
-  const targetDate = new Date('2026-10-10T23:59:59').getTime();
+  const targetDate = new Date('2026-10-10T23:59:59+05:30').getTime();
 
   function updateCountdown() {
     const now = new Date().getTime();
@@ -85,7 +85,22 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     if (inlineCountdown) {
-      inlineCountdown.textContent = `${days}d ${hours}h ${minutes}m`;
+      const dEl = inlineCountdown.querySelector('[data-cd="days"]');
+      const hEl = inlineCountdown.querySelector('[data-cd="hours"]');
+      const mEl = inlineCountdown.querySelector('[data-cd="minutes"]');
+      const sEl = inlineCountdown.querySelector('[data-cd="seconds"]');
+      const dStr = days.toString().padStart(2, '0');
+      const hStr = hours.toString().padStart(2, '0');
+      const mStr = minutes.toString().padStart(2, '0');
+      const sStr = seconds.toString().padStart(2, '0');
+      if (dEl && hEl && mEl && sEl) {
+        dEl.textContent = dStr;
+        hEl.textContent = hStr;
+        mEl.textContent = mStr;
+        sEl.textContent = sStr;
+      } else {
+        inlineCountdown.textContent = `${days}d ${hStr}h ${mStr}m ${sStr}s`;
+      }
     }
   }
   
