@@ -83,7 +83,7 @@ This site has **19 sections (slides)** in `index.html`. They appear in the follo
 | # | Slide / Section | ID / Selector | Purpose |
 |---|-----------------|---------------|---------|
 | 1 | HEAD (meta) | `<head>` | SEO, meta tags, fonts, theme init |
-| 2 | HEADER | `.site-header` | Sticky nav bar (7 links: Opportunities, How It Works, Schedule, Participate, Venue, FAQ, Contact) |
+| 2 | HEADER | `.site-header` | Sticky nav bar (7 links + Circular Theme Toggle + Rectangular Register Button) |
 | 3 | HERO | `#home` | Landing screen — poster, title, live countdown, CTAs |
 | 4 | QUOTE STRIP & RIBBON | `.quote-strip` + `.conclave-ribbon` | Philosophy tagline band + 50,000 Prize Pool & Free Entry ribbon |
 | 5 | COMPETITION & REWARDS | `.funding` | Prize pool band, Pitch & Exhibition CTAs |
@@ -132,9 +132,9 @@ Contains:
   5. `Venue` (`#venue`)
   6. `FAQ` (`#faq`)
   7. `Contact` (`#contact`)
-- **"See More ↓"** ghost button (`.header-see-more`) linking to `#about`.
-- **Mobile hamburger button** (`data-nav-toggle`) opening the drawer menu on small screens.
-- **Theme toggle:** Completely removed/disabled for a cleaner and persistent dark aesthetic.
+- **Circular Theme Toggle Button:** Circular button (`.theme-toggle`, `border-radius: 50%`) with dark/light mode switching.
+- **Rectangular Register Button:** Rectangular CTA (`.header-register-btn`, `border-radius: 4px`) leading directly to the `#register` section.
+- **Mobile hamburger button:** Positioned next to header actions for mobile drawer menu.
 
 **JS behavior:**
 - Header gains `.is-scrolled` after 8px scroll → shows backdrop blur and border.

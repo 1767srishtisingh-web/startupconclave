@@ -1795,7 +1795,7 @@ section.event-journey.journey {
 .btn-exhibition::before { content: "🎪 "; }
 
 /* --- Theme toggle hidden (removed from nav) --- */
-.theme-toggle { display: none !important; }
+
 
 
 /* --- Announcement Ribbon (50,000 Prize Pool & Free Entry) --- */
@@ -1873,4 +1873,49 @@ section.event-journey.journey {
     font-size: 0.9rem;
     padding: 0.35rem 0.85rem;
   }
+}
+
+/* --- Circular Theme Toggle & Rectangular Register Button in Header --- */
+.theme-toggle {
+  display: inline-grid !important;
+  place-items: center;
+  border-radius: 50% !important;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border: 1.5px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background-color .15s ease, border-color .15s ease, transform .15s ease;
+}
+.theme-toggle:hover {
+  border-color: var(--line-strong);
+  transform: scale(1.05);
+}
+
+.header-register-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--blue);
+  color: #fff !important;
+  border-radius: 4px !important; /* crisp rectangular edges */
+  padding: 0.55rem 1.35rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  min-height: 40px;
+  white-space: nowrap;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background-color .15s ease, transform .15s ease, box-shadow .15s ease;
+}
+.header-register-btn:hover {
+  background: color-mix(in srgb, var(--blue) 85%, var(--ink));
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(29, 95, 214, 0.35);
 }
