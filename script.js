@@ -290,8 +290,59 @@
 
   /* ---------- Poster lightbox ---------- */
   var posterModal = $('[data-poster-modal]');
-  $$('[data-poster-open]').forEach(function (btn) {
-    btn.addEventListener('click', function () { openModal(posterModal); });
+
+  function fitPosterToScreen() {
+    if (!posterModal) return;
+    var img = posterModal.querySelector('img');
+    if (!img) return;
+
+    // Calculate maximum available dimensions within viewport
+    var actions = posterModal.querySelector('.poster-modal-actions');
+    var actionsH = actions ? (actions.offsetHeight || 50) : 50;
+    
+    // Total vertical headroom available for image
+    var maxH = Math.max(250, window.innerHeight * 0.92 - actionsH - 24);
+    var maxW = Math.max(250, window.innerWidth * 0.92);
+
+    // Poster natural aspect ratio 1024 x 1536 (2 : 3)
+    var aspect = 1024 / 1536;
+    var computedW = maxH * aspect;
+
+    if (computedW > maxW) {
+      computedW = maxW;
+      maxH = computedW / aspect;
+    }
+
+    img.style.maxHeight = Math.floor(maxH) + 'px';
+    img.style.maxWidth = Math.floor(computedW) + 'px';
+    img.style.width = 'auto';
+    img.style.height = 'auto';
+    img.style.objectFit = 'contain';
+    img.style.display = 'block';
+    img.style.margin = '0 auto';
+
+    posterModal.style.overflow = 'hidden';
+    posterModal.style.margin = 'auto';
+    posterModal.style.display = 'flex';
+    posterModal.style.flexDirection = 'column';
+    posterModal.style.alignItems = 'center';
+    posterModal.style.justifyContent = 'center';
+  }
+
+  $$('[data-poster-open], .poster-trigger').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      if (!posterModal) return;
+      fitPosterToScreen();
+      openModal(posterModal);
+      setTimeout(fitPosterToScreen, 20);
+    });
+  });
+
+  window.addEventListener('resize', function () {
+    if (posterModal && (posterModal.open || posterModal.hasAttribute('open'))) {
+      fitPosterToScreen();
+    }
   });
 
   /* ---------- Speaker details ---------- */

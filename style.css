@@ -1145,9 +1145,72 @@ button.speaker-card:hover { border-color: var(--ink); }
   box-shadow: 0 1px 3px rgba(0, 0, 0, .25);
 }
 
-.poster-modal { background: var(--navy); max-width: min(94vw, 620px); }
-.poster-modal img { width: 100%; height: auto; }
-.poster-modal-actions { display: flex; justify-content: center; padding: 0.9rem; }
+/* Poster modal - centered, full poster visible, without scroll */
+.poster-modal {
+  background: rgba(8, 14, 28, 0.97) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: var(--r-md) !important;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.85) !important;
+  max-width: 94vw !important;
+  max-height: 94vh !important;
+  width: auto !important;
+  height: auto !important;
+  padding: 0 !important;
+  overflow: hidden !important; /* strictly NO SCROLL */
+  margin: auto !important;
+  position: fixed !important;
+  inset: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.poster-modal:not([open]) {
+  display: none !important;
+}
+
+.poster-modal img {
+  display: block !important;
+  width: auto !important;
+  height: auto !important;
+  max-width: 90vw !important;
+  max-height: calc(92vh - 65px) !important;
+  object-fit: contain !important;
+  margin: 0 auto !important;
+}
+
+.poster-modal-actions {
+  display: flex !important;
+  justify-content: center !important;
+  padding: 0.5rem 1rem !important;
+  width: 100% !important;
+  background: rgba(8, 14, 28, 0.95) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  flex-shrink: 0 !important;
+}
+
+.poster-modal .modal-close {
+  position: absolute !important;
+  top: 0.65rem !important;
+  right: 0.65rem !important;
+  z-index: 10 !important;
+  background: rgba(0, 0, 0, 0.65) !important;
+  color: #fff !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  cursor: pointer !important;
+  transition: transform 0.15s ease, background 0.15s ease !important;
+}
+.poster-modal .modal-close:hover {
+  background: rgba(221, 64, 39, 0.9) !important;
+  transform: scale(1.1) !important;
+}
+
+/* Ensure hero poster trigger is centered and neatly fitted */
+.poster-trigger img {
+  object-fit: contain !important;
+  background: #080E1C;
+}
 
 .speaker-modal { padding: 2rem 1.75rem 1.75rem; width: min(92vw, 520px); }
 .speaker-modal-head { display: flex; gap: 1.1rem; align-items: center; padding-right: 2.5rem; }
