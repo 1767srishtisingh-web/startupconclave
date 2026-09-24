@@ -303,8 +303,10 @@ button { cursor: pointer; }
 .header-inner {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 1.5rem;
   height: var(--header-h);
+  width: 100%;
 }
 
 .brand {
@@ -327,7 +329,7 @@ button { cursor: pointer; }
 .brand-name { font-weight: 800; font-stretch: 112%; font-size: 1.02rem; }
 .brand-sub { font-size: 0.8rem; color: var(--ink-3); }
 
-.main-nav { margin-left: auto; }
+.main-nav { margin-left: 0; }
 .nav-list { display: flex; gap: 0.25rem; list-style: none; }
 .nav-link {
   position: relative;
@@ -1918,4 +1920,150 @@ section.event-journey.journey {
   background: color-mix(in srgb, var(--blue) 85%, var(--ink));
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(29, 95, 214, 0.35);
+}
+
+
+/* ================================================================
+   LIGHT THEME OVERRIDES
+   Ensures complete, beautiful visual transition when toggling themes
+   ================================================================ */
+
+html[data-theme="light"],
+:root[data-theme="light"] {
+  --paper: #F4F6FA !important;
+  --surface: #FFFFFF !important;
+  --surface-2: #EAEEF5 !important;
+  --ink: #0C1B33 !important;
+  --ink-2: #4A5870 !important;
+  --ink-3: #6B7890 !important;
+  --line: #D8DEE9 !important;
+  --line-strong: #B9C3D4 !important;
+  --blue: #1D5FD6 !important;
+  --on-accent: #FFFFFF !important;
+}
+
+html[data-theme="light"] body {
+  background: var(--paper) !important;
+  color: var(--ink) !important;
+}
+
+html[data-theme="light"] body::before {
+  display: none !important;
+}
+
+html[data-theme="light"] .site-header {
+  background: rgba(244, 246, 250, 0.94) !important;
+  border-bottom: 1px solid var(--line) !important;
+  backdrop-filter: blur(16px) saturate(140%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(140%) !important;
+}
+
+html[data-theme="light"] .site-header.is-scrolled {
+  background: rgba(255, 255, 255, 0.98) !important;
+  border-bottom-color: var(--line-strong) !important;
+  box-shadow: 0 4px 20px rgba(12, 27, 51, 0.08) !important;
+}
+
+html[data-theme="light"] .brand-name { color: var(--ink) !important; }
+html[data-theme="light"] .brand-sub { color: var(--blue) !important; }
+html[data-theme="light"] .nav-link { color: var(--ink-2) !important; }
+html[data-theme="light"] .nav-link:hover,
+html[data-theme="light"] .nav-link.is-current { color: var(--blue) !important; }
+
+html[data-theme="light"] .hero-title {
+  color: var(--ink) !important;
+  text-shadow: none !important;
+}
+html[data-theme="light"] .hero-title span:nth-child(2) {
+  color: var(--blue) !important;
+  text-shadow: none !important;
+}
+html[data-theme="light"] .hero-tagline { color: var(--ink-2) !important; }
+html[data-theme="light"] .hero-lede { color: var(--ink-2) !important; }
+html[data-theme="light"] .hero-lede strong { color: var(--ink) !important; }
+html[data-theme="light"] .fact dd { color: var(--ink) !important; }
+html[data-theme="light"] .fact dt { color: var(--ink-3) !important; }
+html[data-theme="light"] .hero::before { display: none !important; }
+
+html[data-theme="light"] .hero-countdown .hcd-unit {
+  background: #FFFFFF !important;
+  border-color: #D8DEE9 !important;
+}
+html[data-theme="light"] .hero-countdown .hcd-num {
+  color: #B57700 !important;
+}
+html[data-theme="light"] .hero-countdown .hcd-sep {
+  color: #B57700 !important;
+}
+
+html[data-theme="light"] .quote-strip {
+  background: #E8EEF8 !important;
+  border-color: #CAD5E8 !important;
+}
+html[data-theme="light"] .quote-strip::before { display: none !important; }
+html[data-theme="light"] .quote-kicker { color: var(--blue) !important; }
+html[data-theme="light"] .quote-keywords span {
+  background: linear-gradient(180deg, #0C1B33 0%, #1D5FD6 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+html[data-theme="light"] .quote-text { color: #1E293B !important; }
+html[data-theme="light"] .quote-closing { color: #334155 !important; }
+
+html[data-theme="light"] .conclave-ribbon {
+  background: linear-gradient(90deg, #E2ECFA 0%, #D4E3F8 50%, #E2ECFA 100%) !important;
+  border-top-color: rgba(227, 154, 7, 0.45) !important;
+  border-bottom-color: rgba(18, 146, 90, 0.45) !important;
+  box-shadow: 0 4px 16px rgba(12, 27, 51, 0.08) !important;
+}
+html[data-theme="light"] .ribbon-badge-gold {
+  background: rgba(227, 154, 7, 0.15) !important;
+  border-color: rgba(227, 154, 7, 0.5) !important;
+  color: #9E6500 !important;
+}
+html[data-theme="light"] .ribbon-badge-gold strong { color: #0C1B33 !important; }
+html[data-theme="light"] .ribbon-badge-green {
+  background: rgba(18, 146, 90, 0.15) !important;
+  border-color: rgba(18, 146, 90, 0.5) !important;
+  color: #0B6B40 !important;
+}
+html[data-theme="light"] .ribbon-badge-green strong { color: #0C1B33 !important; }
+html[data-theme="light"] .ribbon-badge-blue {
+  background: rgba(29, 95, 214, 0.12) !important;
+  border-color: rgba(29, 95, 214, 0.4) !important;
+  color: #154EB8 !important;
+}
+html[data-theme="light"] .ribbon-divider { color: rgba(12, 27, 51, 0.3) !important; }
+
+html[data-theme="light"] .card,
+html[data-theme="light"] .highlight-card,
+html[data-theme="light"] .step-card,
+html[data-theme="light"] .participate-card,
+html[data-theme="light"] .contact-card,
+html[data-theme="light"] .faq-item,
+html[data-theme="light"] .reg-card,
+html[data-theme="light"] .jr-item {
+  background: #FFFFFF !important;
+  color: var(--ink) !important;
+  border-color: var(--line) !important;
+  box-shadow: 0 4px 16px rgba(12, 27, 51, 0.05) !important;
+}
+
+html[data-theme="light"] .section-title { color: var(--ink) !important; }
+html[data-theme="light"] .section-sub { color: var(--ink-2) !important; }
+html[data-theme="light"] .section-kicker { color: var(--blue) !important; }
+
+html[data-theme="light"] .theme-toggle {
+  background: #FFFFFF !important;
+  border-color: #D8DEE9 !important;
+  color: #0C1B33 !important;
+}
+html[data-theme="light"] .theme-toggle:hover {
+  border-color: #1D5FD6 !important;
+  background: #EAEEF5 !important;
+}
+
+html[data-theme="light"] .funding {
+  background: linear-gradient(135deg, #0C1B33 0%, #162C52 100%) !important;
+  color: #FFFFFF !important;
 }

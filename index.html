@@ -55,14 +55,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <!-- Poster theme: cinematic dark override matching official poster -->
-  <link rel="stylesheet" href="poster-theme.css">
+  <link rel="stylesheet" href="poster-theme.css" id="poster-theme-link">
 
   <!-- Apply saved theme before first paint to avoid a flash -->
   <script>
     (function () {
       try {
         var t = localStorage.getItem('sc26-theme');
-        if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+        if (t === 'light' || t === 'dark') {
+          document.documentElement.setAttribute('data-theme', t);
+          var pl = document.getElementById('poster-theme-link');
+          if (pl && t === 'light') pl.disabled = true;
+        }
       } catch (e) {}
     })();
   </script>

@@ -38,6 +38,7 @@
   /* ---------- Theme toggle ---------- */
   var themeBtn = $('[data-theme-toggle]');
   var mq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+  var posterLink = document.getElementById('poster-theme-link');
 
   function currentTheme() {
     var set = document.documentElement.getAttribute('data-theme');
@@ -45,11 +46,15 @@
     return mq && mq.matches ? 'dark' : 'light';
   }
   function syncThemeButton() {
-    if (!themeBtn) return;
     var dark = currentTheme() === 'dark';
-    themeBtn.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+    if (themeBtn) {
+      themeBtn.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+    }
     var meta = $('meta[name="theme-color"]');
     if (meta) meta.setAttribute('content', dark ? '#0A1528' : '#F4F6FA');
+    if (posterLink) {
+      posterLink.disabled = !dark;
+    }
   }
   if (themeBtn) {
     themeBtn.addEventListener('click', function () {
