@@ -509,7 +509,7 @@
       ok = false;
       if (!first) first = document.getElementById(id);
     }
-    ['reg-name', 'reg-email', 'reg-phone', 'reg-org', 'reg-year', 'reg-venture', 'reg-agree'].forEach(clearError);
+    ['reg-name', 'reg-email', 'reg-phone', 'reg-org', 'reg-year', 'reg-venture', 'reg-exhibit-name', 'reg-agree'].forEach(clearError);
 
     var name = form.name.value.trim();
     if (name.length < 2) fail('reg-name', 'Enter your full name.');
@@ -530,6 +530,8 @@
     }
 
     if (pitchToggle.checked && !form.venture.value.trim()) fail('reg-venture', 'Enter a name for your startup or idea. A working title is fine.');
+
+    if (exhibitToggle && exhibitToggle.checked && !form.exhibit_name.value.trim()) fail('reg-exhibit-name', 'Enter the name of the product or prototype you will exhibit.');
 
     if (!form.agree.checked) {
       var e = document.getElementById('reg-agree-err');
@@ -554,7 +556,10 @@
   function showPass(data) {
     if (!success) return;
     $('[data-pass-name]', success).textContent = data.name;
-    $('[data-pass-type]', success).textContent = data.pass + (data.pitch ? ', pitching' : '');
+    var tracks = [];
+    if (data.exhibit) tracks.push('exhibiting');
+    if (data.pitch) tracks.push('pitching');
+    $('[data-pass-type]', success).textContent = data.pass + (tracks.length ? ', ' + tracks.join(' & ') : '');
     $('[data-pass-role]', success).textContent = TYPE_LABEL[data.type] || data.type;
     $('[data-pass-id]', success).textContent = data.id;
     var msg = $('[data-success-msg]', success);
@@ -571,7 +576,8 @@
 
   if (form) {
     regType.addEventListener('change', updateTypeFields);
-    pitchToggle.addEventListener('change', updatePitchFields);
+    pitchToggle.addEventListener('change', updateTrackFields);
+    if (exhibitToggle) exhibitToggle.addEventListener('change', updateTrackFields);
 
     // Clear an error as soon as the person edits that field
     form.addEventListener('input', function (e) {
@@ -612,6 +618,9 @@
         venture: pitchToggle.checked ? form.venture.value.trim() : '',
         team: pitchToggle.checked ? form.team.value : '',
         oneliner: pitchToggle.checked ? form.oneliner.value.trim() : '',
+        exhibit: !!(exhibitToggle && exhibitToggle.checked),
+        exhibitName: exhibitToggle && exhibitToggle.checked ? form.exhibit_name.value.trim() : '',
+        prototypeStage: exhibitToggle && exhibitToggle.checked ? form.prototype_stage.value : '',
         createdAt: new Date().toISOString()
       };
 
@@ -649,7 +658,7 @@
     if (demoNote) demoNote.hidden = !!FORM_ENDPOINT;
 
     updateTypeFields();
-    updatePitchFields();
+    updateTrackFields();
   }
 
   // Restore a saved registration
@@ -667,7 +676,7 @@
       store.remove(STORAGE_KEY);
       form.reset();
       updateTypeFields();
-      updatePitchFields();
+      updateTrackFields();
       var c = $('[data-char-count]');
       if (c) c.textContent = '0';
       success.hidden = true;
@@ -685,8 +694,65 @@
     a.addEventListener('click', function () {
       if (pitchToggle && !pitchToggle.checked) {
         pitchToggle.checked = true;
-        updatePitchFields();
+        updateTrackFields();
       }
+    });
+  });
+
+  // "Register for Exhibition" buttons pre-tick the exhibition track
+  $$('[data-preselect-exhibit]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      if (exhibitToggle && !exhibitToggle.checked) {
+        exhibitToggle.checked = true;
+        updateTrackFields();
+      }
+    });
+  });
+
+  /* ---------- Event journey: hover (desktop) or tap (touch) to open a stage ---------- */
+  var journey = $('[data-journey]');
+  var finePointer = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (journey) {
+    var stages = $$('.jr-item', journey);
+    var hoverTimer = null;
+
+    function setStage(item, open) {
+      item.classList.toggle('is-open', open);
+      $('.jr-toggle', item).setAttribute('aria-expanded', String(open));
+    }
+    function openOnly(target) {
+      stages.forEach(function (item) { setStage(item, item === target); });
+    }
+
+    stages.forEach(function (item) {
+      var toggle = $('.jr-toggle', item);
+
+      toggle.addEventListener('click', function () {
+        var isOpen = item.classList.contains('is-open');
+        // Mouse users open by hovering, so a click never collapses the card under the cursor.
+        // On touch screens (and via keyboard on touch devices) a second tap closes it.
+        if (isOpen && !finePointer) setStage(item, false);
+        else openOnly(item);
+      });
+
+      if (finePointer) {
+        // Short delay so sweeping the cursor across the list doesn't flicker every stage open
+        item.addEventListener('pointerenter', function () {
+          clearTimeout(hoverTimer);
+          hoverTimer = setTimeout(function () {
+            if (!item.classList.contains('is-open')) openOnly(item);
+          }, 140);
+        });
+        item.addEventListener('pointerleave', function () { clearTimeout(hoverTimer); });
+      }
+    });
+  }
+
+  // Journey arrow links with data-goto-day open the matching schedule tab
+  $$('[data-goto-day]').forEach(function (link) {
+    link.addEventListener('click', function () {
+      var tab = document.getElementById('tab-' + link.getAttribute('data-goto-day'));
+      if (tab && tab.getAttribute('aria-selected') !== 'true') tab.click();
     });
   });
 
