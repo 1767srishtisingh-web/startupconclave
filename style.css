@@ -1792,7 +1792,85 @@ section.event-journey.journey {
   cursor: pointer;
 }
 .btn-exhibition:hover { opacity: 0.88; transform: translateY(-1px); }
-.btn-exhibition::before { content: "??"; }
+.btn-exhibition::before { content: "🎪 "; }
 
 /* --- Theme toggle hidden (removed from nav) --- */
 .theme-toggle { display: none !important; }
+
+
+/* --- Announcement Ribbon (50,000 Prize Pool & Free Entry) --- */
+.conclave-ribbon {
+  background: linear-gradient(90deg, #0a1426 0%, #112242 50%, #0a1426 100%);
+  border-top: 1px solid rgba(227, 154, 7, 0.3);
+  border-bottom: 1px solid rgba(45, 180, 116, 0.3);
+  padding: 0.85rem 1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+  position: relative;
+  z-index: 5;
+}
+.ribbon-inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.85rem 1.5rem;
+  text-align: center;
+}
+.ribbon-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 0.4rem 1.15rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.ribbon-badge:hover {
+  transform: translateY(-1px);
+}
+.ribbon-badge-gold {
+  background: rgba(227, 154, 7, 0.16);
+  border-color: rgba(227, 154, 7, 0.5);
+  color: #ffc83b;
+}
+.ribbon-badge-gold strong {
+  color: #ffffff;
+  font-weight: 800;
+}
+.ribbon-badge-green {
+  background: rgba(18, 146, 90, 0.2);
+  border-color: rgba(45, 180, 116, 0.5);
+  color: #4eed9f;
+}
+.ribbon-badge-green strong {
+  color: #ffffff;
+  font-weight: 800;
+}
+.ribbon-badge-blue {
+  background: rgba(29, 95, 214, 0.16);
+  border-color: rgba(90, 143, 240, 0.45);
+  color: #9ac2ff;
+}
+.ribbon-divider {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 0.85rem;
+}
+@media (max-width: 600px) {
+  .ribbon-divider {
+    display: none;
+  }
+  .conclave-ribbon {
+    padding: 0.75rem 0.5rem;
+  }
+  .ribbon-inner {
+    gap: 0.5rem;
+  }
+  .ribbon-badge {
+    font-size: 0.9rem;
+    padding: 0.35rem 0.85rem;
+  }
+}

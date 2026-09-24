@@ -72,9 +72,9 @@
 
   
   <!--
-  +--------------------------------------------------------------------+
+  +====================================================================+
   | SLIDE 2 - HEADER : Sticky Navigation Bar                        |
-  +--------------------------------------------------------------------+
+  +====================================================================+
   | ELEMENT : <header class=site-header id=top>                     |
   | CSS     : .site-header .header-inner .brand .main-nav .nav-list |
   |                                                                  |
@@ -95,7 +95,7 @@
   | * Add nav link: <li><a class=nav-link href=#id>Text</a></li>   |
   | * Remove link: delete the <li> element                          |
   | * Change logo: replace images/conclave-logo.jpg                 |
-  +--------------------------------------------------------------------+
+  +====================================================================+
   -->
   <!-- ============ HEADER ============ -->
   <header class="site-header" id="top">
@@ -211,11 +211,69 @@
       <div class="brand-stripe" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
     </section>
 
+  <!--
+  +====================================================================+
+  | SLIDE 4 - QUOTE STRIP & ANNOUNCEMENT RIBBON : Philosophy & Badges |
+  | CLASS   : .quote-strip .conclave-ribbon                           |
+  | POSITION: Placed directly after HERO section                      |
+  | NO JS DEPENDENCY - pure semantic HTML & CSS                       |
+  |                                                                    |
+  | CONTAINS:                                                          |
+  |   * Kicker   : From a Thought -> to a Possibility -> to a Venture |
+  |   * Keywords : IDEATE. CONNECT. SHOWCASE. PITCH. GROW.            |
+  |   * Blockquote: Big ventures often begin with one small idea...   |
+  |   * Closing  : Your idea is the starting point.                   |
+  |   * Ribbon   : 50,000 Prize Pool & Free Entry announcement strip  |
+  |                                                                    |
+  | HOW TO UPDATE:                                                     |
+  |   * Edit quote text inside <section class="quote-strip">          |
+  |   * Edit ribbon badges inside <div class="conclave-ribbon">       |
+  +====================================================================+
+  -->
+
+    <!-- ============ QUOTE / PHILOSOPHY STRIP ============ -->
+    <section class="quote-strip">
+      <div class="container text-center">
+        <p class="quote-kicker">From a Thought → to a Possibility → to a Venture</p>
+        <div class="quote-keywords">
+          <span>IDEATE.</span>
+          <span>CONNECT.</span>
+          <span>SHOWCASE.</span>
+          <span>PITCH.</span>
+          <span>GROW.</span>
+        </div>
+        <blockquote class="quote-text">
+          "Big ventures often begin with one small idea — and the courage to put it out there."
+        </blockquote>
+        <p class="quote-closing">Your idea is the starting point. <strong>Startup Conclave is where the journey begins.</strong></p>
+      </div>
+    </section>
+
+    <!-- ============ ANNOUNCEMENT RIBBON ============ -->
+    <div class="conclave-ribbon" role="region" aria-label="Event Highlights Ribbon">
+      <div class="container ribbon-inner">
+        <div class="ribbon-badge ribbon-badge-gold">
+          <span class="ribbon-badge-icon" aria-hidden="true">🏆</span>
+          <span class="ribbon-badge-text"><strong>50,000</strong> Prize Pool</span>
+        </div>
+        <div class="ribbon-divider" aria-hidden="true">✦</div>
+        <div class="ribbon-badge ribbon-badge-green">
+          <span class="ribbon-badge-icon" aria-hidden="true">🎟️</span>
+          <span class="ribbon-badge-text"><strong>Free Entry</strong></span>
+        </div>
+        <div class="ribbon-divider" aria-hidden="true">✦</div>
+        <div class="ribbon-badge ribbon-badge-blue">
+          <span class="ribbon-badge-icon" aria-hidden="true">🚀</span>
+          <span class="ribbon-badge-text">Pre-Incubation &amp; Seed Support</span>
+        </div>
+      </div>
+    </div>
+
 
   
   <!--
   +====================================================================+
-  | SLIDE 4 - COMPETITION & REWARDS (FUNDING BAND) : Rewards & CTAs  |
+  | SLIDE 5 - COMPETITION & REWARDS (FUNDING BAND) : Rewards & CTAs  |
   | CLASS   : .funding .funding-grid .funding-headline .store-list    |
   | POSITION: Positioned right after HERO (Slide 2 content)           |
   |                                                                    |
@@ -271,7 +329,7 @@
     
     <!--
   +====================================================================+
-  | SLIDE 5 - EVENT JOURNEY : Interactive 7-Step Accordion            |
+  | SLIDE 6 - EVENT JOURNEY : Interactive 7-Step Accordion            |
   | ID      : #event-journey                                           |
   | CLASS   : .event-journey .journey .journey-list .jr-item          |
   | JS      : script.js "Event journey" block (hover / tap / keys)    |
@@ -290,14 +348,14 @@
   | EACH STEP (li.jr-item) HAS:                                       |
   |   * .jr-num (01) + .jr-icon (SVG) + .jr-title + .jr-chevron       |
   |   * .jr-copy p       : description text                           |
-  |   * .jr-chips li     : 3 chips (jr-chip--blue / --violet / --mint)|
+  |   * .jr-chips li     : 3 chips (jr-chip-blue / violet / mint)|
   |   * .jr-art          : layered illustration (.jr-card-pill text)  |
   |   * a.jr-go          : arrow link (edit href / data-* attribute)  |
   |                                                                    |
   | HOW TO UPDATE:                                                     |
   |   * Step text    : edit the <p> inside .jr-copy                   |
   |   * Chips        : edit the <li class="jr-chip ..."> text         |
-  |   * Icon colour  : change style="--jr: #HEX" on the li            |
+  |   * Icon colour  : change style="jr: #HEX" on the li            |
   |   * Open default : move class "is-open" to another li and set its |
   |                    button aria-expanded="true" (others "false")   |
   +====================================================================+
@@ -538,42 +596,6 @@
         </ol>
       </div>
     </section>
-  <!--
-  +====================================================================+
-  | SLIDE 6 - QUOTE STRIP : Philosophy Tagline Band                   |
-  | CLASS   : .quote-strip .quote-kicker .quote-keywords .quote-text  |
-  | POSITION: Placed after Event Journey, before About section        |
-  | NO JS DEPENDENCY - edit text directly in HTML.                    |
-  |                                                                    |
-  | CONTAINS:                                                          |
-  |   * Kicker   : From a Thought -> to a Possibility -> to a Venture |
-  |   * Keywords : IDEATE. CONNECT. SHOWCASE. PITCH. GROW.            |
-  |   * Blockquote: Big ventures often begin with one small idea...   |
-  |   * Closing  : Your idea is the starting point.                   |
-  |                                                                    |
-  | HOW TO UPDATE:                                                     |
-  |   * Edit text directly in the HTML tags below                     |
-  |   * To change keywords: edit each <span> in .quote-keywords       |
-  +====================================================================+
-  -->
-
-    <!-- ============ QUOTE / PHILOSOPHY STRIP ============ -->
-    <section class="quote-strip">
-      <div class="container text-center">
-        <p class="quote-kicker">From a Thought → to a Possibility → to a Venture</p>
-        <div class="quote-keywords">
-          <span>IDEATE.</span>
-          <span>CONNECT.</span>
-          <span>SHOWCASE.</span>
-          <span>PITCH.</span>
-          <span>GROW.</span>
-        </div>
-        <blockquote class="quote-text">
-          "Big ventures often begin with one small idea — and the courage to put it out there."
-        </blockquote>
-        <p class="quote-closing">Your idea is the starting point. <strong>Startup Conclave is where the journey begins.</strong></p>
-      </div>
-    </section>
 
   
   <!--
@@ -584,17 +606,17 @@
   | CONTAINS:                                                          
   |   Left : Heading, intro text, event logo image                   
   |   Right: 6 opportunity pillars (ordered list):                   
-  |     Pillar 1: ~Rs.50,000 Prize Pool   (colour token: --amber)    
-  |     Pillar 2: Pre-Incubation          (colour token: --green)    
-  |     Pillar 3: IPR Guidance            (colour token: --blue)     
-  |     Pillar 4: Seed-Funding            (colour token: --red)      
-  |     Pillar 5: Take The Stage          (colour token: --poster-blue-lt)
-  |     Pillar 6: Meet The Ecosystem      (colour token: --poster-green)
+  |     Pillar 1: ~Rs.50,000 Prize Pool   (colour token: var(-amber))    
+  |     Pillar 2: Pre-Incubation          (colour token: var(-green))    
+  |     Pillar 3: IPR Guidance            (colour token: var(-blue))     
+  |     Pillar 4: Seed-Funding            (colour token: var(-red))      
+  |     Pillar 5: Take The Stage          (colour token: var(-poster-blue-lt))
+  |     Pillar 6: Meet The Ecosystem      (colour token: var(-poster-green))
   |                                                                    
   | HOW TO UPDATE:                                                     
   |   * Edit pillar title/description in <h3> and <p>               
-  |   * Change colour: style='--pillar: var(--TOKEN)'               
-  |     Available tokens: --amber --green --blue --red --poster-blue-lt
+  |   * Change colour: style='pillar: var(TOKEN)'               
+  |     Available tokens: amber, green, blue, red, poster-blue-lt
   +====================================================================+
   -->
     <!-- ============ PILLARS / OPPORTUNITIES ============ -->
@@ -1588,7 +1610,7 @@
   |             Website   : www.akgec.ac.in                           
   |                                                                    
   | AVATAR COLOURS (CSS var):                                          
-  |   KG = --blue   PS = --green   DS = --red                         
+  |   KG = blue, PS = green, DS = red                         
   |                                                                    
   | HOW TO UPDATE A COORDINATOR:                                       
   |   * Name    : edit <p class=contact-name>                        
@@ -1596,7 +1618,7 @@
   |   * Phone   : edit href='tel:+91...' and display text            
   |   * Email   : edit href='mailto:...' and display text            
   |   * Initials: edit text inside <span class=avatar>               
-  |   * Colour  : change style='--avatar: var(--TOKEN)'              
+  |   * Colour  : change style='avatar: var(TOKEN)'              
   +====================================================================+
   -->
     <!-- ============ CONTACT ============ -->

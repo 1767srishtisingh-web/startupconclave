@@ -85,9 +85,9 @@ This site has **19 sections (slides)** in `index.html`. They appear in the follo
 | 1 | HEAD (meta) | `<head>` | SEO, meta tags, fonts, theme init |
 | 2 | HEADER | `.site-header` | Sticky nav bar (5 links, See More, no theme toggle) |
 | 3 | HERO | `#home` | Landing screen — poster, title, live countdown, CTAs |
-| 4 | COMPETITION & REWARDS | `.funding` | Prize pool band, Pitch & Exhibition CTAs |
-| 5 | EVENT JOURNEY | `#event-journey` | Expandable 7-step waterfall model |
-| 6 | QUOTE STRIP | `.quote-strip` | Philosophy tagline band ("From a Thought...") |
+| 4 | QUOTE STRIP & RIBBON | `.quote-strip` + `.conclave-ribbon` | Philosophy tagline band + 50,000 Prize Pool & Free Entry ribbon |
+| 5 | COMPETITION & REWARDS | `.funding` | Prize pool band, Pitch & Exhibition CTAs |
+| 6 | EVENT JOURNEY | `#event-journey` | Expandable 7-step waterfall model |
 | 7 | ABOUT | `#about` | "Why just have an idea?" highlighted + 6 pillars |
 | 8 | HIGHLIGHTS | `#highlights` | 4 core event feature cards |
 | 9 | HOW IT WORKS | `#how-it-works` | 8-step process guide + experience strip |
@@ -161,11 +161,30 @@ Contains:
 
 ---
 
-### Slide 4: COMPETITION & REWARDS (Funding Band)
+### Slide 4: QUOTE STRIP & ANNOUNCEMENT RIBBON
 
-**Lines:** 219–265 · **Class:** `.funding`
+**Classes:** `.quote-strip`, `.conclave-ribbon`
 
 Positioned immediately as **Slide 2 of page content** directly after Hero.
+
+Contains:
+- **Quote / Philosophy Band:**
+  - Kicker: *"From a Thought → to a Possibility → to a Venture"*
+  - Keywords: `IDEATE.` `CONNECT.` `SHOWCASE.` `PITCH.` `GROW.`
+  - Blockquote: *"Big ventures often begin with one small idea — and the courage to put it out there."*
+  - Closing: *"Your idea is the starting point. Startup Conclave is where the journey begins."*
+- **Highlight Announcement Ribbon:**
+  - `🏆 50,000 Prize Pool` badge with glowing gold border and bold typography.
+  - `🎟️ Free Entry` badge with green gradient border and bold typography.
+  - `🚀 Pre-Incubation & Seed Support` highlight pill.
+
+---
+
+### Slide 5: COMPETITION & REWARDS (Funding Band)
+
+**Class:** `.funding`
+
+Positioned directly following the Announcement Ribbon.
 
 Contains:
 - Kicker: *"Competition & Rewards"*
@@ -182,9 +201,9 @@ Contains:
 
 ---
 
-### Slide 5: EVENT JOURNEY — Expandable Waterfall
+### Slide 6: EVENT JOURNEY — Expandable Waterfall
 
-**Lines:** 267–384 · **ID:** `#event-journey`  
+**ID:** `#event-journey`  
 **Classes:** `.event-journey`, `.journey-waterfall`, `.journey-step`, `.journey-step-header`, `.journey-step-body`
 
 Contains: 7 expandable steps using native HTML `<details>/<summary>` (zero JS dependency):
@@ -198,20 +217,6 @@ Contains: 7 expandable steps using native HTML `<details>/<summary>` (zero JS de
 | 05 | Pitch | Present on stage to jury and investors on Day 2 | Closed |
 | 06 | Get Feedback | Direct actionable mentorship & jury deliberation | Closed |
 | 07 | Scale 🚀 | Access to prize pool, pre-incubation & seed support | Closed |
-
----
-
-### Slide 6: QUOTE STRIP — Philosophy Band
-
-**Lines:** 386–403 · **Class:** `.quote-strip`
-
-Placed right after Event Journey, transitioning smoothly into the About section.
-
-Contains:
-- Kicker: *"From a Thought → to a Possibility → to a Venture"*
-- Keywords: `IDEATE.` `CONNECT.` `SHOWCASE.` `PITCH.` `GROW.`
-- Blockquote: *"Big ventures often begin with one small idea — and the courage to put it out there."*
-- Closing: *"Your idea is the starting point. Startup Conclave is where the journey begins."*
 
 ---
 
