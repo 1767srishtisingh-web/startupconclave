@@ -11,9 +11,9 @@
 1. [Project Structure](#1-project-structure)
 2. [Run Locally](#2-run-locally)
 3. [Deploy / Push Changes](#3-deploy--push-changes)
-4. [Page Sections Reference](#4-page-sections-reference)
+4. [Page Sections Reference (Slide by Slide)](#4-page-sections-reference-slide-by-slide)
 5. [JavaScript Features](#5-javascript-features)
-6. [CSS Files](#6-css-files)
+6. [CSS Architecture & Custom Styling](#6-css-architecture--custom-styling)
 7. [Images & Assets](#7-images--assets)
 8. [Common Edits Cheatsheet](#8-common-edits-cheatsheet)
 
@@ -23,8 +23,8 @@
 
 ```
 startupconclave/
-├── index.html          ← All page sections (single-page site)
-├── style.css           ← Main styles, themes, responsive rules
+├── index.html          ← All page sections & slides (single-page site)
+├── style.css           ← Main styles, themes, responsive rules, spacing
 ├── poster-theme.css    ← Cinematic dark overlay for poster sections
 ├── script.js           ← All interactions (countdown, form, nav, tabs, etc.)
 ├── DOCS.md             ← This documentation file
@@ -76,434 +76,339 @@ git push origin main
 
 ---
 
-## 4. Page Sections Reference
+## 4. Page Sections Reference (Slide by Slide)
 
-This site has **19 sections** in one `index.html` file. They appear in this order:
+This site has **19 sections (slides)** in `index.html`. They appear in the following updated order:
 
-| # | Section | ID / Selector | Purpose |
-|---|---------|---------------|---------|
-| 1 | HEAD (meta) | `<head>` | SEO, fonts, theme init |
-| 2 | HEADER | `.site-header` | Sticky nav bar |
-| 3 | HERO | `#home` | First screen — poster, title, CTAs |
-| 4 | QUOTE STRIP | `.quote-strip` | Philosophy tagline band |
-| 5 | EVENT JOURNEY | `#event-journey` | Expandable 7-step waterfall |
-| 6 | ABOUT | `#about` | Why Attend + 6 opportunity pillars |
-| 7 | HIGHLIGHTS | `#highlights` | 4 core event pillars (cards) |
-| 8 | FUNDING BAND | `.funding` | Prize pool display band |
-| 9 | HOW IT WORKS | `#how-it-works` | 8-step process guide |
-| 10 | SCHEDULE | `#schedule` | Full 2-day itinerary with tabs & filters |
-| 11 | PARTICIPATE | `#ways-to-join` | Exhibition vs Pitching cards + how to register |
-| 12 | VENUE | `#venue` | Location, timings, map |
-| 13 | REGISTER | `#register` | Registration form |
+| # | Slide / Section | ID / Selector | Purpose |
+|---|-----------------|---------------|---------|
+| 1 | HEAD (meta) | `<head>` | SEO, meta tags, fonts, theme init |
+| 2 | HEADER | `.site-header` | Sticky nav bar (5 links, See More, no theme toggle) |
+| 3 | HERO | `#home` | Landing screen — poster, title, live countdown, CTAs |
+| 4 | COMPETITION & REWARDS | `.funding` | Prize pool band, Pitch & Exhibition CTAs |
+| 5 | EVENT JOURNEY | `#event-journey` | Expandable 7-step waterfall model |
+| 6 | QUOTE STRIP | `.quote-strip` | Philosophy tagline band ("From a Thought...") |
+| 7 | ABOUT | `#about` | "Why just have an idea?" highlighted + 6 pillars |
+| 8 | HIGHLIGHTS | `#highlights` | 4 core event feature cards |
+| 9 | HOW IT WORKS | `#how-it-works` | 8-step process guide + experience strip |
+| 10 | SCHEDULE | `#schedule` | Full 2-day itinerary (12-hr format, tabs, filters) |
+| 11 | PARTICIPATE | `#ways-to-join` | Exhibition vs Pitching cards + How to register |
+| 12 | VENUE | `#venue` | Location, timings, Google Maps |
+| 13 | REGISTER | `#register` | Registration form + pass generation |
 | 14 | TERMS | `#terms` | 12 rules & guidelines |
 | 15 | FAQ | `#faq` | 6 expandable questions |
 | 16 | CONTACT | `#contact` | Coordinator cards + social links |
 | 17 | BOTTOM CTA | `.bottom-register-cta` | Final register push before footer |
-| 18 | FOOTER | `.site-footer` | Nav, newsletter, copyright |
+| 18 | FOOTER | `.site-footer` | Nav mirror + newsletter + copyright |
 | 19 | POSTER MODAL | `[data-poster-modal]` | Lightbox dialog for the event poster |
 
 ---
 
-### 4.1 HEAD — Meta & Fonts
+### Slide 1: `<HEAD>` — Meta, SEO & Fonts
 
-**Lines:** 1–31
+**Lines:** 1–70
 
 Contains:
-- `<title>` and `<meta name="description">` — used by Google and WhatsApp/Twitter previews
-- Open Graph tags (`og:title`, `og:description`, `og:image`) for social link previews
-- Browser theme color (`#080E1C`)
-- Google Fonts: **Archivo** (body), **Bebas Neue** (display headings), **Inter** (UI)
-- Stylesheet links: `style.css` → `poster-theme.css`
-- Inline script: applies saved theme before first paint (prevents flash of wrong theme)
-
-**Edit to update:**
-| Task | Tag to edit |
-|------|-------------|
-| Page title | `<title>` |
-| SEO description | `<meta name="description" content="...">` |
-| Social share image | `<meta property="og:image" content="...">` |
-| Favicon | `<link rel="icon" href="...">` |
+- `<title>` and `<meta name="description">` — used by Google and social share previews.
+- Open Graph tags (`og:title`, `og:description`, `og:image`) for WhatsApp/Twitter previews.
+- Browser theme color (`#080E1C`).
+- Google Fonts: **Archivo** (body), **Bebas Neue** (display headings), **Inter** (UI).
+- Stylesheet links: `style.css` → `poster-theme.css`.
+- Inline theme script: sets dark theme immediately to prevent layout flashes.
 
 ---
 
-### 4.2 HEADER — Navigation Bar
+### Slide 2: HEADER — Sticky Navigation Bar
 
-**Lines:** 35–73 · **Classes:** `.site-header`, `.main-nav`, `.nav-list`, `.header-actions`
+**Lines:** 75–139 · **Classes:** `.site-header`, `.main-nav`, `.nav-list`, `.header-actions`
 
 Contains:
-- **Brand logo + name** linking to `#home`
-- **Nav links** (10 items): About · Highlights · Journey · Schedule · Participate · Venue · Terms · FAQ · Contact · **Register** (accent coloured via `.nav-register-link`)
-- **"See More ↓"** ghost button → `#about`
-- **Dark/Light theme toggle** (moon ↔ sun icon)
-- **Hamburger button** — mobile only, toggles the nav drawer
+- **Brand logo + name** linking to `#home`.
+- **Nav links (strictly 5 items):**
+  1. `About` (`#about`)
+  2. `Schedule` (`#schedule`)
+  3. `Participate` (`#ways-to-join`)
+  4. `Venue` (`#venue`)
+  5. `Register` (`#register` — highlighted in accent color via `.nav-register-link`)
+- **"See More ↓"** ghost button (`.header-see-more`) linking to `#about`.
+- **Mobile hamburger button** (`data-nav-toggle`) opening the drawer menu on small screens.
+- **Theme toggle:** Completely removed/disabled for a cleaner and persistent dark aesthetic.
 
-**JS behaviour:**
-- Gains `.is-scrolled` after 8px scroll → shadow/background appears
-- Active nav link highlighted via `IntersectionObserver`
-- Mobile nav closes on outside click or Escape key
-
-**Edit to update:**
-- **Add nav link:** `<li><a class="nav-link" href="#section-id">Label</a></li>`
-- **Remove nav link:** Delete the `<li>` element
-- **Change logo:** Replace `images/conclave-logo.jpg`
+**JS behavior:**
+- Header gains `.is-scrolled` after 8px scroll → shows backdrop blur and border.
+- Active navigation item auto-highlights via `IntersectionObserver`.
 
 ---
 
-### 4.3 HERO — Landing Section
+### Slide 3: HERO — Landing Section
 
-**Lines:** 77–127 · **ID:** `#home`  
+**Lines:** 141–217 · **ID:** `#home`  
 **Classes:** `.hero`, `.hero-grid`, `.hero-copy`, `.hero-title`, `.hero-actions`, `.hero-facts`, `.hero-poster`
 
 Contains:
-- **Left — copy:** Presenter line, main title, tagline, lede paragraph
-- **Buttons:**
-  - `Explore the Event ↓` (primary) → `#about`
-  - `See Itinerary` (ghost) → `#schedule`
-- **Fact bar:** Prize Pool · Dates · Venue · Registration Countdown
-- **Right — poster:** `images/conclave-poster.png` (clickable → opens lightbox modal)
-- **Figcaption:** *"📌 QR code will be updated soon with the official registration link."*
-
-**Edit to update:**
-| Task | Location |
-|------|----------|
-| Update poster | Replace `images/conclave-poster.png` |
-| Remove QR note | Delete or edit `<figcaption>` text |
-| Change prize amount | Edit `<dd>` under `<dt>Prize Pool</dt>` |
-| Change dates | Edit `<dd>` under `<dt>Dates</dt>` |
-| Registration deadline countdown | `DEADLINE` in `script.js` line 8 |
+- **Presenter tag:** "AKGEC IDEA Lab presents"
+- **Main title:** "Startup Conclave '26"
+- **Tagline & description:** Focus on turning big ideas into ventures with investors.
+- **Primary CTAs:**
+  - `Explore the Event ↓` (`.btn-primary`) → scrolls to `#about`
+  - `See Itinerary` (`.btn-ghost`) → scrolls to `#schedule`
+- **Hero facts bar:**
+  - Prize Pool: `~₹50,000`
+  - Dates: `15–16 October 2026`
+  - Venue: `AKGEC, Ghaziabad`
+  - **Live Countdown Component:** Dynamic ticker updating every second with `DD:HH:MM:SS` format (days, hours, minutes, seconds).
+- **Official Poster:** `images/conclave-poster.png` with click-to-enlarge lightbox modal. Caption text previously stating "QR code will be updated soon" has been cleanly removed.
 
 ---
 
-### 4.4 QUOTE STRIP — Philosophy Band
+### Slide 4: COMPETITION & REWARDS (Funding Band)
 
-**Classes:** `.quote-strip`, `.quote-kicker`, `.quote-keywords`, `.quote-text`, `.quote-closing`
+**Lines:** 219–265 · **Class:** `.funding`
+
+Positioned immediately as **Slide 2 of page content** directly after Hero.
+
+Contains:
+- Kicker: *"Competition & Rewards"*
+- Large prize display: **"Up to ~₹50,000"**
+- Supporting note on pre-incubation pathways and seed-funding access.
+- **Action Buttons:**
+  - `Register to participate` (`.btn-light`) → scrolls to `#register` with Pitch track pre-selected.
+  - `Register for Exhibition` (`.btn-exhibition`) → green gradient button scrolling to `#register` with Exhibition track pre-selected.
+- **4 Highlights:**
+  1. Pitch Competition
+  2. Startup Exhibition (30+ stalls)
+  3. IPR & Legal Guidance
+  4. VC Roundtable & Incubation
+
+---
+
+### Slide 5: EVENT JOURNEY — Expandable Waterfall
+
+**Lines:** 267–384 · **ID:** `#event-journey`  
+**Classes:** `.event-journey`, `.journey-waterfall`, `.journey-step`, `.journey-step-header`, `.journey-step-body`
+
+Contains: 7 expandable steps using native HTML `<details>/<summary>` (zero JS dependency):
+
+| Step | Label | Description Summary | Default State |
+|------|-------|---------------------|---------------|
+| 01 | Register | Fill out online form, select track, receive pass ID | ✅ Open |
+| 02 | Learn | Keynotes by top founders, ecosystem sessions | Closed |
+| 03 | Connect | 1-on-1 networking with founders, VCs, and mentors | Closed |
+| 04 | Exhibit | Live stall demonstration to mentors & investors | Closed |
+| 05 | Pitch | Present on stage to jury and investors on Day 2 | Closed |
+| 06 | Get Feedback | Direct actionable mentorship & jury deliberation | Closed |
+| 07 | Scale 🚀 | Access to prize pool, pre-incubation & seed support | Closed |
+
+---
+
+### Slide 6: QUOTE STRIP — Philosophy Band
+
+**Lines:** 386–403 · **Class:** `.quote-strip`
+
+Placed right after Event Journey, transitioning smoothly into the About section.
 
 Contains:
 - Kicker: *"From a Thought → to a Possibility → to a Venture"*
-- Keywords: IDEATE · CONNECT · SHOWCASE · PITCH · GROW
-- Blockquote: *"Big ventures often begin with one small idea..."*
-
-**Position:** Immediately after the hero — the first thing users see when scrolling.  
-**No JS dependency.** Edit text directly in HTML.
+- Keywords: `IDEATE.` `CONNECT.` `SHOWCASE.` `PITCH.` `GROW.`
+- Blockquote: *"Big ventures often begin with one small idea — and the courage to put it out there."*
+- Closing: *"Your idea is the starting point. Startup Conclave is where the journey begins."*
 
 ---
 
-### 4.5 EVENT JOURNEY — Expandable Waterfall
+### Slide 7: ABOUT — Why Just Have an Idea?
 
-**ID:** `#event-journey`  
-**Classes:** `.event-journey`, `.journey-waterfall`, `.journey-step`, `.journey-step-header`, `.journey-step-body`
-
-Contains: 7 expandable steps using native HTML `<details>/<summary>` (no JS needed):
-
-| Step | Label | Open by default? |
-|------|-------|-----------------|
-| 01 | Register | ✅ Yes |
-| 02 | Learn | No |
-| 03 | Connect | No |
-| 04 | Exhibit | No |
-| 05 | Pitch | No |
-| 06 | Get Feedback | No |
-| 07 | Scale 🚀 | No |
-
-**Edit to update:**
-- **Add a step:** Copy a `<li><details>...</details></li>` block, update the number, label, and `<p>` description
-- **Open by default:** Add `open` attribute to `<details class="journey-step">`
-- **Change step description:** Edit the `<p>` inside `.journey-step-body`
-
----
-
-### 4.6 ABOUT — Why Attend / Opportunities
-
-**ID:** `#about` · **Classes:** `.about`, `.about-grid`, `.pillars`, `.pillar`
+**Lines:** 405–458 · **ID:** `#about` · **Classes:** `.about`, `.about-grid`, `.pillars`, `.pillar`
 
 Contains:
-- Heading, intro text, event logo image (left)
-- 6 opportunity pillars (right), each with emoji, title, and description:
-  1. 🏆 ~₹50,000 Prize Pool
-  2. 🌱 Pre-Incubation Opportunity
-  3. ⚖️ IPR Guidance
-  4. 💰 Seed-Funding Opportunities
-  5. 🎤 Take The Stage
-  6. 🌐 Meet The Ecosystem
-
-**Edit:** Pillar colour set via `style="--pillar: var(--amber)"`. Available tokens: `--amber`, `--green`, `--blue`, `--red`, `--poster-blue-lt`, `--poster-green`.
-
----
-
-### 4.7 HIGHLIGHTS — Core Event Pillars
-
-**ID:** `#highlights` · **Classes:** `.highlights`, `.highlights-grid`, `.highlight-card`
-
-Contains: 4 feature cards:
-1. 🎙️ Speakers & Keynotes
-2. 💡 Pitch Ideas
-3. 🤝 Networking
-4. 🎪 Startup Exhibition
-
-**Edit:** Update `<h3>`, `<p class="highlight-main">`, `<p class="highlight-sub">` in each card.
+- **Highlighted heading:** `<span class="heading-highlight">Why just have an idea?</span> When you can build it. Pitch it. Grow it.`
+  - Styled with amber-to-red gradient text and italic emphasis.
+- **Optimized logo size:** Responsive image capped at 260px (`max-width: 260px`) for optimal visual proportion.
+- **6 Opportunity Pillars:**
+  1. 🏆 ~₹50,000 Prize Pool (`--amber`)
+  2. 🌱 Pre-Incubation Opportunity (`--green`)
+  3. ⚖️ IPR Guidance (`--blue`)
+  4. 💰 Seed-Funding Opportunities (`--red`)
+  5. 🎤 Take The Stage (`--poster-blue-lt`)
+  6. 🌐 Meet The Ecosystem (`--poster-green`)
 
 ---
 
-### 4.8 FUNDING BAND — Prize Display
+### Slide 8: HIGHLIGHTS — Core Event Pillars
 
-**Classes:** `.funding`, `.funding-grid`, `.funding-amount`, `.store-list`
+**Lines:** 460–522 · **ID:** `#highlights` · **Classes:** `.highlights`, `.highlights-grid`, `.highlight-card`
 
-Contains: Dark band with large `~₹50,000` display + 4 "what's in store" items.  
-**Edit:** Change prize amount in `<h2 id="funding-title">` and update store list `<li>` items.
-
----
-
-### 4.9 HOW IT WORKS — 8-Step Guide
-
-**ID:** `#how-it-works` · **Classes:** `.steps-grid`, `.step-card`, `.experience-strip`
-
-Contains: 8 numbered step cards + 6-bullet experience strip below.
-
-**Edit:** Update `<h3>` and `<p>` inside each `.step-card`. Step numbers are static text.
+Contains 4 feature cards:
+1. 🎙️ **Speakers & Keynotes:** Real industry secrets from experienced founders.
+2. 💡 **Pitch Ideas:** Present live to investors and earn funding.
+3. 🤝 **Networking:** 1-on-1 connections with founders and mentors.
+4. 🎪 **Startup Exhibition:** 30+ stalls with direct mentor walkthroughs.
 
 ---
 
-### 4.10 SCHEDULE — Complete Itinerary
+### Slide 9: HOW IT WORKS — 8-Step Guide
 
-**ID:** `#schedule`  
+**Lines:** 524–673 · **ID:** `#how-it-works` · **Classes:** `.how-it-works`, `.steps-grid`, `.step-card`
+
+Contains:
+- 8 numbered step cards (01 Register Online → 08 Unlock Funding & Incubation).
+- Experience strip at bottom with 6 core takeaways: Learn · Connect · Showcase · Pitch · Feedback · Opportunities.
+
+---
+
+### Slide 10: SCHEDULE — Complete Itinerary
+
+**Lines:** 675–943 · **ID:** `#schedule`  
 **Classes:** `.schedule`, `.day-tabs`, `.day-tab`, `.chip-group`, `.chip`, `.day-panel`, `.timeline`, `.session`
 
-Contains:
-- **Day tab switcher** (keyboard accessible, ARIA roles): Day 1 / Day 2
-- **Session filter chips:** All · Talks & Sessions · Exhibition & Pitch · Workshops · Networking
-- **"Add to Calendar"** button per day (generates `.ics` file via JS)
-- **Timeline lists** with sessions for both days — all in 12-hour AM/PM format
-
-**Day 1 sessions:**
-| Time | Session | Type |
-|------|---------|------|
-| 9:00 AM – 10:00 AM | Registration & Welcome Kit Distribution | `network` |
-| 10:00 AM – 10:30 AM | Inaugural Ceremony & Lamp Lighting | `talk` |
-| 10:30 AM – 11:15 AM | Keynote Address: "Building Scalable Startups in Emerging India" | `talk` |
-| 11:15 AM – 11:30 AM | Tea Break & Networking | `network` |
-| 11:30 AM – 12:45 PM | Expert Ecosystem Session: "Startup Ecosystem & Funding Landscape in UP" | `talk` |
-| 12:45 PM – 1:30 PM | Founder Talk: "From Idea to Market: Lessons from the Trenches" | `talk` |
-| 1:30 PM – 2:15 PM | Lunch Break | `network` |
-| 2:15 PM – 5:30 PM | Startup Exhibition & Mentor Walkthrough | `pitch` |
-| 3:30 PM – 5:00 PM | Parallel Workshop: Incubation & Technology Commercialization | `workshop` |
-| 5:30 PM – 6:00 PM | Day 1 Wrap-up & Announcements | `talk` |
-
-**Day 2 sessions:**
-| Time | Session | Type |
-|------|---------|------|
-| 10:00 AM – 11:00 AM | IPR & Startup Protection Strategies | `workshop` |
-| 11:00 AM – 11:15 AM | Tea Break | `network` |
-| 11:15 AM – 1:00 PM | Investor / VC Roundtable Interaction | `talk` |
-| 1:00 PM – 1:45 PM | Lunch Break | `network` |
-| 1:45 PM – 3:30 PM | Startup Pitching Competition | `pitch` |
-| 3:30 PM – 4:15 PM | Jury Evaluation & Feedback Session | `talk` |
-| 4:15 PM – 5:00 PM | Award Ceremony & Winner Recognition | `talk` |
-| 5:00 PM – 5:30 PM | Closing Remarks & Vote of Thanks | `talk` |
-
-**To add a session:**
-```html
-<li class="session" data-type="talk">
-  <time>10:00 AM – 11:00 AM</time>
-  <div>
-    <h4>Session Title Here</h4>
-    <p>Brief description of the session.</p>
-  </div>
-  <span class="tag tag-talk">Label</span>
-</li>
-```
-`data-type` must be one of: `talk` · `pitch` · `workshop` · `network`
+Features:
+- **Day Tabs:** Day 1 (Thu, 15 Oct · 9:00 AM – 6:00 PM) & Day 2 (Fri, 16 Oct · 10:00 AM – 5:30 PM).
+- **Filter Chips:** All · Talks & Sessions · Exhibition & Pitch · Workshops · Networking.
+- **12-Hour Format:** All timings strictly rendered in AM/PM format.
+- **Add to Calendar (.ics):** Built-in iCalendar generator for instant Google / Apple Calendar imports.
 
 ---
 
-### 4.11 WAYS TO PARTICIPATE
+### Slide 11: WAYS TO PARTICIPATE
 
-**ID:** `#ways-to-join` · **Classes:** `.ways`, `.participate-grid`, `.reg-instructions-box`
+**Lines:** 945–1007 · **ID:** `#ways-to-join` · **Classes:** `.ways`, `.participate-grid`, `.reg-instructions-box`
 
 Contains:
-- **2 participation cards:** Startup Exhibition · Startup Pitching Competition
-- **6-step How to Register guide** in a styled box
-
-**Edit:** Update card descriptions and step list items directly in HTML.
-
----
-
-### 4.12 VENUE — Location & Map
-
-**ID:** `#venue` · **Classes:** `.venue`, `.venue-grid`, `.detail-list`, `.map-frame`
-
-Contains: Details list (dates, timings, address, prizes, food, deadline) + Google Maps iframe.
-
-**Edit:**
-| Task | Where |
-|------|-------|
-| Change address | `<dd>` under `<dt>Location</dt>` |
-| Update map | `<iframe src="...">` — change Google Maps query URL |
-| Update directions link | `<a href="https://www.google.com/maps/dir/?...">` |
+- **Exhibition Card:** For teams with working prototypes seeking visibility and stalls.
+- **Pitching Competition Card (Highlighted):** For ventures competing for prizes and investor checks.
+- **How to Register Box:** 6 clear bullet instructions for filling the registration form.
 
 ---
 
-### 4.13 REGISTER — Registration Form
+### Slide 12: VENUE — Location & Map
 
-**ID:** `#register` · **Classes:** `.register`, `.register-grid`, `.register-aside`, `.register-card`, `.reg-form`  
-**JS:** Fully managed by `script.js` — validation, pass generation, state management
+**Lines:** 1009–1059 · **ID:** `#venue` · **Classes:** `.venue`, `.venue-grid`, `.detail-list`, `.map-frame`
 
-**Left aside:** Countdown timer + Free Entry badge + poster thumbnail  
-**Form fields:** Full name · Joining as (Student/Startup/Innovator/Entrepreneur) · Year of study (students only) · Email · Mobile · College/Org · Pass type · Exhibition track · Pitching track · Terms agreement
-
-**Three states:**
-| State | When shown |
-|-------|-----------|
-| Form visible | Before deadline & not yet registered |
-| Success state | After successful form submission — shows generated pass card |
-| Closed state | Auto-shown after 10 October 2026 deadline |
-
-**Key config in `script.js`:**
-```js
-// Line 8 — Change registration deadline:
-var DEADLINE = new Date('2026-10-10T23:59:59+05:30');
-
-// Line 15 — Connect to real form backend (e.g. Formspree):
-var FORM_ENDPOINT = 'https://formspree.io/f/your-form-id';
-```
+Contains:
+- Full venue address: Ajay Kumar Garg Engineering College, Delhi–Meerut Expressway, Ghaziabad, UP 201015.
+- Key event facts (dates, times, delegate kit, lunch & high-tea).
+- Direct Google Maps directions link & responsive embedded map iframe.
 
 ---
 
-### 4.14 TERMS — Rules & Guidelines
+### Slide 13: REGISTER — Registration Form
 
-**ID:** `#terms` · **Classes:** `.terms`, `.terms-list`
+**Lines:** 1061–1315 · **ID:** `#register` · **Classes:** `.register`, `.register-grid`, `.reg-form`
 
-Contains: 12 numbered rules covering eligibility, IP ownership, jury decisions, code of conduct, etc.
-
-**Edit:** Add/remove `<li>` items in `.terms-list`.
-
----
-
-### 4.15 FAQ — Frequently Asked Questions
-
-**ID:** `#faq` · **Classes:** `.faq`, `.faq-list`, `.faq-item`
-
-Contains: 6 expandable FAQ items using `<details>/<summary>`.
-
-**To add a FAQ:**
-```html
-<details class="faq-item">
-  <summary>Your question here?</summary>
-  <p>Your answer here.</p>
-</details>
-```
+Features:
+- **Free Entry badge:** Clearly highlights zero entry fees.
+- **Dynamic Fields:** Student year dropdown appears conditionally when role is "Student"; extra fields open when "Exhibition" or "Pitching" tracks are ticked.
+- **Live Pass Generation:** Upon submission, generates an instant digital event pass with unique ID, downloadable/printable.
+- **Deadline Handling:** Auto-disables after 10 October 2026.
 
 ---
 
-### 4.16 CONTACT — Team Coordinators
+### Slide 14: TERMS — Rules & Guidelines
 
-**ID:** `#contact` · **Classes:** `.contact`, `.contact-grid`, `.contact-card`, `.avatar`
+**Lines:** 1317–1364 · **ID:** `#terms` · **Classes:** `.terms`, `.terms-list`
 
-Contains: 3 coordinator cards + 1 social links card.
-
-| Person | Phone/Email |
-|--------|-------------|
-| Krishna Goel | +91 95487 08361 |
-| Preet Sain | +91 79827 56664 |
-| Divi Shrivastava | idealab@akgec.ac.in |
-
-Social: Instagram `@akgec_idealab` · Email `idealab@akgec.ac.in` · Website `akgec.ac.in`
-
-**To update a coordinator:**
-```html
-<li class="contact-card">
-  <span class="avatar avatar-sm" style="--avatar: var(--blue)">KG</span>
-  <div>
-    <p class="contact-name">Name</p>
-    <p class="contact-role">Role</p>
-    <a class="contact-link" href="tel:+91XXXXXXXXXX">+91 XXXXX XXXXX</a>
-  </div>
-</li>
-```
+Contains 12 essential operational rules covering eligibility, team size, IP ownership, jury authority, punctuality, and code of conduct.
 
 ---
 
-### 4.17 BOTTOM REGISTER CTA
+### Slide 15: FAQ — Frequently Asked Questions
 
-**Classes:** `.bottom-register-cta`, `.bottom-cta-actions`
+**Lines:** 1366–1425 · **ID:** `#faq` · **Classes:** `.faq`, `.faq-list`, `.faq-item`
 
-Full-width gradient section just before the footer. Catches users who scrolled the whole page.  
-Contains: Kicker · Heading · Description · "Register Now — It's Free" (primary) + "View Full Schedule" (ghost)
-
----
-
-### 4.18 FOOTER
-
-**Classes:** `.site-footer`, `.footer-grid`, `.footer-brand`, `.footer-nav`, `.footer-news`, `.footer-bottom`
-
-Contains: Brand column · Nav links mirror · Newsletter signup form · Copyright + "Back to top" link.
-
-> **Newsletter form** runs in preview mode — stores email in `localStorage` and shows a toast. To receive real signups, connect to Mailchimp or similar.
+Contains 6 accordion items covering eligibility, entry costs, pitch guidelines, exhibition logistics, and deadlines.
 
 ---
 
-### 4.19 POSTER MODAL — Lightbox Dialog
+### Slide 16: CONTACT — Coordinators & Socials
 
-**Element:** `<dialog data-poster-modal>` · **Classes:** `.modal`, `.poster-modal`, `.poster-modal-actions`
+**Lines:** 1427–1503 · **ID:** `#contact` · **Classes:** `.contact`, `.contact-grid`, `.contact-card`
 
-A native HTML `<dialog>` lightbox. Triggered by any `[data-poster-open]` element.  
-Displays `images/conclave-poster.png` full-size with a Download button.
+Contains direct contact cards for student coordinators (Krishna Goel, Preet Sain, Divi Shrivastava) and official social channels (Instagram `@akgec_idealab`, email `idealab@akgec.ac.in`).
 
-**To update poster in modal:** Replace `images/conclave-poster.png` (same filename), or update `src` and `href` in the `<dialog>` block.
+---
+
+### Slide 17: BOTTOM REGISTER CTA
+
+**Lines:** 1505–1536 · **Classes:** `.bottom-register-cta`, `.bottom-cta-actions`
+
+A full-width high-contrast gradient banner with **"Register Now — It's Free"** and **"View Full Schedule"** buttons, catching visitors at the end of their reading journey.
+
+---
+
+### Slide 18: FOOTER
+
+**Lines:** 1538–1608 · **Classes:** `.site-footer`, `.footer-grid`
+
+Contains organizer details, quick navigation mirror, preview newsletter signup, copyright notice, and "Back to top" link.
+
+---
+
+### Slide 19: POSTER MODAL
+
+**Lines:** 1610–1625 · **Element:** `<dialog data-poster-modal>`
+
+A native HTML modal displaying `images/conclave-poster.png` in high resolution with an instant download trigger button.
 
 ---
 
 ## 5. JavaScript Features
 
-All in [`script.js`](./script.js) — one IIFE, strict mode, zero dependencies.
+All client-side interactions are located in [`script.js`](./script.js):
 
-| Feature | Trigger | Description |
-|---------|---------|-------------|
-| Toast notifications | `toast(msg)` function | Auto-dismisses after 3.2s |
-| Dark/light theme toggle | `[data-theme-toggle]` button | Saved in `localStorage` |
-| Scrolled header | `window.scroll` | `.is-scrolled` class after 8px |
-| Mobile nav | `[data-nav-toggle]` | Closes on outside click / Escape |
-| Active nav highlighting | `IntersectionObserver` | Highlights nav link for visible section |
-| Registration countdown | Every 1s via `setInterval` | Shows "Registration Closed" when expired |
-| Schedule day tabs | `[data-day-tab]` buttons | ARIA `tablist`; arrow-key accessible |
-| Session filter chips | `[data-session-filter]` | Filters sessions by `data-type` attribute |
-| Calendar download | `[data-ics]` buttons | Generates and downloads `.ics` file |
-| Registration form | `[data-reg-form]` | Validates → generates pass → stores in `localStorage` |
-| Poster lightbox | `[data-poster-open]` | Opens `<dialog>` natively |
-| Newsletter form | `[data-news-form]` | Email validation + preview toast |
+| Feature | Key Hook / Selector | Functionality |
+|---------|---------------------|---------------|
+| **Hero Live Countdown** | `[data-hero-countdown]` | Ticks every second; displays days, hours, mins, secs in tabular cards |
+| **Register Countdown** | `[data-countdown]` | Form section countdown timer syncing with `DEADLINE` |
+| **Schedule Day Switcher** | `[data-day-tab]` | ARIA-accessible tab navigation between Day 1 and Day 2 |
+| **Session Category Filters** | `[data-session-filter]` | Filters schedule items by `data-type` (talk, pitch, workshop, network) |
+| **Calendar (.ics) Generator** | `[data-ics]` | Builds and downloads standardized `.ics` calendar events |
+| **Track Pre-Selectors** | `data-preselect-pitch`, `data-preselect-exhibit` | Automatically checks the appropriate checkbox when user clicks a CTA |
+| **Registration Engine** | `[data-reg-form]` | Validates input, prevents duplicate submissions, stores in `localStorage`, generates pass |
+| **Poster Lightbox** | `[data-poster-open]` | Opens `<dialog>` modal with native `.showModal()` |
 
 ---
 
-## 6. CSS Files
+## 6. CSS Architecture & Custom Styling
 
-### `style.css`
-- CSS custom property tokens at the top (colours, spacing)
-- `[data-theme="light"]` and `[data-theme="dark"]` token overrides
-- Component styles for every section
-- Responsive breakpoints with `@media (max-width: ...)`
-- Bottom of file: journey waterfall · bottom CTA · free entry badge · nav register highlight
+Main stylesheets: `style.css` & `poster-theme.css`.
 
-### `poster-theme.css`
-- Secondary stylesheet applied after `style.css`
-- Cinematic dark aesthetic matching the official poster
-- Poster-specific colour tokens: `--poster-blue-lt`, `--poster-green`, etc.
-- Controls hero section cinematic feel and dark background gradients
+### Key Customizations & Tokens
+- **Tighter Section Gaps:**
+  ```css
+  :root { --section-y: clamp(2.25rem, 4.5vw, 3.75rem); }
+  ```
+  Significantly tightens spacing between all sections for improved content flow.
+- **Hero Countdown Card:**
+  ```css
+  .hero-countdown { display: flex; gap: 2px; }
+  .hcd-num { font-size: 1.1rem; font-weight: 800; color: var(--amber); }
+  ```
+- **Heading Highlight:**
+  ```css
+  #about-title .heading-highlight {
+    background: linear-gradient(135deg, var(--amber) 0%, var(--red) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  ```
+- **Exhibition CTA Button:**
+  ```css
+  .btn-exhibition {
+    background: linear-gradient(135deg, var(--green) 0%, #0d7a4a 100%);
+    color: #fff;
+    font-weight: 700;
+  }
+  ```
 
 ---
 
 ## 7. Images & Assets
 
-| File | Used in | Notes |
+| File | Purpose | Notes |
 |------|---------|-------|
-| `conclave-poster.png` | Hero · Register aside · Lightbox · Download | **Active poster** — replace when QR is updated |
-| `conclave-poster.jpg` | OG image meta tag | Kept for backward compat |
-| `conclave-logo.jpg` | Header · About · Footer · Pass card | Replace to update logo |
-| `favicon.png` | Browser tab · Apple touch icon | Recommend 512×512px PNG |
-| `reg-qr.png` | Currently unused in HTML | Replace with actual QR when ready |
-
-> **⚠️ When the official QR code is ready:**
-> 1. Replace `images/conclave-poster.png` with the version containing the correct QR
-> 2. Remove the *"📌 QR code will be updated soon"* note from hero `<figcaption>` and register aside
-> 3. Optionally update `images/reg-qr.png` as a standalone QR image
+| `conclave-poster.png` | Official Event Poster | Active in Hero, modal, and download |
+| `conclave-logo.jpg` | Official Logo | Active in Header, About, Footer, and Pass |
+| `favicon.png` | Browser Tab Icon | 512×512 PNG |
+| `reg-qr.png` | QR Asset | Replace when official QR is finalized |
 
 ---
 
@@ -511,19 +416,13 @@ All in [`script.js`](./script.js) — one IIFE, strict mode, zero dependencies.
 
 | Task | File | What to change |
 |------|------|----------------|
-| Update registration deadline | `script.js` line 8 | `DEADLINE = new Date('...')` |
-| Connect form to email service | `script.js` line 15 | `FORM_ENDPOINT = 'https://...'` |
-| Update poster | `images/` | Replace `conclave-poster.png` (keep filename) |
-| Update logo | `images/` | Replace `conclave-logo.jpg` (keep filename) |
-| Change event dates everywhere | `index.html` | Search `15–16 October 2026`, update all |
-| Update coordinator contacts | `index.html` · `#contact` | Edit `href="tel:..."` and display text |
-| Add a FAQ | `index.html` · `#faq` | Add `<details class="faq-item">` block |
-| Add a schedule session | `index.html` · `#schedule` | Add `<li class="session">` in correct `.timeline` |
-| Change prize amount | `index.html` | Search `₹50,000`, update all occurrences |
-| Update entry fee message | `index.html` · `#register` | Edit `.fee-box.fee-free` div content |
-| Add a rule/term | `index.html` · `#terms` | Add `<li>` to `.terms-list` |
-| Change map location | `index.html` · `#venue` | Update `<iframe src>` and directions `<a href>` |
-| Update social share image | `index.html` line 11 | Update `og:image` content attribute |
+| Change Registration Deadline | `script.js` line 8 | Update `DEADLINE = new Date('YYYY-MM-DDTHH:MM:SS+05:30')` |
+| Connect Real Form API | `script.js` line 15 | Enter Formspree or custom endpoint in `FORM_ENDPOINT` |
+| Update Poster Image | `images/` | Replace `conclave-poster.png` (keep same filename) |
+| Update Logo Image | `images/` | Replace `conclave-logo.jpg` (keep same filename) |
+| Update Event Schedule Sessions | `index.html` #schedule | Add or edit `<li class="session" data-type="...">` |
+| Update Coordinator Contacts | `index.html` #contact | Edit name, role, phone number, and mailto links |
+| Modify Navigation Items | `index.html` #top | Edit `<ul class="nav-list">` (keep to max 5 items) |
 
 ---
 

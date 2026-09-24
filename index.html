@@ -11,11 +11,11 @@
   ║  1.  <head>            Meta, fonts, theme init script           ║
   ║  2.  HEADER            Sticky nav bar with logo + links         ║
   ║  3.  HERO              Landing screen – poster, title, CTAs     ║
-  ║  4.  QUOTE STRIP       Philosophy tagline band                  ║
+  ║  4.  FUNDING / REWARDS       Philosophy tagline band                  ║
   ║  5.  EVENT JOURNEY     Expandable 7-step waterfall              ║
-  ║  6.  ABOUT             Why Attend + 6 opportunity pillars       ║
-  ║  7.  HIGHLIGHTS        4 core event feature cards               ║
-  ║  8.  FUNDING BAND      Prize pool display                       ║
+  ║  6.  QUOTE STRIP             Why Attend + 6 opportunity pillars       ║
+  ║  7.  ABOUT        4 core event feature cards               ║
+  ║  8.  HIGHLIGHTS
   ║  9.  HOW IT WORKS      8-step process guide                     ║
   ║  10. SCHEDULE          Full 2-day itinerary with tabs+filters   ║
   ║  11. PARTICIPATE       Exhibition vs Pitching + how to join     ║
@@ -80,10 +80,10 @@
   |                                                                  |
   | CONTAINS:                                                        |
   | * Brand logo + Startup Conclave 26 + AKGEC IDEA Lab             |
-  | * Nav links (10): About, Highlights, Journey, Schedule,          |
-  |   Participate, Venue, Terms, FAQ, Contact, Register             |
+  | * Nav links (5): About, Schedule, Participate, Venue, Register          |
+  |   (Max 5 items as per navigation requirements)             |
   | * See More ghost button (scrolls to #about)                     |
-  | * Dark/Light theme toggle (moon/sun icon)                       |
+  | * Theme toggle removed (cleaner header & persistent dark theme)                       |
   | * Hamburger button - opens mobile nav drawer                    |
   | * Register now mobile-only CTA inside the drawer               |
   |                                                                  |
@@ -216,20 +216,25 @@
   
   <!--
   +====================================================================+
-  | SLIDE 4 - QUOTE STRIP : Philosophy Tagline Band                   
-  | CLASS   : .quote-strip .quote-kicker .quote-keywords .quote-text  
-  | POSITION: Immediately after HERO - first thing seen on scroll     
-  | NO JS DEPENDENCY - edit text directly in HTML.                    
-  |                                                                    
-  | CONTAINS:                                                          
-  |   * Kicker   : From a Thought to a Possibility to a Venture      
-  |   * Keywords : IDEATE. CONNECT. SHOWCASE. PITCH. GROW.           
-  |   * Blockquote: Big ventures often begin with one small idea...  
-  |   * Closing  : Your idea is the starting point.                  
-  |                                                                    
-  | HOW TO UPDATE:                                                     
-  |   * Edit any text directly inside the HTML tags below            
-  |   * To change keywords: edit each <span> in .quote-keywords      
+  | SLIDE 4 - COMPETITION & REWARDS (FUNDING BAND) : Rewards & CTAs  |
+  | CLASS   : .funding .funding-grid .funding-headline .store-list    |
+  | POSITION: Positioned right after HERO (Slide 2 content)           |
+  |                                                                    |
+  | CONTAINS:                                                          |
+  |   * Kicker  : Competition & Rewards                                |
+  |   * Large display: Up to ~Rs.50,000 (id=funding-title)            |
+  |   * CTAs:                                                          |
+  |       - "Register to participate" (data-preselect-pitch)          |
+  |       - "Register for Exhibition" (.btn-exhibition)               |
+  |   * 4 list items (ul.store-list):                                  |
+  |       1. Pitch Competition                                        |
+  |       2. Startup Exhibition                                       |
+  |       3. IPR and Legal Guidance                                   |
+  |       4. VC Roundtable and Incubation                             |
+  |                                                                    |
+  | HOW TO UPDATE:                                                     |
+  |   * Prize amount  : edit <h2 id=funding-title> text               |
+  |   * Store items   : edit or add <li> inside ul.store-list         |
   +====================================================================+
   -->
     <!-- ============ FUNDING AND OPPORTUNITY BAND ============ -->
@@ -382,6 +387,24 @@
         </ol>
       </div>
     </section>
+  <!--
+  +====================================================================+
+  | SLIDE 6 - QUOTE STRIP : Philosophy Tagline Band                   |
+  | CLASS   : .quote-strip .quote-kicker .quote-keywords .quote-text  |
+  | POSITION: Placed after Event Journey, before About section        |
+  | NO JS DEPENDENCY - edit text directly in HTML.                    |
+  |                                                                    |
+  | CONTAINS:                                                          |
+  |   * Kicker   : From a Thought -> to a Possibility -> to a Venture |
+  |   * Keywords : IDEATE. CONNECT. SHOWCASE. PITCH. GROW.            |
+  |   * Blockquote: Big ventures often begin with one small idea...   |
+  |   * Closing  : Your idea is the starting point.                   |
+  |                                                                    |
+  | HOW TO UPDATE:                                                     |
+  |   * Edit text directly in the HTML tags below                     |
+  |   * To change keywords: edit each <span> in .quote-keywords       |
+  +====================================================================+
+  -->
 
     <!-- ============ QUOTE / PHILOSOPHY STRIP ============ -->
     <section class="quote-strip">
@@ -404,7 +427,7 @@
   
   <!--
   +====================================================================+
-  | SLIDE 6 - ABOUT : Why Attend / Opportunity Pillars                
+  | SLIDE 7 - ABOUT : Why Attend / Opportunity Pillars                
   | ID      : #about   CLASS: .about .about-grid .pillars .pillar     
   |                                                                    
   | CONTAINS:                                                          
@@ -486,7 +509,7 @@
   
   <!--
   +====================================================================+
-  | SLIDE 7 - HIGHLIGHTS : Core Event Feature Cards                   
+  | SLIDE 8 - HIGHLIGHTS : Core Event Feature Cards                   
   | ID      : #highlights   CLASS: .highlights .highlights-grid       
   |                                                                    
   | CONTAINS: 4 feature cards in a responsive grid                    
@@ -546,29 +569,6 @@
         </div>
       </div>
     </section>
-
-  
-  <!--
-  +====================================================================+
-  | SLIDE 8 - FUNDING BAND : Prize Pool Display                       
-  | CLASS   : .funding .funding-grid .funding-headline .store-list    
-  |                                                                    
-  | CONTAINS:                                                          
-  |   * Kicker  : Competition and Rewards                             
-  |   * Large display: Up to ~Rs.50,000 (element id: funding-title)  
-  |   * Supporting text about the prize pool                         
-  |   * Register CTA button (data-preselect-pitch pre-ticks pitcher) 
-  |   * 4 list items (ul.store-list):                                
-  |       1. Pitch Competition                                        
-  |       2. Startup Exhibition                                       
-  |       3. IPR and Legal Guidance                                   
-  |       4. VC Roundtable and Incubation                             
-  |                                                                    
-  | HOW TO UPDATE:                                                     
-  |   * Prize amount  : edit <h2 id=funding-title> text              
-  |   * Store items   : edit or add <li> inside ul.store-list        
-  +====================================================================+
-  -->
 
 
   
