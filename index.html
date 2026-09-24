@@ -1,113 +1,51 @@
 <!DOCTYPE html>
-<!--
-  ╔══════════════════════════════════════════════════════════════════╗
-  ║          STARTUP CONCLAVE '26 — Single-Page Website             ║
-  ║          Organised by: AKGEC IDEA Lab, Ghaziabad                ║
-  ║          GitHub: 1767srishtisingh-web/startupconclave           ║
-  ║          Stack: HTML + CSS + Vanilla JS | No build step         ║
-  ╠══════════════════════════════════════════════════════════════════╣
-  ║  SLIDE / SECTION ORDER                                           ║
-  ║  ─────────────────────────────────────────────────────────────  ║
-  ║  1.  <head>            Meta, fonts, theme init script           ║
-  ║  2.  HEADER            Sticky nav bar with logo + links         ║
-  ║  3.  HERO              Landing screen – poster, title, CTAs     ║
-  ║  4.  FUNDING / REWARDS       Philosophy tagline band                  ║
-  ║  5.  EVENT JOURNEY     Interactive 7-step accordion (hover/tap) ║
-  ║  6.  QUOTE STRIP             Why Attend + 6 opportunity pillars       ║
-  ║  7.  ABOUT        4 core event feature cards               ║
-  ║  8.  HIGHLIGHTS
-  ║  9.  HOW IT WORKS      8-step process guide                     ║
-  ║  10. SCHEDULE          Full 2-day itinerary with tabs+filters   ║
-  ║  11. PARTICIPATE       Exhibition vs Pitching + how to join     ║
-  ║  12. VENUE             Location, timings, Google Maps           ║
-  ║  13. REGISTER          Registration form + countdown + pass     ║
-  ║  14. TERMS             12 rules & guidelines                    ║
-  ║  15. FAQ               6 expandable questions                   ║
-  ║  16. CONTACT           Coordinator cards + social links         ║
-  ║  17. BOTTOM CTA        Final register push before footer        ║
-  ║  18. FOOTER            Nav mirror + newsletter + copyright      ║
-  ║  19. POSTER MODAL      Lightbox dialog for the event poster     ║
-  ╚══════════════════════════════════════════════════════════════════╝
-
-  HOW TO EDIT:
-  • Each section begins with a DOC BLOCK comment explaining what it
-    contains and exactly what lines to change.
-  • Search for "SLIDE [number]" to jump straight to any section.
-  • All timings are in 12-hour AM/PM format.
-  • Registration deadline: 10 October 2026 (change in script.js L8)
-  • To connect form to email: set FORM_ENDPOINT in script.js L15
--->
 <html lang="en" data-theme="dark">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Startup Conclave'26 | AKGEC IDEA Lab</title>
-  <meta name="description" content="Startup Conclave '26 by AKGEC IDEA Lab. ~₹50,000 prize pool, pre-incubation, IPR guidance, seed funding, and pitch competition. 15–16 October 2026, Ajay Kumar Garg Engineering College, Ghaziabad.">
+  <title>Startup Conclave '26 | AKGEC IDEA Lab</title>
+  <meta name="description"
+    content="Startup Conclave '26 by AKGEC IDEA Lab. ~₹50,000 prize pool, pre-incubation, IPR guidance, seed funding, and pitch competition. 15–16 October 2026, Ajay Kumar Garg Engineering College, Ghaziabad.">
   <meta name="theme-color" content="#080E1C">
   <meta property="og:title" content="Startup Conclave '26 | AKGEC IDEA Lab">
-  <meta property="og:description" content="Why just have an idea? When you can build it. Pitch it. Grow it. 15–16 October 2026, AKGEC, Ghaziabad.">
+  <meta property="og:description"
+    content="Why just have an idea? When you can build it. Pitch it. Grow it. 15–16 October 2026, AKGEC, Ghaziabad.">
   <meta property="og:image" content="images/conclave-poster.jpg">
   <link rel="icon" type="image/png" href="images/favicon.png">
   <link rel="apple-touch-icon" href="images/favicon.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
   <!-- Poster theme: cinematic dark override matching official poster -->
-  <link rel="stylesheet" href="poster-theme.css" id="poster-theme-link">
+  <link rel="stylesheet" href="css/poster-theme.css">
 
   <!-- Apply saved theme before first paint to avoid a flash -->
   <script>
     (function () {
       try {
         var t = localStorage.getItem('sc26-theme');
-        if (t === 'light' || t === 'dark') {
-          document.documentElement.setAttribute('data-theme', t);
-          var pl = document.getElementById('poster-theme-link');
-          if (pl && t === 'light') pl.disabled = true;
-        }
-      } catch (e) {}
+        if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+      } catch (e) { }
     })();
   </script>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
+
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
-  
-  <!--
-  +====================================================================+
-  | SLIDE 2 - HEADER : Sticky Navigation Bar                        |
-  +====================================================================+
-  | ELEMENT : <header class=site-header id=top>                     |
-  | CSS     : .site-header .header-inner .brand .main-nav .nav-list |
-  |                                                                  |
-  | CONTAINS:                                                        |
-  | * Brand logo + Startup Conclave 26 + AKGEC IDEA Lab             |
-  | * Nav links (7): Opportunities, How It Works, Schedule, Participate, Venue, FAQ, Contact          |
-  |   (Updated to exact list: Opportunities, How It Works, Schedule, Participate, Venue, FAQ, Contact)             |
-  | * Rectangular Register button (scrolls to #register)                     |
-  | * Circular theme toggle button (moon/sun icon, 50% border-radius)                       |
-  | * Hamburger button - opens mobile nav drawer                    |
-  | * Register now mobile-only CTA inside the drawer               |
-  |                                                                  |
-  | JS BEHAVIOUR: script.js adds .is-scrolled after 8px scroll;    |
-  |   active nav link highlighted via IntersectionObserver;         |
-  |   mobile nav closes on Escape or outside click.                 |
-  |                                                                  |
-  | HOW TO UPDATE:                                                   |
-  | * Add nav link: <li><a class=nav-link href=#id>Text</a></li>   |
-  | * Remove link: delete the <li> element                          |
-  | * Change logo: replace images/conclave-logo.jpg                 |
-  +====================================================================+
-  -->
   <!-- ============ HEADER ============ -->
   <header class="site-header" id="top">
     <div class="container header-inner">
       <a class="brand" href="#home" aria-label="Startup Conclave '26, back to top">
         <img class="brand-mark" src="images/conclave-logo.jpg" alt="" width="44" height="44">
         <span class="brand-text">
-          <span class="brand-name">Startup Conclave’26</span>
+          <span class="brand-name">Startup Conclave ’26</span>
           <span class="brand-sub">AKGEC IDEA Lab</span>
         </span>
       </a>
@@ -115,56 +53,40 @@
       <nav class="main-nav" id="main-nav" aria-label="Main">
         <ul class="nav-list">
           <li><a class="nav-link" href="#about">Opportunities</a></li>
-          <li><a class="nav-link" href="#how-it-works">How&nbsp;It&nbsp;Works</a></li>
+          <li><a class="nav-link" href="#how-it-works">How It Works</a></li>
           <li><a class="nav-link" href="#schedule">Schedule</a></li>
           <li><a class="nav-link" href="#ways-to-join">Participate</a></li>
           <li><a class="nav-link" href="#venue">Venue</a></li>
           <li><a class="nav-link" href="#faq">FAQ</a></li>
           <li><a class="nav-link" href="#contact">Contact</a></li>
         </ul>
+        <a class="btn btn-primary nav-cta-mobile" href="#register">Register now</a>
       </nav>
 
       <div class="header-actions">
-        <button class="icon-btn theme-toggle" type="button" aria-label="Switch to light theme" data-theme-toggle>
-          <svg class="icon-moon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
-          <svg class="icon-sun" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <button class="icon-btn theme-toggle" type="button" aria-label="Switch to dark theme" data-theme-toggle>
+          <svg class="icon-moon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+            <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" fill="none" stroke="currentColor" stroke-width="1.8"
+              stroke-linejoin="round" />
+          </svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+            <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8" />
+            <path
+              d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"
+              stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+          </svg>
         </button>
-        <a class="btn btn-primary header-register-btn" href="#register">Register</a>
+        <a class="btn btn-primary header-cta" href="#register">Register</a>
+        <button class="icon-btn nav-toggle" type="button" aria-label="Open menu" aria-expanded="false"
+          aria-controls="main-nav" data-nav-toggle>
+          <span class="nav-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+        </button>
       </div>
-      <button class="icon-btn nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav" data-nav-toggle>
-        <span class="nav-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
-      </button>
     </div>
   </header>
 
   <main id="main">
 
-  
-  <!--
-  +====================================================================+
-  | SLIDE 3 - HERO : Landing Section                                  
-  | ID      : #home   CLASS: .hero .hero-grid .hero-copy .hero-poster 
-  |                                                                    
-  | LEFT COLUMN (copy):                                                
-  |   * Presenter line: AKGEC IDEA Lab presents                       
-  |   * H1 title: Startup Conclave 26                                 
-  |   * Tagline + lede paragraph                                       
-  |   * Button 1 (primary)  : Explore the Event   #about          
-  |   * Button 2 (ghost)    : See Itinerary        #schedule       
-  |   * Fact bar: Prize Pool | Dates | Venue | Registration Countdown 
-  |                                                                    
-  | RIGHT COLUMN (poster):                                             
-  |   * images/conclave-poster.png (click to open lightbox modal)     
-  |   * Figcaption: QR code update note                               
-  |                                                                    
-  | HOW TO UPDATE:                                                     
-  |   * Poster image  : replace images/conclave-poster.png           
-  |   * QR note       : edit <figcaption> text below                 
-  |   * Prize amount  : change ~Rs.50,000 in the hero-facts <dd>     
-  |   * Event dates   : change the Dates <dd>                        
-  |   * Countdown end : change DEADLINE in script.js line 8          
-  +====================================================================+
-  -->
     <!-- ============ HERO ============ -->
     <section class="hero" id="home" aria-labelledby="hero-title">
       <div class="container hero-grid">
@@ -172,19 +94,22 @@
           <p class="hero-presenter">AKGEC IDEA Lab presents</p>
           <h1 class="hero-title" id="hero-title">
             <span>Startup</span>
-            <span>Conclave'26</span>
+            <span>Conclave '26</span>
           </h1>
           <p class="hero-tagline">Why just have an idea? When you can build it. Pitch it. Grow it.</p>
-          <p class="hero-lede">Startup Conclave 2026 brings together ideas, innovators, mentors, investors and opportunities — all under one roof. <strong>Where big ideas meet the right investors to build tomorrow's top companies.</strong></p>
+          <p class="hero-lede">Startup Conclave 2026 brings together ideas, innovators, mentors, investors and
+            opportunities — all under one roof. <strong>Where big ideas meet the right investors to build tomorrow's top
+              companies.</strong></p>
 
           <div class="hero-actions">
-            <a class="btn btn-primary btn-lg" href="#about">Explore the Event ↓</a>
+            <a class="btn btn-primary btn-lg" href="#register">See more</a>
+            <a class="btn btn-ghost btn-lg" href="#schedule">See Itinerary</a>
           </div>
 
           <dl class="hero-facts">
             <div class="fact">
               <dt>Prize Pool</dt>
-              <dd>₹50,000</dd>
+              <dd>~₹50,000</dd>
             </div>
             <div class="fact">
               <dt>Dates</dt>
@@ -203,437 +128,291 @@
 
         <figure class="hero-poster">
           <button class="poster-trigger" type="button" data-poster-open aria-label="View the full event poster">
-            <img src="images/conclave-poster.png" alt="Official Startup Conclave '26 poster: Ideas Today. Impact Tomorrow. Pitch Competition, Expert Talks, Networking and more. 15-16 October 2026, AKGEC Campus Ghaziabad." width="1024" height="1536" fetchpriority="high">
+            <img src="images/conclave-poster.jpg"
+              alt="Official Startup Conclave '26 poster: five founders seated under the words Ideate, Innovate, Ignite, Inspire and Impact, with the registration QR code, dates and prize pool details."
+              width="1024" height="1536" fetchpriority="high">
             <span class="poster-hint">
-              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+                <path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" />
+              </svg>
               View full poster
             </span>
           </button>
         </figure>
       </div>
-      <div class="brand-stripe" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+      <div class="brand-stripe" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span>
+      </div>
     </section>
-
-  <!--
-  +====================================================================+
-  | SLIDE 4 - QUOTE STRIP & ANNOUNCEMENT RIBBON : Philosophy & Badges |
-  | CLASS   : .quote-strip .conclave-ribbon                           |
-  | POSITION: Placed directly after HERO section                      |
-  | NO JS DEPENDENCY - pure semantic HTML & CSS                       |
-  |                                                                    |
-  | CONTAINS:                                                          |
-  |   * Kicker   : From a Thought -> to a Possibility -> to a Venture |
-  |   * Keywords : IDEATE. CONNECT. SHOWCASE. PITCH. GROW.            |
-  |   * Blockquote: Big ventures often begin with one small idea...   |
-  |   * Closing  : Your idea is the starting point.                   |
-  |   * Ribbon   : 50,000 Prize Pool & Free Entry announcement strip  |
-  |                                                                    |
-  | HOW TO UPDATE:                                                     |
-  |   * Edit quote text inside <section class="quote-strip">          |
-  |   * Edit ribbon badges inside <div class="conclave-ribbon">       |
-  +====================================================================+
-  -->
 
     <!-- ============ QUOTE / PHILOSOPHY STRIP ============ -->
     <section class="quote-strip">
       <div class="container text-center">
         <p class="quote-kicker">From a Thought → to a Possibility → to a Venture</p>
         <div class="quote-keywords">
-          <span>IDEATE.</span>
+          <span>IDEA.</span>
           <span>CONNECT.</span>
           <span>SHOWCASE.</span>
           <span>PITCH.</span>
           <span>GROW.</span>
         </div>
         <blockquote class="quote-text">
-          "Big ventures often begin with one small idea — and the courage to put it out there."
+          “Big ventures often begin with one small idea — and the courage to put it out there.”
         </blockquote>
-        <p class="quote-closing">Your idea is the starting point. <strong>Startup Conclave is where the journey begins.</strong></p>
+        <p class="quote-closing">Your idea is the starting point. <strong>Startup Conclave is where the journey
+            begins.</strong></p>
       </div>
     </section>
 
-    <!-- ============ ANNOUNCEMENT RIBBON ============ -->
-    <div class="conclave-ribbon" role="region" aria-label="Event Highlights Ribbon">
-      <div class="container ribbon-inner">
-        <div class="ribbon-badge ribbon-badge-gold">
-          <span class="ribbon-badge-icon" aria-hidden="true">🏆</span>
-          <span class="ribbon-badge-text"><strong>50,000</strong> Prize Pool</span>
-        </div>
-        <div class="ribbon-divider" aria-hidden="true">✦</div>
-        <div class="ribbon-badge ribbon-badge-green">
-          <span class="ribbon-badge-icon" aria-hidden="true">🎟️</span>
-          <span class="ribbon-badge-text"><strong>Free Entry</strong></span>
-        </div>
-        <div class="ribbon-divider" aria-hidden="true">✦</div>
-        <div class="ribbon-badge ribbon-badge-blue">
-          <span class="ribbon-badge-icon" aria-hidden="true">🚀</span>
-          <span class="ribbon-badge-text">Pre-Incubation &amp; Seed Support</span>
-        </div>
-      </div>
-    </div>
 
+    <!-- ============ EVENT JOURNEY ============ -->
+    <section aria-labelledby="journey-title" class="section event-journey journey" id="event-journey">
+<div class="container">
+<div class="journey-head">
+<p class="journey-eyebrow">Event Journey</p>
+<h2 class="journey-title" id="journey-title">Your Path at <span>Startup Conclave '26</span></h2>
+<p class="journey-sub"><span class="jr-hint-hover">Hover over</span><span class="jr-hint-tap">Tap</span> a stage to explore what happens at each step.</p>
+</div>
+<ol class="journey-list" data-journey="">
+<!-- 01 Register -->
+<li class="jr-item is-open" style="--jr: #6D8CFF">
+<h3 class="jr-head">
+<button aria-controls="jr-panel-1" aria-expanded="true" class="jr-toggle" id="jr-btn-1" type="button">
+<span class="jr-num">01</span>
+<span class="jr-icon"><svg aria-hidden="true" fill="none" height="30" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="30"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></span>
+<span class="jr-title">Register</span>
+<span aria-hidden="true" class="jr-chevron"><svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20"><path d="m6 9 6 6 6-6"></path></svg></span>
+</button>
+</h3>
+<div aria-labelledby="jr-btn-1" class="jr-panel" id="jr-panel-1" role="region">
+<div class="jr-panel-inner">
+<div class="jr-copy">
+<p>Fill out the quick registration form online or scan the QR code on the poster. Select your participation track — Attendee, Exhibitor, or Pitcher. Receive instant confirmation with your event pass ID.</p>
+<ul class="jr-chips">
+<li class="jr-chip jr-chip--blue"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="18"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg>Attendee</li>
+<li class="jr-chip jr-chip--violet"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="18"><path d="M4 11v9h16v-9"></path><path d="M3.5 5h17l1 5c0 1.4-1.2 2.4-2.8 2.4S16 11.4 16 10c0 1.4-1.3 2.4-2.9 2.4h-2.2C9.3 12.4 8 11.4 8 10c0 1.4-1.2 2.4-2.7 2.4S2.5 11.4 2.5 10l1-5Z"></path><path d="M9.5 20v-4.5h5V20"></path></svg>Exhibitor</li>
+<li class="jr-chip jr-chip--mint"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="18"><path d="M5 20v-4M10 20v-8M15 20v-6M20 20V6"></path></svg>Pitcher</li>
+</ul>
+</div>
+<div aria-hidden="true" class="jr-art">
+<span class="jr-orbit"></span>
+<span class="jr-spark jr-spark--a"></span><span class="jr-spark jr-spark--b"></span><span class="jr-spark jr-spark--c"></span>
+<span class="jr-tile jr-tile--left"><svg aria-hidden="true" fill="none" height="34" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="34"><rect height="6.5" rx="1" width="6.5" x="3.5" y="3.5"></rect><rect height="6.5" rx="1" width="6.5" x="14" y="3.5"></rect><rect height="6.5" rx="1" width="6.5" x="3.5" y="14"></rect><path d="M14 14h2.5v2.5H14zM18 18h2.5v2.5H18zM14 18.5h1.5M18.5 14h2"></path></svg></span>
+<span class="jr-card"><span class="jr-card-avatar"><svg aria-hidden="true" fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="22"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></span><span class="jr-card-line"></span><span class="jr-card-line jr-card-line--short"></span><span class="jr-card-pill">Register</span></span>
+<span class="jr-tile jr-tile--right"><svg fill="none" height="30" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewbox="0 0 24 24" width="30"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg></span>
+<span class="jr-tile jr-tile--badge"><svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" viewbox="0 0 24 24" width="20"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg></span>
+</div>
+</div>
+<a aria-label="Go to registration" class="jr-go" href="#register"><svg aria-hidden="true" fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="22"><path d="M7 17 17 7M8.5 7H17v8.5"></path></svg></a>
+</div>
+</li>
+<!-- 02 Learn -->
+<li class="jr-item" style="--jr: #5AA9FF">
+<h3 class="jr-head">
+<button aria-controls="jr-panel-2" aria-expanded="false" class="jr-toggle" id="jr-btn-2" type="button">
+<span class="jr-num">02</span>
+<span class="jr-icon"><svg aria-hidden="true" fill="none" height="30" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="30"><path d="M2 9.5 12 5l10 4.5-10 4.5-10-4.5Z"></path><path d="M6 11.5V16c0 1.4 2.7 3 6 3s6-1.6 6-3v-4.5M22 9.5V15"></path></svg></span>
+<span class="jr-title">Learn</span>
+<span aria-hidden="true" class="jr-chevron"><svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20"><path d="m6 9 6 6 6-6"></path></svg></span>
+</button>
+</h3>
+<div aria-labelledby="jr-btn-2" class="jr-panel" id="jr-panel-2" role="region">
+<div class="jr-panel-inner">
+<div class="jr-copy">
+<p>Attend inspiring keynotes by top founders and industry leaders. Join expert talks on startup ecosystems, funding landscapes, and real-world business insights — all from those who've been there.</p>
+<ul class="jr-chips">
+<li class="jr-chip jr-chip--blue"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="18"><rect height="11" rx="3" width="6" x="9" y="3"></rect><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"></path></svg>Keynotes</li>
+<li class="jr-chip jr-chip--violet"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="18"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"></path><circle cx="17" cy="9" r="2.8"></circle><path d="M16.8 14.6c2.5.3 4.2 2.1 4.7 5.4"></path></svg>Expert talks</li>
+<li class="jr-chip jr-chip--mint"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="18"><path d="M14.5 5.5a4 4 0 0 0 4.8 4.8L12 17.6a2.3 2.3 0 0 1-3.3-3.3l7.3-7.3Z"></path><path d="m4 20 4.3-4.3"></path></svg>Workshops</li>
+</ul>
+</div>
+<div aria-hidden="true" class="jr-art">
+<span class="jr-orbit"></span>
+<span class="jr-spark jr-spark--a"></span><span class="jr-spark jr-spark--b"></span><span class="jr-spark jr-spark--c"></span>
+<span class="jr-tile jr-tile--left"><svg aria-hidden="true" fill="none" height="34" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="34"><path d="M2 9.5 12 5l10 4.5-10 4.5-10-4.5Z"></path><path d="M6 11.5V16c0 1.4 2.7 3 6 3s6-1.6 6-3v-4.5M22 9.5V15"></path></svg></span>
+<span class="jr-card"><span class="jr-card-avatar"><svg aria-hidden="true" fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="22"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></span><span class="jr-card-line"></span><span class="jr-card-line jr-card-line--short"></span><span class="jr-card-pill">Join session</span></span>
+<span class="jr-tile jr-tile--right"><svg fill="none" height="30" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewbox="0 0 24 24" width="30"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg></span>
+<span class="jr-tile jr-tile--badge"><svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" viewbox="0 0 24 24" width="20"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg></span>
+</div>
+</div>
+<a aria-label="See the Day 1 schedule" class="jr-go" data-goto-day="day1" href="#schedule"><svg aria-hidden="true" fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="22"><path d="M7 17 17 7M8.5 7H17v8.5"></path></svg></a>
+</div>
+</li>
+<!-- 03 Connect -->
+<li class="jr-item" style="--jr: #6D8CFF">
+<h3 class="jr-head">
+<button aria-controls="jr-panel-3" aria-expanded="false" class="jr-toggle" id="jr-btn-3" type="button">
+<span class="jr-num">03</span>
+<span class="jr-icon"><svg aria-hidden="true" fill="none" height="30" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="30"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"></path><circle cx="17" cy="9" r="2.8"></circle><path d="M16.8 14.6c2.5.3 4.2 2.1 4.7 5.4"></path></svg></span>
+<span class="jr-title">Connect</span>
+<span aria-hidden="true" class="jr-chevron"><svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20"><path d="m6 9 6 6 6-6"></path></svg></span>
+</button>
+</h3>
+<div aria-labelledby="jr-btn-3" class="jr-panel" id="jr-panel-3" role="region">
+<div class="jr-panel-inner">
+<div class="jr-copy">
+<p>Network 1-on-1 with founders, VCs, mentors, and fellow innovators. Build meaningful relationships over tea breaks and networking lunches. One conversation here can change the direction of your idea.</p>
+<ul class="jr-chips">
+<li class="jr-chip jr-chip--blue"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="18"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"></path><circle cx="17" cy="9" r="2.8"></circle><path d="M16.8 14.6c2.5.3 4.2 2.1 4.7 5.4"></path></svg>Founders</li>
+<li class="jr-chip jr-chip--violet"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="18"><circle cx="12" cy="12" r="8.5"></circle><path d="M9 8.5h6M9 11.5h6M13 8.5c1.7 0 2.5 1 2.5 1.5S14.7 11.5 13 11.5L9.5 15.5"></path></svg>VCs &amp; mentors</li>
+<li class="jr-chip jr-chip--mint"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="18"><path d="M6 3.5h9l3.5 3.5v13.5H6z"></path><path d="M9 11h6M9 14.5h6M9 18h3.5"></path></svg>Networking lunch</li>
+</ul>
+</div>
+<div aria-hidden="true" class="jr-art">
+<span class="jr-orbit"></span>
+<span class="jr-spark jr-spark--a"></span><span class="jr-spark jr-spark--b"></span><span class="jr-spark jr-spark--c"></span>
+<span class="jr-tile jr-tile--left"><svg aria-hidden="true" fill="none" height="34" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="34"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"></path><circle cx="17" cy="9" r="2.8"></circle><path d="M16.8 14.6c2.5.3 4.2 2.1 4.7 5.4"></path></svg></span>
+<span class="jr-card"><span class="jr-card-avatar"><svg aria-hidden="true" fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="22"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></span><span class="jr-card-line"></span><span class="jr-card-line jr-card-line--short"></span><span class="jr-card-pill">Say hello</span></span>
+<span class="jr-tile jr-tile--right"><svg fill="none" height="30" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewbox="0 0 24 24" width="30"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg></span>
+<span class="jr-tile jr-tile--badge"><svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" viewbox="0 0 24 24" width="20"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg></span>
+</div>
+</div>
+<a aria-label="See the networking sessions" class="jr-go" data-goto-day="day1" href="#schedule"><svg aria-hidden="true" fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="22"><path d="M7 17 17 7M8.5 7H17v8.5"></path></svg></a>
+</div>
+</li>
+<!-- 04 Exhibit -->
+<li class="jr-item" style="--jr: #4FC3FF">
+<h3 class="jr-head">
+<button aria-controls="jr-panel-4" aria-expanded="false" class="jr-toggle" id="jr-btn-4" type="button">
+<span class="jr-num">04</span>
+<span class="jr-icon"><svg aria-hidden="true" fill="none" height="30" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="30"><path d="M4 11v9h16v-9"></path><path d="M3.5 5h17l1 5c0 1.4-1.2 2.4-2.8 2.4S16 11.4 16 10c0 1.4-1.3 2.4-2.9 2.4h-2.2C9.3 12.4 8 11.4 8 10c0 1.4-1.2 2.4-2.7 2.4S2.5 11.4 2.5 10l1-5Z"></path><path d="M9.5 20v-4.5h5V20"></path></svg></span>
+<span class="jr-title">Exhibit</span>
+<span aria-hidden="true" class="jr-chevron"><svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20"><path d="m6 9 6 6 6-6"></path></svg></span>
+</button>
+</h3>
+<div aria-labelledby="jr-btn-4" class="jr-panel" id="jr-panel-4" role="region">
+<div class="jr-panel-inner">
+<div class="jr-copy">
+<p>Showcase your startup prototype or product live at a dedicated stall to thousands of attendees, mentors, and investors. Get real-time feedback, visibility, and early traction for your idea.</p>
+<ul class="jr-chips">
+<li class="jr-chip jr-chip--blue"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="18"><rect height="4" rx="1" width="18" x="3" y="9"></rect><path d="M6 13v7M18 13v7"></path></svg>30+ stalls</li>
+<li class="jr-chip jr-chip--violet"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="18"><path d="M13 3 5 13.5h6L10 21l8-10.5h-6L13 3Z"></path></svg>Live demos</li>
+<li class="jr-chip jr-chip--mint"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="18"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z"></path><circle cx="12" cy="12" r="2.8"></circle></svg>Mentor walkthrough</li>
+</ul>
+</div>
+<div aria-hidden="true" class="jr-art">
+<span class="jr-orbit"></span>
+<span class="jr-spark jr-spark--a"></span><span class="jr-spark jr-spark--b"></span><span class="jr-spark jr-spark--c"></span>
+<span class="jr-tile jr-tile--left"><svg aria-hidden="true" fill="none" height="34" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="34"><path d="M4 11v9h16v-9"></path><path d="M3.5 5h17l1 5c0 1.4-1.2 2.4-2.8 2.4S16 11.4 16 10c0 1.4-1.3 2.4-2.9 2.4h-2.2C9.3 12.4 8 11.4 8 10c0 1.4-1.2 2.4-2.7 2.4S2.5 11.4 2.5 10l1-5Z"></path><path d="M9.5 20v-4.5h5V20"></path></svg></span>
+<span class="jr-card"><span class="jr-card-avatar"><svg aria-hidden="true" fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="22"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></span><span class="jr-card-line"></span><span class="jr-card-line jr-card-line--short"></span><span class="jr-card-pill">Book a stall</span></span>
+<span class="jr-tile jr-tile--right"><svg fill="none" height="30" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewbox="0 0 24 24" width="30"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg></span>
+<span class="jr-tile jr-tile--badge"><svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" viewbox="0 0 24 24" width="20"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg></span>
+</div>
+</div>
+<a aria-label="Register for the exhibition" class="jr-go" data-preselect-exhibit="" href="#register"><svg aria-hidden="true" fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="22"><path d="M7 17 17 7M8.5 7H17v8.5"></path></svg></a>
+</div>
+</li>
+<!-- 05 Pitch -->
+<li class="jr-item" style="--jr: #9A8CFF">
+<h3 class="jr-head">
+<button aria-controls="jr-panel-5" aria-expanded="false" class="jr-toggle" id="jr-btn-5" type="button">
+<span class="jr-num">05</span>
+<span class="jr-icon"><svg aria-hidden="true" fill="none" height="30" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="30"><path d="M2.5 4h19M4 4v11h16V4"></path><path d="m7.5 12 3-3 2.5 2 3.5-3.5M12 15v3.5M8.5 20.5l3.5-2 3.5 2"></path></svg></span>
+<span class="jr-title">Pitch</span>
+<span aria-hidden="true" class="jr-chevron"><svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20"><path d="m6 9 6 6 6-6"></path></svg></span>
+</button>
+</h3>
+<div aria-labelledby="jr-btn-5" class="jr-panel" id="jr-panel-5" role="region">
+<div class="jr-panel-inner">
+<div class="jr-copy">
+<p>Present your startup idea live on stage to a panel of investors and jury on Day 2. This is your moment — a compelling pitch can unlock funding, incubation offers, and industry recognition.</p>
+<ul class="jr-chips">
+<li class="jr-chip jr-chip--blue"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="18"><path d="M5 21V4M5 4h11l-2 4 2 4H5"></path></svg>Grand Pitch</li>
+<li class="jr-chip jr-chip--violet"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="18"><rect height="11" rx="3" width="6" x="9" y="3"></rect><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"></path></svg>Investor jury</li>
+<li class="jr-chip jr-chip--mint"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="18"><path d="m12 3.5 2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9L12 3.5Z"></path></svg>Day 2</li>
+</ul>
+</div>
+<div aria-hidden="true" class="jr-art">
+<span class="jr-orbit"></span>
+<span class="jr-spark jr-spark--a"></span><span class="jr-spark jr-spark--b"></span><span class="jr-spark jr-spark--c"></span>
+<span class="jr-tile jr-tile--left"><svg aria-hidden="true" fill="none" height="34" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="34"><path d="M2.5 4h19M4 4v11h16V4"></path><path d="m7.5 12 3-3 2.5 2 3.5-3.5M12 15v3.5M8.5 20.5l3.5-2 3.5 2"></path></svg></span>
+<span class="jr-card"><span class="jr-card-avatar"><svg aria-hidden="true" fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="22"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></span><span class="jr-card-line"></span><span class="jr-card-line jr-card-line--short"></span><span class="jr-card-pill">Pitch now</span></span>
+<span class="jr-tile jr-tile--right"><svg fill="none" height="30" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewbox="0 0 24 24" width="30"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg></span>
+<span class="jr-tile jr-tile--badge"><svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" viewbox="0 0 24 24" width="20"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg></span>
+</div>
+</div>
+<a aria-label="Register for pitching" class="jr-go" data-preselect-pitch="" href="#register"><svg aria-hidden="true" fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="22"><path d="M7 17 17 7M8.5 7H17v8.5"></path></svg></a>
+</div>
+</li>
+<!-- 06 Get Feedback -->
+<li class="jr-item" style="--jr: #6D8CFF">
+<h3 class="jr-head">
+<button aria-controls="jr-panel-6" aria-expanded="false" class="jr-toggle" id="jr-btn-6" type="button">
+<span class="jr-num">06</span>
+<span class="jr-icon"><svg aria-hidden="true" fill="none" height="30" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="30"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v9a1.5 1.5 0 0 1-1.5 1.5H10l-5 4v-4h.5A1.5 1.5 0 0 1 4 14.5v-9Z"></path><path d="M8.5 10h.01M12 10h.01M15.5 10h.01" stroke-width="2.6"></path></svg></span>
+<span class="jr-title">Get Feedback</span>
+<span aria-hidden="true" class="jr-chevron"><svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20"><path d="m6 9 6 6 6-6"></path></svg></span>
+</button>
+</h3>
+<div aria-labelledby="jr-btn-6" class="jr-panel" id="jr-panel-6" role="region">
+<div class="jr-panel-inner">
+<div class="jr-copy">
+<p>Receive direct, actionable mentorship from industry experts after your pitch or exhibition. The jury deliberates and delivers structured feedback to help you refine and strengthen your idea.</p>
+<ul class="jr-chips">
+<li class="jr-chip jr-chip--blue"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="18"><path d="M6 3.5h9l3.5 3.5v13.5H6z"></path><path d="M9 11h6M9 14.5h6M9 18h3.5"></path></svg>Jury feedback</li>
+<li class="jr-chip jr-chip--violet"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="18"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"></path><circle cx="17" cy="9" r="2.8"></circle><path d="M16.8 14.6c2.5.3 4.2 2.1 4.7 5.4"></path></svg>Mentorship</li>
+<li class="jr-chip jr-chip--mint"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="18"><path d="M4 20V4M4 20h16"></path><path d="m7.5 15 3.5-4 3 2.5 5-6"></path></svg>Evaluation</li>
+</ul>
+</div>
+<div aria-hidden="true" class="jr-art">
+<span class="jr-orbit"></span>
+<span class="jr-spark jr-spark--a"></span><span class="jr-spark jr-spark--b"></span><span class="jr-spark jr-spark--c"></span>
+<span class="jr-tile jr-tile--left"><svg aria-hidden="true" fill="none" height="34" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="34"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v9a1.5 1.5 0 0 1-1.5 1.5H10l-5 4v-4h.5A1.5 1.5 0 0 1 4 14.5v-9Z"></path><path d="M8.5 10h.01M12 10h.01M15.5 10h.01" stroke-width="2.6"></path></svg></span>
+<span class="jr-card"><span class="jr-card-avatar"><svg aria-hidden="true" fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="22"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></span><span class="jr-card-line"></span><span class="jr-card-line jr-card-line--short"></span><span class="jr-card-pill">Read notes</span></span>
+<span class="jr-tile jr-tile--right"><svg fill="none" height="30" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewbox="0 0 24 24" width="30"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg></span>
+<span class="jr-tile jr-tile--badge"><svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" viewbox="0 0 24 24" width="20"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg></span>
+</div>
+</div>
+<a aria-label="See the Day 2 schedule" class="jr-go" data-goto-day="day2" href="#schedule"><svg aria-hidden="true" fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="22"><path d="M7 17 17 7M8.5 7H17v8.5"></path></svg></a>
+</div>
+</li>
+<!-- 07 Scale -->
+<li class="jr-item" style="--jr: #7F9BFF">
+<h3 class="jr-head">
+<button aria-controls="jr-panel-7" aria-expanded="false" class="jr-toggle" id="jr-btn-7" type="button">
+<span class="jr-num">07</span>
+<span class="jr-icon"><svg aria-hidden="true" fill="none" height="30" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="30"><path d="M13.5 4.5c3-1.3 5.2-1.3 6.3-.3 1 1.1 1 3.3-.3 6.3l-6 6-6-6 6-6Z"></path><circle cx="15" cy="9" r="1.6"></circle><path d="m7.5 10.5-4 .8 2.2-3.1 4-.6M13.5 16.5l-.8 4 3.1-2.2.6-4M6.5 15c-1.3 1-2.2 2.8-2.3 4.8 2-.1 3.8-1 4.8-2.3"></path></svg></span>
+<span class="jr-title">Scale</span>
+<span aria-hidden="true" class="jr-chevron"><svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20"><path d="m6 9 6 6 6-6"></path></svg></span>
+</button>
+</h3>
+<div aria-labelledby="jr-btn-7" class="jr-panel" id="jr-panel-7" role="region">
+<div class="jr-panel-inner">
+<div class="jr-copy">
+<p>Top performers unlock access to the ~₹50,000 prize pool, pre-incubation pathways at AKGEC IDEA Lab, seed-funding opportunities, IPR assistance, and patent guidance. Your startup journey truly begins here.</p>
+<ul class="jr-chips">
+<li class="jr-chip jr-chip--blue"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="18"><circle cx="12" cy="12" r="8.5"></circle><path d="M9 8.5h6M9 11.5h6M13 8.5c1.7 0 2.5 1 2.5 1.5S14.7 11.5 13 11.5L9.5 15.5"></path></svg>~₹50,000 prize pool</li>
+<li class="jr-chip jr-chip--violet"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="18"><path d="M13.5 4.5c3-1.3 5.2-1.3 6.3-.3 1 1.1 1 3.3-.3 6.3l-6 6-6-6 6-6Z"></path><circle cx="15" cy="9" r="1.6"></circle><path d="m7.5 10.5-4 .8 2.2-3.1 4-.6M13.5 16.5l-.8 4 3.1-2.2.6-4M6.5 15c-1.3 1-2.2 2.8-2.3 4.8 2-.1 3.8-1 4.8-2.3"></path></svg>Pre-incubation</li>
+<li class="jr-chip jr-chip--mint"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="18"><path d="M6 3.5h9l3.5 3.5v13.5H6z"></path><path d="M9 11h6M9 14.5h6M9 18h3.5"></path></svg>IPR guidance</li>
+</ul>
+</div>
+<div aria-hidden="true" class="jr-art">
+<span class="jr-orbit"></span>
+<span class="jr-spark jr-spark--a"></span><span class="jr-spark jr-spark--b"></span><span class="jr-spark jr-spark--c"></span>
+<span class="jr-tile jr-tile--left"><svg aria-hidden="true" fill="none" height="34" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="34"><path d="M13.5 4.5c3-1.3 5.2-1.3 6.3-.3 1 1.1 1 3.3-.3 6.3l-6 6-6-6 6-6Z"></path><circle cx="15" cy="9" r="1.6"></circle><path d="m7.5 10.5-4 .8 2.2-3.1 4-.6M13.5 16.5l-.8 4 3.1-2.2.6-4M6.5 15c-1.3 1-2.2 2.8-2.3 4.8 2-.1 3.8-1 4.8-2.3"></path></svg></span>
+<span class="jr-card"><span class="jr-card-avatar"><svg aria-hidden="true" fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="22"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></span><span class="jr-card-line"></span><span class="jr-card-line jr-card-line--short"></span><span class="jr-card-pill">Apply</span></span>
+<span class="jr-tile jr-tile--right"><svg fill="none" height="30" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" viewbox="0 0 24 24" width="30"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg></span>
+<span class="jr-tile jr-tile--badge"><svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" viewbox="0 0 24 24" width="20"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg></span>
+</div>
+</div>
+<a aria-label="See what you can win" class="jr-go" href="#about"><svg aria-hidden="true" fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="22"><path d="M7 17 17 7M8.5 7H17v8.5"></path></svg></a>
+</div>
+</li>
+</ol>
+</div>
+</section>
 
-  
-  <!--
-  +====================================================================+
-  | SLIDE 5 - COMPETITION & REWARDS (FUNDING BAND) : Rewards & CTAs  |
-  | CLASS   : .funding .funding-grid .funding-headline .store-list    |
-  | POSITION: Positioned right after HERO (Slide 2 content)           |
-  |                                                                    |
-  | CONTAINS:                                                          |
-  |   * Kicker  : Competition & Rewards                                |
-  |   * Large display: Up to ~Rs.50,000 (id=funding-title)            |
-  |   * CTA: "Register to participate" (data-preselect-pitch)         |
-  |   * 4 list items (ul.store-list):                                  |
-  |       1. Pitch Competition                                        |
-  |       2. Startup Exhibition                                       |
-  |       3. IPR and Legal Guidance                                   |
-  |       4. VC Roundtable and Incubation                             |
-  |                                                                    |
-  | HOW TO UPDATE:                                                     |
-  |   * Prize amount  : edit <h2 id=funding-title> text               |
-  |   * Store items   : edit or add <li> inside ul.store-list         |
-  +====================================================================+
-  -->
-    <!-- ============ FUNDING AND OPPORTUNITY BAND ============ -->
-    <section class="funding" aria-labelledby="funding-title">
-      <div class="container funding-grid">
-        <div class="funding-headline">
-          <p class="funding-kicker">Competition &amp; Rewards</p>
-          <h2 id="funding-title" class="funding-amount"><span class="funding-upto">Up to</span> ~₹50,000</h2>
-          <p class="funding-note">Prize pool for top-performing startup ideas, combined with pre-incubation pathways and seed-funding access.</p>
-          <a class="btn btn-light btn-lg" href="#register" data-preselect-pitch>Register to participate</a>
-        </div>
-        <ul class="store-list" aria-label="What's in store">
-          <li class="store-card">
-            <div class="store-card-icon" aria-hidden="true">🎤</div>
-            <h3>Pitch Competition</h3>
-            <p>Pitch your startup live, get valuable expert feedback, and win recognition plus real funding access.</p>
-          </li>
-          <li class="store-card">
-            <div class="store-card-icon" aria-hidden="true">🎪</div>
-            <h3>Startup Exhibition</h3>
-            <p>30+ startup stalls showcase working prototypes and products to thousands of attendees and mentors.</p>
-          </li>
-          <li class="store-card">
-            <div class="store-card-icon" aria-hidden="true">⚖️</div>
-            <h3>IPR &amp; Legal Guidance</h3>
-            <p>Expert session on Intellectual Property Rights &amp; startup protection strategies to safeguard your IP.</p>
-          </li>
-          <li class="store-card">
-            <div class="store-card-icon" aria-hidden="true">🤝</div>
-            <h3>VC Roundtable &amp; Incubation</h3>
-            <p>Closed-door interactions with investors, directors, and VCs with direct pre-incubation rollout.</p>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- ============ EVENT JOURNEY — INTERACTIVE ACCORDION ============ -->
-    
-    <!--
-  +====================================================================+
-  | SLIDE 6 - EVENT JOURNEY : Interactive 7-Step Accordion            |
-  | ID      : #event-journey                                           |
-  | CLASS   : .event-journey .journey .journey-list .jr-item          |
-  | JS      : script.js "Event journey" block (hover / tap / keys)    |
-  |                                                                    |
-  | BEHAVIOUR:                                                         |
-  |   * Desktop : hovering a step opens it (one open at a time)       |
-  |   * Touch   : tap a step to open, tap again to close              |
-  |   * Keyboard: Enter/Space on a step header opens it               |
-  |   * The arrow button (top-right of the open card) links to the    |
-  |     relevant section; Exhibit/Pitch arrows pre-tick the form      |
-  |                                                                    |
-  | CONTAINS: 7 steps (Step 01 is open by default: has .is-open)      |
-  |   01 Register   02 Learn   03 Connect   04 Exhibit                |
-  |   05 Pitch      06 Get Feedback          07 Scale                  |
-  |                                                                    |
-  | EACH STEP (li.jr-item) HAS:                                       |
-  |   * .jr-num (01) + .jr-icon (SVG) + .jr-title + .jr-chevron       |
-  |   * .jr-copy p       : description text                           |
-  |   * .jr-chips li     : 3 chips (jr-chip-blue / violet / mint)|
-  |   * .jr-art          : layered illustration (.jr-card-pill text)  |
-  |   * a.jr-go          : arrow link (edit href / data-* attribute)  |
-  |                                                                    |
-  | HOW TO UPDATE:                                                     |
-  |   * Step text    : edit the <p> inside .jr-copy                   |
-  |   * Chips        : edit the <li class="jr-chip ..."> text         |
-  |   * Icon colour  : change style="jr: #HEX" on the li            |
-  |   * Open default : move class "is-open" to another li and set its |
-  |                    button aria-expanded="true" (others "false")   |
-  +====================================================================+
-  -->
-    <section class="section event-journey journey" id="event-journey" aria-labelledby="journey-title">
-      <div class="container">
-        <div class="journey-head">
-          <p class="journey-eyebrow">Event Journey</p>
-          <h2 class="journey-title" id="journey-title">Your Path at <span>Startup Conclave '26</span></h2>
-          <p class="journey-sub"><span class="jr-hint-hover">Hover over</span><span class="jr-hint-tap">Tap</span> a stage to explore what happens at each step.</p>
-        </div>
-
-        <ol class="journey-list" data-journey>
-          <!-- 01 Register -->
-          <li class="jr-item is-open" style="--jr: #6D8CFF">
-            <h3 class="jr-head">
-              <button class="jr-toggle" type="button" id="jr-btn-1" aria-expanded="true" aria-controls="jr-panel-1">
-                <span class="jr-num">01</span>
-                <span class="jr-icon"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></span>
-                <span class="jr-title">Register</span>
-                <span class="jr-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
-              </button>
-            </h3>
-            <div class="jr-panel" id="jr-panel-1" role="region" aria-labelledby="jr-btn-1">
-              <div class="jr-panel-inner">
-                <div class="jr-copy">
-                  <p>Fill out the quick registration form online or scan the QR code on the poster. Select your participation track — Attendee, Exhibitor, or Pitcher. Receive instant confirmation with your event pass ID.</p>
-                  <ul class="jr-chips">
-                    <li class="jr-chip jr-chip--blue"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>Attendee</li>
-                    <li class="jr-chip jr-chip--violet"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11v9h16v-9"/><path d="M3.5 5h17l1 5c0 1.4-1.2 2.4-2.8 2.4S16 11.4 16 10c0 1.4-1.3 2.4-2.9 2.4h-2.2C9.3 12.4 8 11.4 8 10c0 1.4-1.2 2.4-2.7 2.4S2.5 11.4 2.5 10l1-5Z"/><path d="M9.5 20v-4.5h5V20"/></svg>Exhibitor</li>
-                    <li class="jr-chip jr-chip--mint"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 20v-4M10 20v-8M15 20v-6M20 20V6"/></svg>Pitcher</li>
-                  </ul>
-                </div>
-                <div class="jr-art" aria-hidden="true">
-                  <span class="jr-orbit"></span>
-                  <span class="jr-spark jr-spark--a"></span><span class="jr-spark jr-spark--b"></span><span class="jr-spark jr-spark--c"></span>
-                  <span class="jr-tile jr-tile--left"><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="6.5" height="6.5" rx="1"/><rect x="14" y="3.5" width="6.5" height="6.5" rx="1"/><rect x="3.5" y="14" width="6.5" height="6.5" rx="1"/><path d="M14 14h2.5v2.5H14zM18 18h2.5v2.5H18zM14 18.5h1.5M18.5 14h2"/></svg></span>
-                  <span class="jr-card"><span class="jr-card-avatar"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></span><span class="jr-card-line"></span><span class="jr-card-line jr-card-line--short"></span><span class="jr-card-pill">Register</span></span>
-                  <span class="jr-tile jr-tile--right"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>
-                  <span class="jr-tile jr-tile--badge"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>
-                </div>
-              </div>
-              <a class="jr-go" href="#register" aria-label="Go to registration"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8.5 7H17v8.5"/></svg></a>
-            </div>
-          </li>
-          <!-- 02 Learn -->
-          <li class="jr-item" style="--jr: #5AA9FF">
-            <h3 class="jr-head">
-              <button class="jr-toggle" type="button" id="jr-btn-2" aria-expanded="false" aria-controls="jr-panel-2">
-                <span class="jr-num">02</span>
-                <span class="jr-icon"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9.5 12 5l10 4.5-10 4.5-10-4.5Z"/><path d="M6 11.5V16c0 1.4 2.7 3 6 3s6-1.6 6-3v-4.5M22 9.5V15"/></svg></span>
-                <span class="jr-title">Learn</span>
-                <span class="jr-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
-              </button>
-            </h3>
-            <div class="jr-panel" id="jr-panel-2" role="region" aria-labelledby="jr-btn-2">
-              <div class="jr-panel-inner">
-                <div class="jr-copy">
-                  <p>Attend inspiring keynotes by top founders and industry leaders. Join expert talks on startup ecosystems, funding landscapes, and real-world business insights — all from those who've been there.</p>
-                  <ul class="jr-chips">
-                    <li class="jr-chip jr-chip--blue"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg>Keynotes</li>
-                    <li class="jr-chip jr-chip--violet"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"/><circle cx="17" cy="9" r="2.8"/><path d="M16.8 14.6c2.5.3 4.2 2.1 4.7 5.4"/></svg>Expert talks</li>
-                    <li class="jr-chip jr-chip--mint"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 5.5a4 4 0 0 0 4.8 4.8L12 17.6a2.3 2.3 0 0 1-3.3-3.3l7.3-7.3Z"/><path d="m4 20 4.3-4.3"/></svg>Workshops</li>
-                  </ul>
-                </div>
-                <div class="jr-art" aria-hidden="true">
-                  <span class="jr-orbit"></span>
-                  <span class="jr-spark jr-spark--a"></span><span class="jr-spark jr-spark--b"></span><span class="jr-spark jr-spark--c"></span>
-                  <span class="jr-tile jr-tile--left"><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9.5 12 5l10 4.5-10 4.5-10-4.5Z"/><path d="M6 11.5V16c0 1.4 2.7 3 6 3s6-1.6 6-3v-4.5M22 9.5V15"/></svg></span>
-                  <span class="jr-card"><span class="jr-card-avatar"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></span><span class="jr-card-line"></span><span class="jr-card-line jr-card-line--short"></span><span class="jr-card-pill">Join session</span></span>
-                  <span class="jr-tile jr-tile--right"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>
-                  <span class="jr-tile jr-tile--badge"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>
-                </div>
-              </div>
-              <a class="jr-go" href="#schedule" data-goto-day="day1" aria-label="See the Day 1 schedule"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8.5 7H17v8.5"/></svg></a>
-            </div>
-          </li>
-          <!-- 03 Connect -->
-          <li class="jr-item" style="--jr: #6D8CFF">
-            <h3 class="jr-head">
-              <button class="jr-toggle" type="button" id="jr-btn-3" aria-expanded="false" aria-controls="jr-panel-3">
-                <span class="jr-num">03</span>
-                <span class="jr-icon"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"/><circle cx="17" cy="9" r="2.8"/><path d="M16.8 14.6c2.5.3 4.2 2.1 4.7 5.4"/></svg></span>
-                <span class="jr-title">Connect</span>
-                <span class="jr-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
-              </button>
-            </h3>
-            <div class="jr-panel" id="jr-panel-3" role="region" aria-labelledby="jr-btn-3">
-              <div class="jr-panel-inner">
-                <div class="jr-copy">
-                  <p>Network 1-on-1 with founders, VCs, mentors, and fellow innovators. Build meaningful relationships over tea breaks and networking lunches. One conversation here can change the direction of your idea.</p>
-                  <ul class="jr-chips">
-                    <li class="jr-chip jr-chip--blue"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"/><circle cx="17" cy="9" r="2.8"/><path d="M16.8 14.6c2.5.3 4.2 2.1 4.7 5.4"/></svg>Founders</li>
-                    <li class="jr-chip jr-chip--violet"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M9 8.5h6M9 11.5h6M13 8.5c1.7 0 2.5 1 2.5 1.5S14.7 11.5 13 11.5L9.5 15.5"/></svg>VCs &amp; mentors</li>
-                    <li class="jr-chip jr-chip--mint"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3.5h9l3.5 3.5v13.5H6z"/><path d="M9 11h6M9 14.5h6M9 18h3.5"/></svg>Networking lunch</li>
-                  </ul>
-                </div>
-                <div class="jr-art" aria-hidden="true">
-                  <span class="jr-orbit"></span>
-                  <span class="jr-spark jr-spark--a"></span><span class="jr-spark jr-spark--b"></span><span class="jr-spark jr-spark--c"></span>
-                  <span class="jr-tile jr-tile--left"><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"/><circle cx="17" cy="9" r="2.8"/><path d="M16.8 14.6c2.5.3 4.2 2.1 4.7 5.4"/></svg></span>
-                  <span class="jr-card"><span class="jr-card-avatar"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></span><span class="jr-card-line"></span><span class="jr-card-line jr-card-line--short"></span><span class="jr-card-pill">Say hello</span></span>
-                  <span class="jr-tile jr-tile--right"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>
-                  <span class="jr-tile jr-tile--badge"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>
-                </div>
-              </div>
-              <a class="jr-go" href="#schedule" data-goto-day="day1" aria-label="See the networking sessions"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8.5 7H17v8.5"/></svg></a>
-            </div>
-          </li>
-          <!-- 04 Exhibit -->
-          <li class="jr-item" style="--jr: #4FC3FF">
-            <h3 class="jr-head">
-              <button class="jr-toggle" type="button" id="jr-btn-4" aria-expanded="false" aria-controls="jr-panel-4">
-                <span class="jr-num">04</span>
-                <span class="jr-icon"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11v9h16v-9"/><path d="M3.5 5h17l1 5c0 1.4-1.2 2.4-2.8 2.4S16 11.4 16 10c0 1.4-1.3 2.4-2.9 2.4h-2.2C9.3 12.4 8 11.4 8 10c0 1.4-1.2 2.4-2.7 2.4S2.5 11.4 2.5 10l1-5Z"/><path d="M9.5 20v-4.5h5V20"/></svg></span>
-                <span class="jr-title">Exhibit</span>
-                <span class="jr-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
-              </button>
-            </h3>
-            <div class="jr-panel" id="jr-panel-4" role="region" aria-labelledby="jr-btn-4">
-              <div class="jr-panel-inner">
-                <div class="jr-copy">
-                  <p>Showcase your startup prototype or product live at a dedicated stall to thousands of attendees, mentors, and investors. Get real-time feedback, visibility, and early traction for your idea.</p>
-                  <ul class="jr-chips">
-                    <li class="jr-chip jr-chip--blue"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="9" width="18" height="4" rx="1"/><path d="M6 13v7M18 13v7"/></svg>30+ stalls</li>
-                    <li class="jr-chip jr-chip--violet"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 3 5 13.5h6L10 21l8-10.5h-6L13 3Z"/></svg>Live demos</li>
-                    <li class="jr-chip jr-chip--mint"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z"/><circle cx="12" cy="12" r="2.8"/></svg>Mentor walkthrough</li>
-                  </ul>
-                </div>
-                <div class="jr-art" aria-hidden="true">
-                  <span class="jr-orbit"></span>
-                  <span class="jr-spark jr-spark--a"></span><span class="jr-spark jr-spark--b"></span><span class="jr-spark jr-spark--c"></span>
-                  <span class="jr-tile jr-tile--left"><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11v9h16v-9"/><path d="M3.5 5h17l1 5c0 1.4-1.2 2.4-2.8 2.4S16 11.4 16 10c0 1.4-1.3 2.4-2.9 2.4h-2.2C9.3 12.4 8 11.4 8 10c0 1.4-1.2 2.4-2.7 2.4S2.5 11.4 2.5 10l1-5Z"/><path d="M9.5 20v-4.5h5V20"/></svg></span>
-                  <span class="jr-card"><span class="jr-card-avatar"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></span><span class="jr-card-line"></span><span class="jr-card-line jr-card-line--short"></span><span class="jr-card-pill">Book a stall</span></span>
-                  <span class="jr-tile jr-tile--right"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>
-                  <span class="jr-tile jr-tile--badge"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>
-                </div>
-              </div>
-              <a class="jr-go" href="#register" data-preselect-exhibit aria-label="Register for the exhibition"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8.5 7H17v8.5"/></svg></a>
-            </div>
-          </li>
-          <!-- 05 Pitch -->
-          <li class="jr-item" style="--jr: #9A8CFF">
-            <h3 class="jr-head">
-              <button class="jr-toggle" type="button" id="jr-btn-5" aria-expanded="false" aria-controls="jr-panel-5">
-                <span class="jr-num">05</span>
-                <span class="jr-icon"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4h19M4 4v11h16V4"/><path d="m7.5 12 3-3 2.5 2 3.5-3.5M12 15v3.5M8.5 20.5l3.5-2 3.5 2"/></svg></span>
-                <span class="jr-title">Pitch</span>
-                <span class="jr-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
-              </button>
-            </h3>
-            <div class="jr-panel" id="jr-panel-5" role="region" aria-labelledby="jr-btn-5">
-              <div class="jr-panel-inner">
-                <div class="jr-copy">
-                  <p>Present your startup idea live on stage to a panel of investors and jury on Day 2. This is your moment — a compelling pitch can unlock funding, incubation offers, and industry recognition.</p>
-                  <ul class="jr-chips">
-                    <li class="jr-chip jr-chip--blue"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 21V4M5 4h11l-2 4 2 4H5"/></svg>Grand Pitch</li>
-                    <li class="jr-chip jr-chip--violet"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg>Investor jury</li>
-                    <li class="jr-chip jr-chip--mint"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3.5 2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9L12 3.5Z"/></svg>Day 2</li>
-                  </ul>
-                </div>
-                <div class="jr-art" aria-hidden="true">
-                  <span class="jr-orbit"></span>
-                  <span class="jr-spark jr-spark--a"></span><span class="jr-spark jr-spark--b"></span><span class="jr-spark jr-spark--c"></span>
-                  <span class="jr-tile jr-tile--left"><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4h19M4 4v11h16V4"/><path d="m7.5 12 3-3 2.5 2 3.5-3.5M12 15v3.5M8.5 20.5l3.5-2 3.5 2"/></svg></span>
-                  <span class="jr-card"><span class="jr-card-avatar"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></span><span class="jr-card-line"></span><span class="jr-card-line jr-card-line--short"></span><span class="jr-card-pill">Pitch now</span></span>
-                  <span class="jr-tile jr-tile--right"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>
-                  <span class="jr-tile jr-tile--badge"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>
-                </div>
-              </div>
-              <a class="jr-go" href="#register" data-preselect-pitch aria-label="Register for pitching"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8.5 7H17v8.5"/></svg></a>
-            </div>
-          </li>
-          <!-- 06 Get Feedback -->
-          <li class="jr-item" style="--jr: #6D8CFF">
-            <h3 class="jr-head">
-              <button class="jr-toggle" type="button" id="jr-btn-6" aria-expanded="false" aria-controls="jr-panel-6">
-                <span class="jr-num">06</span>
-                <span class="jr-icon"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v9a1.5 1.5 0 0 1-1.5 1.5H10l-5 4v-4h.5A1.5 1.5 0 0 1 4 14.5v-9Z"/><path d="M8.5 10h.01M12 10h.01M15.5 10h.01" stroke-width="2.6"/></svg></span>
-                <span class="jr-title">Get Feedback</span>
-                <span class="jr-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
-              </button>
-            </h3>
-            <div class="jr-panel" id="jr-panel-6" role="region" aria-labelledby="jr-btn-6">
-              <div class="jr-panel-inner">
-                <div class="jr-copy">
-                  <p>Receive direct, actionable mentorship from industry experts after your pitch or exhibition. The jury deliberates and delivers structured feedback to help you refine and strengthen your idea.</p>
-                  <ul class="jr-chips">
-                    <li class="jr-chip jr-chip--blue"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3.5h9l3.5 3.5v13.5H6z"/><path d="M9 11h6M9 14.5h6M9 18h3.5"/></svg>Jury feedback</li>
-                    <li class="jr-chip jr-chip--violet"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"/><circle cx="17" cy="9" r="2.8"/><path d="M16.8 14.6c2.5.3 4.2 2.1 4.7 5.4"/></svg>Mentorship</li>
-                    <li class="jr-chip jr-chip--mint"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V4M4 20h16"/><path d="m7.5 15 3.5-4 3 2.5 5-6"/></svg>Evaluation</li>
-                  </ul>
-                </div>
-                <div class="jr-art" aria-hidden="true">
-                  <span class="jr-orbit"></span>
-                  <span class="jr-spark jr-spark--a"></span><span class="jr-spark jr-spark--b"></span><span class="jr-spark jr-spark--c"></span>
-                  <span class="jr-tile jr-tile--left"><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v9a1.5 1.5 0 0 1-1.5 1.5H10l-5 4v-4h.5A1.5 1.5 0 0 1 4 14.5v-9Z"/><path d="M8.5 10h.01M12 10h.01M15.5 10h.01" stroke-width="2.6"/></svg></span>
-                  <span class="jr-card"><span class="jr-card-avatar"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></span><span class="jr-card-line"></span><span class="jr-card-line jr-card-line--short"></span><span class="jr-card-pill">Read notes</span></span>
-                  <span class="jr-tile jr-tile--right"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>
-                  <span class="jr-tile jr-tile--badge"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>
-                </div>
-              </div>
-              <a class="jr-go" href="#schedule" data-goto-day="day2" aria-label="See the Day 2 schedule"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8.5 7H17v8.5"/></svg></a>
-            </div>
-          </li>
-          <!-- 07 Scale -->
-          <li class="jr-item" style="--jr: #7F9BFF">
-            <h3 class="jr-head">
-              <button class="jr-toggle" type="button" id="jr-btn-7" aria-expanded="false" aria-controls="jr-panel-7">
-                <span class="jr-num">07</span>
-                <span class="jr-icon"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.5 4.5c3-1.3 5.2-1.3 6.3-.3 1 1.1 1 3.3-.3 6.3l-6 6-6-6 6-6Z"/><circle cx="15" cy="9" r="1.6"/><path d="m7.5 10.5-4 .8 2.2-3.1 4-.6M13.5 16.5l-.8 4 3.1-2.2.6-4M6.5 15c-1.3 1-2.2 2.8-2.3 4.8 2-.1 3.8-1 4.8-2.3"/></svg></span>
-                <span class="jr-title">Scale</span>
-                <span class="jr-chevron" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
-              </button>
-            </h3>
-            <div class="jr-panel" id="jr-panel-7" role="region" aria-labelledby="jr-btn-7">
-              <div class="jr-panel-inner">
-                <div class="jr-copy">
-                  <p>Top performers unlock access to the ~₹50,000 prize pool, pre-incubation pathways at AKGEC IDEA Lab, seed-funding opportunities, IPR assistance, and patent guidance. Your startup journey truly begins here.</p>
-                  <ul class="jr-chips">
-                    <li class="jr-chip jr-chip--blue"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M9 8.5h6M9 11.5h6M13 8.5c1.7 0 2.5 1 2.5 1.5S14.7 11.5 13 11.5L9.5 15.5"/></svg>~₹50,000 prize pool</li>
-                    <li class="jr-chip jr-chip--violet"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.5 4.5c3-1.3 5.2-1.3 6.3-.3 1 1.1 1 3.3-.3 6.3l-6 6-6-6 6-6Z"/><circle cx="15" cy="9" r="1.6"/><path d="m7.5 10.5-4 .8 2.2-3.1 4-.6M13.5 16.5l-.8 4 3.1-2.2.6-4M6.5 15c-1.3 1-2.2 2.8-2.3 4.8 2-.1 3.8-1 4.8-2.3"/></svg>Pre-incubation</li>
-                    <li class="jr-chip jr-chip--mint"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3.5h9l3.5 3.5v13.5H6z"/><path d="M9 11h6M9 14.5h6M9 18h3.5"/></svg>IPR guidance</li>
-                  </ul>
-                </div>
-                <div class="jr-art" aria-hidden="true">
-                  <span class="jr-orbit"></span>
-                  <span class="jr-spark jr-spark--a"></span><span class="jr-spark jr-spark--b"></span><span class="jr-spark jr-spark--c"></span>
-                  <span class="jr-tile jr-tile--left"><svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.5 4.5c3-1.3 5.2-1.3 6.3-.3 1 1.1 1 3.3-.3 6.3l-6 6-6-6 6-6Z"/><circle cx="15" cy="9" r="1.6"/><path d="m7.5 10.5-4 .8 2.2-3.1 4-.6M13.5 16.5l-.8 4 3.1-2.2.6-4M6.5 15c-1.3 1-2.2 2.8-2.3 4.8 2-.1 3.8-1 4.8-2.3"/></svg></span>
-                  <span class="jr-card"><span class="jr-card-avatar"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></span><span class="jr-card-line"></span><span class="jr-card-line jr-card-line--short"></span><span class="jr-card-pill">Apply</span></span>
-                  <span class="jr-tile jr-tile--right"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>
-                  <span class="jr-tile jr-tile--badge"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>
-                </div>
-              </div>
-              <a class="jr-go" href="#about" aria-label="See what you can win"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8.5 7H17v8.5"/></svg></a>
-            </div>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-  
-  <!--
-  +====================================================================+
-  | SLIDE 7 - ABOUT : Why Attend / Opportunity Pillars                
-  | ID      : #about   CLASS: .about .about-grid .pillars .pillar     
-  |                                                                    
-  | CONTAINS:                                                          
-  |   Left : Heading, intro text, event logo image                   
-  |   Right: 6 opportunity pillars (ordered list):                   
-  |     Pillar 1: ~Rs.50,000 Prize Pool   (colour token: var(-amber))    
-  |     Pillar 2: Pre-Incubation          (colour token: var(-green))    
-  |     Pillar 3: IPR Guidance            (colour token: var(-blue))     
-  |     Pillar 4: Seed-Funding            (colour token: var(-red))      
-  |     Pillar 5: Take The Stage          (colour token: var(-poster-blue-lt))
-  |     Pillar 6: Meet The Ecosystem      (colour token: var(-poster-green))
-  |                                                                    
-  | HOW TO UPDATE:                                                     
-  |   * Edit pillar title/description in <h3> and <p>               
-  |   * Change colour: style='pillar: var(TOKEN)'               
-  |     Available tokens: amber, green, blue, red, poster-blue-lt
-  +====================================================================+
-  -->
     <!-- ============ PILLARS / OPPORTUNITIES ============ -->
     <section class="section about" id="about" aria-labelledby="about-title">
       <div class="container about-grid">
         <div class="about-intro">
           <p class="section-kicker">Why Attend</p>
-          <h2 class="section-title" id="about-title"><span class="heading-highlight">Why just have an idea?</span> When you can build it. Pitch it. Grow it.</h2>
-          <p>Startup Conclave 2026 brings together ideas, innovators, mentors, investors and opportunities — all under one roof.</p>
-          <p class="about-highlight"><strong>Big ventures often begin with one small idea — and the courage to put it out there.</strong></p>
-          <div class="about-logo">
-            <img src="images/conclave-logo.jpg" alt="Startup Conclave 2026 logo: the event name inside a white diamond framed by bold coloured bars." width="260" height="260" loading="lazy">
-          </div>
+          <h2 class="section-title" id="about-title">Why just have an idea? When you can build it. Pitch it. Grow it.
+          </h2>
+          <p>Startup Conclave 2026 brings together ideas, innovators, mentors, investors and opportunities — all under
+            one roof.</p>
+          <p class="about-highlight"><strong>Big ventures often begin with one small idea — and the courage to put it
+              out there.</strong></p>
         </div>
 
         <ol class="pillars">
@@ -641,136 +420,87 @@
             <span class="pillar-step">🏆</span>
             <div>
               <h3>~₹50,000 Prize Pool</h3>
-              <p>Your idea could be worth more than you think. Pitch, compete, and get recognized in front of seasoned industry evaluators.</p>
+              <p>Your idea could be worth more than you think. Pitch, compete, and get recognized in front of seasoned
+                industry evaluators.</p>
             </div>
           </li>
           <li class="pillar" style="--pillar: var(--green)">
             <span class="pillar-step">🌱</span>
             <div>
               <h3>Pre-Incubation Opportunity</h3>
-              <p>A great idea needs the right environment to grow. Selected teams get the opportunity to move towards pre-incubation and further development.</p>
+              <p>A great idea needs the right environment to grow. Selected teams get the opportunity to move towards
+                pre-incubation and further development.</p>
             </div>
           </li>
           <li class="pillar" style="--pillar: var(--blue)">
             <span class="pillar-step">⚖️</span>
             <div>
               <h3>IPR Guidance</h3>
-              <p>Your idea. Your innovation. Your intellectual property. Get direct exposure to IPR guidance and understand how innovative ideas can be protected.</p>
+              <p>Your idea. Your innovation. Your intellectual property. Get direct exposure to IPR guidance and
+                understand how innovative ideas can be protected.</p>
             </div>
           </li>
           <li class="pillar" style="--pillar: var(--red)">
             <span class="pillar-step">💰</span>
             <div>
               <h3>Seed-Funding Opportunities</h3>
-              <p>Have an idea with potential? Explore opportunities to take it from a concept towards reality, subject to selection and applicable criteria.</p>
+              <p>Have an idea with potential? Explore opportunities to take it from a concept towards reality, subject
+                to selection and applicable criteria.</p>
             </div>
           </li>
           <li class="pillar" style="--pillar: var(--poster-blue-lt)">
             <span class="pillar-step">🎤</span>
             <div>
               <h3>Take The Stage</h3>
-              <p>Stop explaining your idea only to the people around you. Put it in front of a jury. Pitch your startup, showcase your vision and receive expert feedback.</p>
+              <p>Stop explaining your idea only to the people around you. Put it in front of a jury. Pitch your startup,
+                showcase your vision and receive expert feedback.</p>
             </div>
           </li>
           <li class="pillar" style="--pillar: var(--poster-green)">
             <span class="pillar-step">🌐</span>
             <div>
               <h3>Meet The Ecosystem</h3>
-              <p>Connect with founders, investors, mentors, industry experts and fellow innovators. Because sometimes, one conversation can change the direction of an idea.</p>
+              <p>Connect with founders, investors, mentors, industry experts and fellow innovators. Because sometimes,
+                one conversation can change the direction of an idea.</p>
             </div>
           </li>
         </ol>
       </div>
     </section>
 
-  
-  <!--
-  +====================================================================+
-  | SLIDE 8 - HIGHLIGHTS : Core Event Feature Cards                   
-  | ID      : #highlights   CLASS: .highlights .highlights-grid       
-  |                                                                    
-  | CONTAINS: 4 feature cards in a responsive grid                    
-  |   Card 1: Speakers and Keynotes                                   
-  |   Card 2: Pitch Ideas                                             
-  |   Card 3: Networking                                              
-  |   Card 4: Startup Exhibition                                      
-  |                                                                    
-  | Each card: .highlight-icon (emoji) + <h3> + two <p> tags         
-  |   .highlight-main = primary description line                     
-  |   .highlight-sub  = secondary detail line                        
-  |                                                                    
-  | HOW TO UPDATE:                                                     
-  |   * Card title   : edit <h3>                                     
-  |   * Main text    : edit <p class=highlight-main>                 
-  |   * Sub text     : edit <p class=highlight-sub>                  
-  |   * Card icon    : change the emoji in .highlight-icon           
-  +====================================================================+
-  -->
-    <!-- ============ CORE FOCUS PILLARS ============ -->
-    <section class="section highlights" id="highlights" aria-labelledby="highlights-title">
-      <div class="container">
-        <div class="section-head text-center">
-          <p class="section-kicker">Core Event Pillars</p>
-          <h2 class="section-title" id="highlights-title">Turn Your Vision Into Reality</h2>
-          <p class="section-sub">Where big ideas meet the right investors to build tomorrow's top companies.</p>
+
+    <!-- ============ FUNDING & OPPORTUNITY BAND ============ -->
+    <section class="funding" aria-labelledby="funding-title">
+      <div class="container funding-grid">
+        <div class="funding-headline">
+          <p class="funding-kicker">Competition &amp; Rewards</p>
+          <h2 id="funding-title" class="funding-amount"><span class="funding-upto">Up to</span> ~₹50,000</h2>
+          <p class="funding-note">Prize pool for top-performing startup ideas, combined with pre-incubation pathways and
+            seed-funding access.</p>
+          <a class="btn btn-light btn-lg" href="#register" data-preselect-pitch>Register to participate</a>
         </div>
-
-        <div class="highlights-grid">
-          <div class="highlight-card">
-            <div class="highlight-icon">🎙️</div>
-            <h3>Speakers &amp; Keynotes</h3>
-            <p class="highlight-main">Learn directly from top founders, investors, and experts sharing real industry secrets.</p>
-            <p class="highlight-sub">Get inspired by top leaders who have successfully built and scaled great businesses.</p>
-          </div>
-
-          <div class="highlight-card">
-            <div class="highlight-icon">💡</div>
-            <h3>Pitch Ideas</h3>
-            <p class="highlight-main">Present your ideas live to real investors and grab funding opportunities.</p>
-            <p class="highlight-sub">Pitch your startup live, get valuable expert feedback, and win real funding.</p>
-          </div>
-
-          <div class="highlight-card">
-            <div class="highlight-icon">🤝</div>
-            <h3>Networking</h3>
-            <p class="highlight-main">Connect 1-on-1 with founders, mentors, and investors to build meaningful relationships.</p>
-            <p class="highlight-sub">Meet like-minded innovators and grow your network with high-value connections.</p>
-          </div>
-
-          <div class="highlight-card">
-            <div class="highlight-icon">🎪</div>
+        <ul class="store-list" aria-label="What's in store">
+          <li>
+            <h3>Pitch Competition</h3>
+            <p>Pitch your startup live, get valuable expert feedback, and win recognition plus real funding access.</p>
+          </li>
+          <li>
             <h3>Startup Exhibition</h3>
-            <p class="highlight-main">Showcase your startup prototype and product live to thousands of attendees.</p>
-            <p class="highlight-sub">30+ stalls with direct mentor walkthroughs and customer feedback.</p>
-          </div>
-        </div>
+            <p>30+ startup stalls showcase working prototypes and products to thousands of attendees and mentors.</p>
+          </li>
+          <li>
+            <h3>IPR &amp; Legal Guidance</h3>
+            <p>Expert session on Intellectual Property Rights &amp; startup protection strategies to safeguard your IP.
+            </p>
+          </li>
+          <li>
+            <h3>VC Roundtable &amp; Incubation</h3>
+            <p>Closed-door interactions with investors, directors, and VCs with direct pre-incubation rollout.</p>
+          </li>
+        </ul>
       </div>
     </section>
 
-
-  
-  <!--
-  +====================================================================+
-  | SLIDE 9 - HOW IT WORKS : 8-Step Event Process Guide              
-  | ID      : #how-it-works   CLASS: .steps-grid .step-card          
-  |                                                                    
-  | CONTAINS: 8 step cards in a responsive grid + experience strip    
-  |   Step 01 - Register Online                                       
-  |   Step 02 - Choose Your Track                                     
-  |   Step 03 - Get Confirmation                                      
-  |   Step 04 - Attend and Connect                                    
-  |   Step 05 - Exhibit Your Idea                                     
-  |   Step 06 - Pitch to Investors                                    
-  |   Step 07 - Receive Mentorship                                    
-  |   Step 08 - Unlock Funding and Incubation                        
-  |   + Experience strip (6 bullets below the grid)                  
-  |                                                                    
-  | HOW TO UPDATE:                                                     
-  |   * Step title : edit <h3> inside .step-card                     
-  |   * Step text  : edit <p> inside .step-body                      
-  |   * Numbers (01-08) are static text inside .step-num             
-  +====================================================================+
-  -->
     <!-- ============ HOW IT WORKS (8 STEPS) ============ -->
     <section class="section how-it-works" id="how-it-works" aria-labelledby="hiw-title">
       <div class="container">
@@ -842,7 +572,8 @@
         <div class="experience-strip">
           <div class="exp-item">
             <span class="exp-bullet">●</span>
-            <div><strong>Learn</strong> — Gain real-world strategies from keynotes, panels, and deep-dive workshops.</div>
+            <div><strong>Learn</strong> — Gain real-world strategies from keynotes, panels, and deep-dive workshops.
+            </div>
           </div>
           <div class="exp-item">
             <span class="exp-bullet">●</span>
@@ -850,7 +581,8 @@
           </div>
           <div class="exp-item">
             <span class="exp-bullet">●</span>
-            <div><strong>Showcase</strong> — Highlight your startup ideas and prototypes in the main exhibition hall.</div>
+            <div><strong>Showcase</strong> — Highlight your startup ideas and prototypes in the main exhibition hall.
+            </div>
           </div>
           <div class="exp-item">
             <span class="exp-bullet">●</span>
@@ -868,71 +600,39 @@
       </div>
     </section>
 
-  
-  <!--
-  +====================================================================+
-  | SLIDE 10 - SCHEDULE : Full 2-Day Itinerary                        
-  | ID      : #schedule                                                
-  | CLASS   : .schedule .day-tabs .day-tab .chip-group .chip          
-  |           .day-panel .day-summary .timeline .session .tag         
-  |                                                                    
-  | CONTAINS:                                                          
-  |   * Day tab switcher (keyboard accessible, ARIA tablist)         
-  |       Tab 1: Day 1 - Thu, 15 Oct (9:00 AM - 6:00 PM)            
-  |       Tab 2: Day 2 - Fri, 16 Oct (10:00 AM - 5:30 PM)           
-  |   * Session filter chips: All / Talks / Exhibition+Pitch /        
-  |       Workshops / Networking                                       
-  |   * Add to Calendar (.ics download) button per day               
-  |   * Timeline session list for each day                           
-  |                                                                    
-  | SESSION TYPES (data-type attribute on each <li class=session>):  
-  |   talk     = Keynotes, Expert Talks, Ceremonies                  
-  |   pitch    = Exhibition and Pitching sessions                     
-  |   workshop = Workshops and skill sessions                         
-  |   network  = Tea breaks, Lunch, Registration, Networking         
-  |                                                                    
-  | ALL TIMINGS ARE IN 12-HOUR AM/PM FORMAT                           
-  |                                                                    
-  | HOW TO ADD A SESSION:                                             
-  |   <li class='session' data-type='talk'>                          
-  |     <time>9:00 AM - 10:00 AM</time>                              
-  |     <div><h4>Session Title</h4><p>Description</p></div>          
-  |     <span class='tag tag-talk'>Label</span>                      
-  |   </li>                                                            
-  |                                                                    
-  | HOW TO UPDATE:                                                     
-  |   * Day tab label : edit the <button data-day-tab> text          
-  |   * Session time  : edit <time> text (keep 12-hour format)       
-  |   * Session title : edit <h4> inside .session                    
-  |   * Session type  : change data-type + tag class (tag-talk etc)  
-  +====================================================================+
-  -->
     <!-- ============ SCHEDULE ============ -->
     <section class="section schedule" id="schedule" aria-labelledby="schedule-title">
       <div class="container">
         <div class="section-head">
           <h2 class="section-title" id="schedule-title">Complete Itinerary</h2>
-          <p class="section-sub">15–16 October 2026 at Ajay Kumar Garg Engineering College, Ghaziabad. Timings are scheduled as below.</p>
+          <p class="section-sub">15–16 October 2026 at Ajay Kumar Garg Engineering College, Ghaziabad. Timings are
+            scheduled as below.</p>
         </div>
 
         <div class="schedule-controls">
           <div class="day-tabs" role="tablist" aria-label="Event days">
-            <button class="day-tab" role="tab" id="tab-day1" aria-controls="panel-day1" aria-selected="true" data-day-tab>
+            <button class="day-tab" role="tab" id="tab-day1" aria-controls="panel-day1" aria-selected="true"
+              data-day-tab>
               <span class="day-tab-label">Day 1</span>
-              <span class="day-tab-date">Thu, 15 Oct (09:00 – 18:00)</span>
+              <span class="day-tab-date">Thu, 15 Oct (09:00 AM – 06:00 PM)</span>
             </button>
-            <button class="day-tab" role="tab" id="tab-day2" aria-controls="panel-day2" aria-selected="false" tabindex="-1" data-day-tab>
+            <button class="day-tab" role="tab" id="tab-day2" aria-controls="panel-day2" aria-selected="false"
+              tabindex="-1" data-day-tab>
               <span class="day-tab-label">Day 2</span>
-              <span class="day-tab-date">Fri, 16 Oct (10:00 – 17:30)</span>
+              <span class="day-tab-date">Fri, 16 Oct (10:00 AM – 05:30 PM)</span>
             </button>
           </div>
 
           <div class="chip-group" role="group" aria-label="Filter sessions by type">
             <button class="chip is-active" type="button" data-session-filter="all" aria-pressed="true">All</button>
-            <button class="chip" type="button" data-session-filter="talk" aria-pressed="false"><span class="dot dot-talk"></span>Talks &amp; Sessions</button>
-            <button class="chip" type="button" data-session-filter="pitch" aria-pressed="false"><span class="dot dot-pitch"></span>Exhibition &amp; Pitch</button>
-            <button class="chip" type="button" data-session-filter="workshop" aria-pressed="false"><span class="dot dot-workshop"></span>Workshops</button>
-            <button class="chip" type="button" data-session-filter="network" aria-pressed="false"><span class="dot dot-network"></span>Networking</button>
+            <button class="chip" type="button" data-session-filter="talk" aria-pressed="false"><span
+                class="dot dot-talk"></span>Talks &amp; Sessions</button>
+            <button class="chip" type="button" data-session-filter="pitch" aria-pressed="false"><span
+                class="dot dot-pitch"></span>Exhibition &amp; Pitch</button>
+            <button class="chip" type="button" data-session-filter="workshop" aria-pressed="false"><span
+                class="dot dot-workshop"></span>Workshops</button>
+            <button class="chip" type="button" data-session-filter="network" aria-pressed="false"><span
+                class="dot dot-network"></span>Networking</button>
           </div>
         </div>
 
@@ -941,16 +641,20 @@
           <div class="day-summary">
             <div>
               <h3>Day 1: Ideation, Exposure &amp; Product Showcase</h3>
-              <p>Timings: 09:00 – 18:00 • Stalls, keynotes, founder sessions &amp; finalist reveals</p>
+              <p>Timings: 09:00 AM – 06:00 PM • Stalls, keynotes, founder sessions &amp; finalist reveals</p>
             </div>
             <button class="btn btn-ghost btn-sm" type="button" data-ics="day1">
-              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3.5 10h17M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+                <rect x="3.5" y="5" width="17" height="15" rx="2" fill="none" stroke="currentColor"
+                  stroke-width="1.8" />
+                <path d="M3.5 10h17M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+              </svg>
               Add Day 1 to calendar
             </button>
           </div>
           <ol class="timeline">
             <li class="session" data-type="network">
-              <time>09:00 – 10:00</time>
+              <time>09:00 AM – 10:00 AM</time>
               <div>
                 <h4>Registration &amp; Welcome Kit Distribution</h4>
                 <p>Participant check-in, ID verification, delegate kit &amp; badge handover.</p>
@@ -958,7 +662,7 @@
               <span class="tag tag-network">Registration</span>
             </li>
             <li class="session" data-type="talk">
-              <time>10:00 – 10:30</time>
+              <time>10:00 AM – 10:30 AM</time>
               <div>
                 <h4>Inaugural Ceremony &amp; Lamp Lighting</h4>
                 <p>Official opening ceremony, welcome address by dignitaries.</p>
@@ -966,7 +670,7 @@
               <span class="tag tag-talk">Inauguration</span>
             </li>
             <li class="session" data-type="talk">
-              <time>10:30 – 11:15</time>
+              <time>10:30 AM – 11:15 AM</time>
               <div>
                 <h4>Keynote Address: "Building Scalable Startups in Emerging India"</h4>
                 <p>Inspiring insights from industry leaders on scaling in the Indian ecosystem.</p>
@@ -974,7 +678,7 @@
               <span class="tag tag-talk">Keynote</span>
             </li>
             <li class="session" data-type="network">
-              <time>11:15 – 11:30</time>
+              <time>11:15 AM – 11:30 AM</time>
               <div>
                 <h4>Tea Break &amp; Networking</h4>
                 <p>High-tea and informal peer/speaker interaction.</p>
@@ -982,7 +686,7 @@
               <span class="tag tag-network">Networking</span>
             </li>
             <li class="session" data-type="talk">
-              <time>11:30 – 12:45</time>
+              <time>11:30 AM – 12:45 PM</time>
               <div>
                 <h4>Expert Ecosystem Session: "Startup Ecosystem &amp; Funding Landscape in UP"</h4>
                 <p>Insights into local grants, state policies, incubation networks and funding avenues.</p>
@@ -990,7 +694,7 @@
               <span class="tag tag-talk">Ecosystem</span>
             </li>
             <li class="session" data-type="talk">
-              <time>12:45 – 13:30</time>
+              <time>12:45 PM – 01:30 PM</time>
               <div>
                 <h4>Founder Talk: "From Idea to Market: Lessons from the Trenches"</h4>
                 <p>Real-world founder stories on overcoming product friction and finding early customers.</p>
@@ -998,7 +702,7 @@
               <span class="tag tag-talk">Founder Talk</span>
             </li>
             <li class="session" data-type="network">
-              <time>13:30 – 14:15</time>
+              <time>01:30 PM – 02:15 PM</time>
               <div>
                 <h4>Lunch Break</h4>
                 <p>Catered networking lunch for participants, guests, and mentors.</p>
@@ -1006,7 +710,7 @@
               <span class="tag tag-network">Lunch</span>
             </li>
             <li class="session" data-type="pitch">
-              <time>14:15 – 17:30</time>
+              <time>02:15 PM – 05:30 PM</time>
               <div>
                 <h4>Startup Exhibition &amp; Mentor Walkthrough</h4>
                 <p>30+ startup stalls showcase working prototypes and products to visitors and juries.</p>
@@ -1014,7 +718,7 @@
               <span class="tag tag-pitch">Exhibition</span>
             </li>
             <li class="session" data-type="workshop">
-              <time>15:30 – 17:00</time>
+              <time>03:30 PM – 05:00 PM</time>
               <div>
                 <h4>Parallel Workshop: "Incubation &amp; Technology Commercialization Workshop"</h4>
                 <p>Deep-dive into transforming laboratory &amp; campus prototypes into market-ready ventures.</p>
@@ -1022,7 +726,7 @@
               <span class="tag tag-workshop">Workshop</span>
             </li>
             <li class="session" data-type="talk">
-              <time>17:30 – 18:00</time>
+              <time>05:30 PM – 06:00 PM</time>
               <div>
                 <h4>Day 1 Wrap-up &amp; Announcements</h4>
                 <p>Day summary, attendance logging, and announcement of the shortlisted pitching finalists.</p>
@@ -1038,16 +742,20 @@
           <div class="day-summary">
             <div>
               <h3>Day 2: IP Protection, Investor Roundtables &amp; The Grand Pitch</h3>
-              <p>Timings: 10:00 – 17:30 • IPR masterclass, VC roundtables, pitch finals &amp; awards</p>
+              <p>Timings: 10:00 AM – 05:30 PM • IPR masterclass, VC roundtables, pitch finals &amp; awards</p>
             </div>
             <button class="btn btn-ghost btn-sm" type="button" data-ics="day2">
-              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3.5 10h17M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+                <rect x="3.5" y="5" width="17" height="15" rx="2" fill="none" stroke="currentColor"
+                  stroke-width="1.8" />
+                <path d="M3.5 10h17M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+              </svg>
               Add Day 2 to calendar
             </button>
           </div>
           <ol class="timeline">
             <li class="session" data-type="workshop">
-              <time>10:00 – 11:00</time>
+              <time>10:00 AM – 11:00 AM</time>
               <div>
                 <h4>Technical &amp; Legal Session: "IPR &amp; Startup Protection Strategies"</h4>
                 <p>Patent filing, trademarks, copyright, trade secrets, and how to defend your innovation.</p>
@@ -1055,7 +763,7 @@
               <span class="tag tag-workshop">IPR Session</span>
             </li>
             <li class="session" data-type="network">
-              <time>11:00 – 11:15</time>
+              <time>11:00 AM – 11:15 AM</time>
               <div>
                 <h4>Tea Break</h4>
                 <p>Refreshments &amp; informal networking with attendees and mentors.</p>
@@ -1063,7 +771,7 @@
               <span class="tag tag-network">Tea Break</span>
             </li>
             <li class="session" data-type="talk">
-              <time>11:15 – 13:00</time>
+              <time>11:15 AM – 01:00 PM</time>
               <div>
                 <h4>Investor / VC Roundtable Interaction</h4>
                 <p>Closed-door interactive Q&amp;A between startup leads, directors, and VCs.</p>
@@ -1071,7 +779,7 @@
               <span class="tag tag-talk">VC Roundtable</span>
             </li>
             <li class="session" data-type="network">
-              <time>13:00 – 13:45</time>
+              <time>01:00 PM – 01:45 PM</time>
               <div>
                 <h4>Lunch Break</h4>
                 <p>Networking lunch for attendees, finalists, and the jury.</p>
@@ -1079,7 +787,7 @@
               <span class="tag tag-network">Lunch</span>
             </li>
             <li class="session" data-type="pitch">
-              <time>13:45 – 15:30</time>
+              <time>01:45 PM – 03:30 PM</time>
               <div>
                 <h4>Startup Pitching Competition</h4>
                 <p>Shortlisted finalist teams pitch live to the investor and jury panel for prizes and seed access.</p>
@@ -1087,7 +795,7 @@
               <span class="tag tag-pitch">Grand Pitch</span>
             </li>
             <li class="session" data-type="talk">
-              <time>15:30 – 16:15</time>
+              <time>03:30 PM – 04:15 PM</time>
               <div>
                 <h4>Jury Evaluation &amp; Feedback Session</h4>
                 <p>Deliberation, scoring collation, and direct mentorship feedback to pitching teams.</p>
@@ -1095,7 +803,7 @@
               <span class="tag tag-talk">Evaluation</span>
             </li>
             <li class="session" data-type="talk">
-              <time>16:15 – 17:00</time>
+              <time>04:15 PM – 05:00 PM</time>
               <div>
                 <h4>Award Ceremony &amp; Winner Recognition</h4>
                 <p>Prize distribution (~₹50,000 pool), incubation offer rollout, and memento presentation.</p>
@@ -1103,7 +811,7 @@
               <span class="tag tag-talk">Awards</span>
             </li>
             <li class="session" data-type="talk">
-              <time>17:00 – 17:30</time>
+              <time>05:00 PM – 05:30 PM</time>
               <div>
                 <h4>Closing Remarks &amp; Vote of Thanks</h4>
                 <p>Formal conclusion, group photographs, and closing address.</p>
@@ -1116,32 +824,7 @@
       </div>
     </section>
 
-  
-  <!--
-  +====================================================================+
-  | SLIDE 11 - PARTICIPATE : Ways to Join the Event                   
-  | ID      : #ways-to-join                                            
-  | CLASS   : .ways .participate-grid .participate-card               
-  |           .reg-instructions-box .reg-steps-list                   
-  |                                                                    
-  | CONTAINS:                                                          
-  |   * 2 participation track cards:                                  
-  |       Card 1: Startup Exhibition (normal card)                   
-  |       Card 2: Startup Pitching Competition (highlighted card)    
-  |   * 6-step How to Register guide in a styled box:               
-  |       1. Click link or scan poster QR code                       
-  |       2. Select participation type                               
-  |       3. Enter personal and team info                            
-  |       4. Select Exhibition, Pitching, or both                    
-  |       5. Submit the form                                          
-  |       6. Keep your confirmation / pass                            
-  |                                                                    
-  | HOW TO UPDATE:                                                     
-  |   * Card text  : edit <h3> and <p> inside .participate-card      
-  |   * Steps list : edit <li> items in .reg-steps-list              
-  +====================================================================+
-  -->
-    <!-- ============ WAYS TO PARTICIPATE ============ -->
+    <!-- ============ WAYS TO PARTICIPATE & HOW TO REGISTER ============ -->
     <section class="section ways" id="ways-to-join" aria-labelledby="ways-title">
       <div class="container">
         <div class="section-head text-center">
@@ -1153,14 +836,16 @@
           <div class="participate-card">
             <div class="participate-icon">🎪</div>
             <h3>1. Startup Exhibition</h3>
-            <p>Show your startup, prototype, product or idea to visitors, mentors and industry experts. Secure feedback, visibility, and early traction.</p>
-            <a class="btn btn-ghost btn-sm" href="#register" data-preselect-exhibit>Register for Exhibition</a>
+            <p>Show your startup, prototype, product or idea to visitors, mentors and industry experts. Secure feedback,
+              visibility, and early traction.</p>
+            <a class="btn btn-ghost btn-sm" href="#register">Register for Exhibition</a>
           </div>
 
           <div class="participate-card highlight-card">
             <div class="participate-icon">🎤</div>
             <h3>2. Startup Pitching Competition</h3>
-            <p>Present your startup idea to a panel of judges and VCs to win from the ~₹50,000 prize pool, pre-incubation offers, and seed access.</p>
+            <p>Present your startup idea to a panel of judges and VCs to win from the ~₹50,000 prize pool,
+              pre-incubation offers, and seed access.</p>
             <a class="btn btn-primary btn-sm" href="#register" data-preselect-pitch>Register for Pitching</a>
           </div>
         </div>
@@ -1180,95 +865,61 @@
       </div>
     </section>
 
-  
-  <!--
-  +====================================================================+
-  | SLIDE 12 - VENUE : Location, Timings and Google Maps              
-  | ID      : #venue   CLASS: .venue .venue-grid .detail-list         
-  |                                                                    
-  | CONTAINS:                                                          
-  |   * Details list (dl.detail-list):                               
-  |       Dates    : 15-16 October 2026                               
-  |       Timings  : Day 1: 9:00 AM - 6:00 PM                        
-  |                  Day 2: 10:00 AM - 5:30 PM                        
-  |       Venue    : Ajay Kumar Garg Engineering College (AKGEC)      
-  |       Location : 27th KM Milestone, Delhi-Meerut Expressway,      
-  |                  Ghaziabad, UP 201015                              
-  |       Prizes   : ~Rs.50,000 Prize Pool + Pre-Incubation Support  
-  |       Food/Kit : Delegate welcome kit, lunch and high-tea         
-  |       Deadline : 10 October 2026                                  
-  |   * Get Directions button (opens Google Maps in new tab)         
-  |   * Embedded Google Maps iframe                                   
-  |                                                                    
-  | HOW TO UPDATE:                                                     
-  |   * Venue address : edit <dd> under <dt>Location</dt>            
-  |   * Map iframe    : update src URL in the <iframe> tag           
-  |   * Directions    : update href in the Google Maps <a> link      
-  +====================================================================+
-  -->
-    <!-- ============ VENUE AND DETAILS ============ -->
+    <!-- ============ VENUE & DETAILS ============ -->
     <section class="section venue" id="venue" aria-labelledby="venue-title">
       <div class="container venue-grid">
         <div>
           <h2 class="section-title" id="venue-title">Venue and details</h2>
           <p class="section-sub">Host institution for Startup Conclave 2026.</p>
           <dl class="detail-list">
-            <div><dt>Dates</dt><dd>15–16 October 2026</dd></div>
-            <div><dt>Timings</dt><dd>Day 1: 09:00 – 18:00 | Day 2: 10:00 – 17:30</dd></div>
-            <div><dt>Venue</dt><dd>Ajay Kumar Garg Engineering College (AKGEC)</dd></div>
-            <div><dt>Location</dt><dd>27th KM Milestone, Delhi–Meerut Expressway, Ghaziabad, Uttar Pradesh 201015</dd></div>
-            <div><dt>Prizes</dt><dd>~₹50,000 Prize Pool + Pre-Incubation &amp; Seed Support</dd></div>
-            <div><dt>Food &amp; Kit</dt><dd>Delegate welcome kit, lunch &amp; high-tea included</dd></div>
-            <div><dt>Registration Deadline</dt><dd>10 October 2026</dd></div>
+            <div>
+              <dt>Dates</dt>
+              <dd>15–16 October 2026</dd>
+            </div>
+            <div>
+              <dt>Timings</dt>
+              <dd>Day 1: 09:00 AM – 06:00 PM | Day 2: 10:00 AM – 05:30 PM</dd>
+            </div>
+            <div>
+              <dt>Venue</dt>
+              <dd>Ajay Kumar Garg Engineering College (AKGEC)</dd>
+            </div>
+            <div>
+              <dt>Location</dt>
+              <dd>27th KM Milestone, Delhi–Meerut Expressway, Ghaziabad, Uttar Pradesh 201015</dd>
+            </div>
+            <div>
+              <dt>Prizes</dt>
+              <dd>~₹50,000 Prize Pool + Pre-Incubation &amp; Seed Support</dd>
+            </div>
+            <div>
+              <dt>Food &amp; Kit</dt>
+              <dd>Delegate welcome kit, lunch &amp; high-tea included</dd>
+            </div>
+            <div>
+              <dt>Registration Deadline</dt>
+              <dd>10 October 2026</dd>
+            </div>
           </dl>
-          <a class="btn btn-ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=Ajay+Kumar+Garg+Engineering+College+Ghaziabad" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="9.5" r="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+          <a class="btn btn-ghost"
+            href="https://www.google.com/maps/dir/?api=1&amp;destination=Ajay+Kumar+Garg+Engineering+College+Ghaziabad"
+            target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+              <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z" fill="none" stroke="currentColor"
+                stroke-width="1.8" />
+              <circle cx="12" cy="9.5" r="2.5" fill="none" stroke="currentColor" stroke-width="1.8" />
+            </svg>
             Get directions on Google Maps
           </a>
         </div>
         <div class="map-frame" data-map-label="Map of AKGEC Campus, Ghaziabad">
-          <iframe title="Map showing Ajay Kumar Garg Engineering College, Ghaziabad" src="https://maps.google.com/maps?q=Ajay%20Kumar%20Garg%20Engineering%20College%20Ghaziabad&amp;z=15&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <iframe title="Map showing Ajay Kumar Garg Engineering College, Ghaziabad"
+            src="https://maps.google.com/maps?q=Ajay%20Kumar%20Garg%20Engineering%20College%20Ghaziabad&amp;z=15&amp;output=embed"
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
       </div>
     </section>
 
-  
-  <!--
-  +====================================================================+
-  | SLIDE 13 - REGISTER : Registration Form                           
-  | ID      : #register                                                
-  | CLASS   : .register .register-grid .register-aside .register-card 
-  |           .reg-form .reg-success .reg-closed .pass-card           
-  | JS      : Fully managed by script.js                              
-  |                                                                    
-  | LEFT ASIDE:                                                        
-  |   * Section heading                                               
-  |   * Countdown timer (days, hours, min, sec) to 10 Oct 2026       
-  |   * Free Entry badge (fee-box fee-free) - NO FEE                 
-  |   * Poster thumbnail + Open full poster button + QR update note  
-  |                                                                    
-  | REGISTRATION FORM FIELDS:                                         
-  |   * Full name (required)                                          
-  |   * Joining as: Student / Startup / Innovator / Entrepreneur      
-  |   * Year of study (students only - shown/hidden by JS)           
-  |   * Email address (college email required for students)          
-  |   * Mobile number (10-digit)                                      
-  |   * College / Organization                                        
-  |   * Pass type: Full event / Day 1 only / Day 2 only              
-  |   * Exhibition track checkbox (shows product name + stage fields) 
-  |   * Pitching track checkbox  (shows venture + team + oneliner)   
-  |   * Terms agreement checkbox (required)                           
-  |                                                                    
-  | THREE STATES (auto-managed by script.js):                        
-  |   1. Default  : Form visible and fillable                         
-  |   2. Success  : Pass card shown after submit                     
-  |   3. Closed   : Shown automatically after 10 October 2026        
-  |                                                                    
-  | KEY CONFIG IN script.js:                                          
-  |   Line 8  : DEADLINE = new Date('2026-10-10T23:59:59+05:30')    
-  |   Line 15 : FORM_ENDPOINT = ''  set Formspree URL to go live  
-  +====================================================================+
-  -->
     <!-- ============ REGISTER ============ -->
     <section class="section register" id="register" aria-labelledby="register-title">
       <div class="container register-grid">
@@ -1281,20 +932,6 @@
             <div class="cd-unit"><span class="cd-num" data-cd="hours">00</span><span class="cd-label">hours</span></div>
             <div class="cd-unit"><span class="cd-num" data-cd="minutes">00</span><span class="cd-label">min</span></div>
             <div class="cd-unit"><span class="cd-num" data-cd="seconds">00</span><span class="cd-label">sec</span></div>
-          </div>
-
-          <div class="fee-box fee-free">
-            <p class="fee"><span class="fee-amount free-entry">🎉 Free Entry</span></p>
-            <p>Open to all students, innovators, startups &amp; entrepreneurs. No registration fee — just bring your ideas!</p>
-          </div>
-
-          <div class="qr-note">
-            <img src="images/conclave-poster.png" alt="" width="1024" height="1536" loading="lazy">
-            <div>
-              <p><strong>Prefer to scan?</strong> The QR code on the official poster opens the same registration.</p>
-              <p style="font-size:0.8em;opacity:0.7;">📌 QR code will be updated shortly.</p>
-              <button class="link-btn" type="button" data-poster-open>Open full poster</button>
-            </div>
           </div>
         </aside>
 
@@ -1314,9 +951,6 @@
                 <label for="reg-type">Joining as</label>
                 <select id="reg-type" name="type" required>
                   <option value="student">Student</option>
-                  <option value="startup">Startup</option>
-                  <option value="innovator">Innovator</option>
-                  <option value="entrepreneur">Entrepreneur</option>
                 </select>
               </div>
               <div class="field" data-student-only>
@@ -1336,20 +970,24 @@
 
             <div class="field">
               <label for="reg-email">Email address</label>
-              <input id="reg-email" name="email" type="email" autocomplete="email" inputmode="email" required placeholder="you@domain.com" aria-describedby="reg-email-hint">
-              <p class="field-hint" id="reg-email-hint" data-email-hint>Students register with their college email (ending in .ac.in or .edu).</p>
+              <input id="reg-email" name="email" type="email" autocomplete="email" inputmode="email" required
+                placeholder="you@domain.com" aria-describedby="reg-email-hint">
+              <p class="field-hint" id="reg-email-hint" data-email-hint>Students register with their college email
+                (ending in .ac.in or .edu).</p>
               <p class="field-error" id="reg-email-err"></p>
             </div>
 
             <div class="field-row">
               <div class="field">
                 <label for="reg-phone">Mobile number</label>
-                <input id="reg-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="10-digit mobile number" required>
+                <input id="reg-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel"
+                  placeholder="10-digit mobile number" required>
                 <p class="field-error" id="reg-phone-err"></p>
               </div>
               <div class="field">
                 <label for="reg-org" data-org-label>College / Organization</label>
-                <input id="reg-org" name="org" type="text" autocomplete="organization" required placeholder="Institution name">
+                <input id="reg-org" name="org" type="text" autocomplete="organization" required
+                  placeholder="Institution name">
                 <p class="field-error" id="reg-org-err"></p>
               </div>
             </div>
@@ -1359,100 +997,89 @@
               <div class="pass-options">
                 <label class="pass-option">
                   <input type="radio" name="pass" value="Full event pass" checked>
-                  <span class="pass-body"><span class="pass-name">Full event</span><span class="pass-date">15–16 Oct</span></span>
+                  <span class="pass-body"><span class="pass-name">Full event</span><span class="pass-date">15–16
+                      Oct</span></span>
                 </label>
                 <label class="pass-option">
                   <input type="radio" name="pass" value="Day 1 pass">
-                  <span class="pass-body"><span class="pass-name">Day 1</span><span class="pass-date">Thu, 15 Oct</span></span>
+                  <span class="pass-body"><span class="pass-name">Day 1</span><span class="pass-date">Thu, 15
+                      Oct</span></span>
                 </label>
                 <label class="pass-option">
                   <input type="radio" name="pass" value="Day 2 pass">
-                  <span class="pass-body"><span class="pass-name">Day 2</span><span class="pass-date">Fri, 16 Oct</span></span>
+                  <span class="pass-body"><span class="pass-name">Day 2</span><span class="pass-date">Fri, 16
+                      Oct</span></span>
                 </label>
               </div>
-              <p class="field-hint" data-pass-hint hidden>Pitching and exhibition participants require the full event pass for two-day access.</p>
+              <p class="field-hint" data-pass-hint hidden>Pitching teams need the full event pass, since round 1 is on
+                Day 1 and the finals on Day 2.</p>
             </fieldset>
 
-            <fieldset class="field track-fieldset">
-              <legend>Participation Track (Select Exhibition, Pitching or both)</legend>
-              <div class="track-choices">
-                <label class="check track-checkbox">
-                  <input type="checkbox" name="track_exhibit" data-exhibit-toggle>
-                  <span>
-                    <strong>1. Startup Exhibition</strong>
-                    <small>Showcase your startup prototype and product live at a dedicated stall to 30+ mentors &amp; investors</small>
-                  </span>
-                </label>
-                <label class="check track-checkbox">
-                  <input type="checkbox" name="track_pitch" data-pitch-toggle>
-                  <span>
-                    <strong>2. Startup Pitching Competition</strong>
-                    <small>Present your startup idea live to investor jury for ~₹50,000 prize pool, pre-incubation &amp; seed funding</small>
-                  </span>
-                </label>
-              </div>
-            </fieldset>
-
-            <div class="exhibit-fields" data-exhibit-fields hidden>
-              <div class="field-row">
-                <div class="field">
-                  <label for="reg-exhibit-name">Product / Prototype name</label>
-                  <input id="reg-exhibit-name" name="exhibit_name" type="text" placeholder="e.g. AgriTech Drone Vision">
-                  <p class="field-error" id="reg-exhibit-name-err"></p>
-                </div>
-                <div class="field">
-                  <label for="reg-prototype-stage">Prototype stage</label>
-                  <select id="reg-prototype-stage" name="prototype_stage">
-                    <option value="Working Prototype">Working Prototype</option>
-                    <option value="Functional MVP">Functional MVP</option>
-                    <option value="Market Ready Product">Market Ready Product</option>
-                    <option value="Lab Proof of Concept">Lab Proof of Concept</option>
-                  </select>
-                </div>
-              </div>
-            </div>
+            <label class="check">
+              <input type="checkbox" name="pitch" data-pitch-toggle>
+              <span>I want to participate in the Startup Pitching Competition</span>
+            </label>
 
             <div class="pitch-fields" data-pitch-fields hidden>
               <div class="field-row">
                 <div class="field">
-                  <label for="reg-venture">Startup / Pitch idea name</label>
+                  <label for="reg-venture">Startup / Idea name</label>
                   <input id="reg-venture" name="venture" type="text" placeholder="e.g. EcoTech">
                   <p class="field-error" id="reg-venture-err"></p>
                 </div>
                 <div class="field">
                   <label for="reg-team">Team size</label>
                   <select id="reg-team" name="team">
-                    <option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option selected>3</option>
+                    <option>4</option>
+                    <option>5</option>
                   </select>
                 </div>
               </div>
               <div class="field">
                 <label for="reg-oneliner">Your idea in one sentence</label>
-                <textarea id="reg-oneliner" name="oneliner" rows="2" maxlength="160" placeholder="Briefly describe what problem your startup solves..." aria-describedby="oneliner-count"></textarea>
+                <textarea id="reg-oneliner" name="oneliner" rows="2" maxlength="160"
+                  placeholder="Briefly describe what problem your startup solves..."
+                  aria-describedby="oneliner-count"></textarea>
                 <p class="field-hint"><span id="oneliner-count" data-char-count>0</span>/160 characters</p>
               </div>
             </div>
 
             <label class="check">
               <input type="checkbox" name="agree" required>
-              <span>I agree to follow all the event Rules &amp; Terms, carry a valid photo ID, and maintain discipline.</span>
+              <span>I agree to follow all the event Rules &amp; Terms, carry a valid photo ID, and maintain
+                discipline.</span>
             </label>
             <p class="field-error" id="reg-agree-err"></p>
 
+            <!-- Honeypot (Hidden from humans) -->
+            <input type="text" name="bot_check" style="display:none" tabindex="-1" autocomplete="off">
+
+            <!-- Google ReCaptcha -->
+            <div class="g-recaptcha" data-sitekey="6LdvicwtAAAAAG2-32jikp01bFIXUzFMOGpI5PUx"
+              style="margin-bottom: 24px;"></div>
+            <p class="field-error" id="reg-captcha-err"></p>
+
             <button class="btn btn-primary btn-lg btn-block" type="submit" data-submit>Complete Registration</button>
             <p class="form-error" data-form-error role="alert"></p>
-            <p class="form-foot" data-demo-note>Preview mode: registrations are saved in this browser until a form endpoint is linked.</p>
+
           </form>
 
           <!-- Success state -->
           <div class="reg-success" data-reg-success hidden tabindex="-1">
             <div class="success-head">
               <span class="success-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="22" height="22"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <svg viewBox="0 0 24 24" width="22" height="22">
+                  <path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.4"
+                    stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
               </span>
               <div>
                 <h3>You’re registered</h3>
-                <p data-success-msg>Your pass is saved. Payment details will be sent to <strong data-pass-email></strong>.</p>
+                <p data-success-msg>Your pass is saved. A confirmation email has been sent to <strong
+                    data-pass-email></strong>.</p>
               </div>
             </div>
 
@@ -1465,12 +1092,26 @@
                 </div>
               </div>
               <dl class="pass-card-body">
-                <div><dt>Name</dt><dd data-pass-name></dd></div>
-                <div><dt>Pass</dt><dd data-pass-type></dd></div>
-                <div><dt>Joining as</dt><dd data-pass-role></dd></div>
-                <div><dt>Pass ID</dt><dd class="pass-id" data-pass-id></dd></div>
+                <div>
+                  <dt>Name</dt>
+                  <dd data-pass-name></dd>
+                </div>
+                <div>
+                  <dt>Pass</dt>
+                  <dd data-pass-type></dd>
+                </div>
+                <div>
+                  <dt>Joining as</dt>
+                  <dd data-pass-role></dd>
+                </div>
+                <div>
+                  <dt>Pass ID</dt>
+                  <dd class="pass-id" data-pass-id></dd>
+                </div>
               </dl>
-              <div class="brand-stripe brand-stripe-thin" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+              <div class="brand-stripe brand-stripe-thin" aria-hidden="true">
+                <span></span><span></span><span></span><span></span><span></span>
+              </div>
             </div>
 
             <div class="success-actions">
@@ -1488,27 +1129,7 @@
       </div>
     </section>
 
-  
-  <!--
-  +====================================================================+
-  | SLIDE 14 - TERMS : Rules and Guidelines                           
-  | ID      : #terms   CLASS: .terms .terms-grid .terms-card          
-  |                                                                    
-  | CONTAINS: 12 numbered rules in an ordered list (.terms-list):    
-  |    1. Eligibility          7. IP Ownership                        
-  |    2. Accurate Details     8. Schedule Flexibility                
-  |    3. Team Size            9. Jury Decisions                      
-  |    4. Slot Allocation     10. Support Criteria                    
-  |    5. Punctuality         11. Code of Conduct                     
-  |    6. Adherence           12. Agreement                           
-  |                                                                    
-  | HOW TO UPDATE:                                                     
-  |   * Edit rule   : find the <li> and change the <strong> + text  
-  |   * Add a rule  : add a new <li><strong>N. Title:</strong>...</li>
-  |   * Remove rule : delete the <li> element                        
-  +====================================================================+
-  -->
-    <!-- ============ RULES AND TERMS ============ -->
+    <!-- ============ RULES & TERMS ============ -->
     <section class="section terms" id="terms" aria-labelledby="terms-title">
       <div class="container">
         <div class="section-head text-center">
@@ -1519,118 +1140,83 @@
         <div class="terms-grid">
           <div class="terms-card">
             <ol class="terms-list">
-              <li><strong>1. Eligibility:</strong> Participation is open to eligible students based on organizer guidelines.</li>
-              <li><strong>2. Accurate Details:</strong> You must provide correct and complete details during registration.</li>
+              <li><strong>1. Eligibility:</strong> Participation is open to eligible students based on organizer
+                guidelines.</li>
+              <li><strong>2. Accurate Details:</strong> You must provide correct and complete details during
+                registration.</li>
               <li><strong>3. Team Size:</strong> Follow the team size rules specified by the organizers.</li>
-              <li><strong>4. Slot Allocation:</strong> Registering does not guarantee a slot for exhibition or pitching; teams will be selected based on eligibility and evaluation.</li>
+              <li><strong>4. Slot Allocation:</strong> Registering does not guarantee a slot for exhibition or pitching;
+                teams will be selected based on eligibility and evaluation.</li>
               <li><strong>5. Punctuality:</strong> Reach the event venue on time.</li>
               <li><strong>6. Adherence:</strong> Follow the event schedule and instructions given by the team.</li>
-              <li><strong>7. IP Ownership:</strong> Your idea remains yours. You are responsible for protecting your intellectual property (IP) before sharing it publicly.</li>
-              <li><strong>8. Schedule Flexibility:</strong> Organizers can change the schedule, process, or venue setup if needed.</li>
-              <li><strong>9. Jury Decisions:</strong> Decisions made by the judges during the pitching competition are final and based on fixed criteria.</li>
-              <li><strong>10. Support Criteria:</strong> Mentorship, incubation support, IP assistance, and funding options depend on selection and rules; they are not guaranteed just by joining.</li>
-              <li><strong>11. Code of Conduct:</strong> Maintain proper discipline and behavior throughout the event.</li>
-              <li><strong>12. Agreement:</strong> By registering, you agree to follow all rules and guidelines set by the team.</li>
+              <li><strong>7. IP Ownership:</strong> Your idea remains yours. You are responsible for protecting your
+                intellectual property (IP) before sharing it publicly.</li>
+              <li><strong>8. Schedule Flexibility:</strong> Organizers can change the schedule, process, or venue setup
+                if needed.</li>
+              <li><strong>9. Jury Decisions:</strong> Decisions made by the judges during the pitching competition are
+                final and based on fixed criteria.</li>
+              <li><strong>10. Support Criteria:</strong> Mentorship, incubation support, IP assistance, and funding
+                options depend on selection and rules; they are not guaranteed just by joining.</li>
+              <li><strong>11. Code of Conduct:</strong> Maintain proper discipline and behavior throughout the event.
+              </li>
+              <li><strong>12. Agreement:</strong> By registering, you agree to follow all rules and guidelines set by
+                the team.</li>
             </ol>
           </div>
         </div>
       </div>
     </section>
 
-  
-  <!--
-  +====================================================================+
-  | SLIDE 15 - FAQ : Frequently Asked Questions                       
-  | ID      : #faq   CLASS: .faq .faq-grid .faq-list .faq-item       
-  |                                                                    
-  | CONTAINS: 6 expandable FAQ items using <details>/<summary>        
-  |   (Pure HTML - no JavaScript needed)                              
-  |                                                                    
-  |   Q1: Who can register?                                            
-  |   Q2: What are the key benefits and prize pool?                   
-  |   Q3: Do I need an established company?                           
-  |   Q4: How does the Pitching Competition work?                     
-  |   Q5: How does the Startup Exhibition work?                       
-  |   Q6: What is the last date to register?                          
-  |                                                                    
-  | HOW TO UPDATE:                                                     
-  |   * Add FAQ: <details class='faq-item'>                          
-  |                <summary>Your question?</summary>                 
-  |                <p>Your answer.</p>                               
-  |              </details>                                            
-  |   * Open by default: add 'open' to <details>                     
-  |   * Edit contact email in section-sub paragraph                  
-  +====================================================================+
-  -->
     <!-- ============ FAQ ============ -->
     <section class="section faq" id="faq" aria-labelledby="faq-title">
       <div class="container faq-grid">
         <div>
           <h2 class="section-title" id="faq-title">Frequently Asked Questions</h2>
-          <p class="section-sub">Have questions about the conclave? Write to us at <a href="mailto:idealab@akgec.ac.in">idealab@akgec.ac.in</a>.</p>
+          <p class="section-sub">Have questions about the conclave? Write to us at <a
+              href="mailto:idealab@akgec.ac.in">idealab@akgec.ac.in</a>.</p>
         </div>
         <div class="faq-list">
           <details class="faq-item" open>
             <summary>Who can register for Startup Conclave '26?</summary>
-            <p>Participation is open to eligible students, early-stage startups, independent innovators, and entrepreneurs. Students register with their college email; everyone else can use their primary email.</p>
+            <p>Participation is open to eligible students, early-stage startups, independent innovators, and
+              entrepreneurs. Students register with their college email; everyone else can use their primary email.</p>
           </details>
           <details class="faq-item">
             <summary>What are the key benefits and prize pool?</summary>
-            <p>Participants get access to the ~₹50,000 prize pool, pre-incubation opportunities at AKGEC IDEA Lab, IPR legal guidance, seed-funding opportunities, and live pitching to investors.</p>
+            <p>Participants get access to the ~₹50,000 prize pool, pre-incubation opportunities at AKGEC IDEA Lab, IPR
+              legal guidance, seed-funding opportunities, and live pitching to investors.</p>
           </details>
           <details class="faq-item">
             <summary>Do I need an already-established company to attend?</summary>
-            <p>No. You can participate with just an early concept or prototype, or attend as a delegate to learn from keynotes, interact with VCs, and network with fellow innovators.</p>
+            <p>No. You can participate with just an early concept or prototype, or attend as a delegate to learn from
+              keynotes, interact with VCs, and network with fellow innovators.</p>
           </details>
           <details class="faq-item">
             <summary>How does the Pitching Competition work?</summary>
-            <p>Shortlisted teams pitch live to our investor and jury panel on Day 2. The jury evaluates according to fixed criteria and selects top teams for prizes and incubation support.</p>
+            <p>Shortlisted teams pitch live to our investor and jury panel on Day 2. The jury evaluates according to
+              fixed criteria and selects top teams for prizes and incubation support.</p>
           </details>
           <details class="faq-item">
             <summary>How does the Startup Exhibition work?</summary>
-            <p>30+ startup stalls showcase working prototypes and products on Day 1 (14:15 – 17:30) with mentor walkthroughs and attendee interaction.</p>
+            <p>30+ startup stalls showcase working prototypes and products on Day 1 (14:15 – 17:30) with mentor
+              walkthroughs and attendee interaction.</p>
           </details>
           <details class="faq-item">
             <summary>What is the last date to register?</summary>
-            <p>Registration officially closes on 10 October 2026 at 11:59 pm IST. Register early as slots are limited.</p>
+            <p>Registration officially closes on 10 October 2026 at 11:59 pm IST. Register early as slots are limited.
+            </p>
           </details>
         </div>
       </div>
     </section>
 
-  
-  <!--
-  +====================================================================+
-  | SLIDE 16 - CONTACT : Team Coordinators and Social Links           
-  | ID      : #contact   CLASS: .contact .contact-grid .contact-card  
-  |                                                                    
-  | CONTAINS: 4 contact cards                                         
-  |   Card 1: Krishna Goel       | Coordinator | +91 95487 08361     
-  |   Card 2: Preet Sain         | Coordinator | +91 79827 56664     
-  |   Card 3: Divi Shrivastava   | Coordinator | idealab@akgec.ac.in 
-  |   Card 4: Social links card                                       
-  |             Instagram : @akgec_idealab                            
-  |             Email     : idealab@akgec.ac.in                       
-  |             Website   : www.akgec.ac.in                           
-  |                                                                    
-  | AVATAR COLOURS (CSS var):                                          
-  |   KG = blue, PS = green, DS = red                         
-  |                                                                    
-  | HOW TO UPDATE A COORDINATOR:                                       
-  |   * Name    : edit <p class=contact-name>                        
-  |   * Role    : edit <p class=contact-role>                        
-  |   * Phone   : edit href='tel:+91...' and display text            
-  |   * Email   : edit href='mailto:...' and display text            
-  |   * Initials: edit text inside <span class=avatar>               
-  |   * Colour  : change style='avatar: var(TOKEN)'              
-  +====================================================================+
-  -->
     <!-- ============ CONTACT ============ -->
     <section class="section contact" id="contact" aria-labelledby="contact-title">
       <div class="container">
         <div class="section-head">
           <h2 class="section-title" id="contact-title">Talk to the team</h2>
-          <p class="section-sub">Our student coordinators can help with registration, pitching, exhibition stalls and travel to campus.</p>
+          <p class="section-sub">Our student coordinators can help with registration, pitching, exhibition stalls and
+            travel to campus.</p>
         </div>
         <ul class="contact-grid">
           <li class="contact-card">
@@ -1659,15 +1245,28 @@
           </li>
           <li class="contact-card contact-card-links">
             <a class="contact-row" href="https://www.instagram.com/akgec_idealab/" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"/></svg>
+              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                <rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor"
+                  stroke-width="1.8" />
+                <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8" />
+                <circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" />
+              </svg>
               @akgec_idealab
             </a>
             <a class="contact-row" href="mailto:idealab@akgec.ac.in">
-              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3.5 6l8.5 7 8.5-7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                <rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.8" />
+                <path d="M3.5 6l8.5 7 8.5-7" fill="none" stroke="currentColor" stroke-width="1.8"
+                  stroke-linejoin="round" />
+              </svg>
               idealab@akgec.ac.in
             </a>
             <a class="contact-row" href="https://www.akgec.ac.in" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3.5 12h17M12 3.5c2.5 2.5 3.5 5.5 3.5 8.5s-1 6-3.5 8.5c-2.5-2.5-3.5-5.5-3.5-8.5s1-6 3.5-8.5Z" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                <circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8" />
+                <path d="M3.5 12h17M12 3.5c2.5 2.5 3.5 5.5 3.5 8.5s-1 6-3.5 8.5c-2.5-2.5-3.5-5.5-3.5-8.5s1-6 3.5-8.5Z"
+                  fill="none" stroke="currentColor" stroke-width="1.8" />
+              </svg>
               www.akgec.ac.in
             </a>
           </li>
@@ -1676,64 +1275,6 @@
     </section>
   </main>
 
-  
-  <!--
-  +====================================================================+
-  | SLIDE 17 - BOTTOM REGISTER CTA : Final Registration Push          
-  | CLASS   : .bottom-register-cta .bottom-cta-actions                
-  | POSITION: Just before the footer - catches users who scrolled all 
-  |           the way through the page                                 
-  |                                                                    
-  | CONTAINS:                                                          
-  |   * Kicker  : Free Entry . 15-16 October 2026 . AKGEC, Ghaziabad
-  |   * Heading : Ready to Turn Your Idea Into Reality?               
-  |   * Description paragraph                                         
-  |   * Button 1 (primary) : Register Now - Its Free   #register  
-  |   * Button 2 (ghost)   : View Full Schedule        #schedule   
-  |                                                                    
-  | HOW TO UPDATE:                                                     
-  |   * Edit all text directly in HTML                                
-  |   * Background gradient controlled in style.css .bottom-register-cta
-  +====================================================================+
-  -->
-  <!-- ============ BOTTOM REGISTER CTA ============ -->
-  <section class="bottom-register-cta" aria-labelledby="bottom-cta-title">
-    <div class="container text-center">
-      <p class="section-kicker">Free Entry · 15–16 October 2026 · AKGEC, Ghaziabad</p>
-      <h2 class="section-title" id="bottom-cta-title">Ready to Turn Your Idea Into Reality?</h2>
-      <p class="section-sub">Join 500+ innovators, founders, VCs and mentors at Startup Conclave '26. Pitch your idea, win from the ~₹50,000 prize pool, and unlock real funding opportunities.</p>
-      <div class="bottom-cta-actions" style="flex-wrap:wrap;gap:0.75rem;">
-        <a class="btn btn-primary btn-lg" href="#register">Register Now — It's Free</a>
-        <a class="btn btn-ghost btn-lg" href="#schedule">View Full Schedule</a>
-      </div>
-    </div>
-  </section>
-
-  
-  <!--
-  +====================================================================+
-  | SLIDE 18 - FOOTER : Site Footer                                   
-  | CLASS   : .site-footer .footer-grid .footer-brand                 
-  |           .footer-nav .footer-news .footer-bottom                 
-  |                                                                    
-  | CONTAINS 3 columns:                                               
-  |   Col 1 - Brand    : Logo, event name, organizer description     
-  |   Col 2 - Nav      : Mirror of main nav links (About to Register)
-  |   Col 3 - Newsletter: Email signup form + Subscribe button        
-  |                                                                    
-  | Bottom bar: Copyright line + Back to top link                    
-  |                                                                    
-  | NEWSLETTER FORM (preview mode):                                    
-  |   * Validates email format and shows a toast notification        
-  |   * Saves email to localStorage only - no actual emails sent     
-  |   * To receive real signups: integrate with Mailchimp or similar 
-  |                                                                    
-  | HOW TO UPDATE:                                                     
-  |   * Copyright year/text : edit the <p> in .footer-bottom         
-  |   * Footer nav links    : match any changes made to main nav     
-  |   * Organizer desc      : edit <p> inside .footer-brand          
-  +====================================================================+
-  -->
   <!-- ============ FOOTER ============ -->
   <footer class="site-footer">
     <div class="brand-stripe" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
@@ -1742,27 +1283,13 @@
         <a class="brand" href="#home">
           <img class="brand-mark" src="images/conclave-logo.jpg" alt="" width="44" height="44">
           <span class="brand-text">
-            <span class="brand-name">Startup Conclave '26</span>
+            <span class="brand-name">Startup Conclave ’26</span>
             <span class="brand-sub">Build it. Pitch it. Grow it.</span>
           </span>
         </a>
-        <p>Organised by AKGEC IDEA Lab, the Technical Business Incubator of Ajay Kumar Garg Engineering College, Ghaziabad.</p>
+        <p>Organised by AKGEC IDEA Lab, the Technical Business Incubator of Ajay Kumar Garg Engineering College,
+          Ghaziabad.</p>
       </div>
-
-      <nav class="footer-nav" aria-label="Footer">
-        <h2 class="footer-heading">Navigation</h2>
-        <ul>
-          <li><a href="#about">About</a></li>
-          <li><a href="#highlights">Highlights</a></li>
-          <li><a href="#how-it-works">Journey</a></li>
-          <li><a href="#schedule">Schedule</a></li>
-          <li><a href="#ways-to-join">Participate</a></li>
-          <li><a href="#venue">Venue</a></li>
-          <li><a href="#terms">Terms</a></li>
-          <li><a href="#faq">FAQ</a></li>
-          <li><a href="#register">Register</a></li>
-        </ul>
-      </nav>
 
       <div class="footer-news">
         <h2 class="footer-heading">Get event updates</h2>
@@ -1781,43 +1308,62 @@
     </div>
   </footer>
 
-  
-  <!--
-  +====================================================================+
-  | SLIDE 19 - POSTER MODAL : Lightbox Dialog                         
-  | ELEMENT : <dialog class='modal poster-modal' data-poster-modal>   
-  | CLASS   : .modal .poster-modal .modal-close .poster-modal-actions 
-  |                                                                    
-  | CONTAINS:                                                          
-  |   * Close button (X) in top-right corner                         
-  |   * Full-size poster image: images/conclave-poster.png            
-  |   * Download poster button (browser downloads the PNG file)       
-  |                                                                    
-  | TRIGGERED BY: any element with data-poster-open attribute:       
-  |   * Hero section poster button                                    
-  |   * Register aside Open full poster button                        
-  |                                                                    
-  | NOTE: QR code in poster will be updated - the figcaption in      
-  |   the hero section and the note in the register aside explain this
-  |                                                                    
-  | HOW TO UPDATE:                                                     
-  |   * New poster  : replace images/conclave-poster.png (same name) 
-  |   * OR update   : change src and href in this <dialog> block     
-  +====================================================================+
-  -->
-  <!-- ============ POSTER MODAL DIALOG ============ -->
+  <!-- ============ DIALOGS ============ -->
   <dialog class="modal poster-modal" data-poster-modal aria-label="Startup Conclave '26 poster">
     <button class="modal-close" type="button" data-modal-close aria-label="Close poster">
-      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+        <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+      </svg>
     </button>
-    <img src="images/conclave-poster.png" alt="Full Startup Conclave '26 poster: Ideas Today. Impact Tomorrow. 15-16 October 2026 at AKGEC Campus Ghaziabad. Pitch Competition, Expert Talks, Networking and more." width="1024" height="1536">
+    <img src="images/conclave-poster.jpg"
+      alt="Full Startup Conclave '26 poster with the registration QR code, coordinators, dates, venue and seed funding details."
+      width="1024" height="1536">
     <div class="poster-modal-actions">
-      <a class="btn btn-light btn-sm" href="images/conclave-poster.png" download="startup-conclave-26-poster.png">Download poster</a>
+      <a class="btn btn-light btn-sm" href="images/conclave-poster.jpg"
+        download="startup-conclave-26-poster.jpg">Download poster</a>
+    </div>
+  </dialog>
+
+  <!-- OTP Verification Modal -->
+  <dialog class="modal otp-modal" data-otp-modal aria-label="Verify your email">
+    <div style="padding: 24px; text-align: center;">
+      <div class="otp-icon"
+        style="background: rgba(220, 38, 38, 0.1); color: var(--poster-red); width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px auto;">
+        <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path
+            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        </svg>
+      </div>
+      <h2 style="margin-bottom: 12px; font-family: var(--font-display); font-size: 32px; color: var(--text-main);">Check
+        your email</h2>
+      <p style="color: var(--text-muted); margin-bottom: 24px;">We've sent a 4-digit verification code to your email
+        address.</p>
+
+      <div class="otp-inputs" style="display: flex; gap: 12px; justify-content: center; margin-bottom: 24px;">
+        <input type="text" class="otp-digit" maxlength="1"
+          style="width: 56px; height: 64px; font-size: 32px; text-align: center; border-radius: var(--radius-sm); border: 2px solid var(--border); background: var(--surface); color: var(--text-main); font-weight: bold;">
+        <input type="text" class="otp-digit" maxlength="1"
+          style="width: 56px; height: 64px; font-size: 32px; text-align: center; border-radius: var(--radius-sm); border: 2px solid var(--border); background: var(--surface); color: var(--text-main); font-weight: bold;">
+        <input type="text" class="otp-digit" maxlength="1"
+          style="width: 56px; height: 64px; font-size: 32px; text-align: center; border-radius: var(--radius-sm); border: 2px solid var(--border); background: var(--surface); color: var(--text-main); font-weight: bold;">
+        <input type="text" class="otp-digit" maxlength="1"
+          style="width: 56px; height: 64px; font-size: 32px; text-align: center; border-radius: var(--radius-sm); border: 2px solid var(--border); background: var(--surface); color: var(--text-main); font-weight: bold;">
+      </div>
+      <input type="hidden" id="otp-input" value="">
+
+      <p class="field-error" id="otp-err" style="margin-bottom: 16px;"></p>
+
+      <div style="display: flex; gap: 12px;">
+        <button class="btn btn-ghost" type="button" data-otp-close style="flex: 1;">Cancel</button>
+        <button class="btn btn-primary" type="button" id="verify-otp-btn" style="flex: 1;">Verify Code</button>
+      </div>
     </div>
   </dialog>
 
   <div class="toast" data-toast role="status" aria-live="polite"></div>
 
-  <script src="script.js"></script>
+  <script src="js/script.js"></script>
 </body>
+
 </html>
