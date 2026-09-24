@@ -125,10 +125,7 @@
       </nav>
 
       <div class="header-actions">
-        <button class="icon-btn theme-toggle" type="button" aria-label="Switch to dark theme" data-theme-toggle>
-          <svg class="icon-moon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
-          <svg class="icon-sun" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-        </button>
+
         <a class="btn btn-ghost header-see-more" href="#about">See More ↓</a>
         <button class="icon-btn nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav" data-nav-toggle>
           <span class="nav-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
@@ -210,7 +207,6 @@
               View full poster
             </span>
           </button>
-          <figcaption>📌 QR code will be updated soon with the official registration link.</figcaption>
         </figure>
       </div>
       <div class="brand-stripe" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
@@ -236,21 +232,34 @@
   |   * To change keywords: edit each <span> in .quote-keywords      
   +====================================================================+
   -->
-    <!-- ============ QUOTE / PHILOSOPHY STRIP ============ -->
-    <section class="quote-strip">
-      <div class="container text-center">
-        <p class="quote-kicker">From a Thought → to a Possibility → to a Venture</p>
-        <div class="quote-keywords">
-          <span>IDEATE.</span>
-          <span>CONNECT.</span>
-          <span>SHOWCASE.</span>
-          <span>PITCH.</span>
-          <span>GROW.</span>
+    <!-- ============ FUNDING AND OPPORTUNITY BAND ============ -->
+    <section class="funding" aria-labelledby="funding-title">
+      <div class="container funding-grid">
+        <div class="funding-headline">
+          <p class="funding-kicker">Competition &amp; Rewards</p>
+          <h2 id="funding-title" class="funding-amount"><span class="funding-upto">Up to</span> ~₹50,000</h2>
+          <p class="funding-note">Prize pool for top-performing startup ideas, combined with pre-incubation pathways and seed-funding access.</p>
+          <a class="btn btn-light btn-lg" href="#register" data-preselect-pitch>Register to participate</a>
+          <a class="btn-exhibition" href="#register" data-preselect-exhibit style="margin-top:0.75rem;display:inline-flex;">Register for Exhibition</a>
         </div>
-        <blockquote class="quote-text">
-          "Big ventures often begin with one small idea — and the courage to put it out there."
-        </blockquote>
-        <p class="quote-closing">Your idea is the starting point. <strong>Startup Conclave is where the journey begins.</strong></p>
+        <ul class="store-list" aria-label="What's in store">
+          <li>
+            <h3>Pitch Competition</h3>
+            <p>Pitch your startup live, get valuable expert feedback, and win recognition plus real funding access.</p>
+          </li>
+          <li>
+            <h3>Startup Exhibition</h3>
+            <p>30+ startup stalls showcase working prototypes and products to thousands of attendees and mentors.</p>
+          </li>
+          <li>
+            <h3>IPR &amp; Legal Guidance</h3>
+            <p>Expert session on Intellectual Property Rights &amp; startup protection strategies to safeguard your IP.</p>
+          </li>
+          <li>
+            <h3>VC Roundtable &amp; Incubation</h3>
+            <p>Closed-door interactions with investors, directors, and VCs with direct pre-incubation rollout.</p>
+          </li>
+        </ul>
       </div>
     </section>
 
@@ -374,6 +383,24 @@
       </div>
     </section>
 
+    <!-- ============ QUOTE / PHILOSOPHY STRIP ============ -->
+    <section class="quote-strip">
+      <div class="container text-center">
+        <p class="quote-kicker">From a Thought → to a Possibility → to a Venture</p>
+        <div class="quote-keywords">
+          <span>IDEATE.</span>
+          <span>CONNECT.</span>
+          <span>SHOWCASE.</span>
+          <span>PITCH.</span>
+          <span>GROW.</span>
+        </div>
+        <blockquote class="quote-text">
+          "Big ventures often begin with one small idea — and the courage to put it out there."
+        </blockquote>
+        <p class="quote-closing">Your idea is the starting point. <strong>Startup Conclave is where the journey begins.</strong></p>
+      </div>
+    </section>
+
   
   <!--
   +====================================================================+
@@ -401,11 +428,11 @@
       <div class="container about-grid">
         <div class="about-intro">
           <p class="section-kicker">Why Attend</p>
-          <h2 class="section-title" id="about-title">Why just have an idea? When you can build it. Pitch it. Grow it.</h2>
+          <h2 class="section-title" id="about-title"><span class="heading-highlight">Why just have an idea?</span> When you can build it. Pitch it. Grow it.</h2>
           <p>Startup Conclave 2026 brings together ideas, innovators, mentors, investors and opportunities — all under one roof.</p>
           <p class="about-highlight"><strong>Big ventures often begin with one small idea — and the courage to put it out there.</strong></p>
           <div class="about-logo">
-            <img src="images/conclave-logo.jpg" alt="Startup Conclave 2026 logo: the event name inside a white diamond framed by bold coloured bars." width="900" height="900" loading="lazy">
+            <img src="images/conclave-logo.jpg" alt="Startup Conclave 2026 logo: the event name inside a white diamond framed by bold coloured bars." width="260" height="260" loading="lazy">
           </div>
         </div>
 
@@ -542,35 +569,7 @@
   |   * Store items   : edit or add <li> inside ul.store-list        
   +====================================================================+
   -->
-    <!-- ============ FUNDING AND OPPORTUNITY BAND ============ -->
-    <section class="funding" aria-labelledby="funding-title">
-      <div class="container funding-grid">
-        <div class="funding-headline">
-          <p class="funding-kicker">Competition &amp; Rewards</p>
-          <h2 id="funding-title" class="funding-amount"><span class="funding-upto">Up to</span> ~₹50,000</h2>
-          <p class="funding-note">Prize pool for top-performing startup ideas, combined with pre-incubation pathways and seed-funding access.</p>
-          <a class="btn btn-light btn-lg" href="#register" data-preselect-pitch>Register to participate</a>
-        </div>
-        <ul class="store-list" aria-label="What's in store">
-          <li>
-            <h3>Pitch Competition</h3>
-            <p>Pitch your startup live, get valuable expert feedback, and win recognition plus real funding access.</p>
-          </li>
-          <li>
-            <h3>Startup Exhibition</h3>
-            <p>30+ startup stalls showcase working prototypes and products to thousands of attendees and mentors.</p>
-          </li>
-          <li>
-            <h3>IPR &amp; Legal Guidance</h3>
-            <p>Expert session on Intellectual Property Rights &amp; startup protection strategies to safeguard your IP.</p>
-          </li>
-          <li>
-            <h3>VC Roundtable &amp; Incubation</h3>
-            <p>Closed-door interactions with investors, directors, and VCs with direct pre-incubation rollout.</p>
-          </li>
-        </ul>
-      </div>
-    </section>
+
 
   
   <!--
@@ -1526,7 +1525,7 @@
       <p class="section-kicker">Free Entry · 15–16 October 2026 · AKGEC, Ghaziabad</p>
       <h2 class="section-title" id="bottom-cta-title">Ready to Turn Your Idea Into Reality?</h2>
       <p class="section-sub">Join 500+ innovators, founders, VCs and mentors at Startup Conclave '26. Pitch your idea, win from the ~₹50,000 prize pool, and unlock real funding opportunities.</p>
-      <div class="bottom-cta-actions">
+      <div class="bottom-cta-actions" style="flex-wrap:wrap;gap:0.75rem;">
         <a class="btn btn-primary btn-lg" href="#register">Register Now — It's Free</a>
         <a class="btn btn-ghost btn-lg" href="#schedule">View Full Schedule</a>
       </div>

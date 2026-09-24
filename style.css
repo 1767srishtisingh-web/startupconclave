@@ -1444,3 +1444,93 @@ details[open] .journey-chevron { transform: rotate(180deg); }
 /* ============ FREE ENTRY BADGE ============ */
 .fee-free { background: rgba(34,197,94,0.1); border-color: rgba(34,197,94,0.3); }
 .free-entry { color: #16a34a; font-size: 1.4rem; }
+
+/* ================================================================
+   CUSTOM ADDITIONS — Changes batch Sep 2026
+   ================================================================ */
+
+/* --- Tighter section spacing (reduce vertical gaps globally) --- */
+:root { --section-y: clamp(2.25rem, 4.5vw, 3.75rem); }
+
+/* --- Hero countdown widget --- */
+.hero-countdown {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-variant-numeric: tabular-nums;
+}
+.hcd-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: var(--r-sm);
+  padding: 2px 6px;
+  min-width: 36px;
+}
+.hcd-num {
+  font-size: 1.1rem;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+  color: var(--amber);
+}
+.hcd-lbl {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.65;
+  margin-top: 1px;
+}
+.hcd-sep {
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--amber);
+  margin: 0 1px;
+  padding-bottom: 8px;
+  opacity: 0.7;
+}
+.fact-countdown dt { white-space: nowrap; }
+
+/* --- About section: highlighted heading --- */
+#about-title .heading-highlight {
+  background: linear-gradient(135deg, var(--amber) 0%, var(--red) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-style: italic;
+}
+
+/* --- About section: optimised logo/poster size --- */
+.about-logo img {
+  max-width: 260px;
+  width: 100%;
+  height: auto;
+  border-radius: var(--r-lg);
+  display: block;
+  margin: 1.25rem auto 0;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.28);
+}
+
+/* --- Register for Exhibition button --- */
+.btn-exhibition {
+  background: linear-gradient(135deg, var(--green) 0%, #0d7a4a 100%);
+  color: #fff;
+  border: none;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 0.75rem 1.75rem;
+  border-radius: var(--r-md);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: opacity .18s, transform .18s;
+  cursor: pointer;
+}
+.btn-exhibition:hover { opacity: 0.88; transform: translateY(-1px); }
+.btn-exhibition::before { content: "??"; }
+
+/* --- Theme toggle hidden (removed from nav) --- */
+.theme-toggle { display: none !important; }

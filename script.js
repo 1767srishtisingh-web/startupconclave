@@ -715,4 +715,32 @@
       toast('Subscribed. Updates will go to ' + v + '.');
     });
   }
+
+  /* ---------- Hero mini-countdown widget (data-hero-countdown) ---------- */
+  (function () {
+    var widget = document.querySelector('[data-hero-countdown]');
+    if (!widget) return;
+    function pad(n) { return String(n).padStart(2, '0'); }
+    function tick() {
+      var diff = DEADLINE - Date.now();
+      if (diff <= 0) {
+        widget.innerHTML = '<span style="font-size:0.9rem;font-weight:700;color:var(--red)">Registration Closed</span>';
+        return;
+      }
+      var d = Math.floor(diff / 86400000);
+      var h = Math.floor((diff % 86400000) / 3600000);
+      var m = Math.floor((diff % 3600000) / 60000);
+      var s = Math.floor((diff % 60000) / 1000);
+      var days  = widget.querySelector('[data-hcd="days"]');
+      var hours = widget.querySelector('[data-hcd="hours"]');
+      var mins  = widget.querySelector('[data-hcd="mins"]');
+      var secs  = widget.querySelector('[data-hcd="secs"]');
+      if (days)  days.textContent  = pad(d);
+      if (hours) hours.textContent = pad(h);
+      if (mins)  mins.textContent  = pad(m);
+      if (secs)  secs.textContent  = pad(s);
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
 })();
