@@ -130,6 +130,13 @@ document.addEventListener('DOMContentLoaded', () => {
     modal.addEventListener('click', (e) => {
       if (e.target === modal) modal.close();
     });
+
+    // Close modal when a link inside it is clicked (e.g. #register)
+    modal.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', () => {
+        modal.close();
+      });
+    });
   }
 
   /* --- 5. SCHEDULE TABS --- */
