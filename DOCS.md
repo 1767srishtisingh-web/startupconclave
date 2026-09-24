@@ -192,9 +192,8 @@ Contains:
 - Kicker: *"Competition & Rewards"*
 - Large prize display: **"Up to ~₹50,000"**
 - Supporting note on pre-incubation pathways and seed-funding access.
-- **Action Buttons:**
+- **Action Button:**
   - `Register to participate` (`.btn-light`) → scrolls to `#register` with Pitch track pre-selected.
-  - `Register for Exhibition` (`.btn-exhibition`) → green gradient button scrolling to `#register` with Exhibition track pre-selected.
 - **4 Highlights:**
   1. Pitch Competition
   2. Startup Exhibition (30+ stalls)

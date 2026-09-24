@@ -2133,3 +2133,129 @@ html[data-theme="light"] .funding {
   background: linear-gradient(135deg, #0C1B33 0%, #162C52 100%) !important;
   color: #FFFFFF !important;
 }
+
+/* --- Attractive Square Boxes with Shadow Elements for Competition & Rewards --- */
+.store-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+  padding: 0;
+  margin: 0;
+  border: none !important;
+}
+
+.store-list li,
+.store-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 1.6rem 1.4rem;
+  background: rgba(15, 27, 52, 0.75) !important;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 14px !important;
+  box-shadow:
+    0 12px 28px -6px rgba(0, 0, 0, 0.55),
+    0 2px 8px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18) !important;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.28s ease,
+              border-color 0.28s ease;
+  overflow: hidden;
+}
+
+.store-list li::before,
+.store-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #1A6FFF 0%, #00D084 50%, #F5A623 100%);
+  opacity: 0;
+  transition: opacity 0.28s ease;
+}
+
+.store-list li:hover,
+.store-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(90, 155, 255, 0.48) !important;
+  box-shadow:
+    0 22px 44px -8px rgba(0, 0, 0, 0.65),
+    0 0 30px rgba(26, 111, 255, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25) !important;
+}
+
+.store-list li:hover::before,
+.store-card:hover::before {
+  opacity: 1;
+}
+
+.store-card-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: rgba(26, 111, 255, 0.16);
+  border: 1px solid rgba(26, 111, 255, 0.32);
+  box-shadow: 0 4px 12px rgba(26, 111, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  font-size: 1.35rem;
+  margin-bottom: 1rem;
+  flex-shrink: 0;
+}
+
+.store-list h3 {
+  color: #FFFFFF !important;
+  font-size: 1.15rem;
+  font-weight: 750;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.45rem 0;
+}
+
+.store-list p {
+  color: rgba(216, 228, 248, 0.72) !important;
+  font-size: 0.935rem;
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* Light theme support for store-card */
+html[data-theme="light"] .store-list li,
+html[data-theme="light"] .store-card {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(12, 27, 51, 0.1) !important;
+  box-shadow:
+    0 10px 25px -4px rgba(12, 27, 51, 0.12),
+    0 2px 6px rgba(12, 27, 51, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+}
+html[data-theme="light"] .store-list li:hover,
+html[data-theme="light"] .store-card:hover {
+  border-color: rgba(29, 95, 214, 0.4) !important;
+  box-shadow:
+    0 20px 40px -6px rgba(29, 95, 214, 0.2),
+    0 0 20px rgba(29, 95, 214, 0.12) !important;
+}
+html[data-theme="light"] .store-list h3 {
+  color: #0C1B33 !important;
+}
+html[data-theme="light"] .store-list p {
+  color: #4A5870 !important;
+}
+html[data-theme="light"] .store-card-icon {
+  background: rgba(29, 95, 214, 0.1);
+  border-color: rgba(29, 95, 214, 0.25);
+  box-shadow: 0 4px 12px rgba(29, 95, 214, 0.1);
+}
+
+@media (max-width: 640px) {
+  .store-list {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}

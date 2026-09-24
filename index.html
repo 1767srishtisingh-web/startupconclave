@@ -283,9 +283,7 @@
   | CONTAINS:                                                          |
   |   * Kicker  : Competition & Rewards                                |
   |   * Large display: Up to ~Rs.50,000 (id=funding-title)            |
-  |   * CTAs:                                                          |
-  |       - "Register to participate" (data-preselect-pitch)          |
-  |       - "Register for Exhibition" (.btn-exhibition)               |
+  |   * CTA: "Register to participate" (data-preselect-pitch)         |
   |   * 4 list items (ul.store-list):                                  |
   |       1. Pitch Competition                                        |
   |       2. Startup Exhibition                                       |
@@ -305,22 +303,25 @@
           <h2 id="funding-title" class="funding-amount"><span class="funding-upto">Up to</span> ~₹50,000</h2>
           <p class="funding-note">Prize pool for top-performing startup ideas, combined with pre-incubation pathways and seed-funding access.</p>
           <a class="btn btn-light btn-lg" href="#register" data-preselect-pitch>Register to participate</a>
-          <a class="btn-exhibition" href="#register" data-preselect-exhibit style="margin-top:0.75rem;display:inline-flex;">Register for Exhibition</a>
         </div>
         <ul class="store-list" aria-label="What's in store">
-          <li>
+          <li class="store-card">
+            <div class="store-card-icon" aria-hidden="true">🎤</div>
             <h3>Pitch Competition</h3>
             <p>Pitch your startup live, get valuable expert feedback, and win recognition plus real funding access.</p>
           </li>
-          <li>
+          <li class="store-card">
+            <div class="store-card-icon" aria-hidden="true">🎪</div>
             <h3>Startup Exhibition</h3>
             <p>30+ startup stalls showcase working prototypes and products to thousands of attendees and mentors.</p>
           </li>
-          <li>
+          <li class="store-card">
+            <div class="store-card-icon" aria-hidden="true">⚖️</div>
             <h3>IPR &amp; Legal Guidance</h3>
             <p>Expert session on Intellectual Property Rights &amp; startup protection strategies to safeguard your IP.</p>
           </li>
-          <li>
+          <li class="store-card">
+            <div class="store-card-icon" aria-hidden="true">🤝</div>
             <h3>VC Roundtable &amp; Incubation</h3>
             <p>Closed-door interactions with investors, directors, and VCs with direct pre-incubation rollout.</p>
           </li>
