@@ -34,6 +34,20 @@
     })();
   </script>
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <style>
+    /* Why Attend: ">>" chevron bullets instead of empty boxes */
+    .pillars .pillar { display: flex; align-items: flex-start; gap: 1rem; }
+    .pillars .pillar .pillar-step {
+      width: 1.75rem !important; height: 1.75rem !important;
+      margin-top: 0.15rem; flex-shrink: 0;
+      background: none !important; border: 0 !important; border-radius: 0 !important;
+      box-shadow: none !important; -webkit-mask: none !important; mask: none !important;
+      color: var(--pillar);
+      filter: drop-shadow(0 0 6px var(--pillar));
+      display: flex; align-items: center; justify-content: center;
+    }
+    .pillars .pillar .pillar-step svg { width: 100%; height: 100%; display: block; }
+  </style>
 </head>
 
 <body>
@@ -424,7 +438,7 @@
 
         <ol class="pillars">
           <li class="pillar" style="--pillar: var(--amber)">
-            <span class="pillar-step" aria-hidden="true"></span>
+            <span class="pillar-step" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 6l6 6-6 6"/><path d="M13 6l6 6-6 6"/></svg></span>
             <div>
               <h3>~₹50,000 Prize Pool</h3>
               <p>Your idea could be worth more than you think. Pitch, compete, and get recognized in front of seasoned
@@ -432,7 +446,7 @@
             </div>
           </li>
           <li class="pillar" style="--pillar: var(--green)">
-            <span class="pillar-step" aria-hidden="true"></span>
+            <span class="pillar-step" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 6l6 6-6 6"/><path d="M13 6l6 6-6 6"/></svg></span>
             <div>
               <h3>Pre-Incubation Opportunity</h3>
               <p>A great idea needs the right environment to grow. Selected teams get the opportunity to move towards
@@ -440,7 +454,7 @@
             </div>
           </li>
           <li class="pillar" style="--pillar: var(--blue)">
-            <span class="pillar-step" aria-hidden="true"></span>
+            <span class="pillar-step" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 6l6 6-6 6"/><path d="M13 6l6 6-6 6"/></svg></span>
             <div>
               <h3>IPR Guidance</h3>
               <p>Your idea. Your innovation. Your intellectual property. Get direct exposure to IPR guidance and
@@ -448,7 +462,7 @@
             </div>
           </li>
           <li class="pillar" style="--pillar: var(--red)">
-            <span class="pillar-step" aria-hidden="true"></span>
+            <span class="pillar-step" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 6l6 6-6 6"/><path d="M13 6l6 6-6 6"/></svg></span>
             <div>
               <h3>Seed-Funding Opportunities</h3>
               <p>Have an idea with potential? Explore opportunities to take it from a concept towards reality, subject
@@ -456,7 +470,7 @@
             </div>
           </li>
           <li class="pillar" style="--pillar: var(--poster-blue-lt)">
-            <span class="pillar-step" aria-hidden="true"></span>
+            <span class="pillar-step" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 6l6 6-6 6"/><path d="M13 6l6 6-6 6"/></svg></span>
             <div>
               <h3>Take The Stage</h3>
               <p>Stop explaining your idea only to the people around you. Put it in front of a jury. Pitch your startup,
@@ -464,7 +478,7 @@
             </div>
           </li>
           <li class="pillar" style="--pillar: var(--poster-green)">
-            <span class="pillar-step" aria-hidden="true"></span>
+            <span class="pillar-step" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 6l6 6-6 6"/><path d="M13 6l6 6-6 6"/></svg></span>
             <div>
               <h3>Meet The Ecosystem</h3>
               <p>Connect with founders, investors, mentors, industry experts and fellow innovators. Because sometimes,
