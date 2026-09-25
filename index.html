@@ -181,6 +181,253 @@
       .hero > .brand-stripe { margin-top: 3rem; }
     }
   </style>
+  <style id="reg-forms-css">
+/* =========================================================================
+   REGISTRATION FORMS (Exhibition + Pitching) - opened from "Ways to Participate"
+   ========================================================================= */
+.participate-card .btn.is-active {
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.35), 0 0 24px rgba(56, 189, 248, 0.45);
+}
+.rf-wrap { margin: -1.5rem 0 4rem; }
+.rf-wrap [hidden], .rf-closed[hidden] { display: none !important; }
+.rf-closed {
+  text-align: center;
+  margin: -1.5rem auto 3rem;
+  padding: 1rem 1.5rem;
+  max-width: 640px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+.rf-panel {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity .3s ease, transform .3s ease;
+  scroll-margin-top: calc(var(--header-height) + 1.5rem);
+}
+.rf-panel.is-open { opacity: 1; transform: none; }
+
+/* Highlighted card */
+.rf-card {
+  position: relative;
+  overflow: hidden;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 2.5rem 2.75rem 2.25rem;
+  border-radius: 18px;
+  background: var(--bg);
+  border: 1px solid rgba(28, 109, 208, 0.45);
+  box-shadow: 0 25px 60px -18px rgba(28, 109, 208, 0.45), 0 0 0 4px rgba(56, 189, 248, 0.06);
+}
+[data-theme="dark"] .rf-card {
+  background:
+    radial-gradient(circle at 90% 0%, rgba(56, 189, 248, 0.16) 0%, transparent 45%),
+    radial-gradient(circle at 0% 100%, rgba(28, 109, 208, 0.14) 0%, transparent 45%),
+    linear-gradient(165deg, #0f1f42 0%, #0a1631 50%, #080E1C 100%);
+  border-color: rgba(56, 189, 248, 0.4);
+  box-shadow: 0 30px 70px -20px rgba(28, 109, 208, 0.6), 0 0 40px -10px rgba(56, 189, 248, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.07);
+}
+.rf-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #1C6DD0 0 25%, #38bdf8 25% 50%, #34d399 50% 75%, #fbbf24 75% 100%);
+}
+.rf-close {
+  position: absolute;
+  top: 1.1rem; right: 1.1rem;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-main);
+  cursor: pointer;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+.rf-close:hover { border-color: #38bdf8; box-shadow: 0 0 14px rgba(56, 189, 248, 0.45); }
+
+/* Header */
+.rf-head {
+  text-align: center;
+  margin: 0 auto 1.75rem;
+  padding: 0 1.5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+.rf-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #1C6DD0;
+  margin-bottom: 0.5rem;
+}
+[data-theme="dark"] .rf-eyebrow { color: #7dd3fc; }
+.rf-title {
+  font-family: 'Archivo', var(--font-sans);
+  font-stretch: 112%;
+  font-size: 1.65rem;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--text-main);
+}
+.rf-head p:not(.rf-eyebrow) {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin-top: 0.6rem;
+  text-align: left;
+}
+.rf-head .rf-title + p { color: var(--text-main); font-weight: 600; text-align: center; margin-top: 0.75rem; }
+
+/* Sections */
+.rf-section {
+  border: 0;
+  margin: 0 0 1.5rem;
+  padding: 0 0 1.5rem;
+  border-bottom: 1px solid var(--border);
+  min-width: 0;
+}
+.rf-section:last-of-type { border-bottom: 0; padding-bottom: 0.5rem; }
+.rf-section legend {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  width: 100%;
+  font-family: 'Archivo', var(--font-sans);
+  font-size: 1.08rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  margin-bottom: 1.1rem;
+  padding: 0;
+  color: var(--text-main);
+}
+.rf-num {
+  width: 28px; height: 28px;
+  border-radius: 8px;
+  display: grid; place-items: center;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #fff;
+  background: linear-gradient(135deg, #1C6DD0, #0a4b9c);
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.35);
+  flex-shrink: 0;
+}
+
+.rf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 1.25rem; }
+.rf-grid .rf-field { margin-bottom: 0; gap: 0.4rem; }
+.rf-full { grid-column: 1 / -1; }
+.rf-form label, .rf-label { font-size: 0.83rem; font-weight: 600; color: var(--text-main); line-height: 1.4; }
+.rf-req { color: #38bdf8; font-weight: 700; }
+.rf-opt {
+  font-size: 0.68rem; font-weight: 500;
+  color: var(--text-muted);
+  margin-left: 0.2rem;
+  padding: 0.05rem 0.45rem;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+.rf-form input:not([type="radio"]):not([type="checkbox"]),
+.rf-form select,
+.rf-form textarea {
+  padding: 0.7rem 0.9rem;
+  font-size: 0.9rem;
+  border-radius: 10px;
+}
+.rf-form textarea { min-height: 84px; resize: vertical; line-height: 1.5; }
+.rf-form select { cursor: pointer; }
+[data-theme="dark"] .rf-form input:not([type="radio"]):not([type="checkbox"]),
+[data-theme="dark"] .rf-form select,
+[data-theme="dark"] .rf-form textarea { background: rgba(8, 14, 28, 0.72); border-color: rgba(255, 255, 255, 0.12); }
+[data-theme="dark"] .rf-form select option { background: #0e1629; }
+.rf-form input:focus, .rf-form select:focus, .rf-form textarea:focus { border-color: #38bdf8; box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2); }
+.rf-form .field-error { font-size: 0.75rem; }
+
+.rf-note { display: flex; gap: 0.4rem; align-items: flex-start; font-size: 0.75rem; line-height: 1.45; color: #0369a1; }
+[data-theme="dark"] .rf-note { color: #7dd3fc; }
+.rf-note svg { flex-shrink: 0; margin-top: 2px; }
+
+.rf-linkin { position: relative; }
+.rf-linkin svg { position: absolute; left: 0.85rem; top: 50%; transform: translateY(-50%); color: #38bdf8; pointer-events: none; }
+.rf-linkin input { padding-left: 2.5rem !important; }
+
+/* Yes / No */
+.rf-seg { display: inline-flex; align-self: flex-start; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+.rf-seg label { position: relative; cursor: pointer; margin: 0; }
+.rf-seg input { position: absolute; opacity: 0; pointer-events: none; }
+.rf-seg span { display: grid; place-items: center; height: 42px; padding: 0 1.5rem; font-size: 0.875rem; font-weight: 600; color: var(--text-muted); transition: background var(--transition), color var(--transition); }
+.rf-seg label + label span { border-left: 1px solid var(--border); }
+.rf-seg input:checked + span { background: linear-gradient(135deg, #1C6DD0, #0a4b9c); color: #fff; }
+.rf-seg input:focus-visible + span { outline: 2px solid #38bdf8; outline-offset: -2px; }
+.rf-yn-row { display: flex; gap: 0.75rem; align-items: center; }
+.rf-yn-row input[data-regno] { flex: 1; }
+.has-error .rf-seg { border-color: var(--red); }
+
+/* Team members */
+.rf-team select { max-width: 260px; }
+.rf-members { display: grid; gap: 0.85rem; }
+.rf-members:not(:empty) { margin-top: 0.4rem; }
+.rf-member {
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  border-left: 3px solid #38bdf8;
+  border-radius: 12px;
+  padding: 1rem 1.1rem 1.1rem;
+  background: rgba(28, 109, 208, 0.06);
+  animation: rfIn .25s ease;
+}
+.rf-member-head { display: flex; align-items: center; gap: 0.55rem; font-size: 0.9rem; font-weight: 700; margin-bottom: 0.8rem; }
+.rf-member-head b { width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; font-size: 0.72rem; color: #fff; background: #1C6DD0; }
+.rf-grid-tight { gap: 0.8rem 1rem; }
+@keyframes rfIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+/* Declarations */
+.rf-check {
+  display: flex; gap: 0.7rem; align-items: flex-start;
+  padding: 0.8rem 0.95rem; margin-bottom: 0.7rem;
+  border-radius: 10px;
+  border: 1px solid rgba(56, 189, 248, 0.22);
+  background: rgba(28, 109, 208, 0.06);
+  font-size: 0.85rem !important; line-height: 1.5; font-weight: 500 !important;
+  cursor: pointer;
+}
+.rf-check input { margin-top: 0.25rem; accent-color: #1C6DD0; width: 16px; height: 16px; flex-shrink: 0; }
+.rf-check.has-error { border-color: var(--red); }
+
+.rf-hp { position: absolute !important; left: -9999px !important; width: 1px; height: 1px; opacity: 0; }
+.rf-submit { margin-top: 0.5rem; height: 52px; font-size: 1rem; }
+.rf-form .form-error { color: var(--red); text-align: center; font-size: 0.875rem; margin-top: 0.75rem; }
+
+/* Success + community */
+.rf-success { text-align: center; padding: 0.5rem 0; outline: none; }
+.rf-success-icon {
+  width: 60px; height: 60px; margin: 0 auto 0.9rem;
+  border-radius: 50%; display: grid; place-items: center;
+  color: #fff; background: linear-gradient(135deg, #1C6DD0, #0a4b9c);
+  box-shadow: 0 0 26px rgba(56, 189, 248, 0.5);
+}
+.rf-success > h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 1.5rem; }
+.rf-community {
+  max-width: 560px; margin: 0 auto; padding: 1.75rem 1.5rem;
+  border-radius: 14px;
+  border: 1px solid rgba(37, 211, 102, 0.35);
+  background: radial-gradient(circle at 50% 0%, rgba(37, 211, 102, 0.12) 0%, transparent 60%), var(--surface);
+}
+.rf-wa-badge { width: 58px; height: 58px; margin-bottom: 0.9rem; }
+.rf-community h4 { font-size: 1.1rem; margin-bottom: 0.45rem; }
+.rf-community p { color: var(--text-muted); font-size: 0.875rem; line-height: 1.55; margin-bottom: 1.2rem; }
+
+@media (max-width: 700px) {
+  .rf-card { padding: 2.25rem 1.25rem 1.5rem; border-radius: 14px; }
+  .rf-head { padding: 0 0.5rem 1.25rem; }
+  .rf-title { font-size: 1.35rem; padding: 0 1.5rem; }
+  .rf-grid { grid-template-columns: 1fr; }
+  .rf-yn-row { flex-direction: column; align-items: stretch; }
+  .rf-team select { max-width: none; }
+}
+  </style>
 </head>
 
 <body>
@@ -1021,8 +1268,8 @@
               </div>
               <form class="rf-form" id="exhibit-form" novalidate data-conclave-form="exhibit">
                 <input type="hidden" name="form_type" value="Startup Exhibition Registration">
-                <input type="text" name="bot_check" class="rf-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-                <fieldset class="rf-section"><legend><span class="rf-num">1</span>Founder / Contact Details</legend><div class="rf-grid"><div class="field rf-field"><label for="exhibit-founder_name">Founder / Primary Contact Name <span class="rf-req" aria-hidden="true">*</span></label><input id="exhibit-founder_name" name="founder_name" type="text" placeholder="Full name" required><p class="field-error" id="exhibit-founder_name-err"></p></div><div class="field rf-field"><label for="exhibit-designation">Designation <span class="rf-req" aria-hidden="true">*</span></label><select id="exhibit-designation" name="designation" required><option value="">Select an option</option><option>Founder</option><option>Co-Founder</option><option>CEO</option><option>CTO</option><option>COO</option><option>CFO</option><option>Managing Director</option><option>Director</option><option>Product Head</option><option>Team Lead</option><option>Other</option></select><p class="field-error" id="exhibit-designation-err"></p></div><div class="field rf-field"><label for="exhibit-email">Email Address <span class="rf-req" aria-hidden="true">*</span></label><input id="exhibit-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="you@example.com" required><p class="field-error" id="exhibit-email-err"></p></div><div class="field rf-field"><label for="exhibit-phone">Phone Number <span class="rf-req" aria-hidden="true">*</span></label><input id="exhibit-phone" name="phone" type="tel" autocomplete="tel" inputmode="numeric" maxlength="14" placeholder="10-digit mobile number" required><p class="field-error" id="exhibit-phone-err"></p></div><div class="field rf-field"><label for="exhibit-city_state">City &amp; State <span class="rf-req" aria-hidden="true">*</span></label><input id="exhibit-city_state" name="city_state" type="text" placeholder="City, State" required><p class="field-error" id="exhibit-city_state-err"></p></div><div class="field rf-field rf-full rf-team"><label for="exhibit-team_size">Team Size <span class="rf-req" aria-hidden="true">*</span></label><select id="exhibit-team_size" name="team_size" data-team-size required><option value="">Select team size</option><option value="2">2 members</option><option value="3">3 members</option><option value="4">4 members</option></select><p class="field-error" id="exhibit-team_size-err"></p><div class="rf-members" data-team-members aria-live="polite"></div></div></div></fieldset><fieldset class="rf-section"><legend><span class="rf-num">2</span>Startup Information</legend><div class="rf-grid"><div class="field rf-field"><label for="exhibit-startup_name">Startup Name <span class="rf-req" aria-hidden="true">*</span></label><input id="exhibit-startup_name" name="startup_name" type="text" placeholder="Startup name" required><p class="field-error" id="exhibit-startup_name-err"></p></div><div class="field rf-field"><label for="exhibit-website">Website <span class="rf-opt">Optional</span></label><input id="exhibit-website" name="website" type="url" inputmode="url" placeholder="https://"><p class="field-error" id="exhibit-website-err"></p></div><div class="field rf-field"><label for="exhibit-social">Startup LinkedIn / Social Media <span class="rf-opt">Optional</span></label><input id="exhibit-social" name="social" type="url" inputmode="url" placeholder="https://"><p class="field-error" id="exhibit-social-err"></p></div><div class="field rf-field"><label for="exhibit-industry">Industry / Sector <span class="rf-req" aria-hidden="true">*</span></label><select id="exhibit-industry" name="industry" required><option value="">Select an option</option><option>FinTech</option><option>HealthTech</option><option>EdTech</option><option>AgriTech</option><option>SaaS</option><option>AI / ML</option><option>DeepTech</option><option>EV / Mobility</option><option>E-commerce / D2C</option><option>CleanTech</option><option>Media / Entertainment</option><option>Manufacturing</option><option>Other</option></select><p class="field-error" id="exhibit-industry-err"></p></div><div class="field rf-field rf-full"><label for="exhibit-one_liner">One-line description of your startup <span class="rf-req" aria-hidden="true">*</span></label><input id="exhibit-one_liner" name="one_liner" type="text" placeholder="" required><p class="field-error" id="exhibit-one_liner-err"></p></div><div class="field rf-field rf-full"><label for="exhibit-description">Briefly describe your startup <span class="rf-req" aria-hidden="true">*</span></label><textarea id="exhibit-description" name="description" rows="3" placeholder="" required></textarea><p class="field-error" id="exhibit-description-err"></p></div><div class="field rf-field rf-full"><label for="exhibit-problem">What problem does your startup solve? <span class="rf-req" aria-hidden="true">*</span></label><textarea id="exhibit-problem" name="problem" rows="3" placeholder="" required></textarea><p class="field-error" id="exhibit-problem-err"></p></div><div class="field rf-field rf-full"><label for="exhibit-showcase_item">What product/service will you showcase at the exhibition? <span class="rf-req" aria-hidden="true">*</span></label><textarea id="exhibit-showcase_item" name="showcase_item" rows="3" placeholder="" required></textarea><p class="field-error" id="exhibit-showcase_item-err"></p></div><div class="field rf-field rf-full"><label for="exhibit-unique">What makes your product/technology unique? <span class="rf-req" aria-hidden="true">*</span></label><textarea id="exhibit-unique" name="unique" rows="3" placeholder="" required></textarea><p class="field-error" id="exhibit-unique-err"></p></div></div></fieldset><fieldset class="rf-section"><legend><span class="rf-num">3</span>Startup Stage &amp; Traction</legend><div class="rf-grid"><div class="field rf-field"><label for="exhibit-stage">Current Stage <span class="rf-req" aria-hidden="true">*</span></label><select id="exhibit-stage" name="stage" required><option value="">Select an option</option><option>Idea Stage</option><option>Prototype</option><option>MVP</option><option>Early Revenue</option><option>Growth Stage</option><option>Series A</option><option>Series B or later</option><option>Other</option></select><p class="field-error" id="exhibit-stage-err"></p></div><div class="field rf-field"><label for="exhibit-established">Year of Establishment <span class="rf-req" aria-hidden="true">*</span></label><input id="exhibit-established" name="established" type="text" placeholder="" required><p class="field-error" id="exhibit-established-err"></p></div><div class="field rf-field"><label for="exhibit-users">Current number of customers/users <span class="rf-opt">Optional</span></label><input id="exhibit-users" name="users" type="text" placeholder=""><p class="field-error" id="exhibit-users-err"></p></div><div class="field rf-field"><label for="exhibit-revenue">Current Revenue / Traction <span class="rf-opt">Optional</span></label><input id="exhibit-revenue" name="revenue" type="text" placeholder=""><p class="field-error" id="exhibit-revenue-err"></p></div><div class="field rf-field rf-full"><label for="exhibit-achievements">Major achievements / awards / recognitions <span class="rf-opt">Optional</span></label><textarea id="exhibit-achievements" name="achievements" rows="3" placeholder=""></textarea><p class="field-error" id="exhibit-achievements-err"></p></div></div></fieldset><fieldset class="rf-section"><legend><span class="rf-num">4</span>Exhibition Requirements</legend><div class="rf-grid"><div class="field rf-field"><label for="exhibit-showcase_type">What will you be showcasing? <span class="rf-req" aria-hidden="true">*</span></label><select id="exhibit-showcase_type" name="showcase_type" required><option value="">Select an option</option><option>Physical Product</option><option>Software / Application</option><option>Hardware</option><option>Prototype</option><option>Technology Demonstration</option><option>Service</option><option>Other</option></select><p class="field-error" id="exhibit-showcase_type-err"></p></div><div class="field rf-field rf-full"><label for="exhibit-setup_requirements">Briefly describe your exhibition setup requirements <span class="rf-opt">Optional</span></label><textarea id="exhibit-setup_requirements" name="setup_requirements" rows="3" placeholder=""></textarea><p class="field-error" id="exhibit-setup_requirements-err"></p></div><div class="field rf-field" id="exhibit-electricity-wrap"><span class="rf-label" id="exhibit-electricity-lbl">Will you require electricity at your stall? <span class="rf-req" aria-hidden="true">*</span></span><div class="rf-seg" role="radiogroup" aria-labelledby="exhibit-electricity-lbl"><label><input type="radio" name="electricity" value="Yes" required><span>Yes</span></label><label><input type="radio" name="electricity" value="No"><span>No</span></label></div><p class="field-error" id="exhibit-electricity-err"></p></div><div class="field rf-field" id="exhibit-internet-wrap"><span class="rf-label" id="exhibit-internet-lbl">Will you require internet/Wi-Fi connectivity? <span class="rf-req" aria-hidden="true">*</span></span><div class="rf-seg" role="radiogroup" aria-labelledby="exhibit-internet-lbl"><label><input type="radio" name="internet" value="Yes" required><span>Yes</span></label><label><input type="radio" name="internet" value="No"><span>No</span></label></div><p class="field-error" id="exhibit-internet-err"></p></div><div class="field rf-field rf-full"><label for="exhibit-special_equipment">Any special equipment or setup requirements? <span class="rf-opt">Optional</span></label><textarea id="exhibit-special_equipment" name="special_equipment" rows="3" placeholder=""></textarea><p class="field-error" id="exhibit-special_equipment-err"></p></div><div class="field rf-field rf-full"><label for="exhibit-representatives">Names and designations of representatives attending <span class="rf-opt">Optional</span></label><textarea id="exhibit-representatives" name="representatives" rows="3" placeholder=""></textarea><p class="field-error" id="exhibit-representatives-err"></p></div><div class="field rf-field rf-full"><label for="exhibit-brochure">Product / Company Brochure or Presentation - Google Drive Link <span class="rf-opt">Optional</span></label><div class="rf-linkin"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg><input id="exhibit-brochure" name="brochure" type="url" inputmode="url" placeholder="https://drive.google.com/..." data-link-kind="drive"></div><p class="rf-note"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.5h.01"/></svg><span>Set access to “Anyone with the link can view”.</span></p><p class="field-error" id="exhibit-brochure-err"></p></div><div class="field rf-field rf-full"><label for="exhibit-demo_video">Product / Demo Video - YouTube Link <span class="rf-opt">Optional</span></label><div class="rf-linkin"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="m10 9.2 5 2.8-5 2.8z" fill="currentColor"/></svg><input id="exhibit-demo_video" name="demo_video" type="url" inputmode="url" placeholder="https://youtube.com/..." data-link-kind="youtube"></div><p class="rf-note"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.5h.01"/></svg><span>The video must be set to Public on YouTube.</span></p><p class="field-error" id="exhibit-demo_video-err"></p></div></div></fieldset><fieldset class="rf-section"><legend><span class="rf-num">5</span>Participation</legend><div class="rf-grid"><div class="field rf-field"><label for="exhibit-goal">What are you looking to achieve through Startup Conclave 2026? <span class="rf-req" aria-hidden="true">*</span></label><select id="exhibit-goal" name="goal" required><option value="">Select an option</option><option>Product Showcase</option><option>Customer Acquisition</option><option>Investor Connections</option><option>Mentorship</option><option>Partnerships</option><option>Brand Visibility</option><option>Networking</option><option>Other</option></select><p class="field-error" id="exhibit-goal-err"></p></div><div class="field rf-field" id="exhibit-also_pitch-wrap"><span class="rf-label" id="exhibit-also_pitch-lbl">Would you also be interested in participating in the Startup Pitching Competition? <span class="rf-req" aria-hidden="true">*</span></span><div class="rf-seg" role="radiogroup" aria-labelledby="exhibit-also_pitch-lbl"><label><input type="radio" name="also_pitch" value="Yes" required><span>Yes</span></label><label><input type="radio" name="also_pitch" value="No"><span>No</span></label></div><p class="field-error" id="exhibit-also_pitch-err"></p></div><div class="field rf-field rf-full"><label for="exhibit-additional_info">Any additional information you would like the organizing team to know? <span class="rf-opt">Optional</span></label><textarea id="exhibit-additional_info" name="additional_info" rows="3" placeholder=""></textarea><p class="field-error" id="exhibit-additional_info-err"></p></div></div></fieldset><fieldset class="rf-section"><legend><span class="rf-num">6</span>Declaration</legend><label class="rf-check"><input type="checkbox" name="declare_accurate" value="Yes" required><span>I confirm that the information provided above is accurate. <span class="rf-req" aria-hidden="true">*</span></span></label><label class="rf-check"><input type="checkbox" name="declare_contact" value="Yes" required><span>I agree to be contacted by the Startup Conclave 2026 organizing team regarding my participation. <span class="rf-req" aria-hidden="true">*</span></span></label><p class="field-error rf-decl-err" id="exhibit-decl-err"></p></fieldset>
+                <input type="text" name="bot_check" class="rf-hp" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+                <fieldset class="rf-section"><legend><span class="rf-num">1</span>Founder / Contact Details</legend><div class="rf-grid"><div class="field rf-field"><label for="exhibit-founder_name">Founder / Primary Contact Name <span class="rf-req" aria-hidden="true">*</span></label><input id="exhibit-founder_name" name="founder_name" type="text" placeholder="Full name" required><p class="field-error" id="exhibit-founder_name-err"></p></div><div class="field rf-field"><label for="exhibit-designation">Designation <span class="rf-req" aria-hidden="true">*</span></label><select id="exhibit-designation" name="designation" required><option value="">Select an option</option><option>Founder</option><option>Co-Founder</option><option>CEO</option><option>CTO</option><option>COO</option><option>CFO</option><option>Managing Director</option><option>Director</option><option>Product Head</option><option>Team Lead</option><option>Other</option></select><p class="field-error" id="exhibit-designation-err"></p></div><div class="field rf-field"><label for="exhibit-email">Email Address <span class="rf-req" aria-hidden="true">*</span></label><input id="exhibit-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="you@example.com" required><p class="field-error" id="exhibit-email-err"></p></div><div class="field rf-field"><label for="exhibit-phone">Phone Number <span class="rf-req" aria-hidden="true">*</span></label><input id="exhibit-phone" name="phone" type="tel" autocomplete="tel" inputmode="numeric" maxlength="14" placeholder="10-digit mobile number" required><p class="field-error" id="exhibit-phone-err"></p></div><div class="field rf-field rf-full"><label for="exhibit-city_state">City &amp; State <span class="rf-req" aria-hidden="true">*</span></label><input id="exhibit-city_state" name="city_state" type="text" placeholder="City, State" required><p class="field-error" id="exhibit-city_state-err"></p></div><div class="field rf-field rf-full rf-team"><label for="exhibit-team_size">Team Size <span class="rf-req" aria-hidden="true">*</span></label><select id="exhibit-team_size" name="team_size" data-team-size required><option value="">Select team size</option><option value="2">2 members</option><option value="3">3 members</option><option value="4">4 members</option></select><p class="field-error" id="exhibit-team_size-err"></p><div class="rf-members" data-team-members aria-live="polite"></div></div></div></fieldset><fieldset class="rf-section"><legend><span class="rf-num">2</span>Startup Information</legend><div class="rf-grid"><div class="field rf-field"><label for="exhibit-startup_name">Startup Name <span class="rf-req" aria-hidden="true">*</span></label><input id="exhibit-startup_name" name="startup_name" type="text" placeholder="Startup name" required><p class="field-error" id="exhibit-startup_name-err"></p></div><div class="field rf-field"><label for="exhibit-website">Website <span class="rf-opt">Optional</span></label><input id="exhibit-website" name="website" type="url" inputmode="url" placeholder="https://"><p class="field-error" id="exhibit-website-err"></p></div><div class="field rf-field"><label for="exhibit-social">Startup LinkedIn / Social Media <span class="rf-opt">Optional</span></label><input id="exhibit-social" name="social" type="url" inputmode="url" placeholder="https://"><p class="field-error" id="exhibit-social-err"></p></div><div class="field rf-field"><label for="exhibit-industry">Industry / Sector <span class="rf-req" aria-hidden="true">*</span></label><select id="exhibit-industry" name="industry" required><option value="">Select an option</option><option>FinTech</option><option>HealthTech</option><option>EdTech</option><option>AgriTech</option><option>SaaS</option><option>AI / ML</option><option>DeepTech</option><option>EV / Mobility</option><option>E-commerce / D2C</option><option>CleanTech</option><option>Media / Entertainment</option><option>Manufacturing</option><option>Other</option></select><p class="field-error" id="exhibit-industry-err"></p></div><div class="field rf-field rf-full"><label for="exhibit-one_liner">One-line description of your startup <span class="rf-req" aria-hidden="true">*</span></label><input id="exhibit-one_liner" name="one_liner" type="text" placeholder="" required><p class="field-error" id="exhibit-one_liner-err"></p></div><div class="field rf-field rf-full"><label for="exhibit-description">Briefly describe your startup <span class="rf-req" aria-hidden="true">*</span></label><textarea id="exhibit-description" name="description" rows="3" placeholder="" required></textarea><p class="field-error" id="exhibit-description-err"></p></div><div class="field rf-field rf-full"><label for="exhibit-problem">What problem does your startup solve? <span class="rf-req" aria-hidden="true">*</span></label><textarea id="exhibit-problem" name="problem" rows="3" placeholder="" required></textarea><p class="field-error" id="exhibit-problem-err"></p></div><div class="field rf-field rf-full"><label for="exhibit-showcase_item">What product/service will you showcase at the exhibition? <span class="rf-req" aria-hidden="true">*</span></label><textarea id="exhibit-showcase_item" name="showcase_item" rows="3" placeholder="" required></textarea><p class="field-error" id="exhibit-showcase_item-err"></p></div><div class="field rf-field rf-full"><label for="exhibit-unique">What makes your product/technology unique? <span class="rf-req" aria-hidden="true">*</span></label><textarea id="exhibit-unique" name="unique" rows="3" placeholder="" required></textarea><p class="field-error" id="exhibit-unique-err"></p></div></div></fieldset><fieldset class="rf-section"><legend><span class="rf-num">3</span>Startup Stage &amp; Traction</legend><div class="rf-grid"><div class="field rf-field"><label for="exhibit-stage">Current Stage <span class="rf-req" aria-hidden="true">*</span></label><select id="exhibit-stage" name="stage" required><option value="">Select an option</option><option>Idea Stage</option><option>Prototype</option><option>MVP</option><option>Early Revenue</option><option>Growth Stage</option><option>Series A</option><option>Series B or later</option><option>Other</option></select><p class="field-error" id="exhibit-stage-err"></p></div><div class="field rf-field"><label for="exhibit-established">Year of Establishment <span class="rf-req" aria-hidden="true">*</span></label><input id="exhibit-established" name="established" type="text" placeholder="" required><p class="field-error" id="exhibit-established-err"></p></div><div class="field rf-field"><label for="exhibit-users">Current number of customers/users <span class="rf-opt">Optional</span></label><input id="exhibit-users" name="users" type="text" placeholder=""><p class="field-error" id="exhibit-users-err"></p></div><div class="field rf-field"><label for="exhibit-revenue">Current Revenue / Traction <span class="rf-opt">Optional</span></label><input id="exhibit-revenue" name="revenue" type="text" placeholder=""><p class="field-error" id="exhibit-revenue-err"></p></div><div class="field rf-field rf-full"><label for="exhibit-achievements">Major achievements / awards / recognitions <span class="rf-opt">Optional</span></label><textarea id="exhibit-achievements" name="achievements" rows="3" placeholder=""></textarea><p class="field-error" id="exhibit-achievements-err"></p></div></div></fieldset><fieldset class="rf-section"><legend><span class="rf-num">4</span>Exhibition Requirements</legend><div class="rf-grid"><div class="field rf-field"><label for="exhibit-showcase_type">What will you be showcasing? <span class="rf-req" aria-hidden="true">*</span></label><select id="exhibit-showcase_type" name="showcase_type" required><option value="">Select an option</option><option>Physical Product</option><option>Software / Application</option><option>Hardware</option><option>Prototype</option><option>Technology Demonstration</option><option>Service</option><option>Other</option></select><p class="field-error" id="exhibit-showcase_type-err"></p></div><div class="field rf-field rf-full"><label for="exhibit-setup_requirements">Briefly describe your exhibition setup requirements <span class="rf-opt">Optional</span></label><textarea id="exhibit-setup_requirements" name="setup_requirements" rows="3" placeholder=""></textarea><p class="field-error" id="exhibit-setup_requirements-err"></p></div><div class="field rf-field" id="exhibit-electricity-wrap"><span class="rf-label" id="exhibit-electricity-lbl">Will you require electricity at your stall? <span class="rf-req" aria-hidden="true">*</span></span><div class="rf-seg" role="radiogroup" aria-labelledby="exhibit-electricity-lbl"><label><input type="radio" name="electricity" value="Yes" required><span>Yes</span></label><label><input type="radio" name="electricity" value="No"><span>No</span></label></div><p class="field-error" id="exhibit-electricity-err"></p></div><div class="field rf-field" id="exhibit-internet-wrap"><span class="rf-label" id="exhibit-internet-lbl">Will you require internet/Wi-Fi connectivity? <span class="rf-req" aria-hidden="true">*</span></span><div class="rf-seg" role="radiogroup" aria-labelledby="exhibit-internet-lbl"><label><input type="radio" name="internet" value="Yes" required><span>Yes</span></label><label><input type="radio" name="internet" value="No"><span>No</span></label></div><p class="field-error" id="exhibit-internet-err"></p></div><div class="field rf-field rf-full"><label for="exhibit-special_equipment">Any special equipment or setup requirements? <span class="rf-opt">Optional</span></label><textarea id="exhibit-special_equipment" name="special_equipment" rows="3" placeholder=""></textarea><p class="field-error" id="exhibit-special_equipment-err"></p></div><div class="field rf-field rf-full"><label for="exhibit-representatives">Names and designations of representatives attending <span class="rf-opt">Optional</span></label><textarea id="exhibit-representatives" name="representatives" rows="3" placeholder=""></textarea><p class="field-error" id="exhibit-representatives-err"></p></div><div class="field rf-field rf-full"><label for="exhibit-brochure">Product / Company Brochure or Presentation - Google Drive Link <span class="rf-opt">Optional</span></label><div class="rf-linkin"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg><input id="exhibit-brochure" name="brochure" type="url" inputmode="url" placeholder="https://drive.google.com/..." data-link-kind="drive"></div><p class="rf-note"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.5h.01"/></svg><span>Set access to “Anyone with the link can view”.</span></p><p class="field-error" id="exhibit-brochure-err"></p></div><div class="field rf-field rf-full"><label for="exhibit-demo_video">Product / Demo Video - YouTube Link <span class="rf-opt">Optional</span></label><div class="rf-linkin"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="m10 9.2 5 2.8-5 2.8z" fill="currentColor"/></svg><input id="exhibit-demo_video" name="demo_video" type="url" inputmode="url" placeholder="https://youtube.com/..." data-link-kind="youtube"></div><p class="rf-note"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.5h.01"/></svg><span>The video must be set to Public on YouTube.</span></p><p class="field-error" id="exhibit-demo_video-err"></p></div></div></fieldset><fieldset class="rf-section"><legend><span class="rf-num">5</span>Participation</legend><div class="rf-grid"><div class="field rf-field"><label for="exhibit-goal">What are you looking to achieve through Startup Conclave 2026? <span class="rf-req" aria-hidden="true">*</span></label><select id="exhibit-goal" name="goal" required><option value="">Select an option</option><option>Product Showcase</option><option>Customer Acquisition</option><option>Investor Connections</option><option>Mentorship</option><option>Partnerships</option><option>Brand Visibility</option><option>Networking</option><option>Other</option></select><p class="field-error" id="exhibit-goal-err"></p></div><div class="field rf-field" id="exhibit-also_pitch-wrap"><span class="rf-label" id="exhibit-also_pitch-lbl">Would you also be interested in participating in the Startup Pitching Competition? <span class="rf-req" aria-hidden="true">*</span></span><div class="rf-seg" role="radiogroup" aria-labelledby="exhibit-also_pitch-lbl"><label><input type="radio" name="also_pitch" value="Yes" required><span>Yes</span></label><label><input type="radio" name="also_pitch" value="No"><span>No</span></label></div><p class="field-error" id="exhibit-also_pitch-err"></p></div><div class="field rf-field rf-full"><label for="exhibit-additional_info">Any additional information you would like the organizing team to know? <span class="rf-opt">Optional</span></label><textarea id="exhibit-additional_info" name="additional_info" rows="3" placeholder=""></textarea><p class="field-error" id="exhibit-additional_info-err"></p></div></div></fieldset><fieldset class="rf-section"><legend><span class="rf-num">6</span>Declaration</legend><label class="rf-check"><input type="checkbox" name="declare_accurate" value="Yes" required><span>I confirm that the information provided above is accurate. <span class="rf-req" aria-hidden="true">*</span></span></label><label class="rf-check"><input type="checkbox" name="declare_contact" value="Yes" required><span>I agree to be contacted by the Startup Conclave 2026 organizing team regarding my participation. <span class="rf-req" aria-hidden="true">*</span></span></label><p class="field-error rf-decl-err" id="exhibit-decl-err"></p></fieldset>
                 <button class="btn btn-primary btn-lg btn-block rf-submit" type="submit" data-submit>Submit</button>
                 <p class="form-error" data-form-error role="alert"></p>
               </form>
@@ -1055,7 +1302,7 @@
               </div>
               <form class="rf-form" id="pitch-form" novalidate data-conclave-form="pitch">
                 <input type="hidden" name="form_type" value="Startup Pitching Competition">
-                <input type="text" name="bot_check" class="rf-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+                <input type="text" name="bot_check" class="rf-hp" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
                 <fieldset class="rf-section"><legend><span class="rf-num">1</span>Founder Details</legend><div class="rf-grid"><div class="field rf-field"><label for="pitch-founder_name">Founder / Primary Contact Name <span class="rf-req" aria-hidden="true">*</span></label><input id="pitch-founder_name" name="founder_name" type="text" placeholder="Full name" required><p class="field-error" id="pitch-founder_name-err"></p></div><div class="field rf-field"><label for="pitch-designation">Designation <span class="rf-req" aria-hidden="true">*</span></label><select id="pitch-designation" name="designation" required><option value="">Select an option</option><option>Founder</option><option>Co-Founder</option><option>CEO</option><option>CTO</option><option>COO</option><option>CFO</option><option>Managing Director</option><option>Director</option><option>Product Head</option><option>Team Lead</option><option>Other</option></select><p class="field-error" id="pitch-designation-err"></p></div><div class="field rf-field"><label for="pitch-email">Email Address <span class="rf-req" aria-hidden="true">*</span></label><input id="pitch-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="you@example.com" required><p class="field-error" id="pitch-email-err"></p></div><div class="field rf-field"><label for="pitch-phone">Phone Number <span class="rf-req" aria-hidden="true">*</span></label><input id="pitch-phone" name="phone" type="tel" autocomplete="tel" inputmode="numeric" maxlength="14" placeholder="10-digit mobile number" required><p class="field-error" id="pitch-phone-err"></p></div><div class="field rf-field rf-full rf-team"><label for="pitch-team_size">Team Size <span class="rf-req" aria-hidden="true">*</span></label><select id="pitch-team_size" name="team_size" data-team-size required><option value="">Select team size</option><option value="2">2 members</option><option value="3">3 members</option><option value="4">4 members</option></select><p class="field-error" id="pitch-team_size-err"></p><div class="rf-members" data-team-members aria-live="polite"></div></div><div class="field rf-field"><label for="pitch-city_state">City &amp; State <span class="rf-req" aria-hidden="true">*</span></label><input id="pitch-city_state" name="city_state" type="text" placeholder="City, State" required><p class="field-error" id="pitch-city_state-err"></p></div><div class="field rf-field"><label for="pitch-college">College Name <span class="rf-opt">Optional</span></label><input id="pitch-college" name="college" type="text" placeholder="College name"><p class="field-error" id="pitch-college-err"></p></div></div></fieldset><fieldset class="rf-section"><legend><span class="rf-num">2</span>Startup Details</legend><div class="rf-grid"><div class="field rf-field"><label for="pitch-startup_name">Startup Name <span class="rf-req" aria-hidden="true">*</span></label><input id="pitch-startup_name" name="startup_name" type="text" placeholder="Startup name" required><p class="field-error" id="pitch-startup_name-err"></p></div><div class="field rf-field"><label for="pitch-website">Startup Website <span class="rf-opt">Optional</span></label><input id="pitch-website" name="website" type="url" inputmode="url" placeholder="https://"><p class="field-error" id="pitch-website-err"></p></div><div class="field rf-field"><label for="pitch-social">Startup LinkedIn / Social Media <span class="rf-opt">Optional</span></label><input id="pitch-social" name="social" type="url" inputmode="url" placeholder="https://"><p class="field-error" id="pitch-social-err"></p></div><div class="field rf-field"><label for="pitch-industry">Industry / Sector <span class="rf-req" aria-hidden="true">*</span></label><select id="pitch-industry" name="industry" required><option value="">Select an option</option><option>FinTech</option><option>HealthTech</option><option>EdTech</option><option>AgriTech</option><option>SaaS</option><option>AI / ML</option><option>DeepTech</option><option>EV / Mobility</option><option>E-commerce / D2C</option><option>CleanTech</option><option>Media / Entertainment</option><option>Manufacturing</option><option>Other</option></select><p class="field-error" id="pitch-industry-err"></p></div><div class="field rf-field rf-full"><label for="pitch-one_liner">One-line description of your startup <span class="rf-req" aria-hidden="true">*</span></label><input id="pitch-one_liner" name="one_liner" type="text" placeholder="" required><p class="field-error" id="pitch-one_liner-err"></p></div><div class="field rf-field rf-full"><label for="pitch-description">Describe your startup and the problem it solves <span class="rf-req" aria-hidden="true">*</span></label><textarea id="pitch-description" name="description" rows="3" placeholder="" required></textarea><p class="field-error" id="pitch-description-err"></p></div><div class="field rf-field rf-full"><label for="pitch-value_proposition">What is your unique value proposition? <span class="rf-req" aria-hidden="true">*</span></label><textarea id="pitch-value_proposition" name="value_proposition" rows="3" placeholder="" required></textarea><p class="field-error" id="pitch-value_proposition-err"></p></div><div class="field rf-field rf-full"><label for="pitch-product">What is your current product/service? <span class="rf-req" aria-hidden="true">*</span></label><textarea id="pitch-product" name="product" rows="3" placeholder="" required></textarea><p class="field-error" id="pitch-product-err"></p></div><div class="field rf-field rf-full"><label for="pitch-target_customers">Who are your target customers? <span class="rf-req" aria-hidden="true">*</span></label><textarea id="pitch-target_customers" name="target_customers" rows="3" placeholder="" required></textarea><p class="field-error" id="pitch-target_customers-err"></p></div></div></fieldset><fieldset class="rf-section"><legend><span class="rf-num">3</span>Startup Stage &amp; Traction</legend><div class="rf-grid"><div class="field rf-field"><label for="pitch-stage">Current Stage of Startup <span class="rf-req" aria-hidden="true">*</span></label><select id="pitch-stage" name="stage" required><option value="">Select an option</option><option>Idea Stage</option><option>Prototype</option><option>MVP</option><option>Early Revenue</option><option>Growth Stage</option><option>Series A</option><option>Series B or later</option><option>Other</option></select><p class="field-error" id="pitch-stage-err"></p></div><div class="field rf-field"><label for="pitch-founded">When was the startup founded? <span class="rf-req" aria-hidden="true">*</span></label><input id="pitch-founded" name="founded" type="text" placeholder="" required><p class="field-error" id="pitch-founded-err"></p></div><div class="field rf-field"><label for="pitch-revenue">Monthly / Annual Revenue <span class="rf-opt">Optional</span></label><input id="pitch-revenue" name="revenue" type="text" placeholder=""><p class="field-error" id="pitch-revenue-err"></p></div><div class="field rf-field"><label for="pitch-users">Number of active users / customers <span class="rf-opt">Optional</span></label><input id="pitch-users" name="users" type="text" placeholder=""><p class="field-error" id="pitch-users-err"></p></div><div class="field rf-field rf-full"><label for="pitch-traction">Current traction / key metrics <span class="rf-req" aria-hidden="true">*</span></label><textarea id="pitch-traction" name="traction" rows="3" placeholder="" required></textarea><p class="field-error" id="pitch-traction-err"></p></div><div class="field rf-field rf-full"><label for="pitch-achievements">Any notable achievements, partnerships, awards or milestones? <span class="rf-opt">Optional</span></label><textarea id="pitch-achievements" name="achievements" rows="3" placeholder=""></textarea><p class="field-error" id="pitch-achievements-err"></p></div><div class="field rf-field rf-full" id="pitch-registered-wrap"><span class="rf-label" id="pitch-registered-lbl">Is your Startup Registered? If yes, provide registration number <span class="rf-req" aria-hidden="true">*</span></span><div class="rf-yn-row"><div class="rf-seg" role="radiogroup" aria-labelledby="pitch-registered-lbl"><label><input type="radio" name="registered" value="Yes" required data-regno-toggle><span>Yes</span></label><label><input type="radio" name="registered" value="No" data-regno-toggle><span>No</span></label></div><input id="pitch-reg_number" name="reg_number" type="text" placeholder="Registration number" aria-label="Registration number" data-regno hidden></div><p class="field-error" id="pitch-registered-err"></p></div></div></fieldset><fieldset class="rf-section"><legend><span class="rf-num">4</span>Pitch Submission</legend><div class="rf-grid"><div class="field rf-field rf-full"><label for="pitch-pitch_deck">Pitch Deck - Google Drive Link <span class="rf-req" aria-hidden="true">*</span></label><div class="rf-linkin"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg><input id="pitch-pitch_deck" name="pitch_deck" type="url" inputmode="url" placeholder="https://drive.google.com/..." data-link-kind="drive" required></div><p class="rf-note"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.5h.01"/></svg><span>Set access to “Anyone with the link can view”. PDF format preferred.</span></p><p class="field-error" id="pitch-pitch_deck-err"></p></div><div class="field rf-field rf-full"><label for="pitch-demo_video">Demo / Product Video - YouTube Link <span class="rf-req" aria-hidden="true">*</span></label><div class="rf-linkin"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="m10 9.2 5 2.8-5 2.8z" fill="currentColor"/></svg><input id="pitch-demo_video" name="demo_video" type="url" inputmode="url" placeholder="https://youtube.com/..." data-link-kind="youtube" required></div><p class="rf-note"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.5h.01"/></svg><span>The video must be set to Public on YouTube.</span></p><p class="field-error" id="pitch-demo_video-err"></p></div><div class="field rf-field rf-full"><label for="pitch-investment_worthy">What makes your startup investment-worthy? <span class="rf-req" aria-hidden="true">*</span></label><textarea id="pitch-investment_worthy" name="investment_worthy" rows="3" placeholder="" required></textarea><p class="field-error" id="pitch-investment_worthy-err"></p></div><div class="field rf-field rf-full"><label for="pitch-why_participate">Why do you want to participate in Startup Conclave 2026? <span class="rf-req" aria-hidden="true">*</span></label><textarea id="pitch-why_participate" name="why_participate" rows="3" placeholder="" required></textarea><p class="field-error" id="pitch-why_participate-err"></p></div></div></fieldset><fieldset class="rf-section"><legend><span class="rf-num">5</span>Declaration</legend><label class="rf-check"><input type="checkbox" name="declare_accurate" value="Yes" required><span>I confirm that the information provided above is accurate to the best of my knowledge. <span class="rf-req" aria-hidden="true">*</span></span></label><label class="rf-check"><input type="checkbox" name="declare_contact" value="Yes" required><span>I agree to the organizing team contacting me regarding Startup Conclave 2026 and the pitching process. <span class="rf-req" aria-hidden="true">*</span></span></label><p class="field-error rf-decl-err" id="pitch-decl-err"></p></fieldset>
                 <button class="btn btn-primary btn-lg btn-block rf-submit" type="submit" data-submit>Submit</button>
                 <p class="form-error" data-form-error role="alert"></p>
