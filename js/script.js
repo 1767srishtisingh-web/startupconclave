@@ -641,7 +641,7 @@ document.addEventListener('DOMContentLoaded', () => {
       howItWorksSection.classList.add('is-visible');
     }
   }
-/* --- BACK TO TOP BUTTON --- */
+   /* --- BACK TO TOP BUTTON --- */
 const backToTopBtn = document.querySelector('.back-top');
 if (backToTopBtn) {
   backToTopBtn.addEventListener('click', (e) => {
@@ -649,4 +649,5 @@ if (backToTopBtn) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 }
+
 });
