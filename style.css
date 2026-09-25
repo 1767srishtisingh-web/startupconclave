@@ -2072,6 +2072,7 @@ section.event-journey.journey {
   -webkit-background-clip: text;
           background-clip: text;
   -webkit-text-fill-color: transparent;
+  white-space: nowrap;
 }
 .journey-sub { margin-top: 0.8rem; color: var(--jr-muted); font-size: 1.15rem; }
 .jr-hint-tap { display: none; }
@@ -2342,6 +2343,14 @@ section.event-journey.journey {
 }
 
 @media (max-width: 640px) {
+  .journey-title {
+    font-size: clamp(1.25rem, 5.4vw, 1.85rem);
+    line-height: 1.2;
+  }
+  .journey-title span {
+    display: block;
+    white-space: nowrap;
+  }
   .jr-toggle { padding: 0.75rem 1rem; }
   .jr-num { margin-right: 0.9rem; }
   .jr-icon { margin-right: 1rem; }
@@ -3014,6 +3023,11 @@ html[data-theme="light"] .jr-toggle {
     line-height: 0.95;
     letter-spacing: 0.04em;
     margin-bottom: 1rem;
+  }
+
+  .journey-title {
+    font-size: 1.15rem;
+    line-height: 1.25;
   }
 }
 
