@@ -2475,40 +2475,109 @@ html[data-theme="light"] .jr-toggle {
 }
 
 @media (max-width: 768px) {
-  .nav-list {
-    position: fixed;
-    top: var(--header-height);
-    left: 0;
-    width: 100%;
-    background: var(--bg);
-    flex-direction: column;
-    padding: 2rem;
-    gap: 1.5rem;
-    text-align: center;
-    border-bottom: 1px solid var(--border);
-    transform: translateY(-100%);
-    opacity: 0;
-    pointer-events: none;
-    transition: all var(--transition);
+  /* Site Header & Navigation */
+  .site-header {
+    height: var(--header-height, 64px);
   }
 
-  .nav-list.is-open {
+  .header-inner {
+    padding: 0 0.5rem;
+  }
+
+  .header-actions {
+    gap: 0.5rem;
+  }
+
+  /* Uppermost Register button in header on mobile */
+  .header-cta {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    padding: 0.42rem 0.95rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    line-height: 1;
+    border-radius: 9999px;
+    min-height: 36px;
+    white-space: nowrap;
+    box-shadow: 0 2px 10px rgba(28, 109, 208, 0.35);
+  }
+
+  .nav-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+  }
+
+  .icon-btn.theme-toggle {
+    width: 38px;
+    height: 38px;
+  }
+
+  /* Mobile Slide-down Nav Drawer */
+  .main-nav {
+    position: fixed;
+    top: var(--header-height, 64px);
+    left: 0;
+    width: 100%;
+    max-height: calc(100vh - var(--header-height, 64px));
+    overflow-y: auto;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.75rem 1.5rem 2.25rem;
+    gap: 1.25rem;
+    transform: translateY(-120%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+    z-index: 99;
+  }
+
+  .main-nav.is-open {
     transform: translateY(0);
     opacity: 1;
     pointer-events: auto;
   }
 
-  .header-cta {
-    display: none;
+  .main-nav .nav-list {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 0;
+    gap: 1.15rem;
+    transform: none;
+    opacity: 1;
+    pointer-events: auto;
+    border-bottom: none;
+    background: transparent;
   }
 
-  .nav-toggle {
-    display: flex;
+  .main-nav .nav-link {
+    font-size: 1.05rem;
+    font-weight: 500;
+    padding: 0.35rem 1rem;
+    display: inline-block;
   }
 
   .nav-cta-mobile {
-    display: inline-flex;
-    margin-top: 1rem;
+    display: inline-flex !important;
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
+    padding: 0.8rem 1.5rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-radius: 9999px;
+    margin-top: 0.5rem;
+    box-shadow: 0 4px 14px var(--primary-glow);
   }
 
   .nav-toggle-bars {
@@ -2540,10 +2609,113 @@ html[data-theme="light"] .jr-toggle {
     transform: translateY(-6px) rotate(-45deg);
   }
 
-  .hero {
-    padding-top: calc(var(--header-height) + 2rem);
+  /* General Section Spacing & Sizing */
+  .section {
+    padding: 4rem 0;
   }
 
+  .section-title {
+    font-size: clamp(1.85rem, 6vw, 2.5rem);
+  }
+
+  .section-sub {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  /* Hero */
+  .hero {
+    padding-top: calc(var(--header-height, 64px) + 1.5rem);
+  }
+
+  .hero-title {
+    font-size: clamp(2.35rem, 8.5vw, 3.5rem);
+    line-height: 1.05;
+  }
+
+  .hero-tagline {
+    font-size: 1.15rem;
+    margin-bottom: 1rem;
+  }
+
+  .hero-lede {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-actions {
+    margin-bottom: 2rem;
+  }
+
+  .hero-facts {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem 1rem;
+    padding-top: 1.5rem;
+  }
+
+  .hero-countdown {
+    white-space: nowrap;
+  }
+
+  /* Participate & Registration Guide */
+  .participate-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .participate-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .reg-instructions-box {
+    padding: 2rem 1.5rem;
+  }
+
+  .instructions-title {
+    font-size: 1.3rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .venue-grid {
+    gap: 2.5rem;
+  }
+
+  .map-frame {
+    height: 320px;
+  }
+
+  .register-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .form-title {
+    font-size: 1.35rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .field-row {
+    grid-template-columns: 1fr;
+  }
+
+  .field {
+    margin-bottom: 1.25rem;
+  }
+
+  .pass-card-body {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  /* WhatsApp Community Card */
+  .whatsapp-card {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .whatsapp-card .section-title {
+    font-size: clamp(1.75rem, 6vw, 2.25rem);
+  }
+
+  /* Footer */
   .footer-grid {
     grid-template-columns: 1fr;
     gap: 2rem;
@@ -2557,10 +2729,6 @@ html[data-theme="light"] .jr-toggle {
     padding: 0.85rem 0;
   }
 
-  .participate-grid {
-    grid-template-columns: 1fr;
-  }
-
   .store-list {
     grid-template-columns: 1fr;
   }
@@ -2569,13 +2737,188 @@ html[data-theme="light"] .jr-toggle {
     grid-template-columns: 1fr;
   }
 
-  .field-row {
-    grid-template-columns: 1fr;
+  .toast {
+    bottom: 1rem;
+    right: 1rem;
+    left: 1rem;
+    text-align: center;
+  }
+}
+
+/* Extra small mobile devices (phones <= 480px) */
+@media (max-width: 480px) {
+  .header-actions {
+    gap: 0.35rem;
   }
 
-  .pass-card-body {
+  .header-cta {
+    padding: 0.35rem 0.75rem;
+    font-size: 0.78rem;
+    min-height: 32px;
+  }
+
+  .icon-btn.theme-toggle,
+  .nav-toggle {
+    width: 34px;
+    height: 34px;
+  }
+
+  .brand {
+    gap: 0.45rem;
+  }
+
+  .brand-mark {
+    width: 34px;
+    height: 34px;
+  }
+
+  .brand-name {
+    font-size: 0.92rem;
+  }
+
+  .hero-facts .fact-countdown {
+    grid-column: span 2;
+  }
+
+  .hero-facts {
+    gap: 1rem 0.5rem;
+  }
+
+  .hero-cd-unit strong {
+    font-size: 1.05rem;
+  }
+
+  .hero-cd-unit small {
+    font-size: 0.68rem;
+  }
+
+  .quote-keywords {
+    font-size: 1.35rem;
+    gap: 0.6rem;
+  }
+
+  .quote-text {
+    font-size: 1.5rem;
+  }
+
+  .funding-headline {
+    padding: 2rem 1.25rem;
+  }
+
+  .day-tabs {
+    width: 100%;
+    max-width: 320px;
+    padding: 0.35rem;
+  }
+
+  .day-tab {
+    flex: 1;
+    padding: 0.6rem 0.75rem;
+  }
+
+  .day-tab-label {
+    font-size: 0.95rem;
+  }
+
+  .day-tab-date {
+    font-size: 0.7rem;
+  }
+
+  .timeline {
+    padding-left: 1.25rem;
+    gap: 2rem;
+  }
+
+  .session::before {
+    left: -1.65rem;
+    width: 0.8rem;
+    height: 0.8rem;
+  }
+
+  .reg-steps-list {
     grid-template-columns: 1fr;
-    gap: 0.5rem;
+    gap: 1rem;
+  }
+
+  .reg-instructions-box {
+    padding: 1.5rem 1rem;
+  }
+
+  .register-card {
+    padding: 1.5rem 1rem;
+  }
+
+  .register .countdown {
+    gap: 0.4rem;
+    justify-content: center;
+  }
+
+  .register .cd-unit {
+    min-width: 58px;
+    padding: 0.6rem 0.35rem;
+  }
+
+  .cd-num {
+    font-size: 1.65rem;
+  }
+
+  .cd-label {
+    font-size: 0.65rem;
+  }
+
+  .fee-box {
+    padding: 1rem;
+  }
+
+  .qr-note {
+    flex-direction: column;
+    text-align: center;
+    padding: 1rem;
+    gap: 0.75rem;
+  }
+
+  .whatsapp-card {
+    padding: 2rem 1rem;
+  }
+
+  .whatsapp-badge {
+    width: 64px;
+    height: 64px;
+  }
+
+  .whatsapp-perk {
+    font-size: 0.8rem;
+    padding: 0.35rem 0.75rem;
+  }
+
+  .btn-whatsapp {
+    padding: 0.85rem 1.25rem;
+    font-size: 0.95rem;
+    width: 100%;
+  }
+
+  .map-frame {
+    height: 250px;
+  }
+}
+
+/* Very narrow devices (<= 380px) */
+@media (max-width: 380px) {
+  .brand-sub {
+    display: none;
+  }
+
+  .brand-name {
+    font-size: 0.85rem;
+  }
+
+  .header-cta {
+    padding: 0.32rem 0.65rem;
+    font-size: 0.74rem;
+  }
+
+  .hero-title {
+    font-size: 2.15rem;
   }
 }
 

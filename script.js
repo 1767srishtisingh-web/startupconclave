@@ -28,7 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const mainNav = document.getElementById('main-nav');
   
   if (navToggle && mainNav) {
-    navToggle.addEventListener('click', () => {
+    navToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
       const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
       navToggle.setAttribute('aria-expanded', !isExpanded);
       mainNav.classList.toggle('is-open');
@@ -40,6 +41,22 @@ document.addEventListener('DOMContentLoaded', () => {
         navToggle.setAttribute('aria-expanded', 'false');
         mainNav.classList.remove('is-open');
       });
+    });
+
+    // Close nav on outside click
+    document.addEventListener('click', (e) => {
+      if (mainNav.classList.contains('is-open') && !mainNav.contains(e.target) && !navToggle.contains(e.target)) {
+        navToggle.setAttribute('aria-expanded', 'false');
+        mainNav.classList.remove('is-open');
+      }
+    });
+
+    // Close nav on resize to desktop
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 768 && mainNav.classList.contains('is-open')) {
+        navToggle.setAttribute('aria-expanded', 'false');
+        mainNav.classList.remove('is-open');
+      }
     });
   }
 
