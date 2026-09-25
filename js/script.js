@@ -597,6 +597,32 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
+         
+
+  // Scroll-spy: highlight the centered Journey step while scrolling
+  const journeyItems = document.querySelectorAll('.jr-item');
+  if (journeyItems.length) {
+    const journeyObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const btn = entry.target.querySelector('.jr-toggle');
+        if (entry.isIntersecting) {
+          journeyItems.forEach(item => {
+            item.classList.remove('is-open');
+            item.querySelector('.jr-toggle')?.setAttribute('aria-expanded', 'false');
+          });
+          entry.target.classList.add('is-open');
+          btn?.setAttribute('aria-expanded', 'true');
+        }
+      });
+    }, {
+      threshold: 0.6,
+      rootMargin: '-35% 0px -35% 0px'
+    });
+    journeyItems.forEach(item => journeyObserver.observe(item));
+  }
+
+
+
 
   /* --- 9. HOW IT WORKS: ITINERARY SCROLL ANIMATION (LEFT-TO-RIGHT FADE IN / FADE OUT) --- */
   const howItWorksSection = document.getElementById('how-it-works');

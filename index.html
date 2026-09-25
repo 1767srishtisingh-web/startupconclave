@@ -33,7 +33,6 @@
       } catch (e) { }
     })();
   </script>
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <style>
     /* Why Attend: ">>" chevron bullets instead of empty boxes */
     .pillars .pillar { display: flex; align-items: flex-start; gap: 1rem; }
@@ -204,7 +203,7 @@
           <li><a class="nav-link" href="#ways-to-join">Participate</a></li>
           <li><a class="nav-link" href="#venue">Venue</a></li>
           <li><a class="nav-link" href="#faq">FAQ</a></li>
-          <li><a class="nav-link" href="#contact">Contact</a></li>
+          <li><a class="nav-link" href="#contact">Community</a></li>
         </ul>
         <a class="btn btn-primary nav-cta-mobile" href="#register">Register now</a>
       </nav>
@@ -978,7 +977,7 @@
     </section>
 
     <!-- ============ WAYS TO PARTICIPATE & HOW TO REGISTER ============ -->
-    <!--<section class="section ways" id="ways-to-join" aria-labelledby="ways-title">
+    <section class="section ways" id="ways-to-join" aria-labelledby="ways-title">
       <div class="container">
         <div class="section-head text-center">
           <h2 class="section-title" id="ways-title">Ways to Participate</h2>
@@ -986,18 +985,18 @@
         </div>
 
         <div class="participate-grid">
-          <div class="participate-card">
+          <div class="participate-card highlight-card">
             <div class="participate-icon"></div>
             <h3>1. Startup Exhibition</h3>
             <p>Show your startup, prototype, product or idea to visitors, mentors and industry experts. Secure feedback,
               visibility, and early traction.</p>
-            <a class="btn btn-ghost btn-sm" href="#register">Register for Exhibition</a>
+            <a class="btn btn-primary btn-sm" href="#register" data-preselect-exhibit>Register for Exhibition</a>
           </div>
 
           <div class="participate-card highlight-card">
             <div class="participate-icon"></div>
             <h3>2. Startup Pitching Competition</h3>
-            <p>Present your startup idea to a panel of judges and VCs to win from the ~₹50,000 prize pool,
+            <p>Present your startup idea to a panel of judges and VCs to win from the ₹50,000 prize pool,
               pre-incubation offers, and seed access.</p>
             <a class="btn btn-primary btn-sm" href="#register" data-preselect-pitch>Register for Pitching</a>
           </div>
@@ -1031,7 +1030,7 @@
             </div>
             <div>
               <dt>Timings</dt>
-              <dd>Day 1: 09:00 AM – 06:00 PM | Day 2: 10:00 AM – 05:30 PM</dd>
+              <dd>Day 1: 9:00 AM – 6:00 PM | Day 2: 10:00 AM – 5:30 PM</dd>
             </div>
             <div>
               <dt>Venue</dt>
@@ -1043,7 +1042,7 @@
             </div>
             <div>
               <dt>Prizes</dt>
-              <dd>~₹50,000 Prize Pool + Pre-Incubation &amp; Seed Support</dd>
+              <dd>₹50,000 Prize Pool + Pre-Incubation &amp; Seed Support</dd>
             </div>
             <div>
               <dt>Food &amp; Kit</dt>
@@ -1078,7 +1077,7 @@
       <div class="container register-grid">
         <aside class="register-aside">
           <h2 class="section-title" id="register-title">Ready to Turn Your Idea into Reality?</h2>
-          <p class="section-sub">Register for Startup Conclave 2026. Closes 10 October 2026 at 11:59 pm.</p>
+          <p class="section-sub">Register for Startup Conclave 2026. Closes 10 October 2026 at 11:59 PM.</p>
 
           <div class="countdown" data-countdown aria-live="off">
             <div class="cd-unit"><span class="cd-num" data-cd="days">00</span><span class="cd-label">days</span></div>
@@ -1210,10 +1209,23 @@
             <!-- Honeypot (Hidden from humans) -->
             <input type="text" name="bot_check" style="display:none" tabindex="-1" autocomplete="off">
 
-            <!-- Google ReCaptcha -->
-            <div class="g-recaptcha" data-sitekey="6LdvicwtAAAAAG2-32jikp01bFIXUzFMOGpI5PUx"
-              style="margin-bottom: 24px;"></div>
-            <p class="field-error" id="reg-captcha-err"></p>
+            <!-- Security Verification Captcha -->
+            <div class="field captcha-field" id="captcha-field">
+              <label for="reg-captcha">Security Verification</label>
+              <div class="captcha-box">
+                <div class="captcha-visual-wrap">
+                  <canvas id="captcha-canvas" width="140" height="42" class="captcha-canvas" title="Click to refresh captcha" aria-label="Security captcha code"></canvas>
+                  <button type="button" class="captcha-refresh-btn" id="captcha-refresh" title="Get a new verification code" aria-label="Refresh Captcha">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>
+                    </svg>
+                  </button>
+                </div>
+                <input id="reg-captcha" name="captcha" type="text" autocomplete="off" placeholder="Enter code" required maxlength="6" aria-describedby="reg-captcha-err">
+              </div>
+              <p class="field-hint">Enter the 5 characters shown above.</p>
+              <p class="field-error" id="reg-captcha-err"></p>
+            </div>
 
             <button class="btn btn-primary btn-lg btn-block" type="submit" data-submit>Complete Registration</button>
             <p class="form-error" data-form-error role="alert"></p>
@@ -1276,7 +1288,7 @@
           <!-- Closed state -->
           <div class="reg-closed" data-reg-closed hidden>
             <h3>Registration has closed</h3>
-            <p>The last date to register was 10 October 2026. For late entries, contact a coordinator below.</p>
+            <p>The last date to register was 10 October 2026. For late entries or questions, join our WhatsApp community below.</p>
           </div>
         </div>
       </div>
@@ -1335,7 +1347,7 @@
           </details>
           <details class="faq-item">
             <summary>What are the key benefits and prize pool?</summary>
-            <p>Participants get access to the ~₹50,000 prize pool, pre-incubation opportunities at AKGEC IDEA Lab, IPR
+            <p>Participants get access to the ₹50,000 prize pool, pre-incubation opportunities at AKGEC IDEA Lab, IPR
               legal guidance, seed-funding opportunities, and live pitching to investors.</p>
           </details>
           <details class="faq-item">
@@ -1350,78 +1362,38 @@
           </details>
           <details class="faq-item">
             <summary>How does the Startup Exhibition work?</summary>
-            <p>30+ startup stalls showcase working prototypes and products on Day 1 (14:15 – 17:30) with mentor
+            <p>30+ startup stalls showcase working prototypes and products on Day 1 (2:15 PM – 5:30 PM) with mentor
               walkthroughs and attendee interaction.</p>
           </details>
           <details class="faq-item">
             <summary>What is the last date to register?</summary>
-            <p>Registration officially closes on 10 October 2026 at 11:59 pm IST. Register early as slots are limited.
+            <p>Registration officially closes on 10 October 2026 at 11:59 PM IST. Register early as slots are limited.
             </p>
           </details>
         </div>
       </div>
     </section>
 
-    <!-- ============ CONTACT ============ -->
+    <!-- ============ WHATSAPP COMMUNITY ============ -->
     <section class="section contact" id="contact" aria-labelledby="contact-title">
       <div class="container">
-        <div class="section-head">
-          <h2 class="section-title" id="contact-title">Talk to the team</h2>
-          <p class="section-sub">Our student coordinators can help with registration, pitching, exhibition stalls and
-            travel to campus.</p>
+        <div class="whatsapp-card">
+          <div class="whatsapp-badge">
+            <svg viewBox="0 0 24 24" width="40" height="40" fill="currentColor" aria-hidden="true">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.456 5.711 1.457h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+            </svg>
+          </div>
+          <h2 class="section-title" id="contact-title">Join Our WhatsApp Community</h2>
+          <p class="section-sub">
+            Connect with founders, participants, mentors, and the organizing team. Get instant updates, networking opportunities, and official conclave announcements.
+          </p>
+          <a class="btn btn-whatsapp" href="https://chat.whatsapp.com/B4yjpJAEzrGGTFtwJ2f7QO" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.456 5.711 1.457h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+            </svg>
+            <span>Join Our WhatsApp Community</span>
+          </a>
         </div>
-        <ul class="contact-grid">
-          <li class="contact-card">
-            <span class="avatar avatar-sm" style="--avatar: var(--blue)">KG</span>
-            <div>
-              <p class="contact-name">Krishna Goel</p>
-              <p class="contact-role">Coordinator</p>
-              <a class="contact-link" href="tel:+919548708361">+91 95487 08361</a>
-            </div>
-          </li>
-          <li class="contact-card">
-            <span class="avatar avatar-sm" style="--avatar: var(--green)">PS</span>
-            <div>
-              <p class="contact-name">Preet Sain</p>
-              <p class="contact-role">Coordinator</p>
-              <a class="contact-link" href="tel:+917982756664">+91 79827 56664</a>
-            </div>
-          </li>
-          <li class="contact-card">
-            <span class="avatar avatar-sm" style="--avatar: var(--red)">DS</span>
-            <div>
-              <p class="contact-name">Divi Shrivastava</p>
-              <p class="contact-role">Coordinator</p>
-            </div>
-          </li>
-          <li class="contact-card contact-card-links">
-            <a class="contact-row" href="https://www.instagram.com/akgec_idealab/" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-                <rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor"
-                  stroke-width="1.8" />
-                <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8" />
-                <circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" />
-              </svg>
-              @akgec_idealab
-            </a>
-            <a class="contact-row" href="mailto:idealab@akgec.ac.in">
-              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-                <rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.8" />
-                <path d="M3.5 6l8.5 7 8.5-7" fill="none" stroke="currentColor" stroke-width="1.8"
-                  stroke-linejoin="round" />
-              </svg>
-              idealab@akgec.ac.in
-            </a>
-            <a class="contact-row" href="https://www.akgec.ac.in" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-                <circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8" />
-                <path d="M3.5 12h17M12 3.5c2.5 2.5 3.5 5.5 3.5 8.5s-1 6-3.5 8.5c-2.5-2.5-3.5-5.5-3.5-8.5s1-6 3.5-8.5Z"
-                  fill="none" stroke="currentColor" stroke-width="1.8" />
-              </svg>
-              www.akgec.ac.in
-            </a>
-          </li>
-        </ul>
       </div>
     </section>
   </main>
@@ -1440,6 +1412,43 @@
         </a>
         <p>Organised by AKGEC IDEA Lab, the Technical Business Incubator of Ajay Kumar Garg Engineering College,
           Ghaziabad.</p>
+      </div>
+
+      <div class="footer-links-col">
+        <h2 class="footer-heading">Connect With Us</h2>
+        <ul class="footer-links-list">
+          <li>
+            <a class="footer-link-row" href="https://www.instagram.com/akgec_idealab/" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                <rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor"
+                  stroke-width="1.8" />
+                <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8" />
+                <circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" />
+              </svg>
+              <span>@akgec_idealab</span>
+            </a>
+          </li>
+          <li>
+            <a class="footer-link-row" href="mailto:idealab@akgec.ac.in">
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                <rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.8" />
+                <path d="M3.5 6l8.5 7 8.5-7" fill="none" stroke="currentColor" stroke-width="1.8"
+                  stroke-linejoin="round" />
+              </svg>
+              <span>idealab@akgec.ac.in</span>
+            </a>
+          </li>
+          <li>
+            <a class="footer-link-row" href="https://www.akgec.ac.in" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                <circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8" />
+                <path d="M3.5 12h17M12 3.5c2.5 2.5 3.5 5.5 3.5 8.5s-1 6-3.5 8.5c-2.5-2.5-3.5-5.5-3.5-8.5s1-6 3.5-8.5Z"
+                  fill="none" stroke="currentColor" stroke-width="1.8" />
+              </svg>
+              <span>www.akgec.ac.in</span>
+            </a>
+          </li>
+        </ul>
       </div>
 
       <div class="footer-news">
