@@ -2481,8 +2481,12 @@ html[data-theme="light"] .jr-toggle {
     gap: 3rem;
   }
 
+  .hero-copy {
+    order: 1;
+  }
+
   .hero-poster {
-    order: -1;
+    order: 2;
     max-width: 500px;
     margin: 0 auto;
   }
