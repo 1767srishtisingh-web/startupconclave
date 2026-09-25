@@ -33,6 +33,7 @@
       } catch (e) { }
     })();
   </script>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <style>
     /* Why Attend: ">>" chevron bullets instead of empty boxes */
     .pillars .pillar { display: flex; align-items: flex-start; gap: 1rem; }
@@ -317,7 +318,7 @@
     </section>
 
 
-    <!-- ============ EVENT JOURNEY ============ -->
+        <!-- ============ EVENT JOURNEY ============ -->
     <section aria-labelledby="journey-title" class="section event-journey journey" id="event-journey">
 <div class="container">
 <div class="journey-head">
@@ -327,9 +328,9 @@
 </div>
 <ol class="journey-list" data-journey="">
 <!-- 01 Register -->
-<li class="jr-item" style="--jr: #6D8CFF">
+<li class="jr-item is-open" style="--jr: #6D8CFF">
 <h3 class="jr-head">
-<button aria-controls="jr-panel-1" aria-expanded="false" class="jr-toggle" id="jr-btn-1" type="button">
+<button aria-controls="jr-panel-1" aria-expanded="true" class="jr-toggle" id="jr-btn-1" type="button">
 <span class="jr-num">01</span>
 <span class="jr-icon"><svg aria-hidden="true" fill="none" height="30" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="30"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></span>
 <span class="jr-title">Register</span>
@@ -339,7 +340,7 @@
 <div aria-labelledby="jr-btn-1" class="jr-panel" id="jr-panel-1" role="region">
 <div class="jr-panel-inner">
 <div class="jr-copy">
-<p>Fill out the quick registration form online or scan the QR code on the poster. Select your participation track — Attendee, Exhibitor, or Pitcher. Receive instant confirmation with your event pass ID.</p>
+<p>Fill out the quick registration form online or scan the QR code on the poster. Select your participation track - Attendee, Exhibitor, or Pitcher. Receive instant confirmation with your event pass ID.</p>
 <ul class="jr-chips">
 <li class="jr-chip jr-chip--blue"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="18"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg>Attendee</li>
 <li class="jr-chip jr-chip--violet"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="18"><path d="M4 11v9h16v-9"></path><path d="M3.5 5h17l1 5c0 1.4-1.2 2.4-2.8 2.4S16 11.4 16 10c0 1.4-1.3 2.4-2.9 2.4h-2.2C9.3 12.4 8 11.4 8 10c0 1.4-1.2 2.4-2.7 2.4S2.5 11.4 2.5 10l1-5Z"></path><path d="M9.5 20v-4.5h5V20"></path></svg>Exhibitor</li>
@@ -371,7 +372,7 @@
 <div aria-labelledby="jr-btn-2" class="jr-panel" id="jr-panel-2" role="region">
 <div class="jr-panel-inner">
 <div class="jr-copy">
-<p>Attend inspiring keynotes by top founders and industry leaders. Join expert talks on startup ecosystems, funding landscapes, and real-world business insights — all from those who've been there.</p>
+<p>Attend inspiring keynotes by top founders and industry leaders. Join expert talks on startup ecosystems, funding landscapes, and real-world business insights - all from those who've been there.</p>
 <ul class="jr-chips">
 <li class="jr-chip jr-chip--blue"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="18"><rect height="11" rx="3" width="6" x="9" y="3"></rect><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"></path></svg>Keynotes</li>
 <li class="jr-chip jr-chip--violet"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="18"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"></path><circle cx="17" cy="9" r="2.8"></circle><path d="M16.8 14.6c2.5.3 4.2 2.1 4.7 5.4"></path></svg>Expert talks</li>
@@ -467,7 +468,7 @@
 <div aria-labelledby="jr-btn-5" class="jr-panel" id="jr-panel-5" role="region">
 <div class="jr-panel-inner">
 <div class="jr-copy">
-<p>Present your startup idea live on stage to a panel of investors and jury on Day 2. This is your moment — a compelling pitch can unlock funding, incubation offers, and industry recognition.</p>
+<p>Present your startup idea live on stage to a panel of investors and jury on Day 2. This is your moment - a compelling pitch can unlock funding, incubation offers, and industry recognition.</p>
 <ul class="jr-chips">
 <li class="jr-chip jr-chip--blue"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="18"><path d="M5 21V4M5 4h11l-2 4 2 4H5"></path></svg>Grand Pitch</li>
 <li class="jr-chip jr-chip--violet"><svg aria-hidden="true" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="18"><rect height="11" rx="3" width="6" x="9" y="3"></rect><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"></path></svg>Investor jury</li>
@@ -554,6 +555,7 @@
 </div>
 </section>
 
+
     <!-- ============ PILLARS / OPPORTUNITIES ============ -->
     <section class="section about" id="about" aria-labelledby="about-title">
       <div class="container about-grid">
@@ -561,9 +563,9 @@
           <p class="section-kicker">Why Attend</p>
           <h2 class="section-title" id="about-title">Why just have an idea? When you can build it. Pitch it. Grow it.
           </h2>
-          <p>Startup Conclave 2026 brings together ideas, innovators, mentors, investors and opportunities — all under
+          <p>Startup Conclave 2026 brings together ideas, innovators, mentors, investors and opportunities - all under
             one roof.</p>
-          <p class="about-highlight"><strong>Big ventures often begin with one small idea — and the courage to put it
+          <p class="about-highlight"><strong>Big ventures often begin with one small idea - and the courage to put it
               out there.</strong></p>
         </div>
 
@@ -673,7 +675,7 @@
             <span class="step-num">02</span>
             <div class="step-body">
               <h3>Choose Your Track</h3>
-              <p>Select how you want to participate — join as an Exhibitor, Pitcher, or Attendee.</p>
+              <p>Select how you want to participate - join as an Exhibitor, Pitcher, or Attendee.</p>
             </div>
           </div>
           <div class="step-card">
@@ -724,29 +726,29 @@
         <div class="experience-strip">
           <div class="exp-item">
             <span class="exp-bullet">●</span>
-            <div><strong>Learn</strong> — Gain real-world strategies from keynotes, panels, and deep-dive workshops.
+            <div><strong>Learn</strong> - Gain real-world strategies from keynotes, panels, and deep-dive workshops.
             </div>
           </div>
           <div class="exp-item">
             <span class="exp-bullet">●</span>
-            <div><strong>Connect</strong> — Network directly with successful founders, VCs, and tech visionaries.</div>
+            <div><strong>Connect</strong> - Network directly with successful founders, VCs, and tech visionaries.</div>
           </div>
           <div class="exp-item">
             <span class="exp-bullet">●</span>
-            <div><strong>Showcase</strong> — Highlight your startup ideas and prototypes in the main exhibition hall.
+            <div><strong>Showcase</strong> - Highlight your startup ideas and prototypes in the main exhibition hall.
             </div>
           </div>
           <div class="exp-item">
             <span class="exp-bullet">●</span>
-            <div><strong>Pitch</strong> — Present your startup live for investor funding and prizes.</div>
+            <div><strong>Pitch</strong> - Present your startup live for investor funding and prizes.</div>
           </div>
           <div class="exp-item">
             <span class="exp-bullet">●</span>
-            <div><strong>Feedback</strong> — Receive direct, actionable insights from top industry mentors.</div>
+            <div><strong>Feedback</strong> - Receive direct, actionable insights from top industry mentors.</div>
           </div>
           <div class="exp-item">
             <span class="exp-bullet">●</span>
-            <div><strong>Opportunities</strong> — Get incubation support, funding pathways, and legal guidance.</div>
+            <div><strong>Opportunities</strong> - Get incubation support, funding pathways, and legal guidance.</div>
           </div>
         </div>
       </div>
@@ -1379,30 +1381,16 @@
       <div class="container">
         <div class="whatsapp-card">
           <div class="whatsapp-badge">
-            <svg viewBox="0 0 24 24" width="46" height="46" fill="currentColor" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="40" height="40" fill="currentColor" aria-hidden="true">
               <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.456 5.711 1.457h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
             </svg>
           </div>
           <h2 class="section-title" id="contact-title">Join Our WhatsApp Community</h2>
           <p class="section-sub">
-            Connect directly with organizers, founders, investors, and fellow innovators. Get real-time alerts, slot reminders, and official conclave updates in one tap.
+            Connect with founders, participants, mentors, and the organizing team. Get instant updates, networking opportunities, and official conclave announcements.
           </p>
-          <div class="whatsapp-perks">
-            <span class="whatsapp-perk">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-              Live Event Alerts
-            </span>
-            <span class="whatsapp-perk">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-              Founder &amp; Mentor Networking
-            </span>
-            <span class="whatsapp-perk">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
-              Direct Queries &amp; Support
-            </span>
-          </div>
           <a class="btn btn-whatsapp" href="https://chat.whatsapp.com/B4yjpJAEzrGGTFtwJ2f7QO" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
               <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.456 5.711 1.457h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
             </svg>
             <span>Join Our WhatsApp Community</span>
