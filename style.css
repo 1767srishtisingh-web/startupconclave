@@ -639,7 +639,18 @@ h4,
   gap: 4rem;
   align-items: center;
 }
+.funding-headline {
+  padding: 2.5rem 2rem;
+}
 
+.funding-headline .funding-amount {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+}
+
+.funding-headline .funding-note {
+  margin-bottom: 1.5rem;
+}
 .funding-headline {
   background: var(--primary);
   color: white;
