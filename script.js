@@ -574,18 +574,7 @@ document.addEventListener('DOMContentLoaded', () => {
   /* --- 8. EVENT JOURNEY ACCORDION --- */
   const journey = document.querySelector('[data-journey]');
   const finePointer = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-  if (journey) {
-    const stages = Array.from(journey.querySelectorAll('.jr-item'));
-    let hoverTimer = null;
-
-    function setStage(item, open) {
-      item.classList.toggle('is-open', open);
-      const toggle = item.querySelector('.jr-toggle');
-      if (toggle) toggle.setAttribute('aria-expanded', String(open));
-    }
-    function openOnly(target) {
-      stages.forEach(item => { setStage(item, item === target); });
-    }
+  
 
     stages.forEach(item => {
       const toggle = item.querySelector('.jr-toggle');
@@ -608,9 +597,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
-         }
-    });
-  }
+         
 
   // Scroll-spy: highlight the centered Journey step while scrolling
   const journeyItems = document.querySelectorAll('.jr-item');
@@ -634,7 +621,8 @@ document.addEventListener('DOMContentLoaded', () => {
     journeyItems.forEach(item => journeyObserver.observe(item));
   }
 
-  // Journey arrow links with data-goto-day open the matching schedule tab
+
+
 
   // Journey arrow links with data-goto-day open the matching schedule tab
   document.querySelectorAll('[data-goto-day]').forEach(link => {
