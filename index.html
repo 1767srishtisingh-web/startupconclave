@@ -179,6 +179,51 @@
       .register .countdown { gap: 0.6rem; }
       .register .cd-unit { min-width: 64px; padding: 0.75rem 0.5rem; }
     }
+    /* Student experience strip: 3 x 2 grid with highlighted border */
+    .exp-band { padding: 1rem 0 4rem; }
+    .exp-band .experience-strip {
+      position: relative;
+      overflow: hidden;
+      display: grid !important;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem 2.5rem !important;
+      padding: 2.75rem 3rem !important;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(56, 189, 248, 0.4) !important;
+      box-shadow: 0 20px 50px -20px rgba(28, 109, 208, 0.55), 0 0 30px -12px rgba(56, 189, 248, 0.4);
+    }
+    [data-theme="dark"] .exp-band .experience-strip {
+      background:
+        radial-gradient(circle at 100% 0%, rgba(56, 189, 248, 0.12) 0%, transparent 40%),
+        linear-gradient(165deg, #0f1f42 0%, #0a1631 60%, #080E1C 100%) !important;
+    }
+    .exp-band .experience-strip::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #1C6DD0 0 25%, #38bdf8 25% 50%, #34d399 50% 75%, #fbbf24 75% 100%);
+    }
+    .exp-band .exp-item {
+      max-width: none !important;
+      width: auto !important;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      text-align: left;
+    }
+    .exp-band .exp-bullet {
+      color: #38bdf8;
+      font-size: 0.8rem;
+      line-height: 1.9;
+      text-shadow: 0 0 8px rgba(56, 189, 248, 0.8);
+      flex-shrink: 0;
+    }
+    @media (max-width: 900px) {
+      .exp-band .experience-strip { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .exp-band .experience-strip { grid-template-columns: 1fr; padding: 2rem 1.5rem !important; }
+    }
   </style>
 </head>
 
@@ -328,9 +373,9 @@
 </div>
 <ol class="journey-list" data-journey="">
 <!-- 01 Register -->
-<li class="jr-item" style="--jr: #6D8CFF">
+<li class="jr-item is-open" style="--jr: #6D8CFF">
 <h3 class="jr-head">
-<button aria-controls="jr-panel-1" aria-expanded="false" class="jr-toggle" id="jr-btn-1" type="button">
+<button aria-controls="jr-panel-1" aria-expanded="true" class="jr-toggle" id="jr-btn-1" type="button">
 <span class="jr-num">01</span>
 <span class="jr-icon"><svg aria-hidden="true" fill="none" height="30" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24" width="30"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></span>
 <span class="jr-title">Register</span>
@@ -722,7 +767,12 @@
           </div>
         </div>
 
-        <!-- Student Experience Pillars -->
+      </div>
+    </section> -->
+
+    <!-- ============ STUDENT EXPERIENCE STRIP ============ -->
+    <section class="exp-band" aria-label="What you get at Startup Conclave">
+      <div class="container">
         <div class="experience-strip">
           <div class="exp-item">
             <span class="exp-bullet">●</span>
