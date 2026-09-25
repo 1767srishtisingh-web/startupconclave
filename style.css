@@ -1960,12 +1960,10 @@ section.event-journey.journey {
   border: 1px solid var(--jr-line);
   border-radius: 18px;
   background: rgba(255, 255, 255, .02);
-  opacity: 0.45;
-  transition: opacity 0.5s ease, border-color .35s ease, background-color .35s ease, box-shadow .45s var(--ease-out);
+  transition: border-color .35s ease, background-color .35s ease, box-shadow .45s var(--ease-out);
 }
 .jr-item:hover { border-color: var(--jr-line-hover); }
 .jr-item.is-open {
-  opacity: 1;
   border-color: rgba(105, 135, 255, .75);
   background:
     radial-gradient(600px 260px at 0% 0%, rgba(62, 92, 255, .22), transparent 70%),
@@ -2599,12 +2597,11 @@ html[data-theme="light"] .jr-toggle {
 .funding .funding-kicker { color: #7dd3fc; opacity: 1; }
 .funding .funding-upto { color: #e5e7eb; }
 .funding .funding-amount .funding-value {
-  background: linear-gradient(180deg, #fde68a 0%, #fbbf24 55%, #f59e0b 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: #fbbf24;
-  filter: drop-shadow(0 0 14px rgba(251, 191, 36, 0.35));
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  background: none !important;
+  text-shadow: 0 0 18px rgba(56, 189, 248, 0.45), 0 0 4px rgba(255, 255, 255, 0.35);
+  filter: none;
 }
 .funding .funding-note { color: #cbd5e1; opacity: 1; }
 .funding .funding-headline .btn {
