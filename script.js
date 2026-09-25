@@ -600,9 +600,7 @@ document.addEventListener('DOMContentLoaded', () => {
          
 
   // Scroll-spy: highlight the centered Journey step while scrolling
-  
-
-
+ 
 
   /* --- 9. HOW IT WORKS: ITINERARY SCROLL ANIMATION (LEFT-TO-RIGHT FADE IN / FADE OUT) --- */
   const howItWorksSection = document.getElementById('how-it-works');
