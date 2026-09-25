@@ -69,6 +69,45 @@
     .hero-countdown .hero-cd-sep {
       color: #38bdf8 !important;
     }
+    /* Competition & Rewards card: deep navy glass card, gold prize amount */
+    .funding .funding-headline {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 85% 0%, rgba(56, 189, 248, 0.22) 0%, transparent 55%),
+        linear-gradient(160deg, #10224a 0%, #0a1733 55%, #080E1C 100%) !important;
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      box-shadow: 0 25px 60px -15px rgba(28, 109, 208, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      color: #f9fafb;
+    }
+    .funding .funding-headline::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #1C6DD0 0 25%, #38bdf8 25% 50%, #34d399 50% 75%, #fbbf24 75% 100%);
+    }
+    .funding .funding-kicker { color: #7dd3fc; opacity: 1; }
+    .funding .funding-upto { color: #e5e7eb; }
+    .funding .funding-amount .funding-value {
+      background: linear-gradient(180deg, #fde68a 0%, #fbbf24 55%, #f59e0b 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: #fbbf24;
+      filter: drop-shadow(0 0 14px rgba(251, 191, 36, 0.35));
+    }
+    .funding .funding-note { color: #cbd5e1; opacity: 1; }
+    .funding .funding-headline .btn {
+      background: linear-gradient(135deg, #1C6DD0, #0a4b9c) !important;
+      color: #ffffff !important;
+      border: 1px solid rgba(56, 189, 248, 0.5) !important;
+      box-shadow: 0 0 20px rgba(28, 109, 208, 0.45);
+    }
+    .funding .funding-headline .btn:hover {
+      box-shadow: 0 0 30px rgba(56, 189, 248, 0.6);
+      border-color: rgba(56, 189, 248, 0.9) !important;
+    }
   </style>
 </head>
 
@@ -517,7 +556,7 @@
       <div class="container funding-grid">
         <div class="funding-headline">
           <p class="funding-kicker">Competition &amp; Rewards</p>
-          <h2 id="funding-title" class="funding-amount"><span class="funding-upto">Up to</span> ~₹50,000</h2>
+          <h2 id="funding-title" class="funding-amount"><span class="funding-upto">Up to</span> <span class="funding-value">₹50,000</span></h2>
           <p class="funding-note">Prize pool for top-performing startup ideas, combined with pre-incubation pathways and
             seed-funding access.</p>
           <a class="btn btn-light btn-lg" href="#register" data-preselect-pitch>Register to participate</a>
