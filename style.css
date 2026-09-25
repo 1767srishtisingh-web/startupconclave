@@ -560,21 +560,20 @@ h4,
 
 .pillar {
   display: flex;
-  gap: 1.5rem;
+  align-items: flex-start;
+  gap: 1rem;
 }
 
+/* ">>" chevron bullet in each pillar's own accent colour */
 .pillar-step {
-  font-size: 2rem;
-  width: 4rem;
-  height: 4rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--surface);
-  border-radius: var(--radius);
-  border: 1px solid var(--pillar);
-  color: var(--pillar);
+  width: 1.6rem;
+  height: 1.6rem;
+  margin-top: 0.1rem;
   flex-shrink: 0;
+  background-color: var(--pillar);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 6l6 6-6 6'/%3E%3Cpath d='M13 6l6 6-6 6'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 6l6 6-6 6'/%3E%3Cpath d='M13 6l6 6-6 6'/%3E%3C/svg%3E") center / contain no-repeat;
+  filter: drop-shadow(0 0 6px var(--pillar));
 }
 
 .pillar h3 {
@@ -1660,12 +1659,16 @@ textarea:focus {
 }
 
 .terms-list {
+  text-align: left;
+  list-style: none;
+  padding-left: 0;
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
 .terms-list li {
+  text-align: left;
   padding-bottom: 1rem;
   border-bottom: 1px solid var(--border);
   font-size: 0.95rem;
@@ -2541,14 +2544,20 @@ html[data-theme="light"] .jr-toggle {
 .hero-cd-unit strong {
   font-weight: 800;
   font-size: 1.15rem;
-  color: var(--text-main);
+  color: var(--poster-blue-lt, #38bdf8);
   letter-spacing: -0.01em;
+}
+
+[data-theme="dark"] .hero-cd-unit strong {
+  color: #38bdf8;
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
 }
 
 .hero-cd-unit small {
   font-size: 0.72rem;
   font-weight: 700;
-  color: var(--primary);
+  color: var(--poster-blue-lt, #38bdf8);
+  opacity: 0.75;
   margin-left: 0.1rem;
   text-transform: lowercase;
 }
@@ -2564,13 +2573,4 @@ html[data-theme="light"] .jr-toggle {
 @keyframes timerBlink {
   0%, 100% { opacity: 0.8; }
   50% { opacity: 0.2; }
-}
-
-.hero-cd-seconds strong {
-  color: var(--poster-blue-lt, #38bdf8);
-}
-
-[data-theme="dark"] .hero-cd-seconds strong {
-  color: #38bdf8;
-  text-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
 }
