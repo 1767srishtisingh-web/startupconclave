@@ -487,33 +487,19 @@ document.addEventListener('DOMContentLoaded', () => {
           localStorage.setItem('sc26-applications', JSON.stringify(all));
         } catch (e) { }
 
-        success.querySelector('[data-success-name]').textContent = (data.get('founder_name') || '').toString();
-        success.querySelector('[data-success-id]').textContent = appId;
         formEl.hidden = true;
-        panel.querySelector('.rf-steps').hidden = true;
+        const head = panel.querySelector('.rf-head');
+        if (head) head.hidden = true;
         success.hidden = false;
         success.scrollIntoView({ behavior: 'smooth', block: 'center' });
         success.focus({ preventScroll: true });
-        showToast('Application submitted! ID: ' + appId);
+        showToast('Form submitted successfully');
       } catch (err) {
         if (formError) formError.textContent = 'Could not submit right now. Please check your internet connection and try again.';
       } finally {
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
       }
-    });
-
-    const again = panel.querySelector('[data-form-again]');
-    if (again) again.addEventListener('click', () => {
-      formEl.reset();
-      formEl.querySelectorAll('[data-team-members]').forEach(b => { b.innerHTML = ''; });
-      formEl.querySelectorAll('[data-regno]').forEach(n => { n.hidden = true; n.required = false; });
-      const canvas = formEl.querySelector('[data-captcha-canvas]');
-      if (canvas) drawCaptcha(canvas);
-      success.hidden = true;
-      formEl.hidden = false;
-      panel.querySelector('.rf-steps').hidden = false;
-      panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   });
 
