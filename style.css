@@ -934,6 +934,10 @@ h4,
   gap: 2rem;
   margin-bottom: 4rem;
 }
+#schedule {
+  padding-top: 2.5rem;
+}
+
 #schedule .section-head {
   text-align: center;
 }
