@@ -107,6 +107,22 @@
       box-shadow: 0 0 30px rgba(56, 189, 248, 0.6);
       border-color: rgba(56, 189, 248, 0.9) !important;
     }
+    /* FAQ: heading on top, question boxes below */
+    .faq .faq-grid {
+      display: flex !important;
+      flex-direction: column;
+      align-items: center;
+      gap: 2.5rem !important;
+    }
+    .faq .faq-head {
+      text-align: center;
+      max-width: 760px;
+    }
+    .faq .faq-head .section-title { margin-bottom: 0.75rem; }
+    .faq .faq-list {
+      width: 100%;
+      max-width: 900px;
+    }
   </style>
 </head>
 
@@ -1250,7 +1266,7 @@
     <!-- ============ FAQ ============ -->
     <section class="section faq" id="faq" aria-labelledby="faq-title">
       <div class="container faq-grid">
-        <div>
+        <div class="faq-head">
           <h2 class="section-title" id="faq-title">Frequently Asked Questions</h2>
           <p class="section-sub">Have questions about the conclave? Write to us at <a
               href="mailto:idealab@akgec.ac.in">idealab@akgec.ac.in</a>.</p>
