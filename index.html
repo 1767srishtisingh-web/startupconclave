@@ -47,6 +47,28 @@
       display: flex; align-items: center; justify-content: center;
     }
     .pillars .pillar .pillar-step svg { width: 100%; height: 100%; display: block; }
+    /* Countdown: every number in one highlighted blue (works even if an older style.css is cached) */
+    .hero-countdown .hero-cd-unit strong,
+    .hero-countdown .hero-cd-seconds strong {
+      color: #0369a1 !important;
+      font-weight: 800;
+      text-shadow: 0 0 12px rgba(2, 132, 199, 0.25) !important;
+    }
+    [data-theme="dark"] .hero-countdown .hero-cd-unit strong,
+    [data-theme="dark"] .hero-countdown .hero-cd-seconds strong {
+      color: #38bdf8 !important;
+      text-shadow: 0 0 8px rgba(56, 189, 248, 0.55), 0 0 18px rgba(28, 109, 208, 0.45) !important;
+    }
+    .hero-countdown .hero-cd-unit small {
+      color: #0369a1 !important;
+      opacity: 0.7;
+    }
+    [data-theme="dark"] .hero-countdown .hero-cd-unit small {
+      color: #7dd3fc !important;
+    }
+    .hero-countdown .hero-cd-sep {
+      color: #38bdf8 !important;
+    }
   </style>
 </head>
 
@@ -430,9 +452,9 @@
           <p class="section-kicker">Why Attend</p>
           <h2 class="section-title" id="about-title">Why just have an idea? When you can build it. Pitch it. Grow it.
           </h2>
-          <p>Startup Conclave 2026 brings together ideas, innovators, mentors, investors and opportunities - all under
+          <p>Startup Conclave 2026 brings together ideas, innovators, mentors, investors and opportunities — all under
             one roof.</p>
-          <p class="about-highlight"><strong>Big ventures often begin with one small idea - and the courage to put it
+          <p class="about-highlight"><strong>Big ventures often begin with one small idea — and the courage to put it
               out there.</strong></p>
         </div>
 
@@ -440,7 +462,7 @@
           <li class="pillar" style="--pillar: var(--amber)">
             <span class="pillar-step" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 6l6 6-6 6"/><path d="M13 6l6 6-6 6"/></svg></span>
             <div>
-              <h3>₹50,000 Prize Pool</h3>
+              <h3>~₹50,000 Prize Pool</h3>
               <p>Your idea could be worth more than you think. Pitch, compete, and get recognized in front of seasoned
                 industry evaluators.</p>
             </div>
