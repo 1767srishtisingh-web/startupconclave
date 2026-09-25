@@ -571,66 +571,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-  /* --- 8. EVENT JOURNEY ACCORDION --- */
+  /* --- 8. EVENT JOURNEY ACCORDION (opens on click only) --- */
   const journey = document.querySelector('[data-journey]');
-  const finePointer = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-  
+  if (journey) {
+    const stages = Array.from(journey.querySelectorAll('.jr-item'));
+
+    function setStage(item, open) {
+      item.classList.toggle('is-open', open);
+      const toggle = item.querySelector('.jr-toggle');
+      if (toggle) toggle.setAttribute('aria-expanded', String(open));
+    }
+    function openOnly(target) {
+      stages.forEach(item => { setStage(item, item === target); });
+    }
 
     stages.forEach(item => {
       const toggle = item.querySelector('.jr-toggle');
       if (!toggle) return;
+      toggle.style.cursor = 'pointer';
 
+      // Click an open stage to close it, click a closed one to open it (others close)
       toggle.addEventListener('click', () => {
-        const isOpen = item.classList.contains('is-open');
-        if (isOpen && !finePointer) setStage(item, false);
+        if (item.classList.contains('is-open')) setStage(item, false);
         else openOnly(item);
       });
-
-      if (finePointer) {
-        item.addEventListener('pointerenter', () => {
-          clearTimeout(hoverTimer);
-          hoverTimer = setTimeout(() => {
-            if (!item.classList.contains('is-open')) openOnly(item);
-          }, 140);
-        });
-        item.addEventListener('pointerleave', () => { clearTimeout(hoverTimer); });
-      }
     });
   }
-         
-
-  // Scroll-spy: highlight the centered Journey step while scrolling
-  const journeyItems = document.querySelectorAll('.jr-item');
-  if (journeyItems.length) {
-    const journeyObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        const btn = entry.target.querySelector('.jr-toggle');
-        if (entry.isIntersecting) {
-          journeyItems.forEach(item => {
-            item.classList.remove('is-open');
-            item.querySelector('.jr-toggle')?.setAttribute('aria-expanded', 'false');
-          });
-          entry.target.classList.add('is-open');
-          btn?.setAttribute('aria-expanded', 'true');
-        }
-      });
-    }, {
-      threshold: 0.6,
-      rootMargin: '-35% 0px -35% 0px'
-    });
-    journeyItems.forEach(item => journeyObserver.observe(item));
-  }
-
-
-
-
-  // Journey arrow links with data-goto-day open the matching schedule tab
-  document.querySelectorAll('[data-goto-day]').forEach(link => {
-    link.addEventListener('click', () => {
-      const tab = document.getElementById('tab-' + link.getAttribute('data-goto-day'));
-      if (tab && tab.getAttribute('aria-selected') !== 'true') tab.click();
-    });
-  });
 
   /* --- 9. HOW IT WORKS: ITINERARY SCROLL ANIMATION (LEFT-TO-RIGHT FADE IN / FADE OUT) --- */
   const howItWorksSection = document.getElementById('how-it-works');
