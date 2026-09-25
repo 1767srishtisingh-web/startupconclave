@@ -1957,10 +1957,12 @@ section.event-journey.journey {
   border: 1px solid var(--jr-line);
   border-radius: 18px;
   background: rgba(255, 255, 255, .02);
-  transition: border-color .35s ease, background-color .35s ease, box-shadow .45s var(--ease-out);
+  opacity: 0.45;
+  transition: opacity 0.5s ease, border-color .35s ease, background-color .35s ease, box-shadow .45s var(--ease-out);
 }
 .jr-item:hover { border-color: var(--jr-line-hover); }
 .jr-item.is-open {
+  opacity: 1;
   border-color: rgba(105, 135, 255, .75);
   background:
     radial-gradient(600px 260px at 0% 0%, rgba(62, 92, 255, .22), transparent 70%),
