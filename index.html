@@ -224,6 +224,18 @@
     @media (max-width: 600px) {
       .exp-band .experience-strip { grid-template-columns: 1fr; padding: 2rem 1.5rem !important; }
     }
+    /* Hero bottom line: more breathing room + smooth blue glow line */
+    .hero > .brand-stripe {
+      margin-top: 4.5rem;
+      height: 2px;
+      background: linear-gradient(90deg, transparent 0%, #1C6DD0 18%, #38bdf8 50%, #1C6DD0 82%, transparent 100%);
+      box-shadow: 0 0 14px rgba(56, 189, 248, 0.45), 0 0 34px rgba(28, 109, 208, 0.3);
+      opacity: 0.9;
+    }
+    .hero > .brand-stripe span { background: transparent !important; }
+    @media (max-width: 768px) {
+      .hero > .brand-stripe { margin-top: 3rem; }
+    }
   </style>
 </head>
 
