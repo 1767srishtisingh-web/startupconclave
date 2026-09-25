@@ -3323,7 +3323,8 @@ html[data-theme="light"] .jr-toggle {
 }
 [data-theme="dark"] .rf-eyebrow { color: #7dd3fc; }
 .rf-title {
-  font-family: var(--font-sans);
+  font-family: 'Archivo', var(--font-sans);
+  font-stretch: 112%;
   font-size: 1.65rem;
   font-weight: 800;
   line-height: 1.25;
@@ -3353,8 +3354,10 @@ html[data-theme="light"] .jr-toggle {
   align-items: center;
   gap: 0.65rem;
   width: 100%;
-  font-size: 1.05rem;
+  font-family: 'Archivo', var(--font-sans);
+  font-size: 1.08rem;
   font-weight: 700;
+  letter-spacing: 0.01em;
   margin-bottom: 1.1rem;
   padding: 0;
   color: var(--text-main);
