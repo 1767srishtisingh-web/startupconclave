@@ -571,12 +571,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-  /* --- 8. EVENT JOURNEY ACCORDION --- */
+  /* --- 8. EVENT JOURNEY ACCORDION (opens on click only) --- */
   const journey = document.querySelector('[data-journey]');
-  const finePointer = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   if (journey) {
     const stages = Array.from(journey.querySelectorAll('.jr-item'));
-    let hoverTimer = null;
 
     function setStage(item, open) {
       item.classList.toggle('is-open', open);
@@ -590,32 +588,15 @@ document.addEventListener('DOMContentLoaded', () => {
     stages.forEach(item => {
       const toggle = item.querySelector('.jr-toggle');
       if (!toggle) return;
+      toggle.style.cursor = 'pointer';
 
+      // Click an open stage to close it, click a closed one to open it (others close)
       toggle.addEventListener('click', () => {
-        const isOpen = item.classList.contains('is-open');
-        if (isOpen && !finePointer) setStage(item, false);
+        if (item.classList.contains('is-open')) setStage(item, false);
         else openOnly(item);
       });
-
-      if (finePointer) {
-        item.addEventListener('pointerenter', () => {
-          clearTimeout(hoverTimer);
-          hoverTimer = setTimeout(() => {
-            if (!item.classList.contains('is-open')) openOnly(item);
-          }, 140);
-        });
-        item.addEventListener('pointerleave', () => { clearTimeout(hoverTimer); });
-      }
     });
   }
-
-  // Journey arrow links with data-goto-day open the matching schedule tab
-  document.querySelectorAll('[data-goto-day]').forEach(link => {
-    link.addEventListener('click', () => {
-      const tab = document.getElementById('tab-' + link.getAttribute('data-goto-day'));
-      if (tab && tab.getAttribute('aria-selected') !== 'true') tab.click();
-    });
-  });
 
   /* --- 9. HOW IT WORKS: ITINERARY SCROLL ANIMATION (LEFT-TO-RIGHT FADE IN / FADE OUT) --- */
   const howItWorksSection = document.getElementById('how-it-works');
