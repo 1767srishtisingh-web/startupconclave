@@ -262,14 +262,133 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Basic Form Submission Demo
+  /* --- CAPTCHA GENERATION & VALIDATION --- */
+  let currentCaptchaCode = '';
+  const captchaCanvas = document.getElementById('captcha-canvas');
+  const captchaRefreshBtn = document.getElementById('captcha-refresh');
+  const regCaptchaInput = document.getElementById('reg-captcha');
+  const regCaptchaErr = document.getElementById('reg-captcha-err');
+  const captchaField = document.getElementById('captcha-field');
+
+  function generateCaptcha() {
+    const chars = '23456789ABCDEFGHJKLMNPQRSTUVWXYZ';
+    let code = '';
+    for (let i = 0; i < 5; i++) {
+      code += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    currentCaptchaCode = code;
+
+    if (!captchaCanvas) return;
+    const ctx = captchaCanvas.getContext('2d');
+    const width = captchaCanvas.width;
+    const height = captchaCanvas.height;
+
+    // Detect theme
+    const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
+
+    // Canvas background
+    ctx.clearRect(0, 0, width, height);
+    ctx.fillStyle = isDark ? '#141d2e' : '#f0f4f8';
+    ctx.fillRect(0, 0, width, height);
+
+    // Decorative noise lines
+    for (let i = 0; i < 4; i++) {
+      ctx.strokeStyle = isDark
+        ? `rgba(${Math.floor(Math.random()*150+100)}, ${Math.floor(Math.random()*150+100)}, 255, 0.25)`
+        : `rgba(${Math.floor(Math.random()*100)}, ${Math.floor(Math.random()*100)}, 180, 0.25)`;
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(Math.random() * width, Math.random() * height);
+      ctx.bezierCurveTo(
+        Math.random() * width, Math.random() * height,
+        Math.random() * width, Math.random() * height,
+        Math.random() * width, Math.random() * height
+      );
+      ctx.stroke();
+    }
+
+    // Noise dots
+    for (let i = 0; i < 25; i++) {
+      ctx.fillStyle = isDark ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.15)';
+      ctx.beginPath();
+      ctx.arc(Math.random() * width, Math.random() * height, 1, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // Draw characters with distinct vibrant colors & slight angles
+    const colors = isDark
+      ? ['#60a5fa', '#34d399', '#fbbf24', '#f87171', '#a78bfa', '#38bdf8']
+      : ['#2563eb', '#059669', '#d97706', '#dc2626', '#7c3aed', '#0284c7'];
+
+    ctx.font = 'bold 22px "Archivo", "Segoe UI", sans-serif';
+    ctx.textBaseline = 'middle';
+
+    const charSpacing = (width - 24) / 5;
+    for (let i = 0; i < code.length; i++) {
+      const char = code[i];
+      const charX = 14 + i * charSpacing;
+      const charY = height / 2 + (Math.random() * 4 - 2);
+      const angle = (Math.random() - 0.5) * 0.35;
+
+      ctx.save();
+      ctx.translate(charX, charY);
+      ctx.rotate(angle);
+      ctx.fillStyle = colors[Math.floor(Math.random() * colors.length)];
+      ctx.fillText(char, 0, 0);
+      ctx.restore();
+    }
+  }
+
+  if (captchaCanvas) {
+    generateCaptcha();
+    captchaCanvas.addEventListener('click', () => {
+      generateCaptcha();
+      if (regCaptchaInput) regCaptchaInput.focus();
+    });
+  }
+
+  if (captchaRefreshBtn) {
+    captchaRefreshBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      generateCaptcha();
+      if (regCaptchaInput) regCaptchaInput.focus();
+    });
+  }
+
+  // Redraw captcha on theme toggle change
+  themeToggles.forEach(btn => {
+    btn.addEventListener('click', () => {
+      setTimeout(generateCaptcha, 50);
+    });
+  });
+
+  // Clear captcha error on typing
+  if (regCaptchaInput) {
+    regCaptchaInput.addEventListener('input', () => {
+      if (regCaptchaErr) {
+        regCaptchaErr.style.display = 'none';
+        regCaptchaErr.textContent = '';
+      }
+      if (captchaField) captchaField.classList.remove('has-error');
+    });
+  }
+
+  function showToast(msg) {
+    const toastEl = document.querySelector('[data-toast]');
+    if (!toastEl) return;
+    toastEl.textContent = msg;
+    toastEl.classList.add('show');
+    setTimeout(() => toastEl.classList.remove('show'), 4000);
+  }
+
+  // Registration Form Submission
   if (form) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       
       // Reset errors
       form.querySelectorAll('.field-error').forEach(el => el.style.display = 'none');
-      form.querySelectorAll('.field').forEach(el => el.classList.remove('has-error'));
+      form.querySelectorAll('.field, .check').forEach(el => el.classList.remove('has-error'));
       
       let isValid = true;
       
@@ -286,122 +405,63 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
 
-      if (!isValid) return;
-
-      // Real API call to send OTP
-      const submitBtn = form.querySelector('[data-submit]');
-      const originalText = submitBtn.textContent;
-      submitBtn.textContent = 'Processing...';
-      submitBtn.disabled = true;
-
-      const formData = new FormData(form);
-      const data = Object.fromEntries(formData.entries());
-      
-      const recaptchaResponse = document.querySelector('.g-recaptcha-response');
-      if (recaptchaResponse) {
-        data.recaptchaToken = recaptchaResponse.value;
-      }
-
-      fetch('/register/send-otp', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      })
-      .then(res => res.json())
-      .then(resData => {
-        if (!resData.success) {
-          throw new Error(resData.message || 'Something went wrong');
-        }
-        
-        const otpModal = document.querySelector('[data-otp-modal]');
-        if (otpModal) otpModal.showModal();
-      })
-      .catch(err => {
-        const errorEl = form.querySelector('[data-form-error]');
-        if (errorEl) {
-          errorEl.textContent = err.message;
-          errorEl.style.display = 'block';
-        }
-      })
-      .finally(() => {
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-      });
-    });
-  }
-  
-  // OTP Verification Logic
-  const otpModal = document.querySelector('[data-otp-modal]');
-  const otpBtn = document.getElementById('verify-otp-btn');
-  const otpClose = document.querySelector('[data-otp-close]');
-  
-  const otpInputs = document.querySelectorAll('.otp-digit');
-  const hiddenOtpInput = document.getElementById('otp-input');
-  
-  if (otpInputs.length > 0) {
-    otpInputs.forEach((input, index) => {
-      input.addEventListener('input', (e) => {
-        // Auto advance
-        if (e.target.value.length === 1) {
-          if (index < otpInputs.length - 1) {
-            otpInputs[index + 1].focus();
+      // Phone validation
+      const phoneInput = document.getElementById('reg-phone');
+      if (phoneInput && phoneInput.value.trim()) {
+        const cleanPhone = phoneInput.value.trim().replace(/\D/g, '');
+        if (cleanPhone.length < 10) {
+          isValid = false;
+          phoneInput.closest('.field').classList.add('has-error');
+          const phoneErr = document.getElementById('reg-phone-err');
+          if (phoneErr) {
+            phoneErr.textContent = 'Please enter a valid 10-digit mobile number';
+            phoneErr.style.display = 'block';
           }
         }
-        updateHiddenOtp();
-      });
-      input.addEventListener('keydown', (e) => {
-        // Auto backspace
-        if (e.key === 'Backspace' && !e.target.value && index > 0) {
-          otpInputs[index - 1].focus();
-        }
-      });
-    });
-    
-    function updateHiddenOtp() {
-      let val = '';
-      otpInputs.forEach(i => val += i.value);
-      if (hiddenOtpInput) hiddenOtpInput.value = val;
-    }
-  }
-  
-  if (otpModal && otpBtn) {
-    if (otpClose) {
-      otpClose.addEventListener('click', () => otpModal.close());
-    }
-
-    otpBtn.addEventListener('click', () => {
-      const otpInput = document.getElementById('otp-input').value;
-      const email = document.getElementById('reg-email').value;
-      const otpErr = document.getElementById('otp-err');
-      
-      if (otpInput.length < 4) {
-        otpErr.textContent = 'Please enter the 4-digit OTP';
-        return;
       }
-      
-      otpBtn.disabled = true;
-      otpBtn.textContent = 'Verifying...';
-      otpErr.textContent = '';
-      
-      fetch('/register/verify', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, otp: otpInput })
-      })
-      .then(res => res.json())
-      .then(resData => {
-        if (!resData.success) throw new Error(resData.message);
-        
-        otpModal.close();
-        
+
+      // Captcha validation
+      if (regCaptchaInput) {
+        const entered = regCaptchaInput.value.trim().toUpperCase();
+        if (!entered) {
+          isValid = false;
+          if (captchaField) captchaField.classList.add('has-error');
+          if (regCaptchaErr) {
+            regCaptchaErr.textContent = 'Please enter the verification code';
+            regCaptchaErr.style.display = 'block';
+          }
+        } else if (entered !== currentCaptchaCode) {
+          isValid = false;
+          if (captchaField) captchaField.classList.add('has-error');
+          if (regCaptchaErr) {
+            regCaptchaErr.textContent = 'Incorrect verification code. Please try again.';
+            regCaptchaErr.style.display = 'block';
+          }
+          regCaptchaInput.value = '';
+          generateCaptcha();
+          regCaptchaInput.focus();
+        }
+      }
+
+      if (!isValid) return;
+
+      const submitBtn = form.querySelector('[data-submit]');
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = 'Completing Registration...';
+      submitBtn.disabled = true;
+
+      // Generate Pass ID (SC + 6 random digits)
+      const passId = 'SC' + Math.floor(100000 + Math.random() * 900000);
+      const name = document.getElementById('reg-name').value.trim();
+      const email = document.getElementById('reg-email').value.trim();
+      const role = typeSelect ? typeSelect.options[typeSelect.selectedIndex].text : 'Attendee';
+      const passType = (document.querySelector('input[name="pass"]:checked') || {}).value || 'Full event pass';
+
+      setTimeout(() => {
         if (form && successState) {
           form.hidden = true;
           successState.hidden = false;
           successState.focus();
-          
-          const name = document.getElementById('reg-name').value;
-          const role = typeSelect ? typeSelect.options[typeSelect.selectedIndex].text : '';
-          const passType = document.querySelector('input[name="pass"]:checked').value;
           
           const passEmailEl = document.querySelector('[data-pass-email]');
           if (passEmailEl) passEmailEl.textContent = email;
@@ -412,16 +472,19 @@ document.addEventListener('DOMContentLoaded', () => {
           const passTypeEl = document.querySelector('[data-pass-type]');
           if (passTypeEl) passTypeEl.textContent = passType;
           const passIdEl = document.querySelector('[data-pass-id]');
-          if (passIdEl) passIdEl.textContent = resData.id || 'SC000000';
+          if (passIdEl) passIdEl.textContent = passId;
+
+          try {
+            localStorage.setItem('sc26-registration', JSON.stringify({
+              passId, name, email, role, passType, date: new Date().toISOString()
+            }));
+          } catch (e) { }
+
+          showToast('Registration successful! Pass ID: ' + passId);
         }
-      })
-      .catch(err => {
-        otpErr.textContent = err.message;
-      })
-      .finally(() => {
-        otpBtn.disabled = false;
-        otpBtn.textContent = 'Verify & Submit';
-      });
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+      }, 400);
     });
   }
   
@@ -430,6 +493,9 @@ document.addEventListener('DOMContentLoaded', () => {
   if (regAnother && form && successState) {
     regAnother.addEventListener('click', () => {
       form.reset();
+      generateCaptcha();
+      form.querySelectorAll('.field-error').forEach(el => el.style.display = 'none');
+      form.querySelectorAll('.field, .check').forEach(el => el.classList.remove('has-error'));
       successState.hidden = true;
       form.hidden = false;
       const submitBtn = form.querySelector('[data-submit]');
@@ -438,6 +504,8 @@ document.addEventListener('DOMContentLoaded', () => {
         submitBtn.disabled = false;
       }
       if (pitchToggle) pitchToggle.dispatchEvent(new Event('change'));
+      const nameInput = document.getElementById('reg-name');
+      if (nameInput) nameInput.focus();
     });
   }
 
@@ -448,6 +516,58 @@ document.addEventListener('DOMContentLoaded', () => {
       window.print();
     });
   }
+
+  /* --- SCHEDULE: ADD TO CALENDAR (.ics) --- */
+  const ICS_EVENTS = {
+    day1: {
+      start: '20261015T033000Z',
+      end: '20261015T123000Z',
+      title: "Startup Conclave '26 - Day 1",
+      desc: 'Ideation, exposure, product showcase, keynotes and founder sessions.'
+    },
+    day2: {
+      start: '20261016T043000Z',
+      end: '20261016T120000Z',
+      title: "Startup Conclave '26 - Day 2",
+      desc: 'IPR masterclass, investor roundtables, pitch finals and awards ceremony.'
+    }
+  };
+
+  document.querySelectorAll('[data-ics]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const dayKey = btn.getAttribute('data-ics');
+      const ev = ICS_EVENTS[dayKey];
+      if (!ev) return;
+      const stamp = new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+      const ics = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//AKGEC IDEA Lab//Startup Conclave 26//EN',
+        'CALSCALE:GREGORIAN',
+        'BEGIN:VEVENT',
+        'UID:' + dayKey + '-sc26@akgec.ac.in',
+        'DTSTAMP:' + stamp,
+        'DTSTART:' + ev.start,
+        'DTEND:' + ev.end,
+        'SUMMARY:' + ev.title,
+        'DESCRIPTION:' + ev.desc,
+        'LOCATION:Ajay Kumar Garg Engineering College, 27th KM Milestone, Delhi-Meerut Expressway, Ghaziabad',
+        'END:VEVENT',
+        'END:VCALENDAR'
+      ].join('\r\n');
+
+      const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'startup-conclave-26-' + dayKey + '.ics';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+      showToast('Calendar file downloaded. Open it to add the event.');
+    });
+  });
 
 
 
@@ -496,5 +616,28 @@ document.addEventListener('DOMContentLoaded', () => {
       if (tab && tab.getAttribute('aria-selected') !== 'true') tab.click();
     });
   });
+
+  /* --- 9. HOW IT WORKS: ITINERARY SCROLL ANIMATION (LEFT-TO-RIGHT FADE IN / FADE OUT) --- */
+  const howItWorksSection = document.getElementById('how-it-works');
+  if (howItWorksSection) {
+    howItWorksSection.classList.add('anim-ready');
+    if ('IntersectionObserver' in window) {
+      const hiwObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            howItWorksSection.classList.add('is-visible');
+          } else {
+            howItWorksSection.classList.remove('is-visible');
+          }
+        });
+      }, {
+        threshold: 0.12,
+        rootMargin: '0px 0px -40px 0px'
+      });
+      hiwObserver.observe(howItWorksSection);
+    } else {
+      howItWorksSection.classList.add('is-visible');
+    }
+  }
 
 });
