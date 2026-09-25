@@ -2631,3 +2631,60 @@ html[data-theme="light"] .jr-toggle {
   width: 100%;
   max-width: 900px;
 }
+
+/* Register: heading centred on top, highlighted form card centred below */
+.register .register-grid {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem !important;
+}
+.register .register-aside {
+  text-align: center;
+  max-width: 860px;
+  margin: 0 auto;
+}
+.register .register-aside .section-title { margin-bottom: 1rem; }
+.register .register-aside .section-sub { margin-left: auto; margin-right: auto; }
+.register .countdown {
+  justify-content: center;
+  margin: 2rem 0 0 !important;
+}
+.register .cd-unit {
+  border-color: rgba(56, 189, 248, 0.3);
+  box-shadow: 0 0 18px -6px rgba(28, 109, 208, 0.5);
+}
+.register .cd-num { color: #0369a1; }
+[data-theme="dark"] .register .cd-num {
+  color: #38bdf8;
+  text-shadow: 0 0 8px rgba(56, 189, 248, 0.5), 0 0 18px rgba(28, 109, 208, 0.4);
+}
+.register .register-card {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 820px;
+  margin: 0 auto;
+  border: 1px solid rgba(28, 109, 208, 0.45) !important;
+  box-shadow: 0 25px 60px -18px rgba(28, 109, 208, 0.45), 0 0 0 4px rgba(56, 189, 248, 0.06) !important;
+}
+[data-theme="dark"] .register .register-card {
+  background:
+    radial-gradient(circle at 90% 0%, rgba(56, 189, 248, 0.16) 0%, transparent 45%),
+    radial-gradient(circle at 0% 100%, rgba(28, 109, 208, 0.14) 0%, transparent 45%),
+    linear-gradient(165deg, #0f1f42 0%, #0a1631 50%, #080E1C 100%) !important;
+  border-color: rgba(56, 189, 248, 0.4) !important;
+  box-shadow: 0 30px 70px -20px rgba(28, 109, 208, 0.6), 0 0 40px -10px rgba(56, 189, 248, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.07) !important;
+}
+.register .register-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #1C6DD0 0 25%, #38bdf8 25% 50%, #34d399 50% 75%, #fbbf24 75% 100%);
+}
+.register .form-title { text-align: center; }
+@media (max-width: 640px) {
+  .register .countdown { gap: 0.6rem; }
+  .register .cd-unit { min-width: 64px; padding: 0.75rem 0.5rem; }
+}
