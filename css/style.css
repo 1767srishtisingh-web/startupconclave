@@ -299,8 +299,33 @@ h4,
   gap: 0.75rem;
 }
 
+.brand-logos {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-shrink: 0;
+}
+
 .brand-mark {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  background: #ffffff;
   border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: block;
+}
+
+.brand:hover .brand-mark {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.28);
+}
+
+html[data-theme="light"] .brand-mark {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 .brand-text {
@@ -1957,9 +1982,14 @@ textarea:focus {
   gap: 0.6rem;
 }
 
+.footer-brand .brand-logos {
+  gap: 0.3rem;
+}
+
 .footer-brand .brand-mark {
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
+  border-radius: 7px;
 }
 
 .footer-brand .brand-name {
@@ -2547,16 +2577,21 @@ html[data-theme="light"] .jr-toggle {
   }
 
   .brand {
-    gap: 0.75rem;
+    gap: 0.6rem;
+  }
+
+  .brand-logos {
+    gap: 0.3rem;
   }
 
   .brand-mark {
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
+    border-radius: 7px;
   }
 
   .brand-name {
-    font-size: 1.35rem;
+    font-size: 1.28rem;
     letter-spacing: 0.05em;
     word-spacing: 0.08em;
     line-height: 1;
@@ -2859,23 +2894,27 @@ html[data-theme="light"] .jr-toggle {
   }
 
   .brand {
-    gap: 0.6rem;
+    gap: 0.5rem;
+  }
+
+  .brand-logos {
+    gap: 0.25rem;
   }
 
   .brand-mark {
-    width: 38px;
-    height: 38px;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
   }
 
   .brand-name {
-    font-size: 1.25rem;
-    letter-spacing: 0.05em;
-    word-spacing: 0.06em;
+    font-size: 1.05rem;
+    letter-spacing: 0.04em;
+    word-spacing: 0.04em;
   }
 
   .brand-sub {
-    font-size: 0.64rem;
-    letter-spacing: 0.05em;
+    display: none;
   }
 
   .hero-presenter {
@@ -3027,13 +3066,27 @@ html[data-theme="light"] .jr-toggle {
 
 /* Very narrow devices (<= 380px) */
 @media (max-width: 380px) {
+  .brand {
+    gap: 0.4rem;
+  }
+
+  .brand-logos {
+    gap: 0.2rem;
+  }
+
+  .brand-mark {
+    width: 25px;
+    height: 25px;
+    border-radius: 5px;
+  }
+
   .brand-sub {
     display: none;
   }
 
   .brand-name {
-    font-size: 1.12rem;
-    letter-spacing: 0.04em;
+    font-size: 0.95rem;
+    letter-spacing: 0.03em;
   }
 
   .header-cta {
