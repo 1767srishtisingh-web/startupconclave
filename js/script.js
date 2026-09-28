@@ -219,9 +219,9 @@ document.addEventListener('DOMContentLoaded', () => {
   /* --- 7. REGISTRATION FORMS (Exhibition + Pitching) --- */
   // Replace each empty value with its published Google Form URL.
   const GOOGLE_FORM_URLS = {
-    exhibit: '',
-    pitch: '',
-    attendee: ''
+    exhibit: 'https://forms.gle/kXRQCAjZHzUGkchX9',
+    pitch: 'https://forms.gle/kXRQCAjZHzUGkchX9',
+    attendee: 'https://forms.gle/kXRQCAjZHzUGkchX9'
   };
 
   function showToast(msg) {
@@ -243,7 +243,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function openPanel(key) {
     const googleFormUrl = GOOGLE_FORM_URLS[key];
     if (googleFormUrl) {
-      window.location.assign(googleFormUrl);
+      window.open(googleFormUrl, '_blank', 'noopener,noreferrer');
       return;
     }
     showToast('This Google Form link is not available yet.');
