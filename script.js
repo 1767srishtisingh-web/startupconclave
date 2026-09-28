@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const countdownEls = document.querySelectorAll('[data-countdown]');
   const inlineCountdown = document.querySelector('[data-countdown-inline]');
   // Target date: 7 October 2026, 23:59:59 IST
-  const targetDate = new Date('2026-10-07T23:59:59+05:30').getTime();
+  const targetDate = new Date('2026-10-10T23:59:59+05:30').getTime();
 
   function updateCountdown() {
     const now = new Date().getTime();
