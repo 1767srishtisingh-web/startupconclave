@@ -1939,12 +1939,37 @@ textarea:focus {
 
 .footer-grid {
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1.1fr;
+  grid-template-columns: 1fr auto 1fr;
   gap: 2.5rem;
   padding: 2.2rem 0 1.7rem 0;
   align-items: start;
 }
 
+.footer-links-col {
+  justify-self: center;
+}
+
+.footer-collab {
+  justify-self: end;
+  text-align: right;
+}
+
+.collab-logos {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.6rem;
+}
+
+.collab-logos img {
+  height: 32px;
+  width: auto;
+  background: #fff;
+  padding: 3px;
+  border-radius: 8px;
+}
 .footer-links-col .footer-heading {
   margin-bottom: 0.75rem;
 }
