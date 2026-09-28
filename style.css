@@ -1955,25 +1955,28 @@ textarea:focus {
   align-items: start;
 }
 
+.footer-brand,
+.footer-links-col,
+.footer-collab {
+  min-width: 0;
+  text-align: left;
+}
+
 .footer-links-col {
   justify-self: center;
 }
 
 .footer-collab {
   justify-self: end;
-  text-align: left;
-}
-
-.footer-collab {
-  justify-self: end;
-  text-align: left;
 }
 
 .collab-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
-  margin-top: 0.6rem;
 }
 
 .collab-item {
@@ -1998,9 +2001,6 @@ textarea:focus {
   line-height: 1.3;
 }
 
-.footer-links-col .footer-heading {
-  margin-bottom: 0.75rem;
-}
 
 .footer-links-list {
   list-style: none;
@@ -2008,12 +2008,13 @@ textarea:focus {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.6rem;
 }
 
 .footer-link-row {
   display: inline-flex;
   align-items: center;
+  min-height: 32px;
   gap: 0.65rem;
   color: var(--text-muted);
   font-size: 0.85rem;
@@ -2028,12 +2029,13 @@ textarea:focus {
 
 .footer-link-row svg {
   flex-shrink: 0;
+  width: 32px;
   color: var(--primary);
 }
 
 .footer-brand .brand {
   gap: 0.6rem;
- align-items: flex-start;
+  align-items: flex-start;
 }
 
 
@@ -2054,7 +2056,7 @@ textarea:focus {
 .footer-brand .brand-sub {
   font-size: 0.72rem;
   letter-spacing: 0.04em;
-    margin-top: 8px;
+  margin-top: 8px;
 }
 
 .footer-brand p {
@@ -2070,7 +2072,7 @@ textarea:focus {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.85rem;
   color: var(--text-main);
 }
 
@@ -2906,6 +2908,12 @@ html[data-theme="light"] .jr-toggle {
     grid-template-columns: 1fr;
     gap: 2rem;
     padding: 1.75rem 0 1rem 0;
+  }
+
+  .footer-brand,
+  .footer-links-col,
+  .footer-collab {
+    justify-self: start;
   }
 
   .footer-bottom {
