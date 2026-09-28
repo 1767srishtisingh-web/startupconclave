@@ -1697,6 +1697,25 @@ textarea:focus {
   border: none;
   padding: 0;
 }
+.terms-sublist {
+  list-style: disc;
+  padding-left: 1.5rem;
+  margin-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.terms-list .terms-sublist li {
+  padding: 0;
+  border: none;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.terms-sublist li::marker {
+  color: var(--primary);
+}
 
 .faq-grid {
   display: grid;
