@@ -661,8 +661,8 @@ html[data-theme="light"] .brand-mark {
 .funding-grid {
   display: grid;
   grid-template-columns: 1fr 1.5fr;
-  gap: 4rem;
-  align-items: center;
+  gap: 2rem;
+  align-items: stretch;          /* was: center */
 }
 
 .funding-stack {
@@ -714,10 +714,17 @@ html[data-theme="light"] .brand-mark {
   font-size: 0.9rem;
 }
 
+
 .store-list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 3rem 2rem;
+  gap: 1.25rem;                  /* same gap as the left cards */
+}
+.store-list li {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
 }
 
 .store-list h3 {
