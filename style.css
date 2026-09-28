@@ -1744,6 +1744,7 @@ textarea:focus {
 
 /* --- 17. WHATSAPP COMMUNITY --- */
 .section.faq {
+   padding-top: 2rem;
   padding-bottom: 1.5rem;
 }
 
