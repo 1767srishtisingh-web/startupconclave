@@ -140,6 +140,7 @@
       background: var(--primary);
       box-shadow: var(--shadow-md), 0 0 18px rgba(56, 189, 248, 0.24);
     }
+    .faq .faq-title-tabs #faq-tab { margin-left: -15px; padding-left: calc(1.25rem + 15px); }
     .faq .faq-title-tabs button:not([aria-selected="true"]):hover { background: var(--surface-hover); }
     .faq .faq-title-tabs button:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
     .faq .faq-heading-copy .section-sub { margin: 0; text-align: left; }
@@ -156,7 +157,7 @@
     @media (max-width: 700px) {
       .faq .faq-title-tabs { width: 100%; }
       .faq .faq-title-tabs button { padding: 0.55rem 0.65rem; font-size: 1.2rem; }
-      .faq .faq-title-tabs #faq-tab { max-width: 65%; }
+      .faq .faq-title-tabs #faq-tab { max-width: 65%; padding-left: calc(0.65rem + 15px); }
       .faq .faq-title-tabs #guidelines-tab { flex: 0 0 auto; }
       .faq .faq-guidelines .terms-card { padding: 1.5rem; }
     }
@@ -1387,61 +1388,6 @@
       </div>
     </section>
 
-    <!-- ============ VENUE & DETAILS ============ -->
-    <section class="section venue" id="venue" aria-labelledby="venue-title">
-      <div class="container venue-grid">
-        <div>
-          <h2 class="section-title" id="venue-title">Venue and details</h2>
-
-          <dl class="detail-list">
-            <div>
-              <dt>Dates</dt>
-              <dd>15 &amp 16 October 2026</dd>
-            </div>
-            <div>
-              <dt>Timings</dt>
-              <dd>Day 1: 9:00 AM – 6:00 PM | Day 2: 10:00 AM – 5:30 PM</dd>
-            </div>
-            <div>
-              <dt>Venue</dt>
-              <dd>Ajay Kumar Garg Engineering College (AKGEC)</dd>
-            </div>
-            <div>
-              <dt>Location</dt>
-              <dd>27th KM Milestone, Delhi–Meerut Expressway, Ghaziabad, Uttar Pradesh 201015</dd>
-            </div>
-            <div>
-              <dt>Prizes</dt>
-              <dd>Up to ₹50,000 Prize Pool + Pre-Incubation &amp; Up to ₹3 Lakh Seed funding opportunities</dd>
-            </div>
-            <div>
-              <dt>Food &amp; Kit</dt>
-              <dd>Delegate welcome kit and refreshments included</dd>
-            </div>
-            <div>
-              <dt>Registration Deadline</dt>
-              <dd>7 October 2026</dd>
-            </div>
-          </dl>
-          <a class="btn btn-ghost"
-            href="https://www.google.com/maps/dir/?api=1&amp;destination=Ajay+Kumar+Garg+Engineering+College+Ghaziabad"
-            target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
-              <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z" fill="none" stroke="currentColor"
-                stroke-width="1.8" />
-              <circle cx="12" cy="9.5" r="2.5" fill="none" stroke="currentColor" stroke-width="1.8" />
-            </svg>
-            Get directions on Google Maps
-          </a>
-        </div>
-        <div class="map-frame" data-map-label="Map of AKGEC Campus, Ghaziabad">
-          <iframe title="Map showing Ajay Kumar Garg Engineering College, Ghaziabad"
-            src="https://maps.google.com/maps?q=Ajay%20Kumar%20Garg%20Engineering%20College%20Ghaziabad&amp;z=15&amp;output=embed"
-            loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-      </div>
-    </section>
-
     <!-- ============ FAQ ============ -->
     <section class="section faq" id="faq" aria-labelledby="faq-title">
       <div class="container faq-grid">
@@ -1509,6 +1455,61 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ VENUE & DETAILS ============ -->
+    <section class="section venue" id="venue" aria-labelledby="venue-title">
+      <div class="container venue-grid">
+        <div>
+          <h2 class="section-title" id="venue-title">Venue and details</h2>
+
+          <dl class="detail-list">
+            <div>
+              <dt>Dates</dt>
+              <dd>15 &amp 16 October 2026</dd>
+            </div>
+            <div>
+              <dt>Timings</dt>
+              <dd>Day 1: 9:00 AM – 6:00 PM | Day 2: 10:00 AM – 5:30 PM</dd>
+            </div>
+            <div>
+              <dt>Venue</dt>
+              <dd>Ajay Kumar Garg Engineering College (AKGEC)</dd>
+            </div>
+            <div>
+              <dt>Location</dt>
+              <dd>27th KM Milestone, Delhi–Meerut Expressway, Ghaziabad, Uttar Pradesh 201015</dd>
+            </div>
+            <div>
+              <dt>Prizes</dt>
+              <dd>Up to ₹50,000 Prize Pool + Pre-Incubation &amp; Up to ₹3 Lakh Seed funding opportunities</dd>
+            </div>
+            <div>
+              <dt>Food &amp; Kit</dt>
+              <dd>Delegate welcome kit and refreshments included</dd>
+            </div>
+            <div>
+              <dt>Registration Deadline</dt>
+              <dd>7 October 2026</dd>
+            </div>
+          </dl>
+          <a class="btn btn-ghost"
+            href="https://www.google.com/maps/dir/?api=1&amp;destination=Ajay+Kumar+Garg+Engineering+College+Ghaziabad"
+            target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+              <path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z" fill="none" stroke="currentColor"
+                stroke-width="1.8" />
+              <circle cx="12" cy="9.5" r="2.5" fill="none" stroke="currentColor" stroke-width="1.8" />
+            </svg>
+            Get directions on Google Maps
+          </a>
+        </div>
+        <div class="map-frame" data-map-label="Map of AKGEC Campus, Ghaziabad">
+          <iframe title="Map showing Ajay Kumar Garg Engineering College, Ghaziabad"
+            src="https://maps.google.com/maps?q=Ajay%20Kumar%20Garg%20Engineering%20College%20Ghaziabad&amp;z=15&amp;output=embed"
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
       </div>
     </section>
