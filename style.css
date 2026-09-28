@@ -2025,9 +2025,7 @@ textarea:focus {
 .footer-brand .brand {
   gap: 0.6rem;
 }
-.footer-brand {
-  margin-top: 1rem;
-}
+
 
 .footer-brand .brand-logos {
   gap: 0.3rem;
@@ -2046,6 +2044,7 @@ textarea:focus {
 .footer-brand .brand-sub {
   font-size: 0.72rem;
   letter-spacing: 0.04em;
+    margin-top: 8px;
 }
 
 .footer-brand p {
