@@ -92,15 +92,14 @@ This site has **19 sections (slides)** in `index.html`. They appear in the follo
 | 8 | HIGHLIGHTS | `#highlights` | 4 core event feature cards |
 | 9 | HOW IT WORKS | `#how-it-works` | 8-step process guide + experience strip |
 | 10 | SCHEDULE | `#schedule` | Full 2-day itinerary (12-hr format, tabs, filters) |
-| 11 | PARTICIPATE | `#ways-to-join` | Exhibition vs Pitching cards + How to register |
+| 11 | PARTICIPATE | `#ways-to-join` | Exhibition, Pitching, and Attendee registration cards |
 | 12 | VENUE | `#venue` | Location, timings, Google Maps |
 | 13 | REGISTER | `#register` | Registration form + pass generation |
-| 14 | TERMS | `#terms` | 12 rules & guidelines |
-| 15 | FAQ | `#faq` | 6 expandable questions |
-| 16 | CONTACT | `#contact` | Coordinator cards + social links |
-| 17 | BOTTOM CTA | `.bottom-register-cta` | Final register push before footer |
-| 18 | FOOTER | `.site-footer` | Nav mirror + newsletter + copyright |
-| 19 | POSTER MODAL | `[data-poster-modal]` | Lightbox dialog for the event poster |
+| 14 | FAQ & GUIDELINES | `#faq` | Tabbed FAQ accordion and 12 event guidelines |
+| 15 | CONTACT | `#contact` | Coordinator cards + social links |
+| 16 | BOTTOM CTA | `.bottom-register-cta` | Final register push before footer |
+| 17 | FOOTER | `.site-footer` | Nav mirror + newsletter + copyright |
+| 18 | POSTER MODAL | `[data-poster-modal]` | Lightbox dialog for the event poster |
 
 ---
 
@@ -308,23 +307,15 @@ Features:
 
 ---
 
-### Slide 14: TERMS — Rules & Guidelines
+### Slide 14: FAQ & GUIDELINES
 
-**Lines:** 1317–1364 · **ID:** `#terms` · **Classes:** `.terms`, `.terms-list`
+**ID:** `#faq` · **Classes:** `.faq`, `.faq-list`, `.faq-item`, `.terms-list`
 
-Contains 12 essential operational rules covering eligibility, team size, IP ownership, jury authority, punctuality, and code of conduct.
-
----
-
-### Slide 15: FAQ — Frequently Asked Questions
-
-**Lines:** 1366–1425 · **ID:** `#faq` · **Classes:** `.faq`, `.faq-list`, `.faq-item`
-
-Contains 6 accordion items covering eligibility, entry costs, pitch guidelines, exhibition logistics, and deadlines.
+FAQ is the default tab, with the first of 6 native accordion items expanded. The Guidelines tab replaces the FAQ content in place with the existing 12 event guidelines.
 
 ---
 
-### Slide 16: CONTACT — Coordinators & Socials
+### Slide 15: CONTACT — Coordinators & Socials
 
 **Lines:** 1427–1503 · **ID:** `#contact` · **Classes:** `.contact`, `.contact-grid`, `.contact-card`
 
@@ -332,7 +323,7 @@ Contains direct contact cards for student coordinators (Krishna Goel, Preet Sain
 
 ---
 
-### Slide 17: BOTTOM REGISTER CTA
+### Slide 16: BOTTOM REGISTER CTA
 
 **Lines:** 1505–1536 · **Classes:** `.bottom-register-cta`, `.bottom-cta-actions`
 
@@ -340,7 +331,7 @@ A full-width high-contrast gradient banner with **"Register Now — It's Free"**
 
 ---
 
-### Slide 18: FOOTER
+### Slide 17: FOOTER
 
 **Lines:** 1538–1608 · **Classes:** `.site-footer`, `.footer-grid`
 
@@ -348,7 +339,7 @@ Contains organizer details, quick navigation mirror, preview newsletter signup, 
 
 ---
 
-### Slide 19: POSTER MODAL
+### Slide 18: POSTER MODAL
 
 **Lines:** 1610–1625 · **Element:** `<dialog data-poster-modal>`
 
@@ -423,7 +414,7 @@ Main stylesheets: `style.css` & `poster-theme.css`.
 | Task | File | What to change |
 |------|------|----------------|
 | Change Registration Deadline | `script.js` line 8 | Update `DEADLINE = new Date('YYYY-MM-DDTHH:MM:SS+05:30')` |
-| Connect Real Form API | `script.js` line 15 | Enter Formspree or custom endpoint in `FORM_ENDPOINT` |
+| Connect Google Forms | `js/script.js` | Set the `exhibit`, `pitch`, and `attendee` URLs in `GOOGLE_FORM_URLS` |
 | Update Poster Image | `images/` | Replace `conclave-poster.png` (keep same filename) |
 | Update Logo Image | `images/` | Replace `conclave-logo.jpg` (keep same filename) |
 | Update Event Schedule Sessions | `index.html` #schedule | Add or edit `<li class="session" data-type="...">` |

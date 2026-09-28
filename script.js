@@ -217,11 +217,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* --- 7. REGISTRATION FORMS (Exhibition + Pitching) --- */
-  // Where submissions are sent. Paste a Google Apps Script web-app URL or a Formspree URL here.
-  // Left empty, submissions are only saved in the visitor's own browser (preview mode).
-  const FORM_ENDPOINTS = {
+  // Replace each empty value with its published Google Form URL.
+  const GOOGLE_FORM_URLS = {
     exhibit: '',
-    pitch: ''
+    pitch: '',
+    attendee: ''
   };
 
   function showToast(msg) {
@@ -241,18 +241,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function openPanel(key) {
-    const panel = document.querySelector(`[data-form-panel="${key}"]`);
-    const btn = document.querySelector(`[data-open-form="${key}"]`);
-    if (!panel) return;
-    const wasOpen = !panel.hidden;
-    closeAllPanels();
-    if (wasOpen) return; // clicking the same button again closes the form
-    panel.hidden = false;
-    requestAnimationFrame(() => panel.classList.add('is-open'));
-    if (btn) { btn.setAttribute('aria-expanded', 'true'); btn.classList.add('is-active'); }
-    const canvas = panel.querySelector('[data-captcha-canvas]');
-    if (canvas && canvas._refresh) canvas._refresh();
-    setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'start' }), 60);
+    const googleFormUrl = GOOGLE_FORM_URLS[key];
+    if (googleFormUrl) {
+      window.location.assign(googleFormUrl);
+      return;
+    }
+    showToast('This Google Form link is not available yet.');
   }
 
   formOpenBtns.forEach(btn => btn.addEventListener('click', () => openPanel(btn.getAttribute('data-open-form'))));
@@ -450,55 +444,18 @@ document.addEventListener('DOMContentLoaded', () => {
       if (field) field.classList.remove('has-error');
     });
 
-    formEl.addEventListener('submit', async ev => {
+    formEl.addEventListener('submit', ev => {
       ev.preventDefault();
       if (formError) formError.textContent = '';
       if (formEl.querySelector('.rf-hp').value) return; // bot
       if (!validateForm(formEl)) return;
 
-      const submitBtn = formEl.querySelector('[data-submit]');
-      const originalText = submitBtn.textContent;
-      submitBtn.textContent = 'Submitting...';
-      submitBtn.disabled = true;
-
-      const appId = (key === 'pitch' ? 'SCP' : 'SCE') + Math.floor(100000 + Math.random() * 900000);
-      const data = new FormData(formEl);
-      data.delete('bot_check');
-      data.append('application_id', appId);
-      data.append('submitted_at', new Date().toISOString());
-
-      try {
-        const endpoint = FORM_ENDPOINTS[key];
-        if (endpoint) {
-          const isAppsScript = endpoint.includes('script.google.com');
-          const res = await fetch(endpoint, {
-            method: 'POST',
-            body: new URLSearchParams(data),
-            mode: isAppsScript ? 'no-cors' : 'cors',
-            headers: { 'Accept': 'application/json' }
-          });
-          if (!isAppsScript && !res.ok) throw new Error('Request failed');
-        } else {
-          console.warn('[Startup Conclave] No FORM_ENDPOINTS.' + key + ' set - saved in this browser only.');
-        }
-        try {
-          const all = JSON.parse(localStorage.getItem('sc26-applications') || '[]');
-          all.push(Object.fromEntries(data.entries()));
-          localStorage.setItem('sc26-applications', JSON.stringify(all));
-        } catch (e) { }
-
-        formEl.hidden = true;
-        const head = panel.querySelector('.rf-head');
-        if (head) head.hidden = true;
-        success.hidden = false;
-        success.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        success.focus({ preventScroll: true });
-        showToast('Form submitted successfully');
-      } catch (err) {
-        if (formError) formError.textContent = 'Could not submit right now. Please check your internet connection and try again.';
-      } finally {
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
+      const googleFormUrl = GOOGLE_FORM_URLS[key];
+      if (googleFormUrl) {
+        window.open(googleFormUrl, '_blank', 'noopener,noreferrer');
+        showToast('Complete and submit the Google Form in the new tab.');
+      } else if (formError) {
+        formError.textContent = 'Google Form link is not configured yet. Add it to GOOGLE_FORM_URLS in script.js.';
       }
     });
   });

@@ -37,21 +37,23 @@ Open `index.html` in a browser. That's it.
 - Speaker role filter and speaker detail dialogs
 - "Who it's for" selector that pre-fills the registration form
 - Poster lightbox with download
-- Registration form with validation (college email required for students only), pitch options, a generated pass ID, printable pass, saved in the browser
+- Exhibition, pitching, and attendee registration buttons open their matching Google Forms
 - Newsletter signup with validation
 - FAQ accordion, map embed, tap-to-call coordinator numbers
 
-## Receiving real registrations (optional)
+## Google Form registration
 
-By default the form runs in **preview mode**: registrations are stored only in the visitor's browser and the page says so.
-
-To receive registrations by email without writing a backend, create a free form at a service such as Formspree, then open `script.js` and set:
+Create a Google Form for each registration type, then add their public URLs to `js/script.js`:
 
 ```js
-var FORM_ENDPOINT = 'https://formspree.io/f/your-form-id';
+const GOOGLE_FORM_URLS = {
+    exhibit: 'https://docs.google.com/forms/d/e/your-exhibition-form/viewform',
+    pitch: 'https://docs.google.com/forms/d/e/your-pitch-form/viewform',
+    attendee: 'https://docs.google.com/forms/d/e/your-attendee-form/viewform'
+};
 ```
 
-The form will POST each registration as JSON, show an error if it fails, and remove the preview-mode note.
+The Register buttons redirect to their matching Google Form. Until these URLs are configured, clicking a button displays a setup message. Google Forms receives and stores submitted responses; this website does not store registration data.
 
 ## Editing content
 

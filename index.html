@@ -33,7 +33,6 @@
       } catch (e) { }
     })();
   </script>
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <style>
     /* Why Attend: ">>" chevron bullets instead of empty boxes */
     .pillars .pillar { display: flex; align-items: flex-start; gap: 1rem; }
@@ -107,21 +106,62 @@
       box-shadow: 0 0 30px rgba(56, 189, 248, 0.6);
       border-color: rgba(56, 189, 248, 0.9) !important;
     }
-    /* FAQ: heading on top, question boxes below */
+    /* FAQ and Guidelines share one content area. */
     .faq .faq-grid {
       display: flex !important;
       flex-direction: column;
-      align-items: center;
-      gap: 2.5rem !important;
+      align-items: stretch;
+      gap: 2rem !important;
     }
     .faq .faq-head {
-      text-align: center;
-      max-width: 760px;
+      width: 100%;
+      max-width: 1040px;
+      margin: 0 auto;
+      display: block;
     }
-    .faq .faq-head .section-title { margin-bottom: 0.75rem; }
+    .faq .faq-heading-copy { display: flex; flex-direction: column; align-items: flex-start; gap: 0.65rem; }
+    .faq .faq-title-tabs { width: max-content; max-width: 100%; display: inline-flex; flex-wrap: nowrap; align-items: center; gap: 10px; padding: 0.5rem; border-radius: 3rem; background: var(--surface); }
+    .faq .faq-title-tabs button {
+      border: 1px solid transparent;
+      border-radius: 2.5rem;
+      padding: 0.75rem 1.25rem;
+      background: transparent;
+      color: var(--text-muted);
+      font-family: var(--font-display);
+      font-size: 2rem;
+      line-height: 1.1;
+      text-align: left;
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+    .faq .faq-title-tabs button[aria-selected="true"] {
+      color: #ffffff;
+      border-color: var(--primary);
+      background: var(--primary);
+      box-shadow: var(--shadow-md), 0 0 18px rgba(56, 189, 248, 0.24);
+    }
+    .faq .faq-title-tabs button:not([aria-selected="true"]):hover { background: var(--surface-hover); }
+    .faq .faq-title-tabs button:focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; }
+    .faq .faq-heading-copy .section-sub { margin: 0; text-align: left; }
     .faq .faq-list {
       width: 100%;
-      max-width: 900px;
+      max-width: none;
+    }
+    .faq .faq-panels { width: 100%; max-width: 1040px; margin: 0 auto; display: grid; }
+    .faq .faq-panel { grid-area: 1 / 1; border-radius: var(--radius-lg); background-color: rgba(28, 109, 208, 0.035); transition: opacity .22s ease, transform .22s ease, visibility .22s ease, background-color .28s ease; }
+    .faq .faq-panel[hidden] { display: block; opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(8px); }
+    .faq .faq-guidelines { background-color: rgba(56, 189, 248, 0.075); }
+    .faq .faq-guidelines .terms-grid { max-width: none; }
+    .faq .faq-guidelines .terms-card { padding: 2rem; background-color: rgba(56, 189, 248, 0.045); transition: background-color .28s ease; }
+    @media (max-width: 700px) {
+      .faq .faq-title-tabs { width: 100%; }
+      .faq .faq-title-tabs button { padding: 0.55rem 0.65rem; font-size: 1.2rem; }
+      .faq .faq-title-tabs #faq-tab { max-width: 65%; }
+      .faq .faq-title-tabs #guidelines-tab { flex: 0 0 auto; }
+      .faq .faq-guidelines .terms-card { padding: 1.5rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .faq .faq-panel, .faq .faq-title-tabs button { transition: none; }
     }
     /* Student experience strip: 3 x 2 grid with highlighted border */
     .exp-band { padding: 1rem 0 4rem; }
@@ -1241,7 +1281,7 @@
             <h3>1. Startup Exhibition</h3>
             <p>Show your startup, prototype, product or idea to visitors, mentors and industry experts. Secure feedback,
               visibility, and early traction.</p>
-            <button class="btn btn-primary btn-sm" type="button" data-open-form="exhibit" aria-expanded="false" aria-controls="form-exhibit">Register for Exhibition</button>
+            <button class="btn btn-primary btn-sm" type="button" data-open-form="exhibit">Register for Exhibition</button>
           </div>
 
           <div class="participate-card highlight-card">
@@ -1249,12 +1289,19 @@
             <h3>2. Startup Pitching Competition</h3>
             <p>Present your startup idea to a panel of judges and VCs to win from the up to ₹50,000 prize pool,
               pre-incubation offers, and up to ₹3 Lakh seed funding access.</p>
-            <button class="btn btn-primary btn-sm" type="button" data-open-form="pitch" aria-expanded="false" aria-controls="form-pitch">Register for Pitching</button>
+            <button class="btn btn-primary btn-sm" type="button" data-open-form="pitch">Register for Pitching</button>
+          </div>
+
+          <div class="participate-card highlight-card">
+            <div class="participate-icon" aria-hidden="true"></div>
+            <h3>3. Attendee Registration</h3>
+            <p>Join the conclave to attend sessions, meet founders, and connect with mentors, investors, and fellow innovators.</p>
+            <button class="btn btn-primary btn-sm" type="button" data-open-form="attendee">Register as an Attendee</button>
           </div>
         </div>
 
         <p class="rf-closed" data-reg-closed-note hidden>Registrations closed on 7 October 2026. Thank you for your interest in Startup Conclave ’26.</p>
-        <!-- Registration forms: hidden until a Register button above is clicked -->
+        <template id="legacy-registration-forms">
         <div class="rf-wrap" data-forms-wrap>
           <div class="rf-panel" id="form-exhibit" data-form-panel="exhibit" hidden>
             <div class="rf-card">
@@ -1326,16 +1373,15 @@
           </div>
         </div>
 
-        <!-- How to Register 6-Step Guide -->
+        </template>
+
+        <!-- Registration links -->
         <div class="reg-instructions-box">
-          <h3 class="instructions-title"> How to Register</h3>
+          <h3 class="instructions-title">Registration</h3>
           <ol class="reg-steps-list">
-            <li><span>1</span> Choose Startup Exhibition or Startup Pitching Competition and click its Register button above.</li>
-            <li><span>2</span> Fill in founder details and select your team size (2 to 4 members) to add each member.</li>
-            <li><span>3</span> Add your startup details, stage and traction.</li>
-            <li><span>4</span> Share the required Google Drive and YouTube links (set to view by anyone / Public).</li>
-            <li><span>5</span> Accept the declaration and submit before 7 October 2026, 11:59 PM.</li>
-            <li><span>6</span> After submitting, join the WhatsApp community shown on screen.</li>
+            <li><span>1</span> Choose Exhibition, Pitching, or Attendee registration above.</li>
+            <li><span>2</span> Complete and submit the matching Google Form.</li>
+            <li><span>3</span> The organizers will contact you with next steps.</li>
           </ol>
         </div>
       </div>
@@ -1396,80 +1442,73 @@
       </div>
     </section>
 
-    <!-- ============ RULES & TERMS ============ -->
-    <section class="section terms" id="terms" aria-labelledby="terms-title">
-      <div class="container">
-        <div class="section-head text-center">
-          <h2 class="section-title" id="terms-title">GUIDELINES</h2>
-        </div>
-
-        <div class="terms-grid">
-          <div class="terms-card">
-            <ol class="terms-list">
-              <li><strong>1. Eligibility:</strong> Participation is open to eligible students based on organizer
-                guidelines.</li>
-              <li><strong>2. Accurate Details:</strong> You must provide correct and complete details during
-                registration.</li>
-              <li><strong>3. Team Size:</strong> Team size must be 2–4 members.</li>
-              <li><strong>4. Slot Allocation:</strong> Registering does not guarantee a slot for exhibition or pitching;
-                teams will be selected based on eligibility and evaluation.</li>
-              <li><strong>5. Punctuality:</strong> Reach the event venue on time.</li>
-              <li><strong>6. Adherence:</strong> Follow the event schedule and instructions given by the team.</li>
-              <li><strong>7. IP Ownership:</strong> Your idea remains yours. You are responsible for protecting your
-                intellectual property (IP) before sharing it publicly.</li>
-              <li><strong>8. Schedule Flexibility:</strong> Organizers can change the schedule, process, or venue setup
-                if needed.</li>
-              <li><strong>9. Jury Decisions:</strong> Decisions made by the judges during the pitching competition are
-                final and based on fixed criteria.</li>
-              <li><strong>10. Support Criteria:</strong> Mentorship, incubation support, IP assistance, and funding
-                options depend on selection and rules; they are not guaranteed just by joining.</li>
-              <li><strong>11. Code of Conduct:</strong> Maintain proper discipline and behavior throughout the event.
-              </li>
-              <li><strong>12. Agreement:</strong> By registering, you agree to follow all rules and guidelines set by
-                the team.</li>
-            </ol>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- ============ FAQ ============ -->
     <section class="section faq" id="faq" aria-labelledby="faq-title">
       <div class="container faq-grid">
         <div class="faq-head">
-          <h2 class="section-title" id="faq-title">Frequently Asked Questions</h2>
-          <p class="section-sub">Have questions about the conclave? Write to us at <a
-              href="mailto:idealab@akgec.ac.in">idealab@akgec.ac.in</a>.</p>
+          <div class="faq-heading-copy">
+            <h2 class="visually-hidden" id="faq-title">Frequently Asked Questions</h2>
+            <div class="faq-title-tabs" role="tablist" aria-label="FAQ and Guidelines">
+              <button id="faq-tab" type="button" role="tab" aria-selected="true" aria-controls="faq-panel" tabindex="0">Frequently Asked Questions</button>
+              <button id="guidelines-tab" type="button" role="tab" aria-selected="false" aria-controls="guidelines-panel" tabindex="-1">Guidelines</button>
+            </div>
+            <p class="section-sub" id="faq-description">Have questions about the conclave? Write to us at <a
+                href="mailto:idealab@akgec.ac.in">idealab@akgec.ac.in</a>.</p>
+          </div>
         </div>
-        <div class="faq-list">
-          <details class="faq-item" open>
-            <summary>Who can register for Startup Conclave '26?</summary>
-            <p>Participation is open to eligible students, early-stage startups, independent innovators, and
-              entrepreneurs. Students register with their college email; everyone else can use their primary email.</p>
-          </details>
-          <details class="faq-item">
-            <summary>What are the key benefits and prize pool?</summary>
-            <p>Participants get access to up to ₹3 Lakh seed funding with pre-incubation support at AKGEC IDEA Lab, up to ₹50,000 prize pool for pitching, IPR legal guidance, and live pitching to investors.</p>
-          </details>
-          <details class="faq-item">
-            <summary>Do I need an already-established company to attend?</summary>
-            <p>No. You can participate with just an early concept or prototype, or register as a delegate to attend keynotes, interact with VCs, and network with fellow innovators.</p>
-          </details>
-          <details class="faq-item">
-            <summary>How does the Pitching Competition work?</summary>
-            <p>Shortlisted teams pitch live to our investor and jury panel on Day 2. The jury evaluates according to
-              fixed criteria and selects top teams for prizes and incubation support.</p>
-          </details>
-          <details class="faq-item">
-            <summary>How does the Startup Exhibition work?</summary>
-            <p>20 startup stalls showcase working prototypes and products on Day 1 (2:15 PM – 5:30 PM) with mentor
-              walkthroughs and attendee interaction.</p>
-          </details>
-          <details class="faq-item">
-            <summary>What is the last date to register?</summary>
-            <p>Registration officially closes on 7 October 2026 at 11:59 PM IST, and the results for Round 1 will be announced on 10 October 2026. Register early as slots are limited.
-            </p>
-          </details>
+        <div class="faq-panels">
+          <div class="faq-panel" id="faq-panel" role="tabpanel" aria-labelledby="faq-tab">
+            <div class="faq-list">
+              <details class="faq-item" open>
+                <summary>Who can register for Startup Conclave '26?</summary>
+                <p>Participation is open to eligible students, early-stage startups, independent innovators, and
+                  entrepreneurs. Students register with their college email; everyone else can use their primary email.</p>
+              </details>
+              <details class="faq-item">
+                <summary>What are the key benefits and prize pool?</summary>
+                <p>Participants get access to up to ₹3 Lakh seed funding with pre-incubation support at AKGEC IDEA Lab, up to ₹50,000 prize pool for pitching, IPR legal guidance, and live pitching to investors.</p>
+              </details>
+              <details class="faq-item">
+                <summary>Do I need an already-established company to attend?</summary>
+                <p>No. You can participate with just an early concept or prototype, or register as a delegate to attend keynotes, interact with VCs, and network with fellow innovators.</p>
+              </details>
+              <details class="faq-item">
+                <summary>How does the Pitching Competition work?</summary>
+                <p>Shortlisted teams pitch live to our investor and jury panel on Day 2. The jury evaluates according to
+                  fixed criteria and selects top teams for prizes and incubation support.</p>
+              </details>
+              <details class="faq-item">
+                <summary>How does the Startup Exhibition work?</summary>
+                <p>20 startup stalls showcase working prototypes and products on Day 1 (2:15 PM – 5:30 PM) with mentor
+                  walkthroughs and attendee interaction.</p>
+              </details>
+              <details class="faq-item">
+                <summary>What is the last date to register?</summary>
+                <p>Registration officially closes on 7 October 2026 at 11:59 PM IST, and the results for Round 1 will be announced on 10 October 2026. Register early as slots are limited.
+                </p>
+              </details>
+            </div>
+          </div>
+          <div class="faq-panel faq-guidelines" id="guidelines-panel" role="tabpanel" aria-labelledby="guidelines-tab" aria-hidden="true" inert hidden>
+            <div class="terms-grid">
+              <div class="terms-card">
+                <ol class="terms-list">
+                  <li><strong>1. Eligibility:</strong> Participation is open to eligible students based on organizer guidelines.</li>
+                  <li><strong>2. Accurate Details:</strong> You must provide correct and complete details during registration.</li>
+                  <li><strong>3. Team Size:</strong> Team size must be 2–4 members.</li>
+                  <li><strong>4. Slot Allocation:</strong> Registering does not guarantee a slot for exhibition or pitching; teams will be selected based on eligibility and evaluation.</li>
+                  <li><strong>5. Punctuality:</strong> Reach the event venue on time.</li>
+                  <li><strong>6. Adherence:</strong> Follow the event schedule and instructions given by the team.</li>
+                  <li><strong>7. IP Ownership:</strong> Your idea remains yours. You are responsible for protecting your intellectual property (IP) before sharing it publicly.</li>
+                  <li><strong>8. Schedule Flexibility:</strong> Organizers can change the schedule, process, or venue setup if needed.</li>
+                  <li><strong>9. Jury Decisions:</strong> Decisions made by the judges during the pitching competition are final and based on fixed criteria.</li>
+                  <li><strong>10. Support Criteria:</strong> Mentorship, incubation support, IP assistance, and funding options depend on selection and rules; they are not guaranteed just by joining.</li>
+                  <li><strong>11. Code of Conduct:</strong> Maintain proper discipline and behavior throughout the event.</li>
+                  <li><strong>12. Agreement:</strong> By registering, you agree to follow all rules and guidelines set by the team.</li>
+                </ol>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -1558,43 +1597,6 @@
       width="1024" height="1536">
     <div class="poster-modal-actions">
       <a class="btn btn-primary btn-sm" href="#ways-to-join">Register now</a>
-    </div>
-  </dialog>
-
-  <!-- OTP Verification Modal -->
-  <dialog class="modal otp-modal" data-otp-modal aria-label="Verify your email">
-    <div style="padding: 24px; text-align: center;">
-      <div class="otp-icon"
-        style="background: rgba(220, 38, 38, 0.1); color: var(--poster-red); width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px auto;">
-        <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2"
-          stroke-linecap="round" stroke-linejoin="round">
-          <path
-            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-        </svg>
-      </div>
-      <h2 style="margin-bottom: 12px; font-family: var(--font-display); font-size: 32px; color: var(--text-main);">Check
-        your email</h2>
-      <p style="color: var(--text-muted); margin-bottom: 24px;">We've sent a 4-digit verification code to your email
-        address.</p>
-
-      <div class="otp-inputs" style="display: flex; gap: 12px; justify-content: center; margin-bottom: 24px;">
-        <input type="text" class="otp-digit" maxlength="1"
-          style="width: 56px; height: 64px; font-size: 32px; text-align: center; border-radius: var(--radius-sm); border: 2px solid var(--border); background: var(--surface); color: var(--text-main); font-weight: bold;">
-        <input type="text" class="otp-digit" maxlength="1"
-          style="width: 56px; height: 64px; font-size: 32px; text-align: center; border-radius: var(--radius-sm); border: 2px solid var(--border); background: var(--surface); color: var(--text-main); font-weight: bold;">
-        <input type="text" class="otp-digit" maxlength="1"
-          style="width: 56px; height: 64px; font-size: 32px; text-align: center; border-radius: var(--radius-sm); border: 2px solid var(--border); background: var(--surface); color: var(--text-main); font-weight: bold;">
-        <input type="text" class="otp-digit" maxlength="1"
-          style="width: 56px; height: 64px; font-size: 32px; text-align: center; border-radius: var(--radius-sm); border: 2px solid var(--border); background: var(--surface); color: var(--text-main); font-weight: bold;">
-      </div>
-      <input type="hidden" id="otp-input" value="">
-
-      <p class="field-error" id="otp-err" style="margin-bottom: 16px;"></p>
-
-      <div style="display: flex; gap: 12px;">
-        <button class="btn btn-ghost" type="button" data-otp-close style="flex: 1;">Cancel</button>
-        <button class="btn btn-primary" type="button" id="verify-otp-btn" style="flex: 1;">Verify Code</button>
-      </div>
     </div>
   </dialog>
 
