@@ -221,7 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const GOOGLE_FORM_URLS = {
     exhibit: 'https://forms.gle/kXRQCAjZHzUGkchX9',
     pitch: 'https://forms.gle/kXRQCAjZHzUGkchX9',
-    attendee: 'https://forms.gle/kXRQCAjZHzUGkchX9'
+    attendee: ''
   };
 
   function showToast(msg) {
