@@ -148,9 +148,9 @@
       width: 100%;
       max-width: none;
     }
-    .faq .faq-panels { width: 100%; max-width: 1040px; margin: 0 auto; display: grid; }
+    .faq .faq-panels { width: 100%; max-width: 1040px; margin: 0 auto; display: grid; position: relative; }
     .faq .faq-panel { grid-area: 1 / 1; border-radius: var(--radius-lg); background-color: rgba(28, 109, 208, 0.035); transition: opacity .22s ease, transform .22s ease, visibility .22s ease, background-color .28s ease; }
-    .faq .faq-panel[hidden] { display: block; opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(8px); }
+    .faq .faq-panel[hidden] { display: block; position: absolute; top: 0; left: 0; width: 100%; opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(8px); }
     .faq .faq-guidelines { background-color: rgba(56, 189, 248, 0.075); }
     .faq .faq-guidelines .terms-grid { max-width: none; }
     .faq .faq-guidelines .terms-card { padding: 2rem; background-color: rgba(56, 189, 248, 0.045); transition: background-color .28s ease; }
