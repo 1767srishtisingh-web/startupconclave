@@ -2905,15 +2905,7 @@ html[data-theme="light"] .jr-toggle {
 
   /* Footer */
   .footer-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
     padding: 1.75rem 0 1rem 0;
-  }
-
-  .footer-brand,
-  .footer-links-col,
-  .footer-collab {
-    justify-self: start;
   }
 
   .footer-bottom {
@@ -3620,4 +3612,52 @@ html[data-theme="light"] .jr-toggle {
   .rf-grid { grid-template-columns: 1fr; }
   .rf-yn-row { flex-direction: column; align-items: stretch; }
   .rf-team select { max-width: none; }
+}
+
+/* --- FOOTER ALIGNMENT (tablet + mobile) --- */
+/* Header ke mobile .brand rules footer brand ko na bigaadein */
+.footer-brand .brand-name {
+  letter-spacing: normal;
+  word-spacing: normal;
+  line-height: 1.2;
+}
+
+.footer-brand .brand-sub {
+  display: block;
+}
+
+.footer-link-row span,
+.collab-item span {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 900px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.75rem 1.5rem;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
+  }
+
+  .footer-brand,
+  .footer-links-col,
+  .footer-collab {
+    justify-self: start;
+    width: 100%;
+  }
+}
+
+@media (max-width: 560px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 0.75rem;
+    text-align: center;
+  }
 }
