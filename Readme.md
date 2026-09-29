@@ -1,64 +1,76 @@
-# Startup Conclave '26 website
+# Startup Conclave '26
 
-Static event website for Startup Conclave '26 by AKGEC IDEA Lab (15–16 October 2026, AKGEC Campus, Ghaziabad).
-
-Plain HTML, CSS and vanilla JavaScript. No build step, no backend, no environment variables.
+Static event website for Startup Conclave '26 by AKGEC IDEA Lab, taking place on 15–16 October 2026 at AKGEC, Ghaziabad.
 
 ## Project structure
 
-```
-startup-conclave-26/
-├── index.html          Page markup (all sections)
-├── style.css           Styles, light/dark themes, responsive rules
-├── script.js           Interactions
-├── README.md
+```text
+startupconclave/
+├── index.html
+├── Readme.md
+├── css/
+│   ├── poster-theme.css
+│   └── style.css
+├── js/
+│   └── script.js
 └── images/
-    ├── conclave-poster.jpg   Official poster (hero, lightbox, register section)
-    ├── conclave-logo.jpg     Event logo (header, about, footer, pass)
-    └── favicon.png
+    ├── akgec-logo.png
+    ├── conclave-logo.png
+    ├── conclave-poster.jpg
+    ├── conclave-poster.png
+    ├── favicon.png
+    ├── idealab-logo.png
+    ├── new-poster.png
+    ├── pop_up_poster.png
+    └── unnamed.webp
 ```
 
 ## Run locally
 
-Open `index.html` in a browser. That's it.
+The site uses plain HTML, CSS, and JavaScript. It has no build step, package manager, or backend service.
 
-## Deploy
+From this directory, start a local static server:
 
-- **GitHub Pages**: push the folder contents to a repository, then Settings → Pages → Deploy from branch → `main` / root.
-- **Netlify**: drag the folder onto app.netlify.com/drop, or connect the repo with no build command and publish directory `/`.
-- **Vercel**: import the repo, framework preset "Other", no build command, output directory `.`.
-
-## What works without a backend
-
-- Sticky header, mobile menu, active-section highlighting, smooth scrolling
-- Light/dark theme toggle (remembered per browser)
-- Live countdown to the 10 October registration deadline; the form closes itself after it
-- Schedule day tabs (arrow-key accessible), session-type filter, "Add to calendar" `.ics` downloads
-- Speaker role filter and speaker detail dialogs
-- "Who it's for" selector that pre-fills the registration form
-- Poster lightbox with download
-- Exhibition, pitching, and attendee registration buttons open their matching Google Forms
-- Newsletter signup with validation
-- FAQ accordion, map embed, tap-to-call coordinator numbers
-
-## Google Form registration
-
-Create a Google Form for each registration type, then add their public URLs to `js/script.js`:
-
-```js
-const GOOGLE_FORM_URLS = {
-    exhibit: 'https://docs.google.com/forms/d/e/your-exhibition-form/viewform',
-    pitch: 'https://docs.google.com/forms/d/e/your-pitch-form/viewform',
-    attendee: 'https://docs.google.com/forms/d/e/your-attendee-form/viewform'
-};
+```powershell
+python -m http.server 8000
 ```
 
-The Register buttons redirect to their matching Google Form. Until these URLs are configured, clicking a button displays a setup message. Google Forms receives and stores submitted responses; this website does not store registration data.
+Then open `http://localhost:8000`. The `index.html` file can also be opened directly in a browser.
 
-## Editing content
+## How it works
 
-- **Dates / deadline**: `DEADLINE` near the top of `script.js`, plus the text in `index.html`.
-- **Speakers**: cards in the `#speakers` section of `index.html`; bios in the `SPEAKERS` object in `script.js`. The four names come from the reference site and should be replaced with the confirmed lineup.
-- **Schedule**: the two `.timeline` lists in `index.html`. Each session's `data-type` (`talk`, `pitch`, `workshop`, `network`) drives the filter.
-- **Fee**: ₹500 per person is carried over from the reference site; confirm before launch.
-- **Colours**: tokens at the top of `style.css`.
+- `index.html` contains the page sections, dialogs, registration forms, metadata, and asset references.
+- `css/style.css` contains layout, responsive rules, components, and light/dark theme styles. `css/poster-theme.css` applies the event's poster-inspired color overrides.
+- `js/script.js` initializes the theme control, navigation, countdown, dialogs, schedule filters, form controls, and other page interactions after the document loads.
+- The startup poster dialog opens on every page load. It can be dismissed with its close button, by clicking the backdrop, or with Escape. The hero poster has a separate lightbox.
+- The selected light/dark theme is stored in browser `localStorage` under `sc26-theme`.
+
+### Image roles
+
+- `new-poster.png` is the hero poster; `conclave-poster.jpg` is used in the poster lightbox.
+- `conclave-poster.png` is used for the social sharing preview; `pop_up_poster.png` is the automatic startup dialog.
+- `conclave-logo.png` is the event logo. `akgec-logo.png`, `idealab-logo.png`, and `unnamed.webp` are partner logos.
+- `favicon.png` supplies the browser and home-screen icon.
+
+## External services and registration
+
+Google Fonts and the embedded Google Map load from Google. Registration actions are configured in `js/script.js` in `GOOGLE_FORM_URLS` (`exhibit`, `pitch`, and `attendee`). Those values are currently empty, so registration buttons show a setup message until the published form URLs are added. The site itself has no database or server-side data storage.
+
+The project has no server-side backend, dependency installation, or build process. GitHub Pages can host it as a static site from the repository root.
+
+## Updating the site
+
+- Edit copy, dates, section content, and asset references in `index.html`.
+- Update colors and layout in `css/style.css`; poster-specific overrides belong in `css/poster-theme.css`.
+- Update interactions, countdown deadline, and Google Form URLs in `js/script.js`.
+- Replace images in `images/` while retaining the filenames referenced by `index.html`.
+
+## Validation
+
+Check JavaScript syntax with:
+
+```powershell
+node --check js/script.js
+```
+
+The site has no automated test suite or build command.

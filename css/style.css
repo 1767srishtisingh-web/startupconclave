@@ -2538,6 +2538,22 @@ html[data-theme="light"] .jr-toggle {
   border-radius: var(--radius);
 }
 
+.startup-popup {
+  width: min(92vw, 1200px);
+  max-width: 92vw;
+  max-height: 92vh;
+  overflow: visible;
+}
+
+.startup-popup img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 82vh;
+  object-fit: contain;
+  border-radius: var(--radius);
+}
+
 .modal-close {
   position: absolute;
   top: 1rem;

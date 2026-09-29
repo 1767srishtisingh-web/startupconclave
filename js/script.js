@@ -128,9 +128,23 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* --- 4. POSTER MODAL --- */
+  const startupPopup = document.querySelector('[data-startup-popup]');
+  const popupCloseBtn = document.querySelector('[data-popup-close]');
   const modal = document.querySelector('[data-poster-modal]');
   const openBtns = document.querySelectorAll('[data-poster-open]');
   const closeBtn = document.querySelector('[data-modal-close]');
+
+  if (startupPopup) {
+    startupPopup.showModal();
+
+    if (popupCloseBtn) {
+      popupCloseBtn.addEventListener('click', () => startupPopup.close());
+    }
+
+    startupPopup.addEventListener('click', (e) => {
+      if (e.target === startupPopup) startupPopup.close();
+    });
+  }
 
   if (modal) {
     openBtns.forEach(btn => {
