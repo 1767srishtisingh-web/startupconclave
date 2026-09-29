@@ -1,6 +1,36 @@
 # Startup Conclave '26
 
-Static event website for Startup Conclave '26 by AKGEC IDEA Lab, taking place on 15–16 October 2026 at AKGEC, Ghaziabad.
+Official event website for Startup Conclave '26, hosted by AKGEC IDEA Lab on 15-16 October 2026 in Ghaziabad.
+
+## Overview
+
+This is a static, single-page website built with HTML, CSS, and vanilla JavaScript. It requires no package installation, build process, or application server. GitHub Pages can serve it directly.
+
+## Features
+
+- Responsive event information, venue, contact details, and partner branding.
+- Light and dark themes, with the selected theme preference saved in browser storage.
+- Event schedule with day and session-type filters, plus downloadable calendar files.
+- Registration links for exhibition, pitching, and attendee categories.
+- Startup poster popup on page load and a separate poster lightbox.
+- FAQ and event-guidelines tabs.
+- Countdown to the registration deadline: 10 October 2026 at 23:59:59 India Standard Time.
+
+## Run locally
+
+From the project directory, start a static file server:
+
+```powershell
+python -m http.server 8000
+```
+
+Open `http://localhost:8000` in a browser. Alternatively, open `index.html` directly.
+
+## Session and data behavior
+
+The website has no sign-in, authenticated session, or server-side session storage. **A five-minute session or inactivity timeout is not implemented and does not apply.** The only persistent browser value is the light/dark theme preference (`sc26-theme` in `localStorage`). Toast notifications disappear after four seconds; this is only a display timer, not a session timeout.
+
+Registration buttons open the configured Google Forms in a new tab. Google processes responses submitted through those forms; this website does not store registration data. Google Fonts and the embedded Google Map are also external services.
 
 ## Project structure
 
@@ -25,45 +55,14 @@ startupconclave/
     └── unnamed.webp
 ```
 
-## Run locally
+## Maintenance
 
-The site uses plain HTML, CSS, and JavaScript. It has no build step, package manager, or backend service.
+- Page copy, dates, and section markup: `index.html`.
+- Layout, responsive behavior, and themes: `css/style.css` and `css/poster-theme.css`.
+- Interactions, countdown, and Google Forms configuration (`GOOGLE_FORM_URLS`): `js/script.js`.
+- Image roles: `new-poster.png` is the hero poster, `conclave-poster.jpg` is used by the lightbox, `conclave-poster.png` is the social preview, and `pop_up_poster.png` is the startup popup. The remaining images provide the event logo, partner logos, and favicon.
 
-From this directory, start a local static server:
-
-```powershell
-python -m http.server 8000
-```
-
-Then open `http://localhost:8000`. The `index.html` file can also be opened directly in a browser.
-
-## How it works
-
-- `index.html` contains the page sections, dialogs, registration forms, metadata, and asset references.
-- `css/style.css` contains layout, responsive rules, components, and light/dark theme styles. `css/poster-theme.css` applies the event's poster-inspired color overrides.
-- `js/script.js` initializes the theme control, navigation, countdown, dialogs, schedule filters, form controls, and other page interactions after the document loads.
-- The startup poster dialog opens on every page load. It can be dismissed with its close button, by clicking the backdrop, or with Escape. The hero poster has a separate lightbox.
-- The selected light/dark theme is stored in browser `localStorage` under `sc26-theme`.
-
-### Image roles
-
-- `new-poster.png` is the hero poster; `conclave-poster.jpg` is used in the poster lightbox.
-- `conclave-poster.png` is used for the social sharing preview; `pop_up_poster.png` is the automatic startup dialog.
-- `conclave-logo.png` is the event logo. `akgec-logo.png`, `idealab-logo.png`, and `unnamed.webp` are partner logos.
-- `favicon.png` supplies the browser and home-screen icon.
-
-## External services and registration
-
-Google Fonts and the embedded Google Map load from Google. Registration actions are configured in `js/script.js` in `GOOGLE_FORM_URLS` (`exhibit`, `pitch`, and `attendee`). Those values are currently empty, so registration buttons show a setup message until the published form URLs are added. The site itself has no database or server-side data storage.
-
-The project has no server-side backend, dependency installation, or build process. GitHub Pages can host it as a static site from the repository root.
-
-## Updating the site
-
-- Edit copy, dates, section content, and asset references in `index.html`.
-- Update colors and layout in `css/style.css`; poster-specific overrides belong in `css/poster-theme.css`.
-- Update interactions, countdown deadline, and Google Form URLs in `js/script.js`.
-- Replace images in `images/` while retaining the filenames referenced by `index.html`.
+Registration form URLs are maintained in `GOOGLE_FORM_URLS` in `js/script.js`. Update those values when registration links change.
 
 ## Validation
 
@@ -73,4 +72,4 @@ Check JavaScript syntax with:
 node --check js/script.js
 ```
 
-The site has no automated test suite or build command.
+There is currently no automated test suite or build command.

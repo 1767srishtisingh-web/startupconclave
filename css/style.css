@@ -1160,7 +1160,7 @@ html[data-theme="light"] .brand-mark {
 /* --- 13. WAYS TO PARTICIPATE --- */
 .participate-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 2rem;
   margin-bottom: 4rem;
 }
@@ -3675,5 +3675,26 @@ html[data-theme="light"] .jr-toggle {
     flex-direction: column;
     gap: 0.75rem;
     text-align: center;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .participate-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .participate-card {
+    padding: 1.25rem;
+  }
+
+  .participate-card h3 {
+    font-size: 1.125rem;
+  }
+
+  .participate-card .btn {
+    max-width: 100%;
+    white-space: normal;
+    line-height: 1.25;
   }
 }
