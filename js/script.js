@@ -76,7 +76,8 @@ document.addEventListener('DOMContentLoaded', () => {
       
       // Registration closed: disable the Register buttons and show the deadline notice
       document.querySelectorAll('[data-open-form]').forEach(btn => {
-        btn.disabled = true;
+        btn.removeAttribute('href');
+        btn.setAttribute('aria-disabled', 'true');
         btn.textContent = 'Registrations closed';
       });
       const closedNote = document.querySelector('[data-reg-closed-note]');
@@ -229,13 +230,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  /* --- 7. GOOGLE FORMS --- */
-  const GOOGLE_FORM_URLS = {
-    exhibit: 'https://forms.gle/kXRQCAjZHzUGkchX9',
-    pitch: 'https://forms.gle/kXRQCAjZHzUGkchX9',
-    attendee: 'https://forms.gle/r8fknkwcExMPJ8BDA'
-  };
-
+  /* --- 7. TOASTS --- */
   function showToast(msg) {
     const toastEl = document.querySelector('[data-toast]');
     if (!toastEl) return;
@@ -244,16 +239,6 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => toastEl.classList.remove('show'), 4000);
   }
 
-  document.querySelectorAll('[data-open-form]').forEach(button => {
-    button.addEventListener('click', () => {
-      const formUrl = GOOGLE_FORM_URLS[button.getAttribute('data-open-form')];
-      if (formUrl) {
-        window.open(formUrl, '_blank', 'noopener,noreferrer');
-      } else {
-        showToast('This Google Form link is not available yet.');
-      }
-    });
-  });
   /* --- SCHEDULE: ADD TO CALENDAR (.ics) --- */
   const ICS_EVENTS = {
     day1: {

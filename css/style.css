@@ -252,6 +252,11 @@ h4,
   font-size: 0.875rem;
 }
 
+.btn[aria-disabled="true"] {
+  opacity: 0.55;
+  pointer-events: none;
+}
+
 .btn-block {
   width: 100%;
 }
