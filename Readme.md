@@ -50,7 +50,7 @@ startupconclave/
     ├── conclave-poster.png
     ├── favicon.png
     ├── idealab-logo.png
-    ├── new-poster.png
+    ├── final-poster.png
     ├── pop_up_poster.png
     └── unnamed.webp
 ```
@@ -60,7 +60,7 @@ startupconclave/
 - Page copy, dates, and section markup: `index.html`.
 - Layout, responsive behavior, and themes: `css/style.css` and `css/poster-theme.css`.
 - Interactions, countdown, and Google Forms configuration (`GOOGLE_FORM_URLS`): `js/script.js`.
-- Image roles: `new-poster.png` is the hero poster, `conclave-poster.jpg` is used by the lightbox, `conclave-poster.png` is the social preview, and `pop_up_poster.png` is the startup popup. The remaining images provide the event logo, partner logos, and favicon.
+- Image roles: `final-poster.png` is the hero poster, `conclave-poster.jpg` is used by the lightbox, `conclave-poster.png` is the social preview, and `pop_up_poster.png` is the startup popup. The remaining images provide the event logo, partner logos, and favicon.
 
 Registration form URLs are maintained in `GOOGLE_FORM_URLS` in `js/script.js`. Update those values when registration links change.
 
