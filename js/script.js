@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Close nav on resize to desktop
     window.addEventListener('resize', () => {
-      if (window.innerWidth > 768 && mainNav.classList.contains('is-open')) {
+      if (window.innerWidth > 1024 && mainNav.classList.contains('is-open')) {
         navToggle.setAttribute('aria-expanded', 'false');
         mainNav.classList.remove('is-open');
       }
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
   /* --- 3. COUNTDOWN TIMER --- */
   const countdownEls = document.querySelectorAll('[data-countdown]');
   const inlineCountdown = document.querySelector('[data-countdown-inline]');
-  // Target date: 7 October 2026, 23:59:59 IST
+  // Registration deadline: 10 October 2026, 23:59:59 IST
   const targetDate = new Date('2026-10-10T23:59:59+05:30').getTime();
 
   function updateCountdown() {
@@ -74,12 +74,11 @@ document.addEventListener('DOMContentLoaded', () => {
       if (inlineCountdown) inlineCountdown.textContent = 'Closed';
       document.querySelectorAll('.cd-num').forEach(el => el.textContent = '00');
       
-      // Registration closed: disable the Register buttons and hide the forms
+      // Registration closed: disable the Register buttons and show the deadline notice
       document.querySelectorAll('[data-open-form]').forEach(btn => {
         btn.disabled = true;
         btn.textContent = 'Registrations closed';
       });
-      document.querySelectorAll('[data-form-panel]').forEach(p => { p.hidden = true; });
       const closedNote = document.querySelector('[data-reg-closed-note]');
       if (closedNote) closedNote.hidden = false;
       return;
@@ -230,8 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  /* --- 7. REGISTRATION FORMS (Exhibition + Pitching) --- */
-  // Replace each empty value with its published Google Form URL.
+  /* --- 7. GOOGLE FORMS --- */
   const GOOGLE_FORM_URLS = {
     exhibit: 'https://forms.gle/kXRQCAjZHzUGkchX9',
     pitch: 'https://forms.gle/kXRQCAjZHzUGkchX9',
@@ -246,239 +244,16 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => toastEl.classList.remove('show'), 4000);
   }
 
-  const formOpenBtns = document.querySelectorAll('[data-open-form]');
-  const formPanels = document.querySelectorAll('[data-form-panel]');
-
-  function closeAllPanels() {
-    formPanels.forEach(p => { p.hidden = true; p.classList.remove('is-open'); });
-    formOpenBtns.forEach(b => { b.setAttribute('aria-expanded', 'false'); b.classList.remove('is-active'); });
-  }
-
-  function openPanel(key) {
-    const googleFormUrl = GOOGLE_FORM_URLS[key];
-    if (googleFormUrl) {
-      window.open(googleFormUrl, '_blank', 'noopener,noreferrer');
-      return;
-    }
-    showToast('This Google Form link is not available yet.');
-  }
-
-  formOpenBtns.forEach(btn => btn.addEventListener('click', () => openPanel(btn.getAttribute('data-open-form'))));
-  document.querySelectorAll('[data-form-close]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      closeAllPanels();
-      const ways = document.getElementById('ways-to-join');
-      if (ways) ways.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-  });
-
-  // Captcha (one per form)
-  function drawCaptcha(canvas) {
-    const chars = '23456789ABCDEFGHJKLMNPQRSTUVWXYZ';
-    let code = '';
-    for (let i = 0; i < 5; i++) code += chars.charAt(Math.floor(Math.random() * chars.length));
-    canvas._code = code;
-    const ctx = canvas.getContext('2d');
-    const w = canvas.width, h = canvas.height;
-    const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
-    ctx.clearRect(0, 0, w, h);
-    ctx.fillStyle = isDark ? '#141d2e' : '#f0f4f8';
-    ctx.fillRect(0, 0, w, h);
-    for (let i = 0; i < 4; i++) {
-      ctx.strokeStyle = isDark ? 'rgba(56, 189, 248, 0.25)' : 'rgba(28, 109, 208, 0.25)';
-      ctx.lineWidth = 1.5;
-      ctx.beginPath();
-      ctx.moveTo(Math.random() * w, Math.random() * h);
-      ctx.bezierCurveTo(Math.random() * w, Math.random() * h, Math.random() * w, Math.random() * h, Math.random() * w, Math.random() * h);
-      ctx.stroke();
-    }
-    for (let i = 0; i < 25; i++) {
-      ctx.fillStyle = isDark ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.15)';
-      ctx.beginPath();
-      ctx.arc(Math.random() * w, Math.random() * h, 1, 0, Math.PI * 2);
-      ctx.fill();
-    }
-    const colors = isDark ? ['#60a5fa', '#38bdf8', '#7dd3fc', '#93c5fd'] : ['#1d4ed8', '#0284c7', '#1C6DD0', '#0369a1'];
-    ctx.font = 'bold 22px "Archivo", "Segoe UI", sans-serif';
-    ctx.textBaseline = 'middle';
-    const spacing = (w - 24) / 5;
-    for (let i = 0; i < code.length; i++) {
-      ctx.save();
-      ctx.translate(14 + i * spacing, h / 2 + (Math.random() * 4 - 2));
-      ctx.rotate((Math.random() - 0.5) * 0.35);
-      ctx.fillStyle = colors[Math.floor(Math.random() * colors.length)];
-      ctx.fillText(code[i], 0, 0);
-      ctx.restore();
-    }
-  }
-
-  document.querySelectorAll('[data-captcha-canvas]').forEach(canvas => {
-    canvas._refresh = () => drawCaptcha(canvas);
-    drawCaptcha(canvas);
-    canvas.addEventListener('click', () => drawCaptcha(canvas));
-    const refresh = canvas.parentElement.querySelector('[data-captcha-refresh]');
-    if (refresh) refresh.addEventListener('click', () => drawCaptcha(canvas));
-  });
-  themeToggles.forEach(btn => btn.addEventListener('click', () => {
-    setTimeout(() => document.querySelectorAll('[data-captcha-canvas]').forEach(drawCaptcha), 50);
-  }));
-
-  // The founder is member 1; render only the additional members.
-  function memberCard(prefix, i) {
-    const f = (name, label, type, ph, extra) => `
-      <div class="field rf-field">
-        <label for="${prefix}-m${i}-${name}">${label} <span class="rf-req" aria-hidden="true">*</span></label>
-        <input id="${prefix}-m${i}-${name}" name="member${i}_${name}" type="${type}" placeholder="${ph}" ${extra || ''} required>
-        <p class="field-error" id="${prefix}-m${i}-${name}-err"></p>
-      </div>`;
-    return `
-      <div class="rf-member">
-        <div class="rf-member-head"><b>${i}</b>Team member ${i}</div>
-        <div class="rf-grid rf-grid-tight">
-          ${f('name', 'Full name', 'text', 'Member name', 'autocomplete="off"')}
-          ${f('phone', 'Phone number', 'tel', '10-digit mobile number', 'inputmode="numeric" maxlength="10" pattern="[0-9]{10}"')}
-          ${f('email', 'Email ID', 'email', 'member@email.com', 'inputmode="email"')}
-          ${f('college', 'College name', 'text', 'Institution name', '')}
-        </div>
-      </div>`;
-  }
-
-  document.querySelectorAll('[data-team-size]').forEach(sel => {
-    const box = sel.closest('.rf-team').querySelector('[data-team-members]');
-    const prefix = sel.id.split('-')[0];
-    sel.addEventListener('change', () => {
-      const n = parseInt(sel.value, 10) || 0;
-      // keep what was already typed for members that stay
-      const saved = {};
-      box.querySelectorAll('input').forEach(inp => { saved[inp.name] = inp.value; });
-      let out = '';
-      for (let i = 2; i <= n; i++) out += memberCard(prefix, i);
-      box.innerHTML = out;
-      box.querySelectorAll('input').forEach(inp => { if (saved[inp.name]) inp.value = saved[inp.name]; });
-    });
-  });
-
-  // Startup registered? -> show registration number box only on "Yes"
-  document.querySelectorAll('[data-regno-toggle]').forEach(radio => {
-    radio.addEventListener('change', () => {
-      const wrap = radio.closest('.rf-field');
-      const num = wrap.querySelector('[data-regno]');
-      const yes = wrap.querySelector('[data-regno-toggle][value="Yes"]').checked;
-      num.hidden = !yes;
-      num.required = yes;
-      if (!yes) num.value = '';
-    });
-  });
-
-  // Validation helpers
-  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-  const DRIVE_RE = /^https?:\/\/(drive|docs)\.google\.com\//i;
-  const YT_RE = /^https?:\/\/(www\.|m\.)?(youtube\.com|youtu\.be)\//i;
-
-  function setError(input, msg) {
-    const field = input.closest('.rf-field, .field') || input.parentElement;
-    field.classList.add('has-error');
-    const errEl = field.querySelector('.field-error');
-    if (errEl) { errEl.textContent = msg; errEl.style.display = 'block'; }
-  }
-
-  function validateForm(formEl) {
-    formEl.querySelectorAll('.has-error').forEach(el => el.classList.remove('has-error'));
-    formEl.querySelectorAll('.field-error').forEach(el => { el.textContent = ''; el.style.display = 'none'; });
-    let firstBad = null;
-    const bad = (el, msg) => { setError(el, msg); if (!firstBad) firstBad = el; };
-
-    formEl.querySelectorAll('input:not([type="radio"]):not([type="checkbox"]):not([type="hidden"]), select, textarea').forEach(el => {
-      if (el.hidden || el.classList.contains('rf-hp') || el.hasAttribute('data-captcha-input')) return;
-      const v = el.value.trim();
-      if (el.required && !v) return bad(el, 'This field is required');
-      if (!v) return;
-      if (el.type === 'email' && !EMAIL_RE.test(v)) return bad(el, 'Please enter a valid email address');
-      if (el.type === 'tel' && !/^\d{10}$/.test(v)) return bad(el, 'Please enter exactly 10 digits');
-      const kind = el.getAttribute('data-link-kind');
-      if (kind === 'drive' && !DRIVE_RE.test(v)) return bad(el, 'Please paste a Google Drive link (drive.google.com)');
-      if (kind === 'youtube' && !YT_RE.test(v)) return bad(el, 'Please paste a YouTube link (youtube.com or youtu.be)');
-      if (el.type === 'url' && !kind && !/^https?:\/\/\S+\.\S+/i.test(v)) return bad(el, 'Please enter a full link starting with https://');
-    });
-
-    // Yes / No groups
-    const groups = new Set();
-    formEl.querySelectorAll('input[type="radio"][required]').forEach(r => groups.add(r.name));
-    groups.forEach(name => {
-      if (!formEl.querySelector(`input[name="${name}"]:checked`)) {
-        const first = formEl.querySelector(`input[name="${name}"]`);
-        const wrap = first.closest('.rf-field');
-        wrap.classList.add('has-error');
-        const errEl = wrap.querySelector('.field-error');
-        if (errEl) { errEl.textContent = 'Please choose Yes or No'; errEl.style.display = 'block'; }
-        if (!firstBad) firstBad = first;
-      }
-    });
-
-    // Declarations
-    const unchecked = [...formEl.querySelectorAll('.rf-check input[required]')].filter(c => !c.checked);
-    if (unchecked.length) {
-      unchecked.forEach(c => c.closest('.rf-check').classList.add('has-error'));
-      const errEl = formEl.querySelector('.rf-decl-err');
-      if (errEl) { errEl.textContent = 'Please accept both declarations to continue'; errEl.style.display = 'block'; }
-      if (!firstBad) firstBad = unchecked[0];
-    }
-
-    // Captcha
-    const cInput = formEl.querySelector('[data-captcha-input]');
-    const canvas = formEl.querySelector('[data-captcha-canvas]');
-    if (cInput && canvas) {
-      const entered = cInput.value.trim().toUpperCase();
-      if (!entered || entered !== canvas._code) {
-        bad(cInput, entered ? 'Incorrect code. Please try again.' : 'Please enter the verification code');
-        if (entered) { cInput.value = ''; drawCaptcha(canvas); }
-      }
-    }
-
-    if (firstBad) {
-      firstBad.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      setTimeout(() => firstBad.focus({ preventScroll: true }), 300);
-    }
-    return !firstBad;
-  }
-
-  document.querySelectorAll('input[type="tel"]').forEach(input => {
-    input.maxLength = 10;
-    input.pattern = '[0-9]{10}';
-  });
-
-  document.querySelectorAll('[data-conclave-form]').forEach(formEl => {
-    const key = formEl.getAttribute('data-conclave-form');
-    const panel = formEl.closest('[data-form-panel]');
-    const success = panel.querySelector('[data-form-success]');
-    const formError = formEl.querySelector('[data-form-error]');
-
-    // clear an error as soon as the visitor fixes it
-    formEl.addEventListener('input', ev => {
-      if (ev.target.type === 'tel') ev.target.value = ev.target.value.replace(/\D/g, '').slice(0, 10);
-      const field = ev.target.closest('.has-error');
-      if (field) field.classList.remove('has-error');
-    });
-    formEl.addEventListener('change', ev => {
-      const field = ev.target.closest('.has-error');
-      if (field) field.classList.remove('has-error');
-    });
-
-    formEl.addEventListener('submit', async ev => {
-      ev.preventDefault();
-      if (formError) formError.textContent = '';
-      if (formEl.querySelector('.rf-hp').value) return; // bot
-      if (!validateForm(formEl)) return;
-      const googleFormUrl = GOOGLE_FORM_URLS[key];
-      if (googleFormUrl) {
-        window.open(googleFormUrl, '_blank', 'noopener,noreferrer');
-        showToast('Complete and submit the Google Form in the new tab.');
-      } else if (formError) {
-        formError.textContent = 'Google Form link is not configured yet. Add it to GOOGLE_FORM_URLS in js/script.js.';
+  document.querySelectorAll('[data-open-form]').forEach(button => {
+    button.addEventListener('click', () => {
+      const formUrl = GOOGLE_FORM_URLS[button.getAttribute('data-open-form')];
+      if (formUrl) {
+        window.open(formUrl, '_blank', 'noopener,noreferrer');
+      } else {
+        showToast('This Google Form link is not available yet.');
       }
     });
   });
-
   /* --- SCHEDULE: ADD TO CALENDAR (.ics) --- */
   const ICS_EVENTS = {
     day1: {
@@ -602,28 +377,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // Scroll-spy: highlight the centered Journey step while scrolling
  
 
-  /* --- 9. HOW IT WORKS: ITINERARY SCROLL ANIMATION (LEFT-TO-RIGHT FADE IN / FADE OUT) --- */
-  const howItWorksSection = document.getElementById('how-it-works');
-  if (howItWorksSection) {
-    howItWorksSection.classList.add('anim-ready');
-    if ('IntersectionObserver' in window) {
-      const hiwObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            howItWorksSection.classList.add('is-visible');
-          } else {
-            howItWorksSection.classList.remove('is-visible');
-          }
-        });
-      }, {
-        threshold: 0.12,
-        rootMargin: '0px 0px -40px 0px'
-      });
-      hiwObserver.observe(howItWorksSection);
-    } else {
-      howItWorksSection.classList.add('is-visible');
-    }
-  }
    /* --- BACK TO TOP BUTTON --- */
 const backToTopBtn = document.querySelector('.back-top');
 if (backToTopBtn) {
